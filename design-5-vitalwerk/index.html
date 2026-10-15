@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VITALWERK | Physiotherapie, Haltung & Urban Movement Studio</title>
+    <meta name="description" content="Moderne City-Physiotherapie für Berufstätige, Schreibtisch-Athleten und urbane Macher. Termine von 07:00 bis 21:00 Uhr in zentraler Innenstadtlage.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        display: ['Outfit', 'sans-serif'],
+                    },
+                    colors: {
+                        loft: {
+                            950: '#111215',
+                            900: '#18191E',
+                            800: '#23252C',
+                            700: '#32343E',
+                            600: '#464955',
+                        },
+                        amber: {
+                            500: '#F59E0B',
+                        },
+                        flame: {
+                            400: '#FB923C',
+                            500: '#F97316',
+                            600: '#EA580C',
+                        },
+                        warm: {
+                            50: '#FAF9F6',
+                            100: '#F3F1EB',
+                            200: '#E6E2D8',
+                            300: '#D4CEBF',
+                        }
+                    },
+                    boxShadow: {
+                        'loft': '0 20px 40px -15px rgba(24, 25, 30, 0.15)',
+                        'glow': '0 10px 30px -5px rgba(249, 115, 22, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF9F6;
+            color: #18191E;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(250, 249, 246, 0.9);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4CEBF;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #EA580C;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-flame-500 selection:text-white font-sans">
+
+    <!-- Top Urban Announcement -->
+    <div class="bg-loft-950 text-white text-xs py-2.5 px-4 border-b border-loft-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-flame-500/20 text-flame-400 font-mono text-[11px] font-bold">
+                    <span class="w-1.5 h-1.5 rounded-full bg-flame-400 animate-pulse"></span> CITY-LOFT GEÖFFNET
+                </span>
+                <span class="text-gray-400 hidden sm:inline">•</span>
+                <span class="text-gray-200">After-Work Termine heute bis 21:00 Uhr • 3 Min. zur U-Bahn • Duschen & Handtücher inklusive</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-gray-300">
+                <span class="flex items-center gap-1.5"><i class="ph-bold ph-lightning text-amber-500"></i> Alle Kassen & Rezepte (GKV/PKV)</span>
+                <span class="flex items-center gap-1.5"><i class="ph-bold ph-map-pin text-flame-400"></i> Glockengießerwall 15, 20095 Hamburg</span>
+                <a href="tel:+49403862900" class="hover:text-white transition-colors text-white font-mono font-bold">040 / 38 62 90 0</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header (Without upper booking button to spotlight floating widget) -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-warm-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-loft-950 text-white flex items-center justify-center font-display font-black text-xl shadow-loft group-hover:bg-flame-500 transition-colors">
+                    V
+                </div>
+                <div>
+                    <span class="font-display font-black tracking-tight text-2xl text-loft-950 block leading-none">VITAL<span class="text-flame-500">WERK</span></span>
+                    <span class="text-[10px] uppercase tracking-widest text-loft-600 font-bold block mt-1">Physio • Posture • Movement Loft</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-loft-800">
+                <a href="#decoder" class="hover:text-flame-500 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-flame-500"></span> Schreibtisch-Check
+                </a>
+                <a href="#programme" class="hover:text-flame-500 transition-colors">Signature Programme</a>
+                <a href="#loft" class="hover:text-flame-500 transition-colors">Das Studio</a>
+                <a href="#team" class="hover:text-flame-500 transition-colors">Coaches & Physios</a>
+                <a href="#kontakt" class="hover:text-flame-500 transition-colors">Lage & Anfahrt</a>
+            </nav>
+
+            <!-- Action Area (Contact/Phone only) -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-loft-950 hover:bg-loft-900 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 active:scale-95 shadow-sm">
+                    <i class="ph-bold ph-phone-call text-flame-400"></i>
+                    <span>Studio-Kontakt</span>
+                </a>
+                <button id="vitalwerk-menu-btn" onclick="toggleVitalwerkMenu()" class="lg:hidden p-2.5 rounded-xl border border-warm-300 text-loft-950 hover:bg-warm-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="vitalwerk-mobile-menu" class="hidden lg:hidden bg-warm-50 border-b border-warm-200 px-4 py-4 space-y-3">
+            <a href="#decoder" onclick="toggleVitalwerkMenu()" class="block py-2 text-flame-600 font-bold">🔥 Schreibtisch-Schmerz-Check</a>
+            <a href="#programme" onclick="toggleVitalwerkMenu()" class="block py-2 text-loft-800 hover:text-flame-500">Signature Programme</a>
+            <a href="#loft" onclick="toggleVitalwerkMenu()" class="block py-2 text-loft-800 hover:text-flame-500">Das Studio & Ausstattung</a>
+            <a href="#team" onclick="toggleVitalwerkMenu()" class="block py-2 text-loft-800 hover:text-flame-500">Team & Coaches</a>
+            <a href="#kontakt" onclick="toggleVitalwerkMenu()" class="block py-2 text-loft-800 hover:text-flame-500">Standort & Kontakt</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
+        <!-- Glow Orbs -->
+        <div class="absolute top-10 right-1/4 w-[450px] h-[450px] bg-flame-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+        <div class="absolute bottom-0 left-10 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Urban Manifesto -->
+                <div class="lg:col-span-7 space-y-7">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-warm-100 border border-warm-200 text-xs font-bold text-loft-900">
+                        <span class="w-2 h-2 rounded-full bg-flame-500 animate-ping"></span>
+                        <span class="uppercase font-display tracking-wider">PHYSIO & MOVEMENT FÜR MODERNE BERUFSTÄTIGE</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-display font-black text-loft-950 leading-[1.08] tracking-tight">
+                        MACH SCHLUSS MIT DEM<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-flame-600 via-flame-500 to-amber-500">SCHREIBTISCH-RÜCKEN.</span><br>
+                        FEIERABEND OHNE SCHMERZ.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-loft-700 leading-relaxed font-normal max-w-2xl">
+                        Acht Stunden Zoom, Tunnelblick und Nacken wie Beton? Im <strong class="text-loft-950 font-bold">VITALWERK</strong> befreien wir dich von Haltungsmustern des Sitzalltags. Schnelle manuelle Entlastung, funktionelles Training an Sprossenwänden und Ergonomie-Coaching – direkt an der U-Bahn.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#decoder" class="bg-gradient-to-r from-flame-500 to-flame-600 hover:from-flame-400 hover:to-flame-500 text-white font-display font-bold px-7 py-4 rounded-xl shadow-glow transition-all flex items-center justify-center gap-3 text-base group">
+                            <i class="ph-bold ph-lightning text-xl"></i>
+                            <span>Schreibtisch-Check starten</span>
+                            <i class="ph-bold ph-arrow-down group-hover:translate-y-0.5 transition-transform"></i>
+                        </a>
+                        <a href="#programme" class="bg-white hover:bg-warm-100 text-loft-950 border border-warm-300 font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="ph-bold ph-barbell text-flame-500"></i>
+                            <span>Programme & Rezepte</span>
+                        </a>
+                    </div>
+
+                    <!-- Urban Perks Bar -->
+                    <div class="pt-6 border-t border-warm-200 grid grid-cols-3 gap-4 sm:gap-8">
+                        <div>
+                            <p class="text-xl sm:text-2xl font-display font-extrabold text-loft-950">07:00 – 21:00</p>
+                            <p class="text-xs text-loft-600 mt-0.5">Früh- & Spättermine</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-display font-extrabold text-flame-600">3 Min.</p>
+                            <p class="text-xs text-loft-600 mt-0.5">Zur U-Bahn Hauptbahnhof</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-display font-extrabold text-loft-950">Full Service</p>
+                            <p class="text-xs text-loft-600 mt-0.5">Duschen, Handtücher, Espresso</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Urban Studio Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-loft border border-warm-200 bg-loft-950 aspect-[4/5] group">
+                        <img 
+                            src="./hero.jpg" 
+                            alt="Urbanes Physiotherapie Studio Vitalwerk Hamburg" 
+                            class="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-loft-950/85 via-transparent to-transparent"></div>
+
+                        <!-- Top Urban Badge -->
+                        <div class="absolute top-5 left-5 right-5 flex justify-between items-center">
+                            <div class="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-xs font-bold text-loft-950 shadow-sm flex items-center gap-2">
+                                <i class="ph-fill ph-coffee text-flame-500"></i>
+                                <span>Boutique Studio Atmosphäre</span>
+                            </div>
+                            <span class="bg-loft-900/90 text-white px-3 py-1 rounded-full text-xs font-mono font-medium border border-white/20">
+                                Alle Kassen
+                            </span>
+                        </div>
+
+                        <!-- Bottom Practice Status Pill -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-warm-200 shadow-lg">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-display font-bold text-loft-950">Desk-Worker Express-Termine</span>
+                                <span class="text-[11px] bg-warm-100 text-flame-600 px-2 py-0.5 rounded font-mono font-bold">Heute freie Slots</span>
+                            </div>
+                            <p class="text-xs text-loft-700 leading-snug">
+                                Keine Wartezeiten für akute Nacken- und Rückenbeschwerden. Buchung bequem über den <strong>Button unten rechts</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE DESK-WORKER SYMPTOM DECODER -->
+    <section id="decoder" class="py-20 bg-warm-100 border-y border-warm-200">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-warm-200 shadow-loft">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-display font-bold uppercase tracking-wider text-flame-500 flex items-center gap-1.5">
+                            <i class="ph-bold ph-crosshair"></i> SCHNELLE FEHLERSUCHE
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-display font-extrabold text-loft-950 mt-1">Typische Schreibtisch-Symptome lösen</h2>
+                    </div>
+                    <span class="text-xs text-loft-600 font-mono">Klicke dein typisches Büro-Problem</span>
+                </div>
+
+                <!-- Problem Selector Tabs -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8">
+                    <button type="button" onclick="selectDeskSymptom('nacken')" id="desk-btn-nacken" class="desk-btn p-3.5 rounded-2xl border-2 border-loft-950 bg-warm-100 text-left transition-all">
+                        <span class="block text-xs font-bold text-loft-950">Nacken & Schulter</span>
+                        <span class="block text-[11px] text-loft-600">„Beton-Gefühl“</span>
+                    </button>
+                    <button type="button" onclick="selectDeskSymptom('mausarm')" id="desk-btn-mausarm" class="desk-btn p-3.5 rounded-2xl border border-warm-200 bg-white text-left hover:border-flame-500 transition-all">
+                        <span class="block text-xs font-bold text-loft-950">Mausarm & Ellbogen</span>
+                        <span class="block text-[11px] text-loft-600">Kribbeln in Fingern</span>
+                    </button>
+                    <button type="button" onclick="selectDeskSymptom('lws')" id="desk-btn-lws" class="desk-btn p-3.5 rounded-2xl border border-warm-200 bg-white text-left hover:border-flame-500 transition-all">
+                        <span class="block text-xs font-bold text-loft-950">Unterer Rücken</span>
+                        <span class="block text-[11px] text-loft-600">Klemmen beim Aufstehen</span>
+                    </button>
+                    <button type="button" onclick="selectDeskSymptom('augen')" id="desk-btn-augen" class="desk-btn p-3.5 rounded-2xl border border-warm-200 bg-white text-left hover:border-flame-500 transition-all">
+                        <span class="block text-xs font-bold text-loft-950">Kopfschmerz</span>
+                        <span class="block text-[11px] text-loft-600">Druck hinter Augen</span>
+                    </button>
+                </div>
+
+                <!-- Decoder Result Box -->
+                <div class="p-6 rounded-2xl bg-warm-50 border border-warm-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="text-xs font-mono font-bold text-flame-600 uppercase" id="desk-pattern">Muster: Upper Crossed Syndrome (Vorwärts-Kopf-Haltung)</span>
+                        <span class="text-xs bg-white text-loft-900 px-3 py-1 rounded-full border border-warm-200 font-bold" id="desk-hack">💡 60-Sekunden Office-Hack</span>
+                    </div>
+                    <h3 class="text-xl font-display font-extrabold text-loft-950" id="desk-title">Warum der Kopf 5x schwerer auf den Schultern wiegt</h3>
+                    <p class="text-xs sm:text-sm text-loft-700 leading-relaxed" id="desk-desc">
+                        Wenn der Bildschirm zu tief steht, wandert das Kinn nach vorn. Pro 2 Zentimeter Vorwärtsverschiebung verdoppelt sich die Hebelkraft auf deine Nackenmuskeln. Der Trapezmuskel verkrampft reflexartig, um den Kopf am Abfallen zu hindern.
+                    </p>
+                    <div class="p-3 bg-white rounded-xl border border-warm-200 text-xs text-loft-800" id="desk-exercise">
+                        <strong>Sofort-Übung am Schreibtisch:</strong> Doppelkinn machen, Zungenspitze an den Gaumen legen und die Brustwirbelsäule über die Stuhllehne nach hinten strecken (3 Atemzüge halten).
+                    </div>
+                    <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-warm-200">
+                        <span class="text-xs text-loft-600" id="desk-service"><strong>Passende Behandlung:</strong> Office-Reset 30 oder Manuelle Therapie (MT)</span>
+                        <button onclick="toggleBookingPanel(true)" class="bg-gradient-to-r from-flame-500 to-flame-600 hover:from-flame-400 text-white font-display font-bold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-glow">
+                            <i class="ph-bold ph-calendar-plus"></i>
+                            <span>Express-Termin buchen</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SIGNATURE PROGRAMME -->
+    <section id="programme" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-display font-bold uppercase tracking-widest text-flame-500 block mb-2">URBANE THERAPIE</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-loft-950">Unsere Signature Programme</h2>
+                <p class="text-sm text-loft-600 mt-2">Maßgeschneidert auf den Alltag zwischen Meetings, Deadlines und Feierabend.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Program 1 -->
+                <div class="bg-warm-50 rounded-3xl p-7 border border-warm-200 shadow-sm flex flex-col justify-between hover:border-flame-500 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-flame-100 text-flame-600 flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-bold ph-timer"></i>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-flame-500 block mb-1">PROGRAMM 01</span>
+                        <h3 class="text-xl font-display font-bold text-loft-950 mb-2">Office-Reset Express (30 Min.)</h3>
+                        <p class="text-xs text-loft-700 leading-relaxed mb-4">
+                            Intensive, fokussierte Manuelle Therapie für Nacken, Kiefer und oberen Rücken. Ideal für die Mittagspause oder direkt vor Feierabend.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-warm-200 flex items-center justify-between text-xs">
+                        <span class="font-bold text-loft-950">30 Min. Dauer</span>
+                        <span class="text-flame-600 font-semibold">GKV-Rezept oder Selbstzahler</span>
+                    </div>
+                </div>
+
+                <!-- Program 2 -->
+                <div class="bg-warm-50 rounded-3xl p-7 border border-warm-200 shadow-sm flex flex-col justify-between hover:border-flame-500 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-bold ph-barbell"></i>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-amber-500 block mb-1">PROGRAMM 02</span>
+                        <h3 class="text-xl font-display font-bold text-loft-950 mb-2">Posture Lab & KGG</h3>
+                        <p class="text-xs text-loft-700 leading-relaxed mb-4">
+                            Krankengymnastik am Gerät im Loft-Ambiente. Gezielter Kraftaufbau der tiefen Rückenstrecker und Rumpfmuskeln, damit langes Sitzen schmerzfrei bleibt.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-warm-200 flex items-center justify-between text-xs">
+                        <span class="font-bold text-loft-950">60 Min. Coaching</span>
+                        <span class="text-flame-600 font-semibold">Kassenrezept KGG</span>
+                    </div>
+                </div>
+
+                <!-- Program 3 -->
+                <div class="bg-warm-50 rounded-3xl p-7 border border-warm-200 shadow-sm flex flex-col justify-between hover:border-flame-500 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-flame-100 text-flame-600 flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-bold ph-laptop"></i>
+                        </div>
+                        <span class="text-xs font-mono font-bold text-flame-500 block mb-1">PROGRAMM 03</span>
+                        <h3 class="text-xl font-display font-bold text-loft-950 mb-2">Workspace & Ergonomie Check</h3>
+                        <p class="text-xs text-loft-700 leading-relaxed mb-4">
+                            Bringe dein Laptop oder ein Foto deines Homeoffice-Setups mit. Wir justieren Stuhlhöhe, Monitorwinkel und Mausposition für deinen Körperbau.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-warm-200 flex items-center justify-between text-xs">
+                        <span class="font-bold text-loft-950">45 Min. Analyse</span>
+                        <span class="text-flame-600 font-semibold">Inklusive PDF-Leitfaden</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="py-20 bg-warm-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-display font-bold uppercase tracking-widest text-flame-500 block mb-2">CREW</span>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-loft-950">Die Vitalwerk Therapeuten</h2>
+                <p class="text-sm text-loft-600 mt-2">Jung, dynamisch, hochqualifiziert. Keine weißen Kittel, sondern echte Bewegungspartner.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="bg-white rounded-3xl p-6 text-center border border-warm-200 shadow-sm">
+                    <div class="w-24 h-24 rounded-2xl bg-warm-200 text-loft-950 mx-auto mb-4 flex items-center justify-center text-3xl font-display font-extrabold">
+                        DK
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-loft-950">Dennis Kahl</h3>
+                    <p class="text-xs font-bold text-flame-600 mb-3">Gründer & Physiotherapeut (MT / KGG)</p>
+                    <p class="text-xs text-loft-600 leading-relaxed mb-4">
+                        Spezialist für akute Halswirbelsäulen-Blockaden und Ergonomie am Arbeitsplatz. Berät Hamburger Tech-Startups und Agenturen.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-warm-100 text-loft-800">Manuelle Therapie • Haltung • CMD</span>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white rounded-3xl p-6 text-center border border-warm-200 shadow-sm">
+                    <div class="w-24 h-24 rounded-2xl bg-warm-200 text-loft-950 mx-auto mb-4 flex items-center justify-center text-3xl font-display font-extrabold">
+                        SL
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-loft-950">Sarah Lindemann</h3>
+                    <p class="text-xs font-bold text-flame-600 mb-3">Sportphysiotherapeutin & Functional Coach</p>
+                    <p class="text-xs text-loft-600 leading-relaxed mb-4">
+                        Begeisterte Läuferin. Verbindet Faszientechniken mit modernem Krafttraining an den Sprossenwänden unseres Lofts.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-warm-100 text-loft-800">KGG • Faszien • Lauftraining</span>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white rounded-3xl p-6 text-center border border-warm-200 shadow-sm">
+                    <div class="w-24 h-24 rounded-2xl bg-warm-200 text-loft-950 mx-auto mb-4 flex items-center justify-center text-3xl font-display font-extrabold">
+                        TB
+                    </div>
+                    <h3 class="text-lg font-display font-bold text-loft-950">Tim Berger</h3>
+                    <p class="text-xs font-bold text-flame-600 mb-3">Physiotherapeut & Schmerztherapeut</p>
+                    <p class="text-xs text-loft-600 leading-relaxed mb-4">
+                        Schwerpunkt auf myofaszialen Triggerpunkten und chronischem Lendenwirbel-Schmerz bei Schreibtischtätern.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-warm-100 text-loft-800">Triggerpunkt • Dry Needling • ISG</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontakt" class="bg-loft-950 text-gray-400 pt-16 pb-12 border-t border-loft-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-loft-900">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="font-display font-black tracking-tight text-2xl text-white">VITAL<span class="text-flame-500">WERK</span></span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-loft-800 text-gray-300">CITY LOFT</span>
+                    </div>
+                    <p class="text-xs text-gray-400 max-w-md leading-relaxed">
+                        Praxis für moderne Physiotherapie, Haltungscoaching und urbane Bewegung im Herzen von Hamburg.
+                    </p>
+                    <div class="text-xs text-gray-300 space-y-1">
+                        <p><strong>Adresse:</strong> Glockengießerwall 15 (4. OG Loft), 20095 Hamburg</p>
+                        <p><strong>Telefon:</strong> 040 / 38 62 90 0 • hello@vitalwerk-hamburg.de</p>
+                        <p><strong>Öffnungszeiten:</strong> Mo–Do 07:00 – 21:00 Uhr • Fr 07:00 – 19:00 Uhr</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-display font-bold uppercase tracking-wider text-white mb-4">Programme</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#programme" class="hover:text-white transition-colors">Office-Reset 30</a></li>
+                        <li><a href="#programme" class="hover:text-white transition-colors">Posture Lab & KGG</a></li>
+                        <li><a href="#programme" class="hover:text-white transition-colors">Ergonomie-Check Homeoffice</a></li>
+                        <li><a href="#programme" class="hover:text-white transition-colors">Manuelle Therapie (MT)</a></li>
+                        <li><a href="#programme" class="hover:text-white transition-colors">Firmenfitness & BGM</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-display font-bold uppercase tracking-wider text-white mb-4">Abrechnung</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-3">
+                        Zugelassen für alle gesetzlichen Kassen (Kassenrezepte), Berufsgenossenschaften und Privatversicherungen.
+                    </p>
+                    <span class="text-[11px] font-mono text-flame-400">● Schnelle Termine vor oder nach der Arbeit</span>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+                <p>© 2026 VITALWERK Studio GmbH • Fiktive Konzept- & Präsentations-Webseite.</p>
+                <span>Move Better. Work Pain-Free.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!-- STICKY FLOATING TERMINBUCHUNGS-FEATURE & DEMO-PANEL (400x500px)   -->
+    <!-- ================================================================= -->
+
+    <!-- Floating Action Button (Sticky unten rechts) -->
+    <div id="vitalwerk-floating-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto">
+        <button 
+            id="floating-booking-btn" 
+            onclick="toggleBookingPanel()" 
+            class="group relative flex items-center gap-3 bg-loft-950 hover:bg-loft-900 text-white px-5 py-3.5 rounded-full shadow-glow border border-flame-500/30 transition-all duration-300 hover:scale-[1.03] active:scale-95 focus:outline-none focus:ring-4 focus:ring-flame-500/40"
+            aria-label="Online-Terminkalender & Design-Auswahl öffnen"
+            aria-expanded="false"
+            aria-controls="booking-widget-panel"
+        >
+            <!-- Pulsing Status Indicator -->
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-flame-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-flame-500"></span>
+            </span>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-bold ph-calendar-plus text-flame-400 text-xl group-hover:rotate-6 transition-transform"></i>
+                <span class="font-display font-bold text-sm tracking-tight text-white">Termin buchen</span>
+            </div>
+
+            <span class="hidden sm:inline-block bg-flame-500 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Express
+            </span>
+        </button>
+    </div>
+
+    <!-- Modales Panel (ca. 400x500px) -->
+    <div 
+        id="booking-widget-panel" 
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[540px] max-h-[calc(100vh-120px)] bg-warm-50 text-loft-950 rounded-3xl shadow-2xl border border-warm-300 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-labelledby="vitalwerk-panel-title"
+        aria-modal="true"
+    >
+        <!-- Panel Header -->
+        <div class="bg-loft-950 px-5 py-3.5 flex items-center justify-between shrink-0 border-b border-loft-800 text-white">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-flame-500 text-white flex items-center justify-center font-bold text-sm">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 id="vitalwerk-panel-title" class="font-display font-bold text-sm leading-tight text-white flex items-center gap-1.5">
+                        <span>Online-Terminkalender</span>
+                        <span class="w-2 h-2 rounded-full bg-flame-400"></span>
+                    </h3>
+                    <p class="text-[11px] text-gray-300 font-mono">VITALWERK City Loft</p>
+                </div>
+            </div>
+            <button 
+                onclick="toggleBookingPanel(false)" 
+                class="w-8 h-8 rounded-lg bg-loft-800 hover:bg-loft-700 text-gray-300 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Panel schließen"
+            >
+                <i class="ph-bold ph-x text-base"></i>
+            </button>
+        </div>
+
+        <!-- 5-Button Design Switcher for Product Demo -->
+        <div class="bg-loft-950 px-4 py-2.5 border-b border-loft-800 shrink-0">
+            <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1">
+                    <i class="ph-bold ph-browsers text-flame-400"></i> Demo-Designs wechseln:
+                </span>
+                <span class="text-[10px] text-gray-400 font-mono">5 Varianten</span>
+            </div>
+            <div class="grid grid-cols-5 gap-1.5" role="navigation" aria-label="Praxis-Design Varianten">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-loft-900 hover:bg-loft-800 text-gray-300 hover:text-white border border-loft-700 truncate transition-colors" title="Design 1: UNVERKRAMPFT (Bio/Sand)">
+                    1. Bio
+                </a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-loft-900 hover:bg-loft-800 text-gray-300 hover:text-white border border-loft-700 truncate transition-colors" title="Design 2: KINETIQ (Sport/Reha)">
+                    2. Sport
+                </a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-loft-900 hover:bg-loft-800 text-gray-300 hover:text-white border border-loft-700 truncate transition-colors" title="Design 3: SANA VITA (Ganzheitlich)">
+                    3. Natur
+                </a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-loft-900 hover:bg-loft-800 text-gray-300 hover:text-white border border-loft-700 truncate transition-colors" title="Design 4: AURORA MED (Klinisch/Tech)">
+                    4. Klinik
+                </a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded-md text-[10px] font-bold text-center bg-flame-500 text-white border border-flame-400 shadow-sm truncate" title="Design 5: VITALWERK (Urban/Loft)">
+                    5. Urban
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (PLATZHALTER FÜR IRAME / KOMPONENTE)-->
+        <!-- ca. 400x500px Content-Bereich                                -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-warm-50">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-loft-950 bg-warm-200 text-loft-950 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500 transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500 transition-all">
+                            Selbstzahler
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1.5">Gewünschtes Programm</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-warm-300 rounded-xl px-3 py-2 text-xs font-medium text-loft-950 focus:outline-none focus:border-flame-500">
+                        <option value="Office-Reset Express (30 Min.)">Office-Reset Express (30 Min. Nacken/Schulter)</option>
+                        <option value="Krankengymnastik am Gerät (KGG)">Posture Lab & KGG (60 Min. Rumpf/Haltung)</option>
+                        <option value="Manuelle Therapie (MT)">Manuelle Therapie (MT) / Wirbelsäule</option>
+                        <option value="Workspace Ergonomie-Check">Homeoffice & Workspace Ergonomie-Check</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-flame-600 font-mono font-bold">● Freie City-Slots</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-flame-500 bg-flame-50 text-loft-950 font-bold text-xs">
+                            <span class="block text-[10px] text-flame-600 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500">
+                            <span class="block text-[10px] text-loft-500 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500">
+                            <span class="block text-[10px] text-loft-500 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1.5">Uhrzeit (Früh bis Spät)</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '07:15')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-loft-950 bg-warm-200 text-loft-950 font-bold text-xs">07:15</button>
+                        <button type="button" onclick="setWidgetTime(this, '12:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500">12:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '17:45')" class="widget-time-btn py-1.5 text-center rounded-lg border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500">17:45</button>
+                        <button type="button" onclick="setWidgetTime(this, '20:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500">20:00</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-flame-500 to-flame-600 hover:from-flame-400 text-white font-display font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-glow transition-all mt-1">
+                    <span>Weiter zu deinen Angaben</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-warm-100 p-2.5 rounded-xl border border-warm-200 text-xs text-loft-800">
+                    <span class="font-bold text-loft-950 block" id="widget-summary-title">Office-Reset • Gesetzlich</span>
+                    <span class="text-[11px] text-flame-600 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 07:15 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Laura Seidel" class="w-full bg-white border border-warm-300 rounded-xl px-3 py-2 text-xs text-loft-950 focus:outline-none focus:border-flame-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1">Mobilfunk *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="0160 / 1234567" class="w-full bg-white border border-warm-300 rounded-xl px-3 py-2 text-xs text-loft-950 focus:outline-none focus:border-flame-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="name@agency.de" class="w-full bg-white border border-warm-300 rounded-xl px-3 py-2 text-xs text-loft-950 focus:outline-none focus:border-flame-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-loft-800 mb-1">Wo zwickt es besonders? (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Nacken nach 10h Bildschirmarbeit..." class="w-full bg-white border border-warm-300 rounded-xl px-3 py-1.5 text-xs text-loft-950 focus:outline-none focus:border-flame-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-warm-300 bg-white text-loft-700 font-bold text-xs hover:bg-warm-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-gradient-to-r from-flame-500 to-flame-600 hover:from-flame-400 text-white font-display font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-glow transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Slot direkt blockieren</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-flame-100 text-flame-600 mx-auto flex items-center justify-center text-2xl shadow-inner border border-flame-200">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-flame-600">Buchungsvorschau aktiv</span>
+                    <h4 class="text-base font-display font-extrabold text-loft-950 mt-1">Dein Slot im City-Loft ist reserviert!</h4>
+                    <p class="text-xs text-loft-600 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im Produktivbetrieb erhalten Patient*innen hier ihren QR-Code für den schnellen Self-Check-in am Loft-Empfang.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-loft-950 hover:bg-loft-900 text-white font-display font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Neuen Termin testen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-warm-200 text-[10px] text-loft-600 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-flame-600 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. DESK-WORKER SYMPTOM DECODER DATA ---
+        const deskSymptoms = {
+            nacken: {
+                pattern: 'Muster: Upper Crossed Syndrome (Vorwärts-Kopf-Haltung)',
+                hack: '💡 60-Sekunden Office-Hack',
+                title: 'Warum der Kopf 5x schwerer auf den Schultern wiegt',
+                desc: 'Wenn der Bildschirm zu tief steht, wandert das Kinn nach vorn. Pro 2 Zentimeter Vorwärtsverschiebung verdoppelt sich die Hebelkraft auf deine Nackenmuskeln. Der Trapezmuskel verkrampft reflexartig, um den Kopf am Abfallen zu hindern.',
+                exercise: 'Doppelkinn machen, Zungenspitze an den Gaumen legen und die Brustwirbelsäule über die Stuhllehne nach hinten strecken (3 Atemzüge halten).',
+                service: 'Office-Reset 30 oder Manuelle Therapie (MT)'
+            },
+            mausarm: {
+                pattern: 'Muster: Repetitive Strain Injury (RSI) & Sehnenscheiden',
+                hack: '💡 Ergonomie-Hack für die Maus',
+                title: 'Dauerspannung der Streckmuskeln im Unterarm',
+                desc: 'Hunderte Mausklicks und schnelles Tippen im abgeknickten Handgelenk verkleben die Muskelfaszien am lateralen Epikondylus („Tennisarm des Büros“). Ohne Ausgleich entstehen chronische Mikrotraumata.',
+                exercise: 'Strecke den Arm nach vorn, greife mit der anderen Hand die Finger und ziehe sie sanft nach hinten-unten. 20 Sekunden halten.',
+                service: 'Faszientherapie Unterarm + Ergonomie-Maus-Beratung'
+            },
+            lws: {
+                pattern: 'Muster: Verkürzter Hüftbeuger (M. psoas major) & Beckenkippung',
+                hack: '💡 Der Aufsteh-Check',
+                title: 'Warum langes Sitzen die Bandscheiben auspresst',
+                desc: 'Im 90-Grad-Sitzwinkel befindet sich der Hüftbeuger stundenlang in angenäherter Position. Stehst du auf, zieht er die Lendenwirbelsäule ruckartig ins Hohlkreuz – es kommt zum typischen stechenden Anlaufschmerz.',
+                exercise: 'Ausfallschritt nach hinten machen, das Becken bewusst nach vorn aufrichten und das Gesäß anspannen, bis die Vorderseite der Leiste dehnt.',
+                service: 'Posture Lab & KGG Geräte-Stabilisation'
+            },
+            augen: {
+                pattern: 'Muster: Okulomotorische Überlastung & Subokzipital-Spannung',
+                hack: '💡 20-20-20 Regel',
+                title: 'Bildschirmstarre und Verspannung der kurzen Nackenmuskeln',
+                desc: 'Die Augenmuskeln sind neurologisch direkt mit den feinen Subokzipitalmuskeln am Schädelansatz verschaltet. Starres Schauen auf einen Punkt führt zu Reflexspannungen und pochendem Spannungskopfschmerz.',
+                exercise: 'Alle 20 Minuten für 20 Sekunden einen Gegenstand in mindestens 6 Metern Entfernung fokussieren und dabei tief in den Bauch atmen.',
+                service: 'Craniomandibuläre Entspannung & Schläfen-Release'
+            }
+        };
+
+        function selectDeskSymptom(key) {
+            const data = deskSymptoms[key];
+            if (!data) return;
+
+            document.getElementById('desk-pattern').textContent = data.pattern;
+            document.getElementById('desk-hack').textContent = data.hack;
+            document.getElementById('desk-title').textContent = data.title;
+            document.getElementById('desk-desc').textContent = data.desc;
+            document.getElementById('desk-exercise').innerHTML = '<strong>Sofort-Übung am Schreibtisch:</strong> ' + data.exercise;
+            document.getElementById('desk-service').innerHTML = '<strong>Passende Behandlung:</strong> ' + data.service;
+
+            ['nacken', 'mausarm', 'lws', 'augen'].forEach(k => {
+                const b = document.getElementById('desk-btn-' + k);
+                if (k === key) {
+                    b.className = 'desk-btn p-3.5 rounded-2xl border-2 border-loft-950 bg-warm-100 text-left transition-all';
+                } else {
+                    b.className = 'desk-btn p-3.5 rounded-2xl border border-warm-200 bg-white text-left hover:border-flame-500 transition-all';
+                }
+            });
+        }
+
+        // --- 2. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '07:15';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-loft-950 bg-warm-200 text-loft-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-flame-500 bg-flame-50 text-loft-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-warm-300 bg-white text-loft-700 font-medium text-xs hover:border-flame-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-loft-950 bg-warm-200 text-loft-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Gast-Patient';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Express-Slot für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde simuliert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleVitalwerkMenu() {
+            const m = document.getElementById('vitalwerk-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

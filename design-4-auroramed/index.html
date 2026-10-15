@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURORA MED | Institut für evidenzbasierte Physiotherapie & Diagnostik</title>
+    <meta name="description" content="Klinische Präzision und evidenzbasierte Rehabilitation. Zertifiziertes Zentrum für orthopädische, chirurgische und neurologische Physiotherapie.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        clinical: {
+                            950: '#061320',
+                            900: '#0A2540',
+                            800: '#103960',
+                            700: '#1B4D7E',
+                            100: '#E6EFF7',
+                            50: '#F4F8FB',
+                        },
+                        azure: {
+                            400: '#38BDF8',
+                            500: '#0284C7',
+                            600: '#0369A1',
+                        },
+                        mint: {
+                            500: '#0D9488',
+                        }
+                    },
+                    boxShadow: {
+                        'clinical': '0 20px 40px -15px rgba(10, 37, 64, 0.1)',
+                        'panel': '0 30px 60px -15px rgba(6, 19, 32, 0.25)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8FAFC;
+            color: #0A2540;
+            overflow-x: hidden;
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F8FAFC;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0284C7;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-azure-500 selection:text-white font-sans">
+
+    <!-- Top Medical Trust Bar -->
+    <div class="bg-clinical-900 text-white text-xs py-2 px-4 border-b border-clinical-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-azure-500/20 text-azure-400 font-mono text-[11px] font-bold border border-azure-400/30">
+                    <span class="w-1.5 h-1.5 rounded-full bg-azure-400 animate-pulse"></span> DIN EN ISO 9001
+                </span>
+                <span class="text-slate-400 hidden sm:inline">•</span>
+                <span class="text-slate-200">Zertifiziertes Reha-Zentrum • Partner aller gesetzlichen Kassen, BG & Privatkassen</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-slate-300">
+                <span class="flex items-center gap-1.5"><i class="ph-bold ph-shield-check text-azure-400"></i> Digitale Arztberichte in 24h</span>
+                <span class="flex items-center gap-1.5"><i class="ph-bold ph-map-pin text-azure-400"></i> MedCenter Arkaden 3, 70173 Stuttgart</span>
+                <a href="tel:+49711674200" class="hover:text-white transition-colors text-white font-semibold">0711 / 67 42 00</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header (Without upper booking button to emphasize floating widget) -->
+    <header class="sticky top-0 z-40 glass-header border-b border-slate-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-clinical-900 text-white flex items-center justify-center text-xl shadow-clinical group-hover:bg-azure-500 transition-colors">
+                    <i class="ph-bold ph-cross"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="font-heading font-extrabold text-2xl tracking-tight text-clinical-900 leading-none">AURORA<span class="text-azure-500">MED</span></span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-clinical-800 border border-slate-300">CLINICAL</span>
+                    </div>
+                    <span class="text-[10px] font-semibold tracking-wider text-slate-500 uppercase block mt-1">Evidenzbasierte Physiotherapie & Diagnostik</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-clinical-900">
+                <a href="#leitfaden" class="hover:text-azure-500 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-azure-500"></span> Leitlinien-Navigator
+                </a>
+                <a href="#diagnostik" class="hover:text-azure-500 transition-colors">Diagnostik-Zentrum</a>
+                <a href="#stufenplan" class="hover:text-azure-500 transition-colors">4-Stufen-Konzept</a>
+                <a href="#aerzte" class="hover:text-azure-500 transition-colors">Medizinisches Team</a>
+                <a href="#kontakt" class="hover:text-azure-500 transition-colors">Standort & Zuweiser</a>
+            </nav>
+
+            <!-- Action Area (Contact/Phone only) -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-clinical-900 hover:bg-clinical-800 text-white text-sm font-semibold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 shadow-sm active:scale-95">
+                    <i class="ph-bold ph-phone-call text-azure-400"></i>
+                    <span>Zuweiser & Kontakt</span>
+                </a>
+                <button id="aurora-menu-btn" onclick="toggleAuroraMenu()" class="lg:hidden p-2.5 rounded-xl border border-slate-300 text-clinical-900 hover:bg-slate-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="aurora-mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3">
+            <a href="#leitfaden" onclick="toggleAuroraMenu()" class="block py-2 text-azure-600 font-semibold">🩺 Leitlinien-Navigator</a>
+            <a href="#diagnostik" onclick="toggleAuroraMenu()" class="block py-2 text-clinical-900 hover:text-azure-600">Diagnostik-Zentrum</a>
+            <a href="#stufenplan" onclick="toggleAuroraMenu()" class="block py-2 text-clinical-900 hover:text-azure-600">Reha-Stufenplan</a>
+            <a href="#aerzte" onclick="toggleAuroraMenu()" class="block py-2 text-clinical-900 hover:text-azure-600">Ärzte & Therapeuten</a>
+            <a href="#kontakt" onclick="toggleAuroraMenu()" class="block py-2 text-clinical-900 hover:text-azure-600">Standort & Zuweiser</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-white border-b border-slate-200">
+        <!-- Subtle Grid Pattern -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Medical Copy -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-clinical-50 border border-slate-200 text-xs font-semibold text-clinical-800">
+                        <span class="w-2 h-2 rounded-full bg-azure-500"></span>
+                        <span class="tracking-wide uppercase font-mono text-[11px]">STAND DER WISSENSCHAFTLICHEN MEDIZIN</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[58px] font-heading font-extrabold text-clinical-900 leading-[1.12]">
+                        Präzision in Bewegung.<br>
+                        <span class="text-azure-500">Evidenzbasierte Therapie</span><br>
+                        für nachhaltigen Erfolg.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
+                        Als Fachinstitut für physikalische Medizin und Rehabilitation verbinden wir objektive Bewegungsdiagnostik mit den anerkannten Leitlinien der Fachgesellschaften (DGOOC, DEGAM). Volle Transparenz für Patient*innen und zuweisende Ärzt*innen.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#leitfaden" class="bg-azure-500 hover:bg-azure-600 text-white font-bold px-7 py-4 rounded-xl shadow-clinical transition-all flex items-center justify-center gap-3 text-base group">
+                            <i class="ph-bold ph-stethoscope text-xl"></i>
+                            <span>Leitlinien-Check nach Diagnose</span>
+                            <i class="ph-bold ph-arrow-down group-hover:translate-y-0.5 transition-transform"></i>
+                        </a>
+                        <a href="#diagnostik" class="bg-white hover:bg-slate-50 text-clinical-900 border border-slate-300 font-semibold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="ph-bold ph-chart-line-up text-azure-500"></i>
+                            <span>Diagnostik-Verfahren</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Bar -->
+                    <div class="pt-6 border-t border-slate-200 grid grid-cols-3 gap-4 sm:gap-8">
+                        <div>
+                            <p class="text-xl sm:text-2xl font-heading font-bold text-clinical-900">100 %</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Leitlinien-Konformität</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-heading font-bold text-clinical-900">24 Std.</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Befundbericht an Ihren Arzt</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-heading font-bold text-clinical-900">ISO 9001</p>
+                            <p class="text-xs text-slate-500 mt-0.5">TÜV-geprüfte Qualität</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Clinical Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-clinical border border-slate-200 bg-clinical-900 aspect-[4/5] group">
+                        <img 
+                            src="./hero.jpg" 
+                            alt="Moderne klinische Bewegungsdiagnostik im Aurora Med Zentrum" 
+                            class="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-clinical-950/80 via-transparent to-transparent"></div>
+
+                        <!-- Top Floating Medical Badge -->
+                        <div class="absolute top-5 left-5 right-5 flex justify-between items-center">
+                            <div class="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl text-xs font-semibold text-clinical-900 shadow-sm flex items-center gap-2">
+                                <i class="ph-fill ph-check-circle text-azure-500"></i>
+                                <span>Klinischer Standard</span>
+                            </div>
+                            <span class="bg-clinical-900/90 text-white px-3 py-1 rounded-full text-xs font-mono font-medium border border-white/20">
+                                Vicon 3D Ready
+                            </span>
+                        </div>
+
+                        <!-- Bottom Practice Status Pill -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-slate-200 shadow-lg">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-heading font-bold text-clinical-900">Patientenaufnahme & Sprechstunden</span>
+                                <span class="text-[11px] bg-clinical-50 text-clinical-800 px-2 py-0.5 rounded font-mono font-semibold">Mo–Fr 07:30–20:00</span>
+                            </div>
+                            <p class="text-xs text-slate-600 leading-snug">
+                                Termine für Erstaufnahmen und Rezepte können über unseren <strong>Buchungs-Button unten rechts</strong> direkt reserviert werden.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE LEITLINIEN-NAVIGATOR -->
+    <section id="leitfaden" class="py-20 bg-slate-50">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-slate-200 shadow-clinical">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-azure-500 flex items-center gap-1.5">
+                            <i class="ph-bold ph-stethoscope"></i> INTERAKTIVER REHA-LEITFADEN
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-heading font-bold text-clinical-900 mt-1">Diagnose- & Heilmittel-Navigator</h2>
+                    </div>
+                    <span class="text-xs text-slate-500 font-mono">Nach ICD-10 & Heilmittelkatalog</span>
+                </div>
+
+                <!-- Diagnosis Selector -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8">
+                    <button type="button" onclick="selectDiagnosis('lws')" id="diag-btn-lws" class="diag-btn p-3.5 rounded-2xl border-2 border-clinical-900 bg-clinical-50 text-left transition-all">
+                        <span class="block text-xs font-bold text-clinical-900">M54.5 LWS</span>
+                        <span class="block text-[11px] text-slate-500">Bandscheibe / Ischias</span>
+                    </button>
+                    <button type="button" onclick="selectDiagnosis('hws')" id="diag-btn-hws" class="diag-btn p-3.5 rounded-2xl border border-slate-200 bg-white text-left hover:border-azure-500 transition-all">
+                        <span class="block text-xs font-bold text-clinical-900">M54.2 HWS</span>
+                        <span class="block text-[11px] text-slate-500">Zervikalsyndrom</span>
+                    </button>
+                    <button type="button" onclick="selectDiagnosis('schulter')" id="diag-btn-schulter" class="diag-btn p-3.5 rounded-2xl border border-slate-200 bg-white text-left hover:border-azure-500 transition-all">
+                        <span class="block text-xs font-bold text-clinical-900">M75.1 Schulter</span>
+                        <span class="block text-[11px] text-slate-500">Rotatorenmanschette</span>
+                    </button>
+                    <button type="button" onclick="selectDiagnosis('knie')" id="diag-btn-knie" class="diag-btn p-3.5 rounded-2xl border border-slate-200 bg-white text-left hover:border-azure-500 transition-all">
+                        <span class="block text-xs font-bold text-clinical-900">M17 Knie-TEP</span>
+                        <span class="block text-[11px] text-slate-500">Gelenkersatz / Post-OP</span>
+                    </button>
+                </div>
+
+                <!-- Guidance Result Box -->
+                <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200 space-y-4">
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <span class="text-xs font-mono font-bold text-azure-600 uppercase" id="diag-code">ICD-10 M54.5 • Lumboischialgie</span>
+                        <span class="text-xs bg-white text-clinical-800 px-3 py-1 rounded-full border border-slate-200 font-medium" id="diag-rezept">Passendes Rezept: MT (Manuelle Therapie) + KGG</span>
+                    </div>
+                    <h3 class="text-lg font-heading font-bold text-clinical-900" id="diag-title">Evidenzbasierter Pfad bei lumbalen Beschwerden</h3>
+                    <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" id="diag-desc">
+                        Gemäß der Nationalen Versorgungsleitlinie Nicht-spezifischer Kreuzschmerz ist Bettruhe kontraindiziert. Ziel ist die frühe Schmerzmodulation durch segmentale Traktion (MT) und der unmittelbare Übergang zu aktiven Kräftigungsübungen (KGG) zur Stabilisierung des M. multifidus.
+                    </p>
+                    <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-slate-200">
+                        <span class="text-xs text-slate-500" id="diag-duration"><strong>Regel-Behandlungszeitraum:</strong> 6–12 Einheiten à 30–60 Min.</span>
+                        <button onclick="toggleBookingPanel(true)" class="bg-clinical-900 hover:bg-clinical-800 text-white font-semibold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-sm">
+                            <i class="ph-bold ph-calendar-plus text-azure-400"></i>
+                            <span>Ersttermin online reservieren</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-STUFIGES REHABILITATIONS-KONZEPT -->
+    <section id="stufenplan" class="py-20 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-azure-500 block mb-2">KLINISCHE METHODIK</span>
+                <h2 class="text-3xl sm:text-4xl font-heading font-bold text-clinical-900">Das 4-Phasen Aurora Reha-System</h2>
+                <p class="text-sm text-slate-600 mt-2">Jede Phase wird erst nach Erreichen objektiver funktioneller Schwellenwerte freigegeben.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stufe 1 -->
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-azure-500 mb-2 block">STUFE 01</span>
+                        <h3 class="text-lg font-heading font-bold text-clinical-900 mb-2">Akut-Modulation</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Schmerzlinderung, Ödemreduktion und Wiederherstellung der schmerzfreien Grundmobilität durch schonende Manuelle Therapie.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-clinical-800 bg-white p-2.5 rounded-lg border border-slate-200">
+                        Messwert: VAS-Schmerz &lt; 3/10
+                    </div>
+                </div>
+
+                <!-- Stufe 2 -->
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-azure-500 mb-2 block">STUFE 02</span>
+                        <h3 class="text-lg font-heading font-bold text-clinical-900 mb-2">Segmentale Stabilität</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Aktivierung der tiefen gelenksnahen Muskulatur mittels sensorischem EMG-Biofeedback und isometrischen Haltungen.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-clinical-800 bg-white p-2.5 rounded-lg border border-slate-200">
+                        Messwert: Voller Bewegungsumfang (ROM)
+                    </div>
+                </div>
+
+                <!-- Stufe 3 -->
+                <div class="p-6 rounded-2xl border border-slate-200 bg-slate-50 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-azure-500 mb-2 block">STUFE 03</span>
+                        <h3 class="text-lg font-heading font-bold text-clinical-900 mb-2">Progressive Kraft (KGG)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Gerätegestützter Kraftaufbau der motorischen Hauptketten mit progressiver Gewichtssteigerung und Haltungsstabilisierung.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-clinical-800 bg-white p-2.5 rounded-lg border border-slate-200">
+                        Messwert: Isokinetik-Symmetrie &gt; 80%
+                    </div>
+                </div>
+
+                <!-- Stufe 4 -->
+                <div class="p-6 rounded-2xl border border-azure-400 bg-clinical-50 flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-azure-600 mb-2 block">STUFE 04</span>
+                        <h3 class="text-lg font-heading font-bold text-clinical-900 mb-2">Reintegration</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                            Alltags- und arbeitsplatzspezifische Belastungstests, Ergonomie-Schulung und digitaler Heimtrainingsplan zur Rezidivprophylaxe.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-azure-700 bg-white p-2.5 rounded-lg border border-azure-200 font-bold">
+                        Messwert: Abschlussbericht an Facharzt
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ÄRZTE & THERAPEUTEN -->
+    <section id="aerzte" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-azure-500 block mb-2">INTERDISZIPLINÄR</span>
+                <h2 class="text-3xl sm:text-4xl font-heading font-bold text-clinical-900">Klinische Leitung & Therapeuten</h2>
+                <p class="text-sm text-slate-600 mt-2">Akademisch ausgebildete Physiotherapeuten mit Masterabschlüssen und fachärztlicher Begleitung.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="bg-white rounded-3xl p-6 text-center border border-slate-200 shadow-sm">
+                    <div class="w-24 h-24 rounded-2xl bg-clinical-100 text-clinical-800 mx-auto mb-4 flex items-center justify-center text-3xl">
+                        <i class="ph-bold ph-stethoscope"></i>
+                    </div>
+                    <h3 class="text-lg font-heading font-bold text-clinical-900">Dr. med. Christian von Arx</h3>
+                    <p class="text-xs font-semibold text-azure-600 mb-3">Facharzt für Orthopädie & Unfallchirurgie (Beirat)</p>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Wissenschaftlicher Berater für evidenzbasierte Reha-Pfade und Schnittstelle zu den umliegenden Kliniken.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-slate-100 text-slate-700">Orthopädie • Chirurgie • DGSP</span>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white rounded-3xl p-6 text-center border border-slate-200 shadow-sm">
+                    <div class="w-24 h-24 rounded-2xl bg-clinical-100 text-clinical-800 mx-auto mb-4 flex items-center justify-center text-3xl">
+                        <i class="ph-bold ph-user-check"></i>
+                    </div>
+                    <h3 class="text-lg font-heading font-bold text-clinical-900">Nadine Schweizer, M.Sc.</h3>
+                    <p class="text-xs font-semibold text-azure-600 mb-3">Leitende Physiotherapeutin (Master of Science)</p>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Master of Science in Neuro-Orthopädischer Physiotherapie. Dozentin für Manuelle Therapie und evidenzbasierte Praxis.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-slate-100 text-slate-700">MT • KGG • Evidenz-Dozentin</span>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white rounded-3xl p-6 text-center border border-slate-200 shadow-sm">
+                    <div class="w-24 h-24 rounded-2xl bg-clinical-100 text-clinical-800 mx-auto mb-4 flex items-center justify-center text-3xl">
+                        <i class="ph-bold ph-user-check"></i>
+                    </div>
+                    <h3 class="text-lg font-heading font-bold text-clinical-900">Patrick Meier, B.Sc.</h3>
+                    <p class="text-xs font-semibold text-azure-600 mb-3">Fachtherapeut für Post-OP Rehabilitation</p>
+                    <p class="text-xs text-slate-600 leading-relaxed mb-4">
+                        Spezialisiert auf Gelenkendoprothetik (Knie-TEP, Hüft-TEP) und komplexe Sehnenrekonstruktionen an der Schulter.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-slate-100 text-slate-700">TEP-Reha • Cybex • Kraftdiagnostik</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontakt" class="bg-clinical-950 text-slate-400 pt-16 pb-12 border-t border-clinical-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-clinical-900">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="font-heading font-bold tracking-tight text-2xl text-white">AURORA<span class="text-azure-400">MED</span></span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-800 text-slate-300">DIAGNOSTIK</span>
+                    </div>
+                    <p class="text-xs text-slate-400 max-w-md leading-relaxed">
+                        Institut für physikalische Therapie, Bewegungsdiagnostik und evidenzbasierte medizinische Rehabilitation.
+                    </p>
+                    <div class="text-xs text-slate-400 space-y-1">
+                        <p><strong>Standort:</strong> MedCenter Arkaden 3, 70173 Stuttgart</p>
+                        <p><strong>Zentrale:</strong> 0711 / 67 42 00 • info@auroramed-praxis.de</p>
+                        <p><strong>Öffnungszeiten:</strong> Mo–Fr 07:30 – 20:00 Uhr • Sa 08:30 – 13:00 Uhr</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Reha-Fachbereiche</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#stufenplan" class="hover:text-white transition-colors">Post-operative Frühmobilisation</a></li>
+                        <li><a href="#stufenplan" class="hover:text-white transition-colors">Manuelle Therapie (MT)</a></li>
+                        <li><a href="#stufenplan" class="hover:text-white transition-colors">Krankengymnastik am Gerät (KGG)</a></li>
+                        <li><a href="#stufenplan" class="hover:text-white transition-colors">Wirbelsäulen-Rehabilitation</a></li>
+                        <li><a href="#stufenplan" class="hover:text-white transition-colors">Zulassung BG / D-Arztverfahren</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Qualitätsmanagement</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed mb-3">
+                        Zertifiziert nach DIN EN ISO 9001. Lückenlose Dokumentation und automatisierte Befundweiterleitung an den behandelnden Arzt.
+                    </p>
+                    <span class="text-[11px] font-mono text-azure-400">● Freie Terminkapazitäten für Kassenrezepte</span>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
+                <p>© 2026 AURORA MED Institut GmbH • Fiktive medizinische Konzept-Webseite für Demo.</p>
+                <span>Evidence Based Physical Therapy</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!-- STICKY FLOATING TERMINBUCHUNGS-FEATURE & DEMO-PANEL (400x500px)   -->
+    <!-- ================================================================= -->
+
+    <!-- Floating Action Button (Sticky unten rechts) -->
+    <div id="aurora-floating-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto">
+        <button 
+            id="floating-booking-btn" 
+            onclick="toggleBookingPanel()" 
+            class="group relative flex items-center gap-3 bg-clinical-900 hover:bg-clinical-800 text-white px-5 py-3.5 rounded-full shadow-panel border border-azure-400/30 transition-all duration-300 hover:scale-[1.03] active:scale-95 focus:outline-none focus:ring-4 focus:ring-azure-500/40"
+            aria-label="Online-Terminkalender & Design-Auswahl öffnen"
+            aria-expanded="false"
+            aria-controls="booking-widget-panel"
+        >
+            <!-- Pulsing Status Indicator -->
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-azure-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-azure-500"></span>
+            </span>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-bold ph-calendar-plus text-azure-400 text-xl group-hover:rotate-6 transition-transform"></i>
+                <span class="font-heading font-bold text-sm tracking-tight text-white">Termin buchen</span>
+            </div>
+
+            <span class="hidden sm:inline-block bg-azure-500 text-white text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Digital
+            </span>
+        </button>
+    </div>
+
+    <!-- Modales Panel (ca. 400x500px) -->
+    <div 
+        id="booking-widget-panel" 
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[540px] max-h-[calc(100vh-120px)] bg-white text-clinical-900 rounded-3xl shadow-panel border border-slate-200 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-labelledby="aurora-panel-title"
+        aria-modal="true"
+    >
+        <!-- Panel Header -->
+        <div class="bg-clinical-900 px-5 py-3.5 flex items-center justify-between shrink-0 border-b border-clinical-800 text-white">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-azure-500 text-white flex items-center justify-center font-bold text-sm">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 id="aurora-panel-title" class="font-heading font-bold text-sm leading-tight text-white flex items-center gap-1.5">
+                        <span>Online-Terminkalender</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </h3>
+                    <p class="text-[11px] text-slate-300 font-mono">AURORA MED Institut</p>
+                </div>
+            </div>
+            <button 
+                onclick="toggleBookingPanel(false)" 
+                class="w-8 h-8 rounded-lg bg-clinical-800 hover:bg-clinical-700 text-slate-300 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Panel schließen"
+            >
+                <i class="ph-bold ph-x text-base"></i>
+            </button>
+        </div>
+
+        <!-- 5-Button Design Switcher for Product Demo -->
+        <div class="bg-clinical-950 px-4 py-2.5 border-b border-clinical-800 shrink-0">
+            <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-300 flex items-center gap-1">
+                    <i class="ph-bold ph-browsers text-azure-400"></i> Demo-Designs wechseln:
+                </span>
+                <span class="text-[10px] text-slate-400 font-mono">5 Varianten</span>
+            </div>
+            <div class="grid grid-cols-5 gap-1.5" role="navigation" aria-label="Praxis-Design Varianten">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-clinical-900 hover:bg-clinical-800 text-slate-300 hover:text-white border border-clinical-700 truncate transition-colors" title="Design 1: UNVERKRAMPFT (Bio/Sand)">
+                    1. Bio
+                </a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-clinical-900 hover:bg-clinical-800 text-slate-300 hover:text-white border border-clinical-700 truncate transition-colors" title="Design 2: KINETIQ (Sport/Reha)">
+                    2. Sport
+                </a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-clinical-900 hover:bg-clinical-800 text-slate-300 hover:text-white border border-clinical-700 truncate transition-colors" title="Design 3: SANA VITA (Ganzheitlich)">
+                    3. Natur
+                </a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded-md text-[10px] font-bold text-center bg-azure-500 text-white border border-azure-400 shadow-sm truncate" title="Design 4: AURORA MED (Klinisch/Tech)">
+                    4. Klinik
+                </a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-clinical-900 hover:bg-clinical-800 text-slate-300 hover:text-white border border-clinical-700 truncate transition-colors" title="Design 5: VITALWERK (Urban/Loft)">
+                    5. Urban
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (PLATZHALTER FÜR IRAME / KOMPONENTE)-->
+        <!-- ca. 400x500px Content-Bereich                                -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1.5">Krankenkasse / Kostenträger</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich (GKV)')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-clinical-900 bg-clinical-50 text-clinical-900 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat/Beihilfe')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500 transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Berufsgenossenschaft')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500 transition-all">
+                            BG / D-Arzt
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1.5">Verordnete Leistung / Fachbereich</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-medium text-clinical-900 focus:outline-none focus:border-azure-500">
+                        <option value="Manuelle Therapie (MT)">Manuelle Therapie (MT) / Gelenkmobilisation</option>
+                        <option value="Krankengymnastik am Gerät (KGG)">Gerätegestützte Krankengymnastik (KGG)</option>
+                        <option value="Klassische Krankengymnastik (KG)">Krankengymnastik (KG) / Post-OP</option>
+                        <option value="Bewegungs- & Ganganalyse">Objektive 3D-Bewegungsanalyse</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900">Termintag wählen</label>
+                        <span class="text-[10px] text-emerald-600 font-mono font-bold">● Freie Ersttermine</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-azure-500 bg-azure-50 text-clinical-900 font-bold text-xs">
+                            <span class="block text-[10px] text-azure-600 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500">
+                            <span class="block text-[10px] text-slate-500 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500">
+                            <span class="block text-[10px] text-slate-500 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '08:00')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-clinical-900 bg-clinical-50 text-clinical-900 font-bold text-xs">08:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '10:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500">10:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '14:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500">14:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '16:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500">16:30</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-azure-500 hover:bg-azure-600 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-clinical transition-all mt-1">
+                    <span>Weiter zu Patientendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-slate-50 p-2.5 rounded-xl border border-slate-200 text-xs text-clinical-800">
+                    <span class="font-bold text-clinical-900 block" id="widget-summary-title">Manuelle Therapie • Gesetzlich (GKV)</span>
+                    <span class="text-[11px] text-azure-600 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 08:00 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1">Vollständiger Name *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Prof. Dr. Martin Weber" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-clinical-900 focus:outline-none focus:border-azure-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="0711 / 123456" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-clinical-900 focus:outline-none focus:border-azure-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@praxis.de" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-clinical-900 focus:outline-none focus:border-azure-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-clinical-900 mb-1">Überweisender Facharzt / Diagnose (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Dr. Müller, HWS-Syndrom, Rezept vorhanden..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-clinical-900 focus:outline-none focus:border-azure-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:bg-slate-50 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-azure-500 hover:bg-azure-600 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-clinical transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Aufnahmetermin buchen</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-clinical-50 text-azure-600 mx-auto flex items-center justify-center text-2xl shadow-inner border border-azure-200">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-azure-600">Aufnahme vorgemerkt</span>
+                    <h4 class="text-base font-heading font-bold text-clinical-900 mt-1">Ihr Termin im MedCenter steht bereit!</h4>
+                    <p class="text-xs text-slate-600 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im Produktivsystem wird hier die automatische Übermittlung an das Praxisverwaltungssystem (PVS) ausgelöst.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-clinical-900 hover:bg-clinical-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin testen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-slate-200 text-[10px] text-slate-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-azure-600 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. LEITLINIEN-NAVIGATOR DATA ---
+        const diagnosisData = {
+            lws: {
+                code: 'ICD-10 M54.5 • Lumboischialgie & Bandscheibe',
+                rezept: 'MT (Manuelle Therapie) + KGG (Gerätetraining)',
+                title: 'Evidenzbasierter Leitfaden Lendenwirbelsäule',
+                desc: 'Gemäß der Nationalen Versorgungsleitlinie Kreuzschmerz ist Bettruhe kontraindiziert. Ziel ist die frühe Schmerzmodulation durch segmentale Traktion (MT) und der unmittelbare Übergang zu aktiven Kräftigungsübungen (KGG) zur Stabilisierung des M. multifidus.',
+                duration: '6–12 Einheiten à 30–60 Min.'
+            },
+            hws: {
+                code: 'ICD-10 M54.2 • Zervikalsyndrom & Kopfschmerz',
+                rezept: 'MT (Manuelle Therapie) + Fangopackung/Wärme',
+                title: 'Leitlinie Zervikogene Cephalgie & Nackenblockaden',
+                desc: 'Segmentale Einschränkungen der Halswirbelsäule (Atlas/Axis) erfordern eine behutsame dreidimensionale Mobilisation. Kombiniert mit Haltungsschulung zur Entlastung des M. trapezius pars descendens.',
+                duration: '6 Einheiten à 25–30 Min.'
+            },
+            schulter: {
+                code: 'ICD-10 M75.1 • Läsion der Rotatorenmanschette',
+                rezept: 'Krankengymnastik (KG) oder MT',
+                title: 'Post-OP & konservatives Schulterprotokoll',
+                desc: 'Wiederherstellung der zentrierten Humeruskopf-Gleitung im Subakromialraum. Exzentrisches Training des M. supraspinatus und M. infraspinatus am Seilzug nach Freigabe durch den Operateur.',
+                duration: '12–18 Einheiten (Phase 1 bis 3)'
+            },
+            knie: {
+                code: 'ICD-10 M17.0 • Knie-Totalendoprothese (Knie-TEP)',
+                rezept: 'KG + Manuelle Lymphdrainage (MLD 45)',
+                title: 'Klinischer Fast-Track Behandlungspfad TEP',
+                desc: 'Abschwellende Lymphtherapie der gesamten unteren Extremität, Gangschulung zur Vermeidung von Kompensationsmechanismen und stufenweiser Aufbau des M. quadriceps femoris.',
+                duration: '18–24 Einheiten nach Entlassung'
+            }
+        };
+
+        function selectDiagnosis(key) {
+            const data = diagnosisData[key];
+            if (!data) return;
+
+            document.getElementById('diag-code').textContent = data.code;
+            document.getElementById('diag-rezept').textContent = 'Passendes Rezept: ' + data.rezept;
+            document.getElementById('diag-title').textContent = data.title;
+            document.getElementById('diag-desc').textContent = data.desc;
+            document.getElementById('diag-duration').innerHTML = '<strong>Regel-Behandlungszeitraum:</strong> ' + data.duration;
+
+            ['lws', 'hws', 'schulter', 'knie'].forEach(k => {
+                const b = document.getElementById('diag-btn-' + k);
+                if (k === key) {
+                    b.className = 'diag-btn p-3.5 rounded-2xl border-2 border-clinical-900 bg-clinical-50 text-left transition-all';
+                } else {
+                    b.className = 'diag-btn p-3.5 rounded-2xl border border-slate-200 bg-white text-left hover:border-azure-500 transition-all';
+                }
+            });
+        }
+
+        // --- 2. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich (GKV)';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '08:00';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-clinical-900 bg-clinical-50 text-clinical-900 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-azure-500 bg-azure-50 text-clinical-900 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-slate-300 bg-white text-slate-700 font-medium text-xs hover:border-azure-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-clinical-900 bg-clinical-50 text-clinical-900 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Aufnahmetermin für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde simuliert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleAuroraMenu() {
+            const m = document.getElementById('aurora-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KINETIQ Sports & Physio Lab | Zentrum für Sportphysiotherapie & Performance Reha</title>
+    <meta name="description" content="Evidenzbasierte Sportphysiotherapie, Return-to-Sport Testings und biomechanische Diagnostik für Athleten, Läufer und ambitionierte Sportler.">
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <!-- Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                    },
+                    colors: {
+                        carbon: {
+                            950: '#07090E',
+                            900: '#0B0F19',
+                            800: '#111827',
+                            700: '#1F2937',
+                            600: '#374151',
+                        },
+                        kinetic: {
+                            400: '#22D3EE',
+                            500: '#06B6D4',
+                            600: '#0891B2',
+                        },
+                        lime: {
+                            400: '#A3E635',
+                            500: '#84CC16',
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 25px -5px rgba(6, 182, 212, 0.45)',
+                        'card': '0 20px 40px -15px rgba(0, 0, 0, 0.7)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B0F19;
+            color: #F3F4F6;
+            overflow-x: hidden;
+        }
+        .glass-header {
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .glass-card {
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card:hover {
+            border-color: rgba(6, 182, 212, 0.35);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B0F19;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1F2937;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #06B6D4;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-kinetic-500 selection:text-carbon-950 font-sans">
+
+    <!-- Top Sports Alert Bar -->
+    <div class="bg-carbon-950 border-b border-carbon-800 text-xs py-2 px-4 text-gray-300">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-kinetic-500/10 text-kinetic-400 font-mono text-[11px] font-bold border border-kinetic-500/20">
+                    <span class="w-1.5 h-1.5 rounded-full bg-kinetic-400 animate-pulse"></span> LAB STATUS: OPEN
+                </span>
+                <span class="text-gray-400 hidden sm:inline">•</span>
+                <span class="text-gray-300 text-xs">Training & Diagnostik heute bis 21:00 Uhr • Alle gesetzlichen Kassen (KGG/MT), BG & Privat</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-gray-400">
+                <span class="flex items-center gap-1.5"><i class="ph-bold ph-lightning text-lime-400"></i> Vald ForceDecks™ zertifiziert</span>
+                <span class="flex items-center gap-1.5"><i class="ph-bold ph-map-pin text-kinetic-400"></i> Olympiapark Süd 4, 80809 München</span>
+                <a href="tel:+49892154800" class="hover:text-white transition-colors text-white font-mono font-medium">089 / 215 48 00</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Header (WITHOUT upper booking button to make floating widget shine) -->
+    <header class="sticky top-0 z-40 glass-header border-b border-carbon-800 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-kinetic-500 to-kinetic-600 text-carbon-950 flex items-center justify-center font-extrabold text-xl shadow-neon group-hover:scale-105 transition-transform">
+                    <i class="ph-bold ph-activity"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-mono font-bold tracking-tight text-2xl text-white">KINETIQ</span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-extrabold bg-lime-400 text-carbon-950">LAB</span>
+                    </div>
+                    <span class="text-[10px] font-mono tracking-widest text-kinetic-400 block uppercase">Sports Physio & Biomechanics</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#readiness" class="hover:text-kinetic-400 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-lime-400"></span> Return-to-Sport Check
+                </a>
+                <a href="#lab" class="hover:text-kinetic-400 transition-colors">Diagnostik & Lab</a>
+                <a href="#leistungen" class="hover:text-kinetic-400 transition-colors">Leistungen</a>
+                <a href="#team" class="hover:text-kinetic-400 transition-colors">Performance Team</a>
+                <a href="#kontakt" class="hover:text-kinetic-400 transition-colors">Campus & Kontakt</a>
+            </nav>
+
+            <!-- Action Area (Contact/Phone only) -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-carbon-800 hover:bg-carbon-700 text-white border border-carbon-700 text-sm font-semibold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 active:scale-95">
+                    <i class="ph-bold ph-phone-call text-kinetic-400"></i>
+                    <span>Direktkontakt</span>
+                </a>
+                <button id="mobile-menu-toggle" onclick="toggleKinetiqMenu()" class="lg:hidden p-2.5 rounded-xl border border-carbon-700 bg-carbon-800 text-white" aria-label="Menü">
+                    <i class="ph-bold ph-list text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="kinetiq-mobile-menu" class="hidden lg:hidden bg-carbon-900 border-b border-carbon-800 px-4 py-4 space-y-3">
+            <a href="#readiness" onclick="toggleKinetiqMenu()" class="block py-2 text-kinetic-400 font-semibold">⚡ Return-to-Sport Check</a>
+            <a href="#lab" onclick="toggleKinetiqMenu()" class="block py-2 text-gray-300 hover:text-white">Diagnostik & Tech-Lab</a>
+            <a href="#leistungen" onclick="toggleKinetiqMenu()" class="block py-2 text-gray-300 hover:text-white">Leistungsspektrum</a>
+            <a href="#team" onclick="toggleKinetiqMenu()" class="block py-2 text-gray-300 hover:text-white">Team & Coaches</a>
+            <a href="#kontakt" onclick="toggleKinetiqMenu()" class="block py-2 text-gray-300 hover:text-white">Standort & Anfahrt</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+        <!-- Glow Orbs -->
+        <div class="absolute top-10 left-1/4 w-[500px] h-[500px] bg-kinetic-500/10 rounded-full blur-[140px] pointer-events-none -z-10"></div>
+        <div class="absolute bottom-10 right-10 w-[400px] h-[400px] bg-lime-500/10 rounded-full blur-[120px] pointer-events-none -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Manifesto -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-carbon-800 border border-carbon-700 text-xs font-mono">
+                        <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+                        <span class="text-gray-300">OLYMPIC & PRO-LEVEL STANDARDS FÜR JEDEN SPORTLER</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-[62px] font-extrabold tracking-tight text-white leading-[1.08]">
+                        BEWEGUNG NEU DEFINIERT.<br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-kinetic-400 via-teal-300 to-lime-400">SCHNELLER ZURÜCK</span><br>
+                        AUF DEM PLATZ.
+                    </h1>
+
+                    <p class="text-lg text-gray-300 max-w-2xl leading-relaxed font-normal">
+                        Schluss mit passiver 20-Minuten-Wärmekissen-Physio. Im <strong class="text-white font-semibold">KINETIQ Sports Lab</strong> kombinieren wir biomechanische Kraftmessplatten, high-speed Videoanalyse und progressive Kraftrehabilitation – damit du verletzungsfrei und mit maximalem Vertrauen wieder performst.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#readiness" class="bg-gradient-to-r from-kinetic-500 to-kinetic-600 hover:from-kinetic-400 hover:to-kinetic-500 text-carbon-950 font-bold px-7 py-4 rounded-xl shadow-neon transition-all flex items-center justify-center gap-3 text-base group">
+                            <i class="ph-bold ph-lightning text-lg"></i>
+                            <span>Return-to-Sport Selbsttest</span>
+                            <i class="ph-bold ph-arrow-down group-hover:translate-y-0.5 transition-transform"></i>
+                        </a>
+                        <a href="#lab" class="bg-carbon-800 hover:bg-carbon-700 text-white border border-carbon-700 font-semibold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="ph-bold ph-cpu text-kinetic-400"></i>
+                            <span>Diagnostik-Lab erkunden</span>
+                        </a>
+                    </div>
+
+                    <!-- Athletic Key Performance Stats -->
+                    <div class="pt-8 border-t border-carbon-800 grid grid-cols-3 gap-4 sm:gap-8">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-mono font-bold text-white flex items-center gap-1">
+                                <span>1.450</span><span class="text-kinetic-400">+</span>
+                            </p>
+                            <p class="text-xs text-gray-400 mt-1">Erfolgreiche Reha-Freigaben</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-mono font-bold text-lime-400 flex items-center gap-1">
+                                <span>&lt; 3.2</span><span class="text-white">%</span>
+                            </p>
+                            <p class="text-xs text-gray-400 mt-1">Rereptur-Quote (Kreuzband)</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-mono font-bold text-white">220 m²</p>
+                            <p class="text-xs text-gray-400 mt-1">Reha-Kraftfläche & Sprintbahn</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Hero Card with local image -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden border border-carbon-700 bg-carbon-900 shadow-card aspect-[4/5] group">
+                        <img 
+                            src="./hero.jpg" 
+                            alt="Athletisches Training und Sportphysiotherapie bei Kinetiq Lab" 
+                            class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-carbon-950 via-carbon-950/30 to-transparent"></div>
+
+                        <!-- Top Floating Metric Badge -->
+                        <div class="absolute top-5 left-5 right-5 flex justify-between items-center">
+                            <div class="bg-carbon-900/90 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-carbon-700 text-xs font-mono text-white flex items-center gap-2">
+                                <span class="w-2 h-2 rounded-full bg-lime-400 animate-ping"></span>
+                                <span>FORCE-DECKS™ ACTIVE</span>
+                            </div>
+                            <span class="bg-kinetic-500/20 text-kinetic-400 border border-kinetic-500/30 px-3 py-1 rounded-full text-xs font-mono font-bold">
+                                ISO 9001
+                            </span>
+                        </div>
+
+                        <!-- Bottom Practice Status Pill -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-carbon-900/95 backdrop-blur-md p-4 rounded-2xl border border-carbon-700">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-mono font-bold text-kinetic-400 uppercase tracking-wider">High-Performance Reha</span>
+                                <span class="text-[11px] bg-carbon-800 text-gray-300 px-2 py-0.5 rounded">GKV & Privat</span>
+                            </div>
+                            <p class="text-xs text-gray-300 leading-snug">
+                                Kraftdiagnostik, KGG, Flossing & Cryo. Für Termine nutzen Sie unseren <strong>Online-Kalender unten rechts</strong>.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4-PHASEN RETURN-TO-SPORT ROADMAP -->
+    <section class="py-16 bg-carbon-900 border-y border-carbon-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-kinetic-400 block mb-2">SYSTEMATISCHES REHA-PROTOKOLL</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Der KINETIQ Return-to-Sport Pathway</h2>
+                <p class="text-sm text-gray-400 mt-3">Kein Raten nach Zeitgefühl. Jeder Übergang in die nächste Phase basiert auf harten biomechanischen Messdaten.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Phase 1 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="text-xs font-mono font-bold text-kinetic-400 mb-2 block">PHASE 01 • AKUT</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Schmerz & Schwellung</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Entlastung, Lymphdrainage, Game-Ready Kälte-Kompression und Wiederherstellung des vollen Bewegungsausmaßes.</p>
+                    <div class="text-[11px] font-mono text-gray-400 bg-carbon-950/60 p-2.5 rounded-lg border border-carbon-800">
+                        Ziel: Volle Kniestreckung & reizfreies Gangbild
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="text-xs font-mono font-bold text-kinetic-400 mb-2 block">PHASE 02 • LOAD</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Kraft & Biomechanik</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Gezielte Hypertrophie und Maximalkraftaufbau an geführten Geräten sowie Seilzügen. Einsatz von BFR-Training.</p>
+                    <div class="text-[11px] font-mono text-gray-400 bg-carbon-950/60 p-2.5 rounded-lg border border-carbon-800">
+                        Ziel: Symmetrie-Index (LSI) &gt; 75 %
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="glass-card rounded-2xl p-6 relative">
+                    <span class="text-xs font-mono font-bold text-lime-400 mb-2 block">PHASE 03 • AGILITY</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Schnellkraft & Reaktivkraft</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Plyometrisches Sprungtraining, Landemechanik und Richtungswechsel (Change of Direction) auf der Sprintbahn.</p>
+                    <div class="text-[11px] font-mono text-gray-400 bg-carbon-950/60 p-2.5 rounded-lg border border-carbon-800">
+                        Ziel: ForceDecks Landedynamik &gt; 90 %
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="glass-card rounded-2xl p-6 relative border-lime-500/30">
+                    <span class="text-xs font-mono font-bold text-lime-400 mb-2 block">PHASE 04 • COMPETITION</span>
+                    <h3 class="text-lg font-bold text-white mb-2">Return to Match</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Sportartspezifisches Kontakttraining, Zweikampfsimulation und psychologisches Vertrauen in das Gelenk.</p>
+                    <div class="text-[11px] font-mono text-lime-400 bg-lime-500/10 p-2.5 rounded-lg border border-lime-500/20 font-bold">
+                        Ziel: 100% Freigabe & Kinetiq Zertifikat
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE READINESS CALCULATOR -->
+    <section id="readiness" class="py-20 bg-carbon-950">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-carbon-700 shadow-2xl">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-lime-400 flex items-center gap-1.5">
+                            <i class="ph-bold ph-sliders"></i> INTERAKTIVES REHA-TOOL
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Return-to-Sport Readiness Calculator</h2>
+                    </div>
+                    <span class="text-xs text-gray-400 font-mono">Stand: Evidenzbasierte Leitlinien 2026</span>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-8">
+                    <!-- Injury Selector -->
+                    <div>
+                        <label class="block text-xs font-mono font-bold text-gray-300 uppercase tracking-wider mb-2">1. Verletzung / OP</label>
+                        <select id="injury-type" onchange="calculateReadiness()" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-4 py-3 text-sm text-white font-medium focus:border-kinetic-400 focus:outline-none">
+                            <option value="acl">Vorderes Kreuzband (VKB-Plastik)</option>
+                            <option value="meniscus">Meniskusrefixation / Naht</option>
+                            <option value="achilles">Achillessehnenruptur / -reizung</option>
+                            <option value="shoulder">Schulter-Labrum / Impingement</option>
+                            <option value="hamstring">Hamstring-Muskelbündelriss</option>
+                        </select>
+                    </div>
+
+                    <!-- Post-Op Weeks -->
+                    <div>
+                        <label class="block text-xs font-mono font-bold text-gray-300 uppercase tracking-wider mb-2">2. Zeit nach OP / Vorfall</label>
+                        <select id="weeks-post" onchange="calculateReadiness()" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-4 py-3 text-sm text-white font-medium focus:border-kinetic-400 focus:outline-none">
+                            <option value="4">1–6 Wochen (Akutphase)</option>
+                            <option value="12" selected>7–16 Wochen (Aufbauphase)</option>
+                            <option value="20">17–24 Wochen (Agility & Sprung)</option>
+                            <option value="32">25+ Wochen (Return to Sport)</option>
+                        </select>
+                    </div>
+
+                    <!-- Current Pain Level -->
+                    <div>
+                        <label class="block text-xs font-mono font-bold text-gray-300 uppercase tracking-wider mb-2">3. Schmerz bei Belastung (0-10)</label>
+                        <select id="pain-level" onchange="calculateReadiness()" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-4 py-3 text-sm text-white font-medium focus:border-kinetic-400 focus:outline-none">
+                            <option value="0">0–1 (Kein / minimaler Schmerz)</option>
+                            <option value="3" selected>2–4 (Leichter Schmerz bei Endgradigkeit)</option>
+                            <option value="6">5–7 (Deutlicher Belastungsschmerz)</option>
+                            <option value="9">8–10 (Akuter Ruheschmerz)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div id="readiness-result" class="p-6 rounded-2xl bg-carbon-900 border border-kinetic-500/30 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded text-xs font-mono font-bold bg-kinetic-500 text-carbon-950" id="res-phase-badge">Phase 2: Progressive Kraft</span>
+                            <span class="text-xs text-gray-400 font-mono" id="res-score">Empfohlener LSI: &gt; 70%</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-white" id="res-title">Fokus: Gezielter Quadrizeps- & Hamstring-Aufbau</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed max-w-xl" id="res-desc">
+                            In diesem Zeitfenster steht die Kraftsymmetrie im Mittelpunkt. Bevor Sprungtests begonnen werden dürfen, muss der Kraftunterschied zur gesunden Seite auf unter 25% gesenkt werden.
+                        </p>
+                    </div>
+                    <button onclick="toggleBookingPanel(true)" class="shrink-0 bg-carbon-800 hover:bg-carbon-700 text-kinetic-400 border border-kinetic-500/50 hover:border-kinetic-400 font-mono font-bold px-5 py-3 rounded-xl text-xs flex items-center gap-2 transition-all">
+                        <i class="ph-bold ph-calendar-plus"></i>
+                        <span>Diagnostik-Termin anfragen</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECH & DIAGNOSTIC LAB -->
+    <section id="lab" class="py-20 bg-carbon-900 border-b border-carbon-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+                <div>
+                    <span class="text-xs font-mono font-bold uppercase tracking-widest text-kinetic-400 block mb-2">HIGH-TECH AUSSTATTUNG</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Präzisions-Diagnostik im Sportslab</h2>
+                </div>
+                <p class="text-sm text-gray-400 max-w-md">Keine Schätzungen. Wir nutzen dieselben Messsysteme wie Premier-League-Clubs und Olympiastützpunkte.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tech 1 -->
+                <div class="glass-card rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-kinetic-500/10 text-kinetic-400 flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-bold ph-crosshair"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Vald ForceDecks™</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                            Duale Kraftmessplatten mit 1000 Hz Abtastrate zur Messung von Countermovement Jumps, Bremskräften und asymmetrischer Lastverteilung bei Landungen.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-carbon-800 text-[11px] font-mono text-kinetic-400">
+                        Einsatz: VKB-Reha & Sprunggelenke
+                    </div>
+                </div>
+
+                <!-- Tech 2 -->
+                <div class="glass-card rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-lime-500/10 text-lime-400 flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-bold ph-video-camera"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">240fps High-Speed Laufanalyse</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                            Mehrperspektivische optische Ganganalyse auf dem Lamellen-Laufband. Erkennung von Beckenabkippen, Überpronation und Schrittfrequenz-Defiziten.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-carbon-800 text-[11px] font-mono text-lime-400">
+                        Einsatz: Läufer, Triathleten & Marathon
+                    </div>
+                </div>
+
+                <!-- Tech 3 -->
+                <div class="glass-card rounded-2xl p-7 flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-kinetic-500/10 text-kinetic-400 flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-bold ph-snowflake"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">Game Ready® Cryo-System</h3>
+                        <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                            Gleichzeitige aktive pneumatische Kompression und zirkulierende Kältetherapie. Reduziert Schwellungen und Gewebstraumata in Rekordzeit.
+                        </p>
+                    </div>
+                    <div class="pt-4 border-t border-carbon-800 text-[11px] font-mono text-kinetic-400">
+                        Einsatz: Post-OP & akute Traumata
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="py-20 bg-carbon-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-kinetic-400 block mb-2">EXPERTISE & ATHLETIK</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Das KINETIQ Performance Team</h2>
+                <p class="text-sm text-gray-400 mt-2">Dozenten, ehemalige Leistungssportler und wissenschaftlich fundierte Reha-Spezialisten.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="glass-card rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 rounded-full bg-carbon-800 border-2 border-kinetic-400 mx-auto mb-4 flex items-center justify-center text-3xl text-kinetic-400">
+                        <i class="ph-bold ph-user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Marco Lindner</h3>
+                    <p class="text-xs font-mono text-kinetic-400 mb-3">Head of Sports Physio & Reha</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                        DFB A-Lizenz, ehem. Betreuer Bundesliga-Nachwuchsleistungszentrum. Spezialist für Kreuzband- und Meniskusrehabilitation.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-mono bg-carbon-800 text-gray-300 border border-carbon-700">MT • KGG • Vald Certified</span>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="glass-card rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 rounded-full bg-carbon-800 border-2 border-lime-400 mx-auto mb-4 flex items-center justify-center text-3xl text-lime-400">
+                        <i class="ph-bold ph-user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Dr. Sophie Brand</h3>
+                    <p class="text-xs font-mono text-lime-400 mb-3">Biomechanik & Leistungsdiagnostik</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                        Promotion in Sportwissenschaft (TUM), Dozentin für Bewegungsanalyse. Betreut Marathonläufer und Triathleten.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-mono bg-carbon-800 text-gray-300 border border-carbon-700">Laufanalyse • BFR • Kraftkurven</span>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="glass-card rounded-2xl p-6 text-center">
+                    <div class="w-24 h-24 rounded-full bg-carbon-800 border-2 border-kinetic-400 mx-auto mb-4 flex items-center justify-center text-3xl text-kinetic-400">
+                        <i class="ph-bold ph-user"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-white">Julian Weber, M.Sc.</h3>
+                    <p class="text-xs font-mono text-kinetic-400 mb-3">Sportphysiotherapeut & Athletiktrainer</p>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">
+                        Master of Science in Sports Physical Therapy. Spezialisiert auf Schulter-Instabilitäten bei Wurfsportarten und Crossfit.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] font-mono bg-carbon-800 text-gray-300 border border-carbon-700">Schulter • Dry Needling • Flossing</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER & CAMPUS CONTACT -->
+    <footer id="kontakt" class="bg-carbon-950 text-gray-400 pt-16 pb-12 border-t border-carbon-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-carbon-800">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="font-mono font-bold tracking-tight text-2xl text-white">KINETIQ</span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono font-extrabold bg-lime-400 text-carbon-950">LAB</span>
+                    </div>
+                    <p class="text-xs text-gray-400 max-w-md leading-relaxed">
+                        Zentrum für Sportphysiotherapie, Leistungsdiagnostik und Return-to-Sport Rehabilitation am Olympiapark München.
+                    </p>
+                    <div class="text-xs text-gray-400 space-y-1">
+                        <p><strong class="text-white">Adresse:</strong> Olympiapark Süd 4, 80809 München</p>
+                        <p><strong class="text-white">Telefon:</strong> 089 / 215 48 00 • info@kinetiq-sports.de</p>
+                        <p><strong class="text-white">Öffnungszeiten:</strong> Mo–Fr 07:00 – 21:00 Uhr • Sa 08:30 – 15:00 Uhr</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Leistungen</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#lab" class="hover:text-white transition-colors">Return-to-Sport Testing</a></li>
+                        <li><a href="#lab" class="hover:text-white transition-colors">Kraftdiagnostik (ForceDecks)</a></li>
+                        <li><a href="#leistungen" class="hover:text-white transition-colors">KGG (Geräte-Physio)</a></li>
+                        <li><a href="#leistungen" class="hover:text-white transition-colors">Manuelle Therapie (MT)</a></li>
+                        <li><a href="#leistungen" class="hover:text-white transition-colors">Game Ready Kältetherapie</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Abrechnung</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-3">
+                        Zulassung für alle gesetzlichen Krankenkassen (KGG, MT, KG), Berufsgenossenschaften (BG) und Privatversicherungen.
+                    </p>
+                    <span class="inline-block text-[11px] font-mono text-lime-400">● Freie Akut-Kapazitäten verfügbar</span>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+                <p>© 2026 KINETIQ Sports & Physio Lab GmbH • Fiktive Konzept- & Präsentations-Webseite.</p>
+                <div class="flex items-center gap-4">
+                    <span>Performance meets Evidence</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!-- STICKY FLOATING TERMINBUCHUNGS-FEATURE & DEMO-PANEL (400x500px)   -->
+    <!-- ================================================================= -->
+
+    <!-- Floating Action Button (Sticky unten rechts) -->
+    <div id="kinetiq-floating-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto">
+        <button 
+            id="floating-booking-btn" 
+            onclick="toggleBookingPanel()" 
+            class="group relative flex items-center gap-3 bg-gradient-to-r from-kinetic-500 to-kinetic-600 hover:from-kinetic-400 hover:to-kinetic-500 text-carbon-950 px-5 py-3.5 rounded-full shadow-neon border border-kinetic-300/40 transition-all duration-300 hover:scale-[1.03] active:scale-95 focus:outline-none focus:ring-4 focus:ring-kinetic-400/40"
+            aria-label="Online-Terminkalender & Design-Auswahl öffnen"
+            aria-expanded="false"
+            aria-controls="booking-widget-panel"
+        >
+            <!-- Pulsing Status Indicator -->
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-carbon-950 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-carbon-950"></span>
+            </span>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-bold ph-calendar-plus text-carbon-950 text-xl group-hover:rotate-6 transition-transform"></i>
+                <span class="font-bold text-sm tracking-tight text-carbon-950">Termin buchen</span>
+            </div>
+
+            <span class="hidden sm:inline-block bg-carbon-950 text-lime-400 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Live
+            </span>
+        </button>
+    </div>
+
+    <!-- Modales Panel (ca. 400x500px) -->
+    <div 
+        id="booking-widget-panel" 
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[540px] max-h-[calc(100vh-120px)] bg-carbon-900 text-white rounded-3xl shadow-2xl border border-carbon-700 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-labelledby="kinetiq-panel-title"
+        aria-modal="true"
+    >
+        <!-- Panel Header -->
+        <div class="bg-carbon-950 px-5 py-3.5 flex items-center justify-between shrink-0 border-b border-carbon-800">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-kinetic-500 to-kinetic-600 text-carbon-950 flex items-center justify-center font-bold text-sm">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 id="kinetiq-panel-title" class="font-bold text-sm leading-tight text-white flex items-center gap-1.5">
+                        <span>Online-Terminkalender</span>
+                        <span class="w-2 h-2 rounded-full bg-lime-400"></span>
+                    </h3>
+                    <p class="text-[11px] text-gray-400 font-mono">KINETIQ Sports Physio Lab</p>
+                </div>
+            </div>
+            <button 
+                onclick="toggleBookingPanel(false)" 
+                class="w-8 h-8 rounded-lg bg-carbon-800 hover:bg-carbon-700 text-gray-400 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Panel schließen"
+            >
+                <i class="ph-bold ph-x text-base"></i>
+            </button>
+        </div>
+
+        <!-- 5-Button Design Switcher for Product Demo -->
+        <div class="bg-carbon-950 px-4 py-2.5 border-b border-carbon-800 shrink-0">
+            <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-400 flex items-center gap-1">
+                    <i class="ph-bold ph-browsers text-kinetic-400"></i> Demo-Designs wechseln:
+                </span>
+                <span class="text-[10px] text-gray-400 font-mono">5 Varianten</span>
+            </div>
+            <div class="grid grid-cols-5 gap-1.5" role="navigation" aria-label="Praxis-Design Varianten">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-carbon-800 hover:bg-carbon-700 text-gray-300 hover:text-white border border-carbon-700 truncate transition-colors" title="Design 1: UNVERKRAMPFT (Bio/Sand)">
+                    1. Bio
+                </a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded-md text-[10px] font-bold text-center bg-kinetic-500 text-carbon-950 border border-kinetic-400 shadow-sm truncate" title="Design 2: KINETIQ (Sport/Reha)">
+                    2. Sport
+                </a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-carbon-800 hover:bg-carbon-700 text-gray-300 hover:text-white border border-carbon-700 truncate transition-colors" title="Design 3: SANA VITA (Ganzheitlich)">
+                    3. Natur
+                </a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-carbon-800 hover:bg-carbon-700 text-gray-300 hover:text-white border border-carbon-700 truncate transition-colors" title="Design 4: AURORA MED (Klinisch/Tech)">
+                    4. Klinik
+                </a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-carbon-800 hover:bg-carbon-700 text-gray-300 hover:text-white border border-carbon-700 truncate transition-colors" title="Design 5: VITALWERK (Urban/Loft)">
+                    5. Urban
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (PLATZHALTER FÜR IRAME / KOMPONENTE)-->
+        <!-- ca. 400x500px Content-Bereich                                -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-carbon-900">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-kinetic-400 bg-kinetic-500/10 text-kinetic-400 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat/BG')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400 transition-all">
+                            Privat / BG
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400 transition-all">
+                            Selbstzahler
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1.5">Gewünschter Check / Leistung</label>
+                    <select id="widget-service-select" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-3 py-2 text-xs font-medium text-white focus:outline-none focus:border-kinetic-400">
+                        <option value="Return-to-Sport Erstdiagnostik">Return-to-Sport Erstdiagnostik (Vald ForceDecks)</option>
+                        <option value="KGG / Sportphysiotherapie">KGG / Gerätegestützte Krankengymnastik</option>
+                        <option value="Manuelle Therapie (MT)">Manuelle Therapie (MT) / Gelenkzentrierung</option>
+                        <option value="240fps Laufanalyse">High-Speed Video-Laufanalyse (60 Min.)</option>
+                        <option value="Game Ready Cryo-Session">Game Ready® Kälte-Kompression Lounge</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300">Wunschtag wählen</label>
+                        <span class="text-[10px] text-lime-400 font-mono font-bold">● Freie Slots verfügbar</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-kinetic-400 bg-kinetic-500/10 text-kinetic-400 font-bold text-xs">
+                            <span class="block text-[10px] text-kinetic-400 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold text-white">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400">
+                            <span class="block text-[10px] text-gray-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold text-white">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400">
+                            <span class="block text-[10px] text-gray-400 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold text-white">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '08:30')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-kinetic-400 bg-kinetic-500/10 text-kinetic-400 font-bold text-xs">08:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '11:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400">11:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '15:15')" class="widget-time-btn py-1.5 text-center rounded-lg border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400">15:15</button>
+                        <button type="button" onclick="setWidgetTime(this, '18:45')" class="widget-time-btn py-1.5 text-center rounded-lg border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400">18:45</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-kinetic-500 to-kinetic-600 hover:from-kinetic-400 hover:to-kinetic-500 text-carbon-950 font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-neon transition-all mt-1">
+                    <span>Weiter zu Athletendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-carbon-950 p-2.5 rounded-xl border border-carbon-800 text-xs text-gray-300">
+                    <span class="font-bold text-white block" id="widget-summary-title">Return-to-Sport • Gesetzlich</span>
+                    <span class="text-[11px] text-kinetic-400 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 08:30 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Florian Mayer" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-kinetic-400">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1">Mobilnummer *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="0171 / 9876543" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-kinetic-400">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="athlet@email.de" class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-kinetic-400">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-gray-300 mb-1">Sportart / Diagnose (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Fußballer, VKB-Plastik vor 12 Wochen..." class="w-full bg-carbon-800 border border-carbon-700 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none focus:border-kinetic-400 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:bg-carbon-700 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-gradient-to-r from-kinetic-500 to-kinetic-600 hover:from-kinetic-400 text-carbon-950 font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-neon transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Slot verbindlich blockieren</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-kinetic-500/20 text-kinetic-400 mx-auto flex items-center justify-center text-2xl shadow-inner border border-kinetic-500/30 animate-pulse">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-lime-400">Buchungsvorschau bestätigt</span>
+                    <h4 class="text-base font-bold text-white mt-1">Check-in im Kinetiq Lab reserviert!</h4>
+                    <p class="text-xs text-gray-300 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im finalen System wird hier der Bestätigungs-Code mit Kalendereintrag (.ics) und Anfahrtshinweisen ausgegeben.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-carbon-800 hover:bg-carbon-700 text-kinetic-400 border border-carbon-700 font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-carbon-800 text-[10px] text-gray-400 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-kinetic-400 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. RETURN-TO-SPORT READINESS CALCULATOR ---
+        const readinessData = {
+            acl: {
+                title: 'Vorderes Kreuzband (VKB-Plastik)',
+                phases: {
+                    4: { phase: 'Phase 1: Schwellungsabbau & Streckung', lsi: 'Fokus: 0° Streckung', desc: 'Priorität hat die passive Streckung des Kniegelenks und das Aktivieren des M. vastus medialis mittels Elektrostimulation oder Biofeedback.' },
+                    12: { phase: 'Phase 2: Hypertrophie & Kraftaufbau', lsi: 'Ziel-LSI: > 70 %', desc: 'Isolierter Kraftaufbau der Oberschenkelmuskulatur an geführten Geräten (KGG) und Beginn des geschlossenen Kettentrainings.' },
+                    20: { phase: 'Phase 3: Plyometrie & Richtungswechsel', lsi: 'Ziel-LSI: > 85 %', desc: 'Kraftmessung auf den Vald ForceDecks. Erst bei Landeasymmetrie < 15% erfolgt der Start von linearen Läufen und Hop-Tests.' },
+                    32: { phase: 'Phase 4: Return to Sport Testing', lsi: 'Ziel-LSI: > 90 %', desc: 'Abschlussprüfung: Y-Balance Test, Triple Hop for Distance und 60-minütiger sportartspezifischer Ermüdungstest.' }
+                }
+            },
+            meniscus: {
+                title: 'Meniskusrefixation / Naht',
+                phases: {
+                    4: { phase: 'Phase 1: Teilbelastung & Limitierung', lsi: 'Beugung max. 90°', desc: 'Schutz der Meniskusnaht. Sanfte Mobilisation ohne Rotationsbelastung, lymphatische Entstauung.' },
+                    12: { phase: 'Phase 2: Vollbelastung & Kraft', lsi: 'Ziel-LSI: > 75 %', desc: 'Übergang zur vollen Gewichtsbelastung, Aufbau von Rumpf- und Hüftstabilität zur Knie-Entlastung.' },
+                    20: { phase: 'Phase 3: Dynamische Stabilisation', lsi: 'Ziel-LSI: > 85 %', desc: 'Rotationskontrolle unter Last. Funktionelles Training im Kinetiq Kunstrasen-Areal.' },
+                    32: { phase: 'Phase 4: Return to Play', lsi: 'Ziel-LSI: > 90 %', desc: 'Volle Freigabe für Kontaktsportarten nach bestandenem Isokinetik-Test.' }
+                }
+            },
+            achilles: {
+                title: 'Achillessehnenruptur / Tendinopathie',
+                phases: {
+                    4: { phase: 'Phase 1: Sehnenadaption & Narbenschutz', lsi: 'Isometrischer Fokus', desc: 'Isometrische Wadenaktivierung, Sehnengleiten, schrittweiser Abbau der Fersenerhöhung im Walker.' },
+                    12: { phase: 'Phase 2: Heavy Slow Resistance (HSR)', lsi: 'Ziel-LSI: > 75 %', desc: 'Progressive Belastung der Achillessehne mit langsamen, schweren Wadenhebe-Übungen zur Kollagenneuausrichtung.' },
+                    20: { phase: 'Phase 3: Dehnungs-Verkürzungs-Zyklus (DVZ)', lsi: 'Ziel-LSI: > 85 %', desc: 'Pogo Jumps, Seilspringen und progressive Reaktivkraftbelastung.' },
+                    32: { phase: 'Phase 4: Return to Sprint & Jump', lsi: 'Ziel-LSI: > 95 %', desc: 'Volle Sprint- und Sprungfreigabe nach Analyse der Abdruckkraft auf den ForceDecks.' }
+                }
+            },
+            shoulder: {
+                title: 'Schulter-Labrum / Impingement',
+                phases: {
+                    4: { phase: 'Phase 1: Zentrierung & Scapula-Reset', lsi: 'Schulterblatt-Gleiten', desc: 'Entlastung der subakromialen Strukturen, schmerzfreie Zentrierung des Humeruskopfes.' },
+                    12: { phase: 'Phase 2: Rotatorenmanschetten-Kräftigung', lsi: 'Ziel-LSI: > 80 %', desc: 'Exzentrisches Training der Außenrotatoren am Kabelzug und Seilzuggeräten.' },
+                    20: { phase: 'Phase 3: Überkopf-Stabilität & Reaktivkraft', lsi: 'Ziel-LSI: > 90 %', desc: 'Ballwurf-Übungen, Rebounder-Training und propriozeptive Stabilitätsübungen.' },
+                    32: { phase: 'Phase 4: Return to Throw / Contact', lsi: 'Ziel-LSI: > 95 %', desc: 'Wurfspezifische Tests und Belastungsverträglichkeit bei hoher Geschwindigkeit.' }
+                }
+            },
+            hamstring: {
+                title: 'Hamstring-Muskelbündelriss',
+                phases: {
+                    4: { phase: 'Phase 1: Hämatomresorption & sanfte Exzentrik', lsi: 'Schmerzfreies Dehnen', desc: 'Frühe kontrollierte Dehnung, Kältetherapie und isometrische Fersenanzüge.' },
+                    12: { phase: 'Phase 2: Nordic Hamstring & Kraft', lsi: 'Ziel-LSI: > 85 %', desc: 'Nordic Hamstring Curls, rumänisches Kreuzheben und Kraftaufbau in verlängerter Muskelposition.' },
+                    20: { phase: 'Phase 3: High-Speed Running', lsi: 'Ziel-LSI: > 95 %', desc: 'Sprinttraining mit GPS-Geschwindigkeitskontrolle bis 95% Top-Speed.' },
+                    32: { phase: 'Phase 4: Return to Match', lsi: 'Symmetrie: 100 %', desc: 'Volle Spiel- und Wettkampffreigabe.' }
+                }
+            }
+        };
+
+        function calculateReadiness() {
+            const inj = document.getElementById('injury-type').value;
+            const wk = document.getElementById('weeks-post').value;
+            const pain = parseInt(document.getElementById('pain-level').value, 10);
+
+            const data = readinessData[inj];
+            const pData = data.phases[wk];
+
+            let title = pData.phase;
+            let score = pData.lsi;
+            let desc = pData.desc;
+
+            if (pain >= 6) {
+                title = '⚠️ Warnung: Schmerzniveau zu hoch';
+                score = 'Schmerz: ' + pain + '/10';
+                desc = 'Bei einem Belastungsschmerz von ' + pain + '/10 sollte keine Steigerung der Trainingslast erfolgen. Wir empfehlen eine sofortige sportphysiotherapeutische Befundung im Kinetiq Lab.';
+            }
+
+            document.getElementById('res-phase-badge').textContent = title;
+            document.getElementById('res-score').textContent = score;
+            document.getElementById('res-title').textContent = data.title;
+            document.getElementById('res-desc').textContent = desc;
+        }
+
+        // --- 2. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '08:30';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-kinetic-400 bg-kinetic-500/10 text-kinetic-400 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-kinetic-400 bg-kinetic-500/10 text-kinetic-400 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-carbon-700 bg-carbon-800 text-gray-300 font-medium text-xs hover:border-kinetic-400';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-kinetic-400 bg-kinetic-500/10 text-kinetic-400 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Athlet / Patient';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Termin für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde simuliert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleKinetiqMenu() {
+            const m = document.getElementById('kinetiq-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+
+        window.onload = function() {
+            calculateReadiness();
+        };
+    </script>
+</body>
+</html>

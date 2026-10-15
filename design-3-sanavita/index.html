@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SANA VITA | Ganzheitliche Physiotherapie, Osteopathie & Schmerztherapie</title>
+    <meta name="description" content="Praxis für ganzheitliche Physiotherapie, Osteopathie und sanfte Schmerztherapie in ruhiger Atmosphäre mit 60 Minuten Behandlungszeit.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        alabaster: {
+                            50: '#FAF8F5',
+                            100: '#F4EFE6',
+                            200: '#E8E0D2',
+                            300: '#D6C8B4',
+                        },
+                        sage: {
+                            50: '#F2F6F4',
+                            100: '#DEE8E3',
+                            600: '#436B59',
+                            700: '#345446',
+                            800: '#263E33',
+                            900: '#1A2C24',
+                        },
+                        clay: {
+                            400: '#D48E66',
+                            500: '#BE764D',
+                            600: '#9F5C37',
+                        }
+                    },
+                    boxShadow: {
+                        'warm': '0 20px 45px -15px rgba(38, 62, 51, 0.08)',
+                        'floating': '0 25px 50px -12px rgba(26, 44, 36, 0.22)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF8F5;
+            color: #263E33;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(250, 248, 245, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D6C8B4;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #436B59;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-clay-500 selection:text-white font-sans">
+
+    <!-- Top Holistic Welcome Banner -->
+    <div class="bg-sage-900 text-alabaster-100 text-xs py-2 px-4 border-b border-sage-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                <span class="font-medium text-alabaster-50">Praxis-Philosophie:</span>
+                <span class="text-alabaster-200">Ganzheitliche Behandlungszeit • Bis zu 60 Min. pro Patient • Gesetzliche Kassen-Bezuschussung</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-alabaster-200">
+                <span class="flex items-center gap-1.5"><i class="ph-fill ph-leaf text-clay-400"></i> Zertifizierte VOD-Osteopathie</span>
+                <span class="flex items-center gap-1.5"><i class="ph-fill ph-map-pin text-clay-400"></i> Am Parkbad 12, 69115 Heidelberg</span>
+                <a href="tel:+496221458900" class="hover:text-white transition-colors font-medium">06221 / 45 89 00</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header (No upper booking button to highlight the bottom floating feature) -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-alabaster-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full bg-sage-800 text-alabaster-50 flex items-center justify-center text-xl group-hover:bg-clay-500 transition-colors shadow-sm">
+                    <i class="ph-duotone ph-flower-lotus"></i>
+                </div>
+                <div>
+                    <span class="font-serif font-bold text-2xl tracking-wide text-sage-900 block leading-none">SANA VITA</span>
+                    <span class="text-[10px] uppercase tracking-widest text-clay-500 font-semibold block mt-1">Ganzheitliche Physiotherapie & Osteopathie</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-sage-800">
+                <a href="#ursachen" class="hover:text-clay-500 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-clay-500"></span> Ursachen-Finder
+                </a>
+                <a href="#saeulen" class="hover:text-clay-500 transition-colors">3 Säulen der Heilung</a>
+                <a href="#leistungen" class="hover:text-clay-500 transition-colors">Therapiespektrum</a>
+                <a href="#team" class="hover:text-clay-500 transition-colors">Therapeuten</a>
+                <a href="#praxis" class="hover:text-clay-500 transition-colors">Atmosphäre & Anfahrt</a>
+            </nav>
+
+            <!-- Action Area (Contact/Phone only) -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-sage-800 hover:bg-sage-900 text-alabaster-50 text-sm font-medium px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 active:scale-95 shadow-sm">
+                    <i class="ph-bold ph-phone text-clay-400"></i>
+                    <span>Praxiskontakt</span>
+                </a>
+                <button id="sanavita-menu-btn" onclick="toggleSanavitaMenu()" class="lg:hidden p-2.5 rounded-xl border border-alabaster-300 text-sage-900 hover:bg-alabaster-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="sanavita-mobile-menu" class="hidden lg:hidden bg-alabaster-50 border-b border-alabaster-200 px-4 py-4 space-y-3">
+            <a href="#ursachen" onclick="toggleSanavitaMenu()" class="block py-2 text-clay-500 font-semibold">🌿 Ursachen-Ketten-Finder</a>
+            <a href="#saeulen" onclick="toggleSanavitaMenu()" class="block py-2 text-sage-800 hover:text-clay-500">3 Säulen der Heilung</a>
+            <a href="#leistungen" onclick="toggleSanavitaMenu()" class="block py-2 text-sage-800 hover:text-clay-500">Therapieangebot</a>
+            <a href="#team" onclick="toggleSanavitaMenu()" class="block py-2 text-sage-800 hover:text-clay-500">Unser Team</a>
+            <a href="#kontakt" onclick="toggleSanavitaMenu()" class="block py-2 text-sage-800 hover:text-clay-500">Standort & Kontakt</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
+        <!-- Soft Natural Gradient Background -->
+        <div class="absolute top-0 right-1/4 w-[480px] h-[480px] bg-alabaster-100 rounded-full blur-3xl opacity-80 pointer-events-none -z-10"></div>
+        <div class="absolute bottom-0 left-10 w-[400px] h-[400px] bg-sage-100 rounded-full blur-3xl opacity-60 pointer-events-none -z-10"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Organic Copy -->
+                <div class="lg:col-span-7 space-y-7">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-50 border border-sage-100 text-xs font-medium text-sage-800">
+                        <span class="w-2 h-2 rounded-full bg-clay-500"></span>
+                        <span class="tracking-wide">GANZHEITLICH • ACHTSAM • WISSENSCHAFTLICH FUNDIERT</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[60px] font-serif font-bold text-sage-900 leading-[1.12]">
+                        Zeit für Ihren Körper.<br>
+                        <span class="italic font-normal text-clay-500">Raum für echte Heilung</span><br>
+                        und tiefe Entlastung.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-sage-700 leading-relaxed font-normal max-w-2xl">
+                        Chronische Schmerzen entstehen selten dort, wo sie wehtun. Bei <strong class="text-sage-900 font-semibold">SANA VITA</strong> erforschen wir die anatomischen Wechselwirkungen zwischen Gelenken, inneren Organen und Nervensystem – in hellen, schallgeschützten Räumen aus warmem Eichenholz.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#ursachen" class="bg-clay-500 hover:bg-clay-600 text-white font-semibold px-7 py-4 rounded-2xl shadow-warm transition-all flex items-center justify-center gap-3 text-base group">
+                            <i class="ph-duotone ph-tree-structure text-xl"></i>
+                            <span>Ursachen-Ketten entdecken</span>
+                            <i class="ph-bold ph-arrow-down group-hover:translate-y-0.5 transition-transform"></i>
+                        </a>
+                        <a href="#saeulen" class="bg-white hover:bg-alabaster-100 text-sage-800 border border-alabaster-200 font-medium px-6 py-4 rounded-2xl transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="ph-duotone ph-hand-heart text-xl text-sage-600"></i>
+                            <span>Unser Behandlungsansatz</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Bar -->
+                    <div class="pt-6 border-t border-alabaster-200 grid grid-cols-3 gap-4 sm:gap-8">
+                        <div>
+                            <p class="text-xl sm:text-2xl font-serif font-bold text-sage-900">50–60 Min.</p>
+                            <p class="text-xs text-sage-600 mt-0.5">Ungestörte Einzeltherapie</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-serif font-bold text-sage-900">Bis zu 80%</p>
+                            <p class="text-xs text-sage-600 mt-0.5">Krankenkassen-Zuschuss</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-serif font-bold text-sage-900">100% Ruhe</p>
+                            <p class="text-xs text-sage-600 mt-0.5">Akustisch isolierte Zimmer</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Atmosphere Showcase -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-warm border border-alabaster-200 bg-sage-900 aspect-[4/5] group">
+                        <img 
+                            src="./hero.jpg" 
+                            alt="Sanfte Praxisatmosphäre bei Sana Vita" 
+                            class="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-sage-950/80 via-transparent to-transparent"></div>
+
+                        <!-- Top Atmosphere Badge -->
+                        <div class="absolute top-5 left-5 right-5 flex justify-between items-center">
+                            <div class="bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-full text-xs font-medium text-sage-900 shadow-sm flex items-center gap-1.5">
+                                <i class="ph-fill ph-plant text-clay-500"></i>
+                                <span>Heilsames Naturambiente</span>
+                            </div>
+                            <span class="bg-sage-900/80 backdrop-blur-md text-alabaster-50 px-3 py-1 rounded-full text-xs font-serif italic border border-white/10">
+                                Barrierefrei
+                            </span>
+                        </div>
+
+                        <!-- Bottom Practice Status Pill -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-alabaster-200 shadow-lg">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="text-xs font-serif font-bold text-sage-900">Privat, Beihilfe & GKV-Zuschuss</span>
+                                <span class="text-[11px] bg-sage-50 text-sage-700 px-2 py-0.5 rounded-md font-medium">Öffnungszeiten</span>
+                            </div>
+                            <p class="text-xs text-sage-700 leading-snug">
+                                Mo–Fr: 08:00 – 19:30 Uhr. Termine bequem online über den <strong>runden Button unten rechts</strong> wählen.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 3 SÄULEN DER GANZHEITLICHEN HEILUNG -->
+    <section id="saeulen" class="py-16 bg-white border-y border-alabaster-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-widest text-clay-500 font-bold block mb-2">THERAPEUTISCHES FUNDAMENT</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-sage-900">Die 3 Säulen der Sana Vita Methode</h2>
+                <p class="text-sm text-sage-600 mt-3">Wir betrachten den Menschen als biologische Einheit: Struktur, Organe und Nervensystem bedingen sich gegenseitig.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Säule 1 -->
+                <div class="bg-alabaster-50 rounded-3xl p-8 border border-alabaster-200 shadow-sm flex flex-col justify-between hover:border-clay-400 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-800 flex items-center justify-center text-2xl mb-6">
+                            <i class="ph-duotone ph-bone"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-clay-500 block mb-1">Säule 1</span>
+                        <h3 class="text-xl font-serif font-bold text-sage-900 mb-3">Parietale Osteopathie</h3>
+                        <p class="text-xs text-sage-700 leading-relaxed mb-4">
+                            Lösen von Blockaden im Bewegungsapparat: Gelenke, Wirbelsäule, Sehnen und Faszienzüge. Sanfte Mobilisation ohne ruckartiges Einrenken.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-sage-600 space-y-1.5 pt-4 border-t border-alabaster-200">
+                        <li class="flex items-center gap-1.5"><i class="ph-bold ph-check text-clay-500"></i> Bandscheiben & Ischias</li>
+                        <li class="flex items-center gap-1.5"><i class="ph-bold ph-check text-clay-500"></i> Beckenschiefstand & ISG</li>
+                    </ul>
+                </div>
+
+                <!-- Säule 2 -->
+                <div class="bg-alabaster-50 rounded-3xl p-8 border border-alabaster-200 shadow-sm flex flex-col justify-between hover:border-clay-400 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-800 flex items-center justify-center text-2xl mb-6">
+                            <i class="ph-duotone ph-heartbeat"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-clay-500 block mb-1">Säule 2</span>
+                        <h3 class="text-xl font-serif font-bold text-sage-900 mb-3">Viszerale Osteopathie</h3>
+                        <p class="text-xs text-sage-700 leading-relaxed mb-4">
+                            Behandlung der Beweglichkeit der inneren Organe. Verklebungen nach Operationen oder Verdauungsprobleme spiegeln sich oft als Rückenschmerz wider.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-sage-600 space-y-1.5 pt-4 border-t border-alabaster-200">
+                        <li class="flex items-center gap-1.5"><i class="ph-bold ph-check text-clay-500"></i> Zwerchfell & Atemraum</li>
+                        <li class="flex items-center gap-1.5"><i class="ph-bold ph-check text-clay-500"></i> Narben- & Faszienbehandlung</li>
+                    </ul>
+                </div>
+
+                <!-- Säule 3 -->
+                <div class="bg-alabaster-50 rounded-3xl p-8 border border-alabaster-200 shadow-sm flex flex-col justify-between hover:border-clay-400 transition-colors">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-800 flex items-center justify-center text-2xl mb-6">
+                            <i class="ph-duotone ph-brain"></i>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-clay-500 block mb-1">Säule 3</span>
+                        <h3 class="text-xl font-serif font-bold text-sage-900 mb-3">Craniosacrale Therapie</h3>
+                        <p class="text-xs text-sage-700 leading-relaxed mb-4">
+                            Sanfte Berührungen am Schädel (Cranium) und Kreuzbein (Sacrum). Beruhigt das vegetative Nervensystem und reduziert Stresshormone.
+                        </p>
+                    </div>
+                    <ul class="text-xs text-sage-600 space-y-1.5 pt-4 border-t border-alabaster-200">
+                        <li class="flex items-center gap-1.5"><i class="ph-bold ph-check text-clay-500"></i> Kieferknirschen & CMD</li>
+                        <li class="flex items-center gap-1.5"><i class="ph-bold ph-check text-clay-500"></i> Migräne, Tinnitus & Schlaf</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERACTIVE URSACHEN-FINDER TOOL -->
+    <section id="ursachen" class="py-20 bg-alabaster-100">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-alabaster-200 shadow-warm">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs uppercase tracking-wider font-bold text-clay-500 flex items-center gap-1.5">
+                            <i class="ph-bold ph-sparkle"></i> INTERAKTIVER KÖRPERKETTEN-CHECK
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-serif font-bold text-sage-900 mt-1">Wo liegt die wahre Schmerzursache?</h2>
+                    </div>
+                    <span class="text-xs text-sage-600">Klicken Sie auf ein Symptom</span>
+                </div>
+
+                <!-- Symptom Selector Buttons -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 mb-8">
+                    <button type="button" onclick="selectCauseChain('kiefer')" id="chain-btn-kiefer" class="chain-btn p-3 rounded-2xl border-2 border-sage-800 bg-sage-50 text-left transition-all">
+                        <span class="block text-xs font-bold text-sage-900">Kiefer & Nacken</span>
+                        <span class="block text-[11px] text-sage-600">CMD & Kopfschmerz</span>
+                    </button>
+                    <button type="button" onclick="selectCauseChain('becken')" id="chain-btn-becken" class="chain-btn p-3 rounded-2xl border border-alabaster-200 bg-alabaster-50 text-left hover:border-sage-600 transition-all">
+                        <span class="block text-xs font-bold text-sage-900">Becken & LWS</span>
+                        <span class="block text-[11px] text-sage-600">ISG & Beinlänge</span>
+                    </button>
+                    <button type="button" onclick="selectCauseChain('zwerchfell')" id="chain-btn-zwerchfell" class="chain-btn p-3 rounded-2xl border border-alabaster-200 bg-alabaster-50 text-left hover:border-sage-600 transition-all">
+                        <span class="block text-xs font-bold text-sage-900">Atmung & Stress</span>
+                        <span class="block text-[11px] text-sage-600">Zwerchfell-Enge</span>
+                    </button>
+                    <button type="button" onclick="selectCauseChain('fuss')" id="chain-btn-fuss" class="chain-btn p-3 rounded-2xl border border-alabaster-200 bg-alabaster-50 text-left hover:border-sage-600 transition-all">
+                        <span class="block text-xs font-bold text-sage-900">Fuß & Knie</span>
+                        <span class="block text-[11px] text-sage-600">Statik von unten</span>
+                    </button>
+                </div>
+
+                <!-- Explanation Result Box -->
+                <div class="p-6 rounded-2xl bg-alabaster-50 border border-alabaster-200 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-serif italic text-clay-500 font-bold" id="chain-tag">Fasziale Verbindung Kiefer → Nacken</span>
+                        <span class="text-xs bg-white text-sage-700 px-3 py-1 rounded-full border border-alabaster-200" id="chain-time">Empfohlene Dauer: 60 Min.</span>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-sage-900" id="chain-title">Zähnepressen überträgt sich auf die Halswirbelsäule</h3>
+                    <p class="text-xs sm:text-sm text-sage-700 leading-relaxed" id="chain-desc">
+                        Die Kaumuskulatur (M. masseter) übt nachts enormen Druck aus. Über die tiefe Halsfaszie zieht diese Spannung direkt in die oberen Kopfgelenke und Schulterblätter. Eine isolierte Massage des Nackens bringt daher nur kurzfristige Linderung – erst die craniosacrale Kieferentspannung befreit nachhaltig.
+                    </p>
+                    <div class="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-alabaster-200">
+                        <span class="text-xs text-sage-600" id="chain-approach"><strong>Behandlungsansatz:</strong> Intraorale CMD-Technik + Atlas-Entlastung</span>
+                        <button onclick="toggleBookingPanel(true)" class="bg-clay-500 hover:bg-clay-600 text-white font-semibold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-sm">
+                            <i class="ph-bold ph-calendar-plus"></i>
+                            <span>Osteopathie-Termin anfragen</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs uppercase tracking-widest text-clay-500 font-bold block mb-2">ERFAHRUNG & EMPATHIE</span>
+                <h2 class="text-3xl sm:text-4xl font-serif font-bold text-sage-900">Ihre Therapeuten bei SANA VITA</h2>
+                <p class="text-sm text-sage-600 mt-2">Fundierte 5-jährige osteopathische Ausbildungen, staatliche Physiotherapie und kontinuierliche Fortbildung.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="bg-alabaster-50 rounded-3xl p-6 text-center border border-alabaster-200 hover:border-clay-400 transition-colors">
+                    <div class="w-24 h-24 rounded-full bg-alabaster-200 text-sage-800 mx-auto mb-4 flex items-center justify-center text-3xl">
+                        <i class="ph-duotone ph-user"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-sage-900">Franziska von Berg</h3>
+                    <p class="text-xs text-clay-500 font-semibold mb-3">Heilpraktikerin & Master of Osteopathy (M.Ost.)</p>
+                    <p class="text-xs text-sage-600 leading-relaxed mb-4">
+                        Mitglied im Verband der Osteopathen Deutschland (VOD). Spezialisiert auf viszerale Dysfunktionen und Schwangerschaftsbegleitung.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-white border border-alabaster-200 text-sage-800">Craniosacral • Viszeral • VOD</span>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-alabaster-50 rounded-3xl p-6 text-center border border-alabaster-200 hover:border-clay-400 transition-colors">
+                    <div class="w-24 h-24 rounded-full bg-alabaster-200 text-sage-800 mx-auto mb-4 flex items-center justify-center text-3xl">
+                        <i class="ph-duotone ph-user"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-sage-900">Michael Sator</h3>
+                    <p class="text-xs text-clay-500 font-semibold mb-3">Physiotherapeut & Osteopath D.O.</p>
+                    <p class="text-xs text-sage-600 leading-relaxed mb-4">
+                        15 Jahre Praxiserfahrung in manueller Schmerztherapie. Schwerpunkt auf chronischen Wirbelsäulenleiden und Kiefergelenken (CMD).
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-white border border-alabaster-200 text-sage-800">CMD • Manuelle Therapie • ISG</span>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-alabaster-50 rounded-3xl p-6 text-center border border-alabaster-200 hover:border-clay-400 transition-colors">
+                    <div class="w-24 h-24 rounded-full bg-alabaster-200 text-sage-800 mx-auto mb-4 flex items-center justify-center text-3xl">
+                        <i class="ph-duotone ph-user"></i>
+                    </div>
+                    <h3 class="text-lg font-serif font-bold text-sage-900">Leonie Brandstetter</h3>
+                    <p class="text-xs text-clay-500 font-semibold mb-3">Physiotherapeutin & Faszientherapeutin</p>
+                    <p class="text-xs text-sage-600 leading-relaxed mb-4">
+                        Zertifiziert nach dem Faszien-Distorsions-Modell (FDM) nach Typaldos. Sanfte Bewegungsrehabilitation und Lymphdrainage.
+                    </p>
+                    <span class="inline-block px-3 py-1 rounded-full text-[10px] bg-white border border-alabaster-200 text-sage-800">FDM • Lymphdrainage • Kinesio</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontakt" class="bg-sage-900 text-alabaster-200 pt-16 pb-12 border-t border-sage-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-sage-800">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-clay-500 text-white flex items-center justify-center text-lg">
+                            <i class="ph-duotone ph-flower-lotus"></i>
+                        </div>
+                        <span class="font-serif font-bold text-xl text-white">SANA VITA</span>
+                    </div>
+                    <p class="text-xs text-alabaster-200/80 max-w-md leading-relaxed">
+                        Praxis für ganzheitliche Physiotherapie, Osteopathie und sanfte Schmerzregulation in Heidelberg.
+                    </p>
+                    <div class="text-xs text-alabaster-200/90 space-y-1">
+                        <p><strong>Standort:</strong> Am Parkbad 12, 69115 Heidelberg</p>
+                        <p><strong>Kontakt:</strong> 06221 / 45 89 00 • kontakt@sanavita-heidelberg.de</p>
+                        <p><strong>Öffnungszeiten:</strong> Montag bis Freitag 08:00 – 19:30 Uhr</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-4">Therapiebereiche</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#saeulen" class="hover:text-white transition-colors">Osteopathische Erstbefundung</a></li>
+                        <li><a href="#saeulen" class="hover:text-white transition-colors">Craniosacrale Therapie</a></li>
+                        <li><a href="#saeulen" class="hover:text-white transition-colors">Kiefergelenkstherapie (CMD)</a></li>
+                        <li><a href="#saeulen" class="hover:text-white transition-colors">Faszientherapie (FDM)</a></li>
+                        <li><a href="#saeulen" class="hover:text-white transition-colors">Naturmoor & Wärmeanwendung</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs uppercase tracking-wider font-bold text-white mb-4">Kassen-Erstattung</h4>
+                    <p class="text-xs text-alabaster-200/80 leading-relaxed mb-3">
+                        Viele gesetzliche Krankenkassen erstatten bis zu 80% der Behandlungskosten für Osteopathie. Private Kassen und Beihilfe übernehmen in der Regel voll.
+                    </p>
+                    <span class="text-[11px] text-clay-400 font-medium">● Freie Termine für Neupatienten</span>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-alabaster-200/60 gap-4">
+                <p>© 2026 SANA VITA Praxisgemeinschaft • Fiktive Konzept-Webseite für Produktdemo.</p>
+                <span>Heilung durch Achtsamkeit & anatomische Präzision</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!-- STICKY FLOATING TERMINBUCHUNGS-FEATURE & DEMO-PANEL (400x500px)   -->
+    <!-- ================================================================= -->
+
+    <!-- Floating Action Button (Sticky unten rechts) -->
+    <div id="sanavita-floating-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto">
+        <button 
+            id="floating-booking-btn" 
+            onclick="toggleBookingPanel()" 
+            class="group relative flex items-center gap-3 bg-sage-900 hover:bg-sage-800 text-alabaster-50 px-5 py-3.5 rounded-full shadow-floating border border-clay-400/30 transition-all duration-300 hover:scale-[1.03] active:scale-95 focus:outline-none focus:ring-4 focus:ring-clay-500/40"
+            aria-label="Online-Terminkalender & Design-Auswahl öffnen"
+            aria-expanded="false"
+            aria-controls="booking-widget-panel"
+        >
+            <!-- Pulsing Status Indicator -->
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-clay-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-clay-500"></span>
+            </span>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-bold ph-calendar-plus text-clay-400 text-xl group-hover:rotate-6 transition-transform"></i>
+                <span class="font-serif font-bold text-sm tracking-wide text-white">Termin buchen</span>
+            </div>
+
+            <span class="hidden sm:inline-block bg-clay-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Online
+            </span>
+        </button>
+    </div>
+
+    <!-- Modales Panel (ca. 400x500px) -->
+    <div 
+        id="booking-widget-panel" 
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[540px] max-h-[calc(100vh-120px)] bg-alabaster-50 text-sage-900 rounded-3xl shadow-2xl border border-alabaster-200 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-labelledby="sanavita-panel-title"
+        aria-modal="true"
+    >
+        <!-- Panel Header -->
+        <div class="bg-sage-900 px-5 py-3.5 flex items-center justify-between shrink-0 border-b border-sage-800 text-white">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-clay-500 text-white flex items-center justify-center font-bold text-sm">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 id="sanavita-panel-title" class="font-serif font-bold text-sm leading-tight text-white flex items-center gap-1.5">
+                        <span>Online-Terminkalender</span>
+                        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                    </h3>
+                    <p class="text-[11px] text-alabaster-200">SANA VITA Osteopathie & Physio</p>
+                </div>
+            </div>
+            <button 
+                onclick="toggleBookingPanel(false)" 
+                class="w-8 h-8 rounded-lg bg-sage-800 hover:bg-sage-700 text-alabaster-200 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Panel schließen"
+            >
+                <i class="ph-bold ph-x text-base"></i>
+            </button>
+        </div>
+
+        <!-- 5-Button Design Switcher for Product Demo -->
+        <div class="bg-sage-950 px-4 py-2.5 border-b border-sage-800 shrink-0">
+            <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-alabaster-200/90 flex items-center gap-1">
+                    <i class="ph-bold ph-browsers text-clay-400"></i> Demo-Designs wechseln:
+                </span>
+                <span class="text-[10px] text-alabaster-200/70 font-mono">5 Varianten</span>
+            </div>
+            <div class="grid grid-cols-5 gap-1.5" role="navigation" aria-label="Praxis-Design Varianten">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-sage-900 hover:bg-sage-800 text-alabaster-200 hover:text-white border border-sage-700 truncate transition-colors" title="Design 1: UNVERKRAMPFT (Bio/Sand)">
+                    1. Bio
+                </a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-sage-900 hover:bg-sage-800 text-alabaster-200 hover:text-white border border-sage-700 truncate transition-colors" title="Design 2: KINETIQ (Sport/Reha)">
+                    2. Sport
+                </a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded-md text-[10px] font-bold text-center bg-clay-500 text-white border border-clay-400 shadow-sm truncate" title="Design 3: SANA VITA (Ganzheitlich)">
+                    3. Natur
+                </a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-sage-900 hover:bg-sage-800 text-alabaster-200 hover:text-white border border-sage-700 truncate transition-colors" title="Design 4: AURORA MED (Klinisch/Tech)">
+                    4. Klinik
+                </a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded-md text-[10px] font-medium text-center bg-sage-900 hover:bg-sage-800 text-alabaster-200 hover:text-white border border-sage-700 truncate transition-colors" title="Design 5: VITALWERK (Urban/Loft)">
+                    5. Urban
+                </a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (PLATZHALTER FÜR IRAME / KOMPONENTE)-->
+        <!-- ca. 400x500px Content-Bereich                                -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-alabaster-50">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1.5">Abrechnungsart</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'GKV mit Bezuschussung')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-sage-800 bg-sage-100 text-sage-900 font-bold text-xs transition-all">
+                            GKV Zuschuss
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat/Beihilfe')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600 transition-all">
+                            Privat/Beihilfe
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600 transition-all">
+                            Selbstzahler
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1.5">Therapie / Anliegen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-alabaster-300 rounded-xl px-3 py-2 text-xs font-medium text-sage-900 focus:outline-none focus:border-clay-500">
+                        <option value="Osteopathische Erstbefundung (60 Min.)">Osteopathische Erstbefundung (60 Min.)</option>
+                        <option value="Craniosacrale Therapie (60 Min.)">Craniosacrale Therapie & Kiefer CMD</option>
+                        <option value="Manuelle Therapie & Faszien">Manuelle Therapie & Faszien-Distorsion</option>
+                        <option value="Ganzheitlicher Schmerz-Check">Ganzheitlicher Schmerzursachen-Check</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-emerald-600 font-semibold">● Freie Termine</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-clay-500 bg-clay-50 text-sage-900 font-bold text-xs">
+                            <span class="block text-[10px] text-clay-600 font-semibold uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600">
+                            <span class="block text-[10px] text-sage-600 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Dienstag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600">
+                            <span class="block text-[10px] text-sage-600 uppercase">Di.</span>
+                            <span class="block text-xs font-bold">21. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '09:30')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-sage-800 bg-sage-100 text-sage-900 font-bold text-xs">09:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '11:15')" class="widget-time-btn py-1.5 text-center rounded-lg border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600">11:15</button>
+                        <button type="button" onclick="setWidgetTime(this, '14:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600">14:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '17:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600">17:00</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-clay-500 hover:bg-clay-600 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sm transition-all mt-1">
+                    <span>Weiter zu Patientendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-alabaster-100 p-2.5 rounded-xl border border-alabaster-200 text-xs text-sage-800">
+                    <span class="font-bold text-sage-900 block" id="widget-summary-title">Osteopathie • GKV Bezuschussung</span>
+                    <span class="text-[11px] text-sage-600" id="widget-summary-time">Morgen, 16. Okt. um 09:30 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1">Ihr Name *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Elisabeth Keller" class="w-full bg-white border border-alabaster-300 rounded-xl px-3 py-2 text-xs text-sage-900 focus:outline-none focus:border-clay-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="06221 / 12345" class="w-full bg-white border border-alabaster-300 rounded-xl px-3 py-2 text-xs text-sage-900 focus:outline-none focus:border-clay-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@posteo.de" class="w-full bg-white border border-alabaster-300 rounded-xl px-3 py-2 text-xs text-sage-900 focus:outline-none focus:border-clay-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-bold uppercase tracking-wider text-sage-800 mb-1">Beschwerdebild / Vorgeschichte (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Chronische Nackensteifigkeit seit 6 Monaten..." class="w-full bg-white border border-alabaster-300 rounded-xl px-3 py-1.5 text-xs text-sage-900 focus:outline-none focus:border-clay-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-alabaster-300 bg-white text-sage-800 font-medium text-xs hover:bg-alabaster-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-clay-500 hover:bg-clay-600 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sm transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Termin unverbindlich vormerken</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-emerald-100 text-emerald-700 mx-auto flex items-center justify-center text-2xl shadow-inner">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-serif font-bold uppercase tracking-wider text-clay-500">Vormerkung erfolgreich</span>
+                    <h4 class="text-base font-serif font-bold text-sage-900 mt-1">Ihr Termin bei Sana Vita steht bereit!</h4>
+                    <p class="text-xs text-sage-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhalten Patient*innen hier die Bestätigung und den Link zum digitalen Anamnesebogen.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-sage-800 hover:bg-sage-900 text-alabaster-50 font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weitere Buchung testen
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-alabaster-200 text-[10px] text-sage-600/80 flex items-center justify-between">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="font-serif italic text-clay-600 font-bold">Ready for Embed</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. URSACHEN KETTEN CHECK DATA ---
+        const causeChains = {
+            kiefer: {
+                tag: 'Fasziale Kette: Kiefer → Obere Halswirbelsäule',
+                time: '60 Min. Intensivbehandlung',
+                title: 'Zähnepressen überträgt sich auf die Kopfgelenke',
+                desc: 'Die Kaumuskulatur (M. masseter) übt nachts bis zu 80 kg Druck pro Quadratzentimeter aus. Über die tiefe Halsfaszie zieht diese Spannung direkt in die oberen Kopfgelenke und Schulterblätter. Eine isolierte Massage des Nackens bringt daher nur kurzfristige Linderung – erst die craniosacrale Kieferentspannung befreit nachhaltig.',
+                approach: 'Intraorale CMD-Mobilisation + Atlas-Traktion'
+            },
+            becken: {
+                tag: 'Statische Kette: Beckenverwringung → Lendenwirbelsäule',
+                time: '60 Min. Ganzheitlicher Befund',
+                title: 'Schiefstand im Iliosakralgelenk (ISG) zwingt die Wirbelsäule zum Ausgleich',
+                desc: 'Ein funktioneller Beckenschiefstand führt dazu, dass die Lendenwirbelsäule jeden Schritt kompensieren muss. Die kleinen Wirbelgelenke werden einseitig komprimiert. Durch sanfte osteopathische ISG-Mobilisation stellen wir die Symmetrie von der Basis her wieder her.',
+                approach: 'Parietale Beckenjustierung + Psoas-Faszienrelease'
+            },
+            zwerchfell: {
+                tag: 'Viszerale Kette: Flache Atmung → Vagusnerv & Nackenstarre',
+                time: '50 Min. Atem- & Nervensystemregulation',
+                title: 'Dauerstress blockiert das Zwerchfell und reizt den Vagusnerv',
+                desc: 'Wer gestresst atmet, nutzt die Atemhilfsmuskeln am Hals. Die Nackenmuskeln leisten Schwerstarbeit, die eigentlich dem Zwerchfell zusteht. Wir lösen Verklebungen am Zwerchfellschenkel und bringen das vegetative Nervensystem wieder in den Parasympathikus-Modus (Regeneration).',
+                approach: 'Viszerale Zwerchfellmobilisation + Vagusnerv-Stimulation'
+            },
+            fuss: {
+                tag: 'Aufsteigende Kette: Knick-Senkfuß → Hüftinnenrotation',
+                time: '60 Min. Statik- & Bewegungsanalyse',
+                title: 'Wenn das Fußgewölbe nachgibt, kippt das Knie nach innen',
+                desc: 'Jede Bewegung beginnt am Boden. Ein kollabiertes Fußgewölbe rotiert den Unterschenkel nach innen, was zu Meniskusreizungen und einseitigem Zug am Trochanter major der Hüfte führt. Wir mobilisieren die Fußwurzelknochen und kräftigen die spiralige Beinkette.',
+                approach: 'Mobilisation des Talonavikulargelenks + Spiraldynamik'
+            }
+        };
+
+        function selectCauseChain(key) {
+            const data = causeChains[key];
+            if (!data) return;
+
+            document.getElementById('chain-tag').textContent = data.tag;
+            document.getElementById('chain-time').textContent = data.time;
+            document.getElementById('chain-title').textContent = data.title;
+            document.getElementById('chain-desc').textContent = data.desc;
+            document.getElementById('chain-approach').innerHTML = '<strong>Behandlungsansatz:</strong> ' + data.approach;
+
+            ['kiefer', 'becken', 'zwerchfell', 'fuss'].forEach(k => {
+                const b = document.getElementById('chain-btn-' + k);
+                if (k === key) {
+                    b.className = 'chain-btn p-3 rounded-2xl border-2 border-sage-800 bg-sage-50 text-left transition-all';
+                } else {
+                    b.className = 'chain-btn p-3 rounded-2xl border border-alabaster-200 bg-alabaster-50 text-left hover:border-sage-600 transition-all';
+                }
+            });
+        }
+
+        // --- 2. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'GKV mit Bezuschussung';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '09:30';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-sage-800 bg-sage-100 text-sage-900 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-clay-500 bg-clay-50 text-sage-900 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-alabaster-200 bg-white text-sage-800 font-medium text-xs hover:border-sage-600';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-sage-800 bg-sage-100 text-sage-900 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Termin-Vormerkung für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde erfolgreich simuliert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleSanavitaMenu() {
+            const m = document.getElementById('sanavita-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

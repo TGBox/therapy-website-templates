@@ -1,41 +1,21 @@
 {
   "name": "therapy-website-templates",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A compilation of different physiotherapist websites using modern webdesign patterns and fake, but believable data.",
-
-
   "license": "MIT",
-
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-
-
-
     "build": "src.build:main",
-
-
     "start": "node dist/index.js",
-
-
     "dev": "tsx watch src/index.ts",
-
-
+    "serve": "node serve.js",
+    "preview": "node serve.js",
     "test": "pytest:main",
-
-
     "typecheck": "tsc --noEmit",
-
-
     "main": "src.main:main",
-
-
     "format": "src.tools:format_code",
-
-
     "lint": "src.tools:lint_code"
-
-
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
