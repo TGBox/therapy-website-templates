@@ -2,7 +2,8 @@
 
 ## SemVer v1.0.0
 
-- 2026-10-15 (d4dae34): feat!: add 6 new and creative designs
+- 2026-10-15 (664e586): fix: fix design errors in first design
+- 2026-10-15 (18d73b3): feat!: add 6 new and creative designs
 - 2026-10-15 (e6a4ed9): feat!: add 5 designs with toggle feature instead of the appointment booking panel
 
 ## SemVer v0.1.0

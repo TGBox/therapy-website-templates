@@ -60,15 +60,21 @@
             -webkit-backdrop-filter: blur(16px);
         }
         .hotspot-pulse {
-            animation: pulse-ring 2.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+            transform-box: fill-box;
+            transform-origin: center;
+            animation: pulse-ring 2s cubic-bezier(0.25, 1, 0.5, 1) infinite;
         }
         @keyframes pulse-ring {
-            0% { transform: scale(0.9); opacity: 0.9; }
-            50% { transform: scale(1.35); opacity: 0.25; }
-            100% { transform: scale(0.9); opacity: 0.9; }
+            0% { transform: scale(0.9); opacity: 0.8; }
+            50% { transform: scale(1.6); opacity: 0.15; }
+            100% { transform: scale(0.9); opacity: 0.8; }
         }
-        .breathe-circle {
-            transition: transform 4s ease-in-out, background-color 4s ease-in-out;
+        @keyframes breath-pacer {
+            0%, 100% { transform: scale(0.85); background-color: rgba(217, 107, 67, 0.25); }
+            50% { transform: scale(1.35); background-color: rgba(42, 92, 70, 0.25); }
+        }
+        .breathing-orb {
+            animation: breath-pacer 6s ease-in-out infinite;
         }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
@@ -310,7 +316,7 @@
                 <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-sand-200 flex flex-col items-center">
                     <div class="w-full flex justify-between items-center mb-4">
                         <span class="text-xs font-semibold uppercase tracking-wider text-forest-600">Körper-Modell</span>
-                        <span class="text-xs bg-sand-100 text-forest-800 px-3 py-1 rounded-full font-medium">6 Fokus-Zonen aktiv</span>
+                        <span class="text-xs bg-sand-100 text-forest-800 px-3 py-1 rounded-full font-medium">5 Fokus-Zonen aktiv</span>
                     </div>
 
                     <!-- Interactive SVG Silhouette with pulsing hotspots -->
@@ -331,33 +337,33 @@
                             <line x1="110" y1="68" x2="110" y2="215" stroke="#1F4736" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.5" />
 
                             <!-- Hotspot 1: Kiefer & Nacken (CMD) -->
-                            <g class="cursor-pointer" onclick="selectBodyRegion('cmd')">
-                                <circle id="ring-cmd" cx="110" cy="60" r="16" fill="#D96B43" class="hotspot-pulse" />
-                                <circle id="dot-cmd" cx="110" cy="60" r="8" fill="#C0552F" stroke="#fff" stroke-width="2" />
+                            <g class="cursor-pointer group" onclick="selectBodyRegion('cmd')" transform="translate(110, 60)">
+                                <circle id="ring-cmd" cx="0" cy="0" r="16" fill="#D96B43" class="hotspot-pulse" opacity="0.4" />
+                                <circle id="dot-cmd" cx="0" cy="0" r="8" fill="#C0552F" stroke="#fff" stroke-width="2" class="group-hover:scale-110 transition-transform" />
                             </g>
 
                             <!-- Hotspot 2: Schulter & Mausarm -->
-                            <g class="cursor-pointer" onclick="selectBodyRegion('schulter')">
-                                <circle id="ring-schulter" cx="62" cy="98" r="14" fill="#2A5C46" opacity="0.25" />
-                                <circle id="dot-schulter" cx="62" cy="98" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            <g class="cursor-pointer group" onclick="selectBodyRegion('schulter')" transform="translate(62, 98)">
+                                <circle id="ring-schulter" cx="0" cy="0" r="13" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-schulter" cx="0" cy="0" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" class="group-hover:scale-110 transition-transform" />
                             </g>
 
                             <!-- Hotspot 3: Unterer Rücken & Bandscheibe -->
-                            <g class="cursor-pointer" onclick="selectBodyRegion('ruecken')">
-                                <circle id="ring-ruecken" cx="110" cy="175" r="14" fill="#2A5C46" opacity="0.25" />
-                                <circle id="dot-ruecken" cx="110" cy="175" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            <g class="cursor-pointer group" onclick="selectBodyRegion('ruecken')" transform="translate(110, 175)">
+                                <circle id="ring-ruecken" cx="0" cy="0" r="13" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-ruecken" cx="0" cy="0" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" class="group-hover:scale-110 transition-transform" />
                             </g>
 
                             <!-- Hotspot 4: Hüfte & Becken -->
-                            <g class="cursor-pointer" onclick="selectBodyRegion('huefte')">
-                                <circle id="ring-huefte" cx="142" cy="215" r="14" fill="#2A5C46" opacity="0.25" />
-                                <circle id="dot-huefte" cx="142" cy="215" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            <g class="cursor-pointer group" onclick="selectBodyRegion('huefte')" transform="translate(142, 215)">
+                                <circle id="ring-huefte" cx="0" cy="0" r="13" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-huefte" cx="0" cy="0" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" class="group-hover:scale-110 transition-transform" />
                             </g>
 
                             <!-- Hotspot 5: Knie & Sportverletzung -->
-                            <g class="cursor-pointer" onclick="selectBodyRegion('knie')">
-                                <circle id="ring-knie" cx="85" cy="285" r="14" fill="#2A5C46" opacity="0.25" />
-                                <circle id="dot-knie" cx="85" cy="285" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            <g class="cursor-pointer group" onclick="selectBodyRegion('knie')" transform="translate(85, 285)">
+                                <circle id="ring-knie" cx="0" cy="0" r="13" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-knie" cx="0" cy="0" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" class="group-hover:scale-110 transition-transform" />
                             </g>
                         </svg>
                     </div>
@@ -413,24 +419,109 @@
                         </div>
                     </div>
 
-                    <!-- Interactive 60-Second Micro-Relief Box -->
-                    <div class="bg-sand-100/90 rounded-2xl p-5 sm:p-6 border border-sand-200 mb-6">
-                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                            <div class="space-y-1">
-                                <div class="inline-flex items-center gap-1.5 text-xs font-bold text-terra-600 uppercase tracking-wider">
-                                    <i class="ph-fill ph-timer"></i> 30-Sekunden Sofort-Entkrampfer zum Mitmachen
-                                </div>
-                                <h4 id="compass-exercise-title" class="font-bold text-forest-900 text-base">Der „Zunge-ans-Gaumendach“-Reset</h4>
-                                <p id="compass-exercise-desc" class="text-xs sm:text-sm text-forest-700 leading-relaxed">
-                                    Lass die Zahnreihen minimal auseinanderfallen, leg die Zungenspitze locker hinter die oberen Schneidezähne und zieh die Schultern beim Einatmen hoch – beim Ausatmen fallen lassen.
-                                </p>
+                    <!-- Interactive 30-Second Micro-Relief Coach -->
+                    <div id="micro-coach-container" class="bg-sand-100/90 rounded-2xl p-5 sm:p-6 border border-sand-200 mb-6 transition-all">
+                        <!-- Coach Header -->
+                        <div class="flex items-center justify-between gap-2 pb-3 mb-3 border-b border-sand-200/60">
+                            <div class="inline-flex items-center gap-1.5 text-xs font-bold text-terra-600 uppercase tracking-wider">
+                                <i class="ph-fill ph-timer text-sm"></i> 30-Sekunden Sofort-Entkrampfer zum Mitmachen
                             </div>
-                            <div class="flex flex-col items-center shrink-0">
-                                <button id="micro-timer-btn" onclick="startMicroExercise()" class="bg-forest-800 hover:bg-forest-900 text-white text-xs font-semibold px-4 py-3 rounded-xl flex items-center gap-2 transition-all shadow-sm">
+                            <span id="micro-timer-badge" class="px-2.5 py-0.5 rounded-full bg-forest-100 text-forest-800 text-[11px] font-bold">
+                                3 Phasen à 10s
+                            </span>
+                        </div>
+
+                        <!-- Inactive / Intro View -->
+                        <div id="micro-intro-view" class="space-y-3">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                <div class="space-y-1">
+                                    <h4 id="compass-exercise-title" class="font-bold text-forest-900 text-base">Der „Zunge-ans-Gaumendach“-Reset</h4>
+                                    <p id="compass-exercise-desc" class="text-xs sm:text-sm text-forest-700 leading-relaxed">
+                                        Drei kurze 10-Sekunden-Schritte für spürbare Druckentlastung direkt am Bildschirm.
+                                    </p>
+                                </div>
+                                <button id="micro-start-btn" onclick="startMicroExercise()" class="shrink-0 bg-forest-800 hover:bg-forest-900 text-white text-xs font-semibold px-4 py-3 rounded-xl flex items-center justify-center gap-2 transition-all shadow-sm">
                                     <i class="ph-fill ph-play"></i>
-                                    <span id="micro-timer-label">30s Timer starten</span>
+                                    <span>30s Coaching starten</span>
                                 </button>
-                                <span id="micro-timer-feedback" class="text-[11px] text-forest-600 mt-1.5 font-medium">Direkt am Bildschirm testen</span>
+                            </div>
+                            <!-- 3 Step Badges Preview -->
+                            <div id="micro-steps-preview" class="grid grid-cols-3 gap-2 pt-1">
+                                <div class="p-2 bg-white/70 rounded-xl border border-sand-200 text-left">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-forest-600 block">Phase 1 (0–10s)</span>
+                                    <span id="preview-step-1" class="text-xs font-semibold text-forest-900 truncate block">Kiefer & Zunge</span>
+                                </div>
+                                <div class="p-2 bg-white/70 rounded-xl border border-sand-200 text-left">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-forest-600 block">Phase 2 (10–20s)</span>
+                                    <span id="preview-step-2" class="text-xs font-semibold text-forest-900 truncate block">Atem & Schultern</span>
+                                </div>
+                                <div class="p-2 bg-white/70 rounded-xl border border-sand-200 text-left">
+                                    <span class="text-[10px] font-bold uppercase tracking-wider text-forest-600 block">Phase 3 (20–30s)</span>
+                                    <span id="preview-step-3" class="text-xs font-semibold text-forest-900 truncate block">Nachspüren</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Live-Coach View (hidden by default) -->
+                        <div id="micro-active-view" class="hidden space-y-3">
+                            <!-- Progress Bar & Timer Header -->
+                            <div class="flex items-center justify-between text-xs font-bold">
+                                <span id="micro-active-phase-label" class="text-terra-600 uppercase tracking-wide">Phase 1/3: Kiefer & Zunge lösen</span>
+                                <div class="flex items-center gap-2">
+                                    <span id="micro-active-countdown" class="font-mono text-forest-900 bg-white px-2 py-0.5 rounded-md border border-sand-200 shadow-sm">30s</span>
+                                    <button onclick="stopMicroExercise()" class="text-forest-600 hover:text-terra-600 p-1" title="Abbrechen">
+                                        <i class="ph-bold ph-x text-sm"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Animated Progress Track -->
+                            <div class="w-full bg-sand-200 h-2 rounded-full overflow-hidden">
+                                <div id="micro-progress-bar" class="bg-terra-500 h-full rounded-full transition-all duration-300" style="width: 0%"></div>
+                            </div>
+
+                            <!-- Live Coaching Guidance Card with Breathing Orb -->
+                            <div class="bg-white rounded-xl p-4 border border-sand-200 flex items-center gap-4 shadow-sm">
+                                <div class="relative shrink-0 w-12 h-12 flex items-center justify-center">
+                                    <div id="breathing-orb" class="absolute w-12 h-12 rounded-full bg-terra-500/20 breathing-orb"></div>
+                                    <div class="relative w-8 h-8 rounded-full bg-forest-800 text-white flex items-center justify-center text-xs">
+                                        <i id="breathing-icon" class="ph-bold ph-wind"></i>
+                                    </div>
+                                </div>
+                                <div class="space-y-0.5 flex-1 min-w-0">
+                                    <div class="flex items-center justify-between">
+                                        <h5 id="micro-live-title" class="font-bold text-forest-900 text-sm">Zahnreihen lösen</h5>
+                                        <span id="micro-breath-cue" class="text-[11px] font-semibold text-terra-600 bg-terra-50 px-2 py-0.5 rounded-full">Locker atmen</span>
+                                    </div>
+                                    <p id="micro-live-instruction" class="text-xs text-forest-700 leading-relaxed">
+                                        Lass die Zahnreihen 2 Millimeter auseinanderfallen. Leg die Zungenspitze locker hinter die oberen Schneidezähne.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-between pt-1">
+                                <span id="micro-live-tip" class="text-[11px] text-forest-600 font-medium">Entspanne Kiefer und Gesichtsmuskeln...</span>
+                                <button onclick="stopMicroExercise()" class="text-xs text-forest-700 hover:text-terra-600 font-semibold underline underline-offset-2">
+                                    Beenden
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Completion View (hidden by default) -->
+                        <div id="micro-done-view" class="hidden py-2 text-center space-y-2">
+                            <div class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 text-xl mx-auto">
+                                <i class="ph-fill ph-check-circle"></i>
+                            </div>
+                            <h4 class="font-bold text-forest-900 text-sm">30 Sekunden geschafft!</h4>
+                            <p class="text-xs text-forest-700 max-w-md mx-auto">
+                                Spürst du, wie die Spannung nachgelassen hat? Genau diesen Entlastungseffekt machen wir in der Therapie dauerhaft.
+                            </p>
+                            <div class="pt-2 flex justify-center gap-3">
+                                <button onclick="resetMicroExercise()" class="text-xs font-semibold px-3.5 py-2 rounded-xl bg-sand-200 text-forest-800 hover:bg-sand-300 transition-all">
+                                    Nochmal machen
+                                </button>
+                                <button onclick="bookFromCompass()" class="text-xs font-semibold px-4 py-2 rounded-xl bg-terra-500 hover:bg-terra-600 text-white transition-all shadow-sm">
+                                    Dauerhaft lösen & Termin buchen
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1098,7 +1189,30 @@
                 symptoms: 'Morgens verspannt aufwachen, Knacken oder Reiben im Kiefergelenk, dumpfer Druck an den Schläfen oder ein Ziehen vom Schulterblatt bis zum Hinterkopf.',
                 approach: 'Sanfte intraorale Kiefermobilisation (CMD), Entlastung der oberen Halswirbelsäule und gezieltes Alltags-Coaching gegen unbewusstes Zähnepressen.',
                 exerciseTitle: 'Der „Zunge-ans-Gaumendach“-Reset',
-                exerciseDesc: 'Lass die Zahnreihen im Mund 2 Millimeter auseinanderfallen, leg die Zungenspitze locker hinter die oberen Schneidezähne und atme 4 Sekunden tief in den Bauch ein.',
+                exerciseDesc: 'Drei geführte 10-Sekunden-Phasen für sofortige Druckentlastung von Kiefer und HWS.',
+                exerciseSteps: [
+                    {
+                        preview: 'Kiefer & Zunge',
+                        title: 'Kiefer & Zunge lösen',
+                        text: 'Lass die Zahnreihen 2 Millimeter auseinanderfallen. Leg die Zungenspitze ganz locker an das Gaumendach hinter den oberen Schneidezähnen.',
+                        breath: 'Zahnreihen lösen',
+                        tip: 'Zähne dürfen sich jetzt nicht berühren.'
+                    },
+                    {
+                        preview: 'Atem & Schultern',
+                        title: 'Tief einatmen & Schultern senken',
+                        text: 'Atme 4 Sekunden tief durch die Nase in den Bauch ein – und lass beim Ausatmen die Schultern ganz schwer nach unten fallen.',
+                        breath: '4s Ein • 4s Aus',
+                        tip: 'Spüre, wie der Nacken lang und weit wird.'
+                    },
+                    {
+                        preview: 'Nachspüren',
+                        title: 'Nachspüren & Weite halten',
+                        text: 'Gleichmäßig weiteratmen. Halte den Kiefer entspannt und spüre nach, wie der dumpfe Druck an Schläfen und Hinterkopf nachlässt.',
+                        breath: 'Ruhig ausatmen',
+                        tip: 'Geschafft! Kiefermuskeln sind spürbar entkrampft.'
+                    }
+                ],
                 prescription: 'Passendes Rezept: KG, MT oder CMD vom Zahnarzt/Hausarzt',
                 serviceMatch: 'Kiefergelenkstherapie (CMD)'
             },
@@ -1108,8 +1222,31 @@
                 specialist: 'Tarik Yilmaz',
                 symptoms: 'Stechender Schmerz beim seitlichen Anheben des Arms, nächtlicher Liegeschmerz auf der Schulter oder Ausstrahlung bis in den Unterarm.',
                 approach: 'Manuelle Zentrierung des Schultergelenks kombiniert mit progressivem Rotatorenmanschetten-Training an unseren Seilzug- & Sensorgeräten.',
-                exerciseTitle: 'Schulterblatt-Gleiten (Scapula-Reset)',
-                exerciseDesc: 'Kreise beide Schultern langsam nach hinten-unten, als wolltest du deine Schulterblätter sanft in die hinteren Hosentaschen stecken. 5 Sekunden halten, lockerlassen.',
+                exerciseTitle: 'Scapula-Drop & Schulterblatt-Gleiten',
+                exerciseDesc: 'Bringt den Oberarmkopf sofort in eine zentrierte Position und entlastet die Sehnen.',
+                exerciseSteps: [
+                    {
+                        preview: 'Schultern heben',
+                        title: 'Schultern sanft anheben',
+                        text: 'Zieh beim Einatmen beide Schultern sanft nach oben in Richtung Ohren. Halte die kurze Grundspannung für 3 Sekunden.',
+                        breath: 'Einatmen (4s)',
+                        tip: 'Aufrechte Haltung im Sitzen bewahren.'
+                    },
+                    {
+                        preview: 'Kreisen & Senken',
+                        title: 'Nach hinten-unten kreisen',
+                        text: 'Rolle die Schultern langsam im weiten Kreis nach hinten und unten – als wolltest du deine Schulterblätter in die hinteren Hosentaschen stecken.',
+                        breath: 'Ausatmen (4s)',
+                        tip: 'Schulterblätter gleiten flach an die Rippen.'
+                    },
+                    {
+                        preview: 'Arme ausschütteln',
+                        title: 'Schwere Arme & freier Hals',
+                        text: 'Lass die Arme schwer hängen, atme tief in den Brustkorb und spüre den neu gewonnenen Raum zwischen Schulter und Ohr.',
+                        breath: 'Locker durchatmen',
+                        tip: 'Halsmuskeln sind jetzt vollkommen entlastet.'
+                    }
+                ],
                 prescription: 'Passendes Rezept: Manuelle Therapie (MT) oder KGG',
                 serviceMatch: 'Manuelle Therapie (MT) / Krankengymnastik'
             },
@@ -1120,7 +1257,30 @@
                 symptoms: 'Blockadegefühl beim Aufrichten aus dem Sitzen, morgendliche Steifigkeit in der Lendenwirbelsäule oder ein Ziehen über das Gesäß ins Bein.',
                 approach: 'Schmerzlindernde Traktion und segmentale Mobilisation, gefolgt von stufenweisem Aufbau der tiefen Rumpfmuskulatur – damit du wieder angstfrei heben kannst.',
                 exerciseTitle: 'Sitzende Becken-Welle (Pelvic Tilt)',
-                exerciseDesc: 'Kippe dein Becken auf dem Stuhl langsam vor (leichtes Hohlkreuz) und rolle es dann sanft zurück. Diese Mikrobewegung versorgt deine Bandscheiben sofort mit Flüssigkeit.',
+                exerciseDesc: 'Sanfte Mikrobewegung versorgt die Bandscheiben sofort mit Nährstoffen und deblockiert das ISG.',
+                exerciseSteps: [
+                    {
+                        preview: 'Becken vorrollen',
+                        title: 'Leichtes Hohlkreuz einnehmen',
+                        text: 'Kippe dein Becken auf dem Stuhl langsam nach vorn: Das Steißbein zieht sanft nach hinten, das Brustbein hebt sich stolz an.',
+                        breath: 'Einatmen (4s)',
+                        tip: 'Keine Hektik, nur eine kleine fließende Bewegung.'
+                    },
+                    {
+                        preview: 'Sanft zurückrunden',
+                        title: 'Rücken sanft runden',
+                        text: 'Rolle das Becken nun langsam nach hinten: Der untere Rücken rundet sich sanft, der Bauchnabel zieht leicht nach innen.',
+                        breath: 'Ausatmen (4s)',
+                        tip: 'Die Bandscheiben saugen frische Flüssigkeit auf.'
+                    },
+                    {
+                        preview: 'Aufrecht einpendeln',
+                        title: 'In Mittelstellung einpendeln',
+                        text: 'Finde die aufrechte, neutrale Mittelposition direkt auf den Sitzbeinhöckern. Atme tief in den Bauch und spüre die Leichtigkeit.',
+                        breath: 'Ruhig atmen',
+                        tip: 'Der Druck auf die LWS ist spürbar verringert.'
+                    }
+                ],
                 prescription: 'Passendes Rezept: MT, KG oder KGG',
                 serviceMatch: 'Manuelle Therapie (MT) / Krankengymnastik'
             },
@@ -1131,7 +1291,30 @@
                 symptoms: 'Tiefsitzender Schmerz am Übergang von Rücken zu Gesäß (ISG), Anlaufschmerz nach langem Sitzen oder eingeschränkte Hüftrotation.',
                 approach: 'Lösen myofaszialer Triggerpunkte im Gesäß- und Hüftbereich, Mobilisation des Iliosakralgelenks und exzentrisches Krafttraining.',
                 exerciseTitle: 'Figur-4 Gesäß-Release im Sitzen',
-                exerciseDesc: 'Lege im Sitzen den rechten Knöchel auf das linke Knie und lehne dich mit geradem Rücken 3 Zentimeter nach vorn, bis ein angenehmes Dehngefühl im Gesäß entsteht.',
+                exerciseDesc: 'Gezielte Entlastung des Musculus Piriformis nimmt sofort Druck vom Ischiasnerv.',
+                exerciseSteps: [
+                    {
+                        preview: 'Knöchel auflegen',
+                        title: 'Knöchel auf das Knie legen',
+                        text: 'Lege im aufrechten Sitzen den rechten Knöchel auf das linke Knie. Das rechte Knie fällt ganz locker zur Seite nach außen.',
+                        breath: 'Ausgangsposition',
+                        tip: 'Sitze aufrecht und stabil auf beiden Pobacken.'
+                    },
+                    {
+                        preview: 'Sanft vorlehnen',
+                        title: 'Oberkörper 3 cm nach vorn neigen',
+                        text: 'Halte den Rücken gerade und beuge deinen Oberkörper nur ein kleines Stück nach vorn, bis ein angenehmer Zug im Gesäß entsteht.',
+                        breath: 'Tief einatmen',
+                        tip: 'Nicht mit Schwung wippen – nur sanft halten.'
+                    },
+                    {
+                        preview: 'In Dehnung atmen',
+                        title: 'In die Dehnung atmen & loslassen',
+                        text: 'Atme tief in den Bauch und in die rechte Gesäßhälfte. Mit jedem Ausatmen darf die Muskelspannung bewusst nachgeben.',
+                        breath: 'Lang ausatmen',
+                        tip: 'Der Piriformis entspannt sich und gibt den Nerv frei.'
+                    }
+                ],
                 prescription: 'Passendes Rezept: Manuelle Therapie (MT) oder Osteopathie',
                 serviceMatch: 'Osteopathie & Faszientherapie (60 Min.)'
             },
@@ -1141,8 +1324,31 @@
                 specialist: 'Tarik Yilmaz',
                 symptoms: 'Schmerzen beim Treppenabsteigen, Instabilitätsgefühl nach einer Sportverletzung oder morgendlicher Druckschmerz an der Achillessehne.',
                 approach: 'Computergestützte Kraft- und Sprungachsen-Analyse in unserer Active-Area, kombiniert mit gezieltem Sehnen-Belastungsaufbau (Heavy Slow Resistance).',
-                exerciseTitle: 'Isometrische Knie-Aktivierung',
-                exerciseDesc: 'Strecke im Sitzen ein Bein gerade nach vorn aus, ziehe die Fußspitze zu dir heran und spanne den Oberschenkel für 10 Sekunden kräftig an. Wechsel die Seite.',
+                exerciseTitle: 'Isometrische Sehnen- & Quad-Aktivierung',
+                exerciseDesc: 'Schmerzhemmender Reiz für Patellasehne und Quadrizeps ohne schmerzhafte Gelenkbewegung.',
+                exerciseSteps: [
+                    {
+                        preview: 'Bein anheben',
+                        title: 'Bein strecken & Zehen heranziehen',
+                        text: 'Strecke im Sitzen das Bein gerade nach vorn aus und ziehe die Fußspitze kraftvoll zu deinem Schienbein heran.',
+                        breath: 'Position halten',
+                        tip: 'Das Kniegelenk bleibt stabil gestreckt.'
+                    },
+                    {
+                        preview: 'Kraft anspannen',
+                        title: 'Oberschenkel isometrisch anspannen',
+                        text: 'Spanne den vorderen Oberschenkelmuskel mit halber Kraft an. Die Kniescheibe gleitet leicht nach oben. Spannung ruhig halten.',
+                        breath: 'Ruhig weiteratmen',
+                        tip: 'Hemmt akute Schmerzsignale in der Patellasehne.'
+                    },
+                    {
+                        preview: 'Sanft lockern',
+                        title: 'Spannung lösen & Knie lockern',
+                        text: 'Löse die Muskelspannung behutsam auf, stelle den Fuß wieder auf den Boden und schüttle das Bein sanft aus.',
+                        breath: 'Entspannt ausatmen',
+                        tip: 'Gelenk und Sehne sind optimal durchblutet.'
+                    }
+                ],
                 prescription: 'Passendes Rezept: KGG (Krankengymnastik am Gerät) oder KG',
                 serviceMatch: 'Krankengymnastik am Gerät (KGG) / Sportphysio'
             }
@@ -1150,11 +1356,25 @@
 
         let currentSelectedRegion = 'cmd';
         let microTimerInterval = null;
+        let microTimerSeconds = 30;
+
+        function updateMicroExercisePreviews(data) {
+            if (!data || !data.exerciseSteps) return;
+            const p1 = document.getElementById('preview-step-1');
+            const p2 = document.getElementById('preview-step-2');
+            const p3 = document.getElementById('preview-step-3');
+            if (p1 && data.exerciseSteps[0]) p1.textContent = data.exerciseSteps[0].preview;
+            if (p2 && data.exerciseSteps[1]) p2.textContent = data.exerciseSteps[1].preview;
+            if (p3 && data.exerciseSteps[2]) p3.textContent = data.exerciseSteps[2].preview;
+        }
 
         function selectBodyRegion(key) {
             currentSelectedRegion = key;
             const data = bodyRegions[key];
             if (!data) return;
+
+            // Stop running exercise cleanly if region is switched
+            stopMicroExercise(true);
 
             // Update Text Content
             document.getElementById('compass-tag').textContent = data.tag;
@@ -1166,6 +1386,8 @@
             document.getElementById('compass-exercise-desc').textContent = data.exerciseDesc;
             document.getElementById('compass-prescription-hint').innerHTML = `<strong>${data.prescription}</strong>`;
 
+            updateMicroExercisePreviews(data);
+
             // Update SVG Hotspots & Pills
             Object.keys(bodyRegions).forEach(r => {
                 const ring = document.getElementById('ring-' + r);
@@ -1173,54 +1395,119 @@
                 const btn = document.getElementById('btn-' + r);
 
                 if (r === key) {
-                    ring.setAttribute('fill', '#D96B43');
-                    ring.setAttribute('r', '16');
-                    ring.classList.add('hotspot-pulse');
-                    dot.setAttribute('fill', '#C0552F');
-                    dot.setAttribute('r', '8');
-                    btn.className = 'region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-terra-500 text-white transition-all text-left flex items-center gap-1.5 ' + (r === 'knie' ? 'col-span-2 sm:col-span-2' : '');
+                    if (ring) {
+                        ring.setAttribute('fill', '#D96B43');
+                        ring.setAttribute('r', '16');
+                        ring.setAttribute('opacity', '0.4');
+                        ring.classList.add('hotspot-pulse');
+                    }
+                    if (dot) {
+                        dot.setAttribute('fill', '#C0552F');
+                        dot.setAttribute('r', '8');
+                    }
+                    if (btn) {
+                        btn.className = 'region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-terra-500 text-white transition-all text-left flex items-center gap-1.5 ' + (r === 'knie' ? 'col-span-2 sm:col-span-2' : '');
+                    }
                 } else {
-                    ring.setAttribute('fill', '#2A5C46');
-                    ring.setAttribute('r', '14');
-                    ring.classList.remove('hotspot-pulse');
-                    dot.setAttribute('fill', '#1F4736');
-                    dot.setAttribute('r', '7');
-                    btn.className = 'region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5 ' + (r === 'knie' ? 'col-span-2 sm:col-span-2' : '');
+                    if (ring) {
+                        ring.setAttribute('fill', '#2A5C46');
+                        ring.setAttribute('r', '13');
+                        ring.setAttribute('opacity', '0.25');
+                        ring.classList.remove('hotspot-pulse');
+                    }
+                    if (dot) {
+                        dot.setAttribute('fill', '#1F4736');
+                        dot.setAttribute('r', '7');
+                    }
+                    if (btn) {
+                        btn.className = 'region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5 ' + (r === 'knie' ? 'col-span-2 sm:col-span-2' : '');
+                    }
                 }
             });
         }
 
         function startMicroExercise() {
-            const label = document.getElementById('micro-timer-label');
-            const feedback = document.getElementById('micro-timer-feedback');
-            if (microTimerInterval) {
-                clearInterval(microTimerInterval);
-                microTimerInterval = null;
-                label.textContent = '30s Timer starten';
-                feedback.textContent = 'Timer gestoppt';
-                return;
-            }
+            const data = bodyRegions[currentSelectedRegion];
+            if (!data || !data.exerciseSteps) return;
 
-            let seconds = 30;
-            label.textContent = `Noch ${seconds}s...`;
-            feedback.textContent = 'Tief einatmen... und Kiefer locker lassen';
+            const introView = document.getElementById('micro-intro-view');
+            const activeView = document.getElementById('micro-active-view');
+            const doneView = document.getElementById('micro-done-view');
+
+            if (introView) introView.classList.add('hidden');
+            if (doneView) doneView.classList.add('hidden');
+            if (activeView) activeView.classList.remove('hidden');
+
+            if (microTimerInterval) clearInterval(microTimerInterval);
+
+            microTimerSeconds = 30;
+            updateMicroExerciseStep(30, data);
 
             microTimerInterval = setInterval(() => {
-                seconds--;
-                if (seconds > 0) {
-                    label.textContent = `Noch ${seconds}s...`;
-                    if (seconds === 20) feedback.textContent = 'Schultern bewusst sinken lassen...';
-                    if (seconds === 10) feedback.textContent = 'Letzte 10 Sekunden – gleich geschafft!';
+                microTimerSeconds--;
+                if (microTimerSeconds > 0) {
+                    updateMicroExerciseStep(microTimerSeconds, data);
                 } else {
                     clearInterval(microTimerInterval);
                     microTimerInterval = null;
-                    label.textContent = 'Geschafft! ✓';
-                    feedback.textContent = 'Spürst du den Unterschied?';
-                    setTimeout(() => {
-                        label.textContent = '30s Timer starten';
-                    }, 3500);
+                    if (activeView) activeView.classList.add('hidden');
+                    if (doneView) doneView.classList.remove('hidden');
                 }
             }, 1000);
+        }
+
+        function updateMicroExerciseStep(remainingSeconds, data) {
+            const countdownEl = document.getElementById('micro-active-countdown');
+            const progressEl = document.getElementById('micro-progress-bar');
+            const phaseLabelEl = document.getElementById('micro-active-phase-label');
+            const titleEl = document.getElementById('micro-live-title');
+            const instructionEl = document.getElementById('micro-live-instruction');
+            const breathCueEl = document.getElementById('micro-breath-cue');
+            const tipEl = document.getElementById('micro-live-tip');
+
+            if (countdownEl) countdownEl.textContent = `${remainingSeconds}s`;
+
+            const elapsed = 30 - remainingSeconds;
+            const pct = Math.min(100, Math.round((elapsed / 30) * 100));
+            if (progressEl) progressEl.style.width = `${pct}%`;
+
+            let stepIdx = 0;
+            if (remainingSeconds > 20) {
+                stepIdx = 0;
+            } else if (remainingSeconds > 10) {
+                stepIdx = 1;
+            } else {
+                stepIdx = 2;
+            }
+
+            const step = data.exerciseSteps[stepIdx];
+            if (step) {
+                if (phaseLabelEl) phaseLabelEl.textContent = `Phase ${stepIdx + 1}/3: ${step.title}`;
+                if (titleEl) titleEl.textContent = step.title;
+                if (instructionEl) instructionEl.textContent = step.text;
+                if (breathCueEl) breathCueEl.textContent = step.breath;
+                if (tipEl) tipEl.textContent = step.tip;
+            }
+        }
+
+        function stopMicroExercise(resetToStart = true) {
+            if (microTimerInterval) {
+                clearInterval(microTimerInterval);
+                microTimerInterval = null;
+            }
+            const introView = document.getElementById('micro-intro-view');
+            const activeView = document.getElementById('micro-active-view');
+            const doneView = document.getElementById('micro-done-view');
+
+            if (activeView) activeView.classList.add('hidden');
+            if (doneView) doneView.classList.add('hidden');
+            if (introView && resetToStart) introView.classList.remove('hidden');
+        }
+
+        function resetMicroExercise() {
+            stopMicroExercise(true);
+            const data = bodyRegions[currentSelectedRegion];
+            if (data) updateMicroExercisePreviews(data);
         }
 
         function bookFromCompass() {
@@ -1660,6 +1947,7 @@
 
         window.onload = function () {
             renderServices('all');
+            selectBodyRegion('cmd');
             // Set default prescription date to 5 days ago for a realistic calculation
             const fiveDaysAgo = new Date();
             fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
