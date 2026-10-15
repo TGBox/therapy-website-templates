@@ -656,8 +656,48 @@
 
     <!-- Scripts -->
     <script>
-        // --- 1. INTERAKTIVES ÖLKÄNNCHEN & FLÜSSIG-MODUS ---
+        // --- 1. INTERAKTIVES ÖLKÄNNCHEN & ECHTES MOMENTUM-GLEIT-SCROLLING ---
         let isOilLubricated = false;
+        let targetScrollY = window.scrollY;
+        let currentScrollY = window.scrollY;
+        let isSmoothScrollRunning = false;
+
+        function smoothScrollLoop() {
+            if (!isOilLubricated) {
+                isSmoothScrollRunning = false;
+                return;
+            }
+            const diff = targetScrollY - currentScrollY;
+            if (Math.abs(diff) < 0.5) {
+                currentScrollY = targetScrollY;
+                window.scrollTo(0, currentScrollY);
+                isSmoothScrollRunning = false;
+                return;
+            }
+            // Ultra-geschmeidige Viskositäts-Trägheit (0.08 = viskoser Öleffekt)
+            currentScrollY += diff * 0.085;
+            window.scrollTo(0, currentScrollY);
+            requestAnimationFrame(smoothScrollLoop);
+        }
+
+        window.addEventListener('wheel', (e) => {
+            if (!isOilLubricated) return;
+            e.preventDefault();
+            const delta = e.deltaY * 1.15;
+            const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+            targetScrollY = Math.max(0, Math.min(maxScroll, targetScrollY + delta));
+            if (!isSmoothScrollRunning) {
+                isSmoothScrollRunning = true;
+                requestAnimationFrame(smoothScrollLoop);
+            }
+        }, { passive: false });
+
+        window.addEventListener('scroll', () => {
+            if (!isSmoothScrollRunning) {
+                targetScrollY = window.scrollY;
+                currentScrollY = window.scrollY;
+            }
+        });
 
         function toggleOilLubrication() {
             isOilLubricated = !isOilLubricated;
@@ -665,9 +705,11 @@
             const canvas = document.getElementById('oil-drop-canvas');
 
             if (isOilLubricated) {
+                targetScrollY = window.scrollY;
+                currentScrollY = window.scrollY;
                 document.body.classList.add('oil-lubricated');
-                btn.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all bg-amberoil-500 text-slatecore-950 shadow-goldglow animate-pulse';
-                btn.innerHTML = '<span>AN 💧</span>';
+                btn.className = 'px-3 py-1 rounded-full text-[10px] font-mono font-bold transition-all bg-gradient-to-r from-amberoil-400 to-amberoil-500 text-slatecore-950 shadow-goldglow animate-pulse border border-amberoil-300';
+                btn.innerHTML = '<span class="flex items-center gap-1"><span>GESCHMIERT</span> 💧</span>';
                 
                 // Show flowing golden oil drop animation
                 canvas.classList.remove('hidden');
@@ -676,6 +718,7 @@
                 document.body.classList.remove('oil-lubricated');
                 btn.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all bg-slatecore-800 text-gray-400 hover:text-white border border-slatecore-700';
                 btn.innerHTML = '<span>AUS</span>';
+                isSmoothScrollRunning = false;
             }
         }
 

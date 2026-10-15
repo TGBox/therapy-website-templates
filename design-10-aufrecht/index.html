@@ -67,7 +67,7 @@
 <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-sunshine-200 selection:text-slate-950">
 
     <!-- Fixed Vertical Spine Posture Tracker on Screen Right -->
-    <aside class="fixed right-3 top-1/2 -translate-y-1/2 z-30 hidden xl:flex flex-col items-center bg-white/90 backdrop-blur-md p-3 rounded-full border border-slate-200 shadow-xl" aria-label="Haltungsachse">
+    <aside class="fixed right-3 top-1/2 -translate-y-1/2 z-30 hidden md:flex flex-col items-center bg-white/95 backdrop-blur-md p-3 rounded-full border border-slate-200 shadow-xl" aria-label="Haltungsachse">
         <span class="text-[9px] font-mono font-bold text-sunsky-700 uppercase tracking-widest rotate-90 my-3">HALTUNG</span>
         
         <!-- Spine Vertebrae Dots (Cervical, Thoracic, Lumbar) -->
@@ -82,7 +82,7 @@
             <span class="spine-vertebra w-3 h-3 rounded-full bg-slate-800 shadow-sm" id="vert-8" title="Sakrum / Becken"></span>
         </div>
 
-        <span id="posture-meter-label" class="text-[10px] font-mono font-bold text-sunsky-600 mt-2">100%</span>
+        <span id="posture-meter-label" class="text-[9px] font-mono font-bold text-rose-600 mt-2">Krumm (0%)</span>
     </aside>
 
     <!-- Top Encouragement Bar -->
@@ -891,21 +891,50 @@
     <!-- Scripts -->
     <script>
         // --- 1. SPINE POSTURE ARTICULATION ON SCROLL ---
-        window.addEventListener('scroll', () => {
+        const baseSlumpOffsets = [14, 16, -12, -15, -12, 6, 8, 0]; // C-curve kyphosis offsets in px
+
+        function updateSpinePosture() {
             const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = Math.min(100, Math.round((winScroll / height) * 100));
+            const scrolled = height > 0 ? Math.min(100, Math.max(0, Math.round((winScroll / height) * 100))) : 0;
+            const progress = scrolled / 100; // 0 = slumped, 1 = upright
 
             const meter = document.getElementById('posture-meter-label');
-            if (meter) meter.textContent = scrolled + '%';
-
-            // Shift vertebrae sideways slightly as user scrolls down to represent dynamic articulation
             const verts = document.querySelectorAll('.spine-vertebra');
+
             verts.forEach((v, idx) => {
-                const shift = Math.sin((scrolled / 100) * Math.PI + idx) * 3;
-                v.style.transform = `translateX(${shift}px)`;
+                const base = baseSlumpOffsets[idx] || 0;
+                // As progress goes to 1, offset smoothly reaches 0
+                const currentOffset = base * (1 - progress);
+                v.style.transform = `translateX(${currentOffset.toFixed(1)}px)`;
+                v.style.transition = 'transform 0.15s ease-out, background-color 0.25s ease';
+
+                if (progress < 0.35) {
+                    v.className = 'spine-vertebra w-3 h-3 rounded-full bg-rose-500 shadow-sm';
+                } else if (progress < 0.75) {
+                    v.className = 'spine-vertebra w-3 h-3 rounded-full bg-sky-500 shadow-sm';
+                } else {
+                    v.className = 'spine-vertebra w-3 h-3 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50';
+                }
             });
-        });
+
+            if (meter) {
+                if (progress < 0.35) {
+                    meter.textContent = `Krumm (${scrolled}%)`;
+                    meter.className = 'text-[9px] font-mono font-bold text-rose-600 mt-2';
+                } else if (progress < 0.75) {
+                    meter.textContent = `Richtet auf (${scrolled}%)`;
+                    meter.className = 'text-[9px] font-mono font-bold text-sky-600 mt-2';
+                } else {
+                    meter.textContent = progress >= 0.98 ? '100% Im Lot ✨' : `Aufrecht (${scrolled}%)`;
+                    meter.className = 'text-[9px] font-mono font-bold text-emerald-600 mt-2';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', updateSpinePosture, { passive: true });
+        window.addEventListener('DOMContentLoaded', updateSpinePosture);
+        updateSpinePosture();
 
         // --- 2. DIGITALER HALTUNGS-SPIEGEL CONTROLLER ---
         const archetypeData = {

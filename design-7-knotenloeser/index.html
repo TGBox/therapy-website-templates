@@ -146,9 +146,22 @@
         </div>
     </header>
 
-    <!-- Scroll Track Indicator (The Thread) -->
-    <div class="fixed top-20 left-0 w-full h-1 z-30 bg-stonebg-200">
-        <div id="scroll-thread-indicator" class="h-full bg-gradient-to-r from-coralcord-500 via-coralcord-600 to-coralcord-400 w-0 transition-all duration-75"></div>
+    <!-- SVG Untangling Knot Bar (Der Rote Faden Scroll-Morph) -->
+    <div class="fixed top-20 left-0 w-full z-30 bg-stonebg-100/95 backdrop-blur-md border-b border-stonebg-200 py-1.5 px-4 flex items-center justify-between text-xs font-mono shadow-sm">
+        <div class="flex items-center gap-3">
+            <div class="relative w-7 h-7 flex items-center justify-center">
+                <!-- Morphing SVG Tangled Knot -->
+                <svg id="knot-morph-svg" viewBox="0 0 100 100" class="w-7 h-7 text-coralcord-600 transition-transform duration-300">
+                    <path id="knot-morph-path" d="M 10 50 Q 25 10, 50 50 T 90 50 C 70 90, 30 10, 50 50" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+            </div>
+            <span class="text-stone-700 font-bold hidden sm:inline">Roter Faden:</span>
+            <span id="knot-status-label" class="text-coralcord-600 font-bold">Verknotetes Gewebe (0%)</span>
+        </div>
+        <div class="flex-1 max-w-xs sm:max-w-md mx-3 bg-stonebg-300 h-2 rounded-full overflow-hidden">
+            <div id="scroll-thread-indicator" class="h-full bg-gradient-to-r from-coralcord-500 via-rose-500 to-coralcord-600 w-0 transition-all duration-100"></div>
+        </div>
+        <span id="scroll-pct-label" class="text-stone-500 font-bold">0%</span>
     </div>
 
     <!-- Hero Section -->
@@ -221,24 +234,27 @@
                                 </div>
                             </div>
 
-                            <!-- Interactive Pulsing Trigger Point Dots -->
-                            <div class="absolute top-[28%] left-[45%] group cursor-pointer" onclick="showKnotInfo('trapezius')">
-                                <span class="absolute -inset-2 rounded-full bg-coralcord-500/40 knot-pulse"></span>
-                                <div class="relative w-4 h-4 rounded-full bg-coralcord-500 border-2 border-white shadow-md flex items-center justify-center text-[8px] text-white font-bold">1</div>
+                            <!-- Interactive Pulsing Trigger Point Dots (Anatomically accurately placed on the patient) -->
+                            <!-- Punkt 1: M. Trapezius descendens (Schulter-Nacken-Wulst) -->
+                            <div class="absolute top-[58%] left-[60%] group cursor-pointer z-20" onclick="showKnotInfo('trapezius')" title="Knoten 1: M. Trapezius">
+                                <span class="absolute -inset-2.5 rounded-full bg-coralcord-500/40 knot-pulse"></span>
+                                <div id="knot-dot-1" class="knot-dot-wrap relative w-5 h-5 rounded-full bg-coralcord-500 border-2 border-white shadow-lg flex items-center justify-center text-[10px] text-white font-bold transition-all group-hover:scale-125">1</div>
                             </div>
-                            <div class="absolute top-[48%] left-[58%] group cursor-pointer" onclick="showKnotInfo('rhomboid')">
-                                <span class="absolute -inset-2 rounded-full bg-coralcord-500/40 knot-pulse" style="animation-delay: 0.9s;"></span>
-                                <div class="relative w-4 h-4 rounded-full bg-coralcord-500 border-2 border-white shadow-md flex items-center justify-center text-[8px] text-white font-bold">2</div>
+                            <!-- Punkt 2: Subokzipitale Nackenmuskeln (Schädelbasis / HWS) -->
+                            <div class="absolute top-[54%] left-[38%] group cursor-pointer z-20" onclick="showKnotInfo('suboccipital')" title="Knoten 2: Subokzipitale Muskeln">
+                                <span class="absolute -inset-2.5 rounded-full bg-coralcord-500/40 knot-pulse" style="animation-delay: 0.9s;"></span>
+                                <div id="knot-dot-2" class="knot-dot-wrap relative w-5 h-5 rounded-full bg-coralcord-500 border-2 border-white shadow-lg flex items-center justify-center text-[10px] text-white font-bold transition-all group-hover:scale-125">2</div>
                             </div>
-                            <div class="absolute top-[68%] left-[38%] group cursor-pointer" onclick="showKnotInfo('gluteus')">
-                                <span class="absolute -inset-2 rounded-full bg-coralcord-500/40 knot-pulse" style="animation-delay: 1.6s;"></span>
-                                <div class="relative w-4 h-4 rounded-full bg-coralcord-500 border-2 border-white shadow-md flex items-center justify-center text-[8px] text-white font-bold">3</div>
+                            <!-- Punkt 3: Skalenus-Lücke & Schlüsselbein (Halsvorderseite) -->
+                            <div class="absolute top-[52%] left-[48%] group cursor-pointer z-20" onclick="showKnotInfo('scalenus')" title="Knoten 3: Skalenus & Schlüsselbein">
+                                <span class="absolute -inset-2.5 rounded-full bg-coralcord-500/40 knot-pulse" style="animation-delay: 1.6s;"></span>
+                                <div id="knot-dot-3" class="knot-dot-wrap relative w-5 h-5 rounded-full bg-coralcord-500 border-2 border-white shadow-lg flex items-center justify-center text-[10px] text-white font-bold transition-all group-hover:scale-125">3</div>
                             </div>
                         </div>
 
                         <!-- Mini Notification Panel for Clicked Knot -->
-                        <div id="knot-popup" class="mt-3 p-3 bg-stonebg-100 rounded-xl border border-stonebg-200 text-xs text-stone-700 flex items-center justify-between">
-                            <span id="knot-popup-text">Klicke auf die Punkte 1, 2 oder 3 im Bild, um typische Myogelosen zu analysieren.</span>
+                        <div id="knot-popup" class="mt-3 p-3 bg-stonebg-100 rounded-xl border border-stonebg-200 text-xs text-stone-700 flex items-center justify-between transition-all">
+                            <span id="knot-popup-text">Klicke auf Punkt 1, 2 oder 3 auf den Behandlungszonen des Patienten, um den Tastbefund anzuzeigen.</span>
                             <span class="text-coralcord-600 font-mono font-bold text-[10px] ml-2 shrink-0">TRIGGER-MAP</span>
                         </div>
                     </div>
@@ -666,8 +682,8 @@
                     </div>
                 </div>
 
-                <!-- Right: Contact Form -->
-                <div class="lg:col-span-6 bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200">
+                <!-- Right: Contact Form (Framed by the red thread when scrolled) -->
+                <div id="knot-contact-card" class="lg:col-span-6 bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200 transition-all duration-500">
                     <h3 class="text-xl font-bold text-stonebg-950 mb-2">Nachricht an das Praxisteam</h3>
                     <p class="text-xs text-stone-500 mb-6 font-mono">Für Rezept-Rückfragen, Terminausfälle oder Rechnungsfragen.</p>
 
@@ -957,14 +973,57 @@
 
     <!-- Scripts -->
     <script>
-        // --- 1. SCROLL THREAD PROGRESS ---
+        // --- 1. SCROLL THREAD PROGRESS & SVG KNOT MORPH ---
         window.addEventListener('scroll', () => {
             const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
+            const scrolled = Math.min(100, Math.max(0, (winScroll / height) * 100));
+            
+            // Progress bar
             const bar = document.getElementById('scroll-thread-indicator');
-            if (bar) {
-                bar.style.width = scrolled + '%';
+            if (bar) bar.style.width = scrolled + '%';
+
+            // Percent label
+            const pctLabel = document.getElementById('scroll-pct-label');
+            if (pctLabel) pctLabel.textContent = Math.round(scrolled) + '%';
+
+            // Morphing SVG Tangled Knot Animation
+            const knotSvg = document.getElementById('knot-morph-svg');
+            const knotPath = document.getElementById('knot-morph-path');
+            const statusLabel = document.getElementById('knot-status-label');
+
+            if (knotSvg && knotPath && statusLabel) {
+                // As user scrolls, rotate and morph path from tangled loop to unraveled clean thread
+                const rot = scrolled * 3.6;
+                knotSvg.style.transform = `rotate(${rot}deg) scale(${1 - scrolled * 0.003})`;
+
+                if (scrolled < 25) {
+                    statusLabel.textContent = `Verknotetes Gewebe (${Math.round(scrolled)}%)`;
+                    statusLabel.className = 'text-coralcord-600 font-bold';
+                    knotPath.setAttribute('d', 'M 10 50 Q 25 10, 50 50 T 90 50 C 70 90, 30 10, 50 50');
+                } else if (scrolled < 65) {
+                    statusLabel.textContent = `Faden entwirrt sich... (${Math.round(scrolled)}%)`;
+                    statusLabel.className = 'text-amber-600 font-bold';
+                    knotPath.setAttribute('d', 'M 10 50 Q 35 25, 50 50 T 90 50 C 75 70, 40 30, 50 50');
+                } else if (scrolled < 90) {
+                    statusLabel.textContent = `Faszienketten frei (${Math.round(scrolled)}%)`;
+                    statusLabel.className = 'text-rose-600 font-bold';
+                    knotPath.setAttribute('d', 'M 10 50 Q 40 40, 50 50 T 90 50 C 65 55, 45 45, 50 50');
+                } else {
+                    statusLabel.textContent = `100% Entwirrt • Ziel erreicht!`;
+                    statusLabel.className = 'text-emerald-600 font-bold';
+                    knotPath.setAttribute('d', 'M 5 50 L 95 50');
+                }
+            }
+
+            // Frame contact card when thread reaches bottom (Concept requirement)
+            const contactCard = document.getElementById('knot-contact-card');
+            if (contactCard) {
+                if (scrolled >= 80) {
+                    contactCard.className = 'lg:col-span-6 bg-white rounded-3xl p-8 border-2 border-coralcord-500 ring-4 ring-coralcord-300 shadow-coral transition-all duration-500';
+                } else {
+                    contactCard.className = 'lg:col-span-6 bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200 transition-all duration-500';
+                }
             }
         });
 
@@ -972,14 +1031,22 @@
         function showKnotInfo(knot) {
             const popup = document.getElementById('knot-popup');
             const text = document.getElementById('knot-popup-text');
+            document.querySelectorAll('.knot-dot-wrap').forEach(el => el.classList.remove('ring-4', 'ring-coralcord-300', 'scale-125'));
+
             if (knot === 'trapezius') {
-                text.innerHTML = '<strong>Knoten 1 (Oberer Trapezius):</strong> Häufigster Stressknoten. Strahlt schläfenseitig aus und erzeugt typischen Spannungskopfschmerz.';
-            } else if (knot === 'rhomboid') {
-                text.innerHTML = '<strong>Knoten 2 (M. Rhomboideus):</strong> Scharfes Stechen zwischen Schulterblatt und Wirbelsäule beim tiefen Einatmen.';
-            } else if (knot === 'gluteus') {
-                text.innerHTML = '<strong>Knoten 3 (M. Piriformis / Gluteus):</strong> Komprimiert den Ischiasnerv; wird oft fälschlich als Bandscheibenvorfall gedeutet.';
+                const el = document.getElementById('knot-dot-1');
+                if (el) el.classList.add('ring-4', 'ring-coralcord-300', 'scale-125');
+                text.innerHTML = '<strong>Knoten 1 (M. Trapezius descendens):</strong> Schulter-Nacken-Wulst. Typischer Bildschirmknoten; strahlt brennend in Schläfe und Hinterkopf aus.';
+            } else if (knot === 'suboccipital') {
+                const el = document.getElementById('knot-dot-2');
+                if (el) el.classList.add('ring-4', 'ring-coralcord-300', 'scale-125');
+                text.innerHTML = '<strong>Knoten 2 (Subokzipitale Nackenmuskeln):</strong> Schädelbasis & HWS (unter der Hand). Häufigste Ursache für Spannungskopfschmerz und zervikogenen Schwindel.';
+            } else if (knot === 'scalenus') {
+                const el = document.getElementById('knot-dot-3');
+                if (el) el.classList.add('ring-4', 'ring-coralcord-300', 'scale-125');
+                text.innerHTML = '<strong>Knoten 3 (Skalenus-Lücke & Clavicula):</strong> Vorderer Hals- & Schlüsselbeinbereich. Komprimiert Nervenbahnen und verursacht Kribbeln im Arm.';
             }
-            popup.classList.add('bg-coralcord-50', 'border-coralcord-300');
+            popup.className = 'mt-3 p-3 bg-coralcord-50 rounded-xl border-2 border-coralcord-300 text-xs text-stonebg-950 flex items-center justify-between shadow-sm transition-all';
         }
 
         // --- 3. INTERACTIVE KNOTEN-DECODER ---

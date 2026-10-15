@@ -59,21 +59,21 @@
     </script>
 
     <style>
-        /* Kinetic Canvas Trail */
+        /* Kinetic Neural Network Canvas */
         #neural-canvas {
-            position: absolute;
+            position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             pointer-events: none;
-            z-index: 10;
+            z-index: 5;
         }
 
         /* Pulsing Synapse */
         @keyframes synapsePulse {
             0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 10px #22c55e); }
-            50% { transform: scale(1.15); opacity: 0.4; filter: drop-shadow(0 0 20px #06b6d4); }
+            50% { transform: scale(1.15); opacity: 0.4; filter: drop-shadow(0 0 20px #10b981); }
         }
         .synapse-pulse {
             animation: synapsePulse 2.5s infinite ease-in-out;
@@ -81,6 +81,9 @@
     </style>
 </head>
 <body id="neuro-body" class="bg-cyberdark-950 text-slate-100 font-sans antialiased selection:bg-neurongreen-500 selection:text-cyberdark-950">
+
+    <!-- Interactive Kinetic Neural Network Background Canvas -->
+    <canvas id="neural-canvas"></canvas>
 
     <!-- Top Neuro Status Bar -->
     <div class="bg-cyberdark-900 text-slate-300 text-xs py-2 px-4 border-b border-cyberdark-800">
@@ -208,29 +211,29 @@
                         <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-cyberdark-950">
                             <img src="./hero.jpg" alt="Sensomotorische Neurorehabilitation" class="w-full h-full object-cover opacity-85">
                             
-                            <!-- Interactive Synapse Nodes on Image -->
-                            <div class="absolute top-[30%] left-[50%] group cursor-pointer" onclick="triggerSynapse('kortex')">
+                            <!-- Interactive Synapse Nodes on Image (Aligned with Patient Anatomy) -->
+                            <div class="absolute top-[22%] left-[63%] group cursor-pointer z-10" onclick="triggerSynapse('kortex')" title="Knoten 1: Motorkortex & Blickachse">
                                 <span class="absolute -inset-3 rounded-full bg-neurongreen-500/30 synapse-pulse"></span>
-                                <div class="relative w-5 h-5 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[9px] text-cyberdark-950 font-bold">1</div>
+                                <div class="relative w-6 h-6 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[10px] text-cyberdark-950 font-bold transition-transform group-hover:scale-125">1</div>
                             </div>
-                            <div class="absolute top-[55%] left-[35%] group cursor-pointer" onclick="triggerSynapse('cerebellum')">
-                                <span class="absolute -inset-3 rounded-full bg-neurocyan-400/30 synapse-pulse" style="animation-delay: 0.8s;"></span>
-                                <div class="relative w-5 h-5 rounded-full bg-neurocyan-400 border-2 border-white shadow-cyan-glow flex items-center justify-center text-[9px] text-cyberdark-950 font-bold">2</div>
+                            <div class="absolute top-[29%] left-[40%] group cursor-pointer z-10" onclick="triggerSynapse('cerebellum')" title="Knoten 2: Motion-Capture Sensorarmband">
+                                <span class="absolute -inset-3 rounded-full bg-neurongreen-500/30 synapse-pulse" style="animation-delay: 0.8s;"></span>
+                                <div class="relative w-6 h-6 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[10px] text-cyberdark-950 font-bold transition-transform group-hover:scale-125">2</div>
                             </div>
-                            <div class="absolute top-[75%] left-[60%] group cursor-pointer" onclick="triggerSynapse('proprio')">
+                            <div class="absolute top-[80%] left-[65%] group cursor-pointer z-10" onclick="triggerSynapse('proprio')" title="Knoten 3: Propriozeptoren & Standfläche">
                                 <span class="absolute -inset-3 rounded-full bg-neurongreen-500/30 synapse-pulse" style="animation-delay: 1.5s;"></span>
-                                <div class="relative w-5 h-5 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[9px] text-cyberdark-950 font-bold">3</div>
+                                <div class="relative w-6 h-6 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[10px] text-cyberdark-950 font-bold transition-transform group-hover:scale-125">3</div>
                             </div>
 
                             <!-- Overlay Details -->
-                            <div class="absolute bottom-4 left-4 right-4 bg-cyberdark-950/90 backdrop-blur-md rounded-2xl p-4 text-white border border-cyberdark-700 shadow-xl">
+                            <div class="absolute bottom-4 left-4 right-4 bg-cyberdark-950/90 backdrop-blur-md rounded-2xl p-4 text-white border border-cyberdark-700 shadow-xl z-10">
                                 <div class="flex items-center gap-3">
                                     <div class="w-10 h-10 rounded-xl bg-neurongreen-500/20 border border-neurongreen-500/40 flex items-center justify-center text-neurongreen-400 text-xl shrink-0">
                                         <i class="ph-bold ph-brain"></i>
                                     </div>
-                                    <div>
-                                        <div class="text-xs font-mono font-bold text-neurongreen-400 uppercase">Aktive Neuroplastizität</div>
-                                        <div class="text-sm font-bold font-display" id="synapse-info-box">Tippe auf Synapse 1, 2 oder 3 zum Stimulieren</div>
+                                    <div class="min-w-0">
+                                        <div class="text-[11px] font-mono font-bold text-neurongreen-400 uppercase tracking-wider">Aktive Neuroplastizität</div>
+                                        <div class="text-xs sm:text-sm font-bold font-display text-slate-100" id="synapse-info-box">Tippe auf Synapse 1, 2 oder 3 zum Stimulieren</div>
                                     </div>
                                 </div>
                             </div>
@@ -907,88 +910,208 @@
 
     <!-- Scripts -->
     <script>
-        // --- 1. KINETIC NEURAL CANVAS MOTION TRAILS ---
+        // --- 1. KINETIC NEURAL CANVAS & INTERACTIVE SYNAPSE NETWORK ---
         const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
-        let width = canvas.width = window.innerWidth;
-        let height = canvas.height = window.innerHeight;
+        const ctx = canvas ? canvas.getContext('2d') : null;
+        let width = 0;
+        let height = 0;
 
-        window.addEventListener('resize', () => {
+        function resizeCanvas() {
+            if (!canvas) return;
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
-        });
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-        const particles = [];
-        const maxParticles = 40;
+        // Network nodes
+        const nodeCount = 42;
+        const nodes = [];
+        const mouse = { x: -1000, y: -1000, active: false, timer: null };
 
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 2;
-                this.speedY = (Math.random() - 0.5) * 2;
-                this.life = 1;
-                this.decay = Math.random() * 0.02 + 0.015;
+        class NeuralNode {
+            constructor() {
+                this.x = Math.random() * (width || window.innerWidth);
+                this.y = Math.random() * (height || window.innerHeight);
+                this.vx = (Math.random() - 0.5) * 0.9;
+                this.vy = (Math.random() - 0.5) * 0.9;
+                this.radius = Math.random() * 2.2 + 1.2;
+                this.pulsePhase = Math.random() * Math.PI * 2;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.life -= this.decay;
+                this.x += this.vx;
+                this.y += this.vy;
+                this.pulsePhase += 0.03;
+
+                // Bounce off viewport boundaries
+                if (this.x < 0) { this.x = 0; this.vx *= -1; }
+                if (this.x > width) { this.x = width; this.vx *= -1; }
+                if (this.y < 0) { this.y = 0; this.vy *= -1; }
+                if (this.y > height) { this.y = height; this.vy *= -1; }
+
+                // Slight attraction to mouse if nearby
+                if (mouse.active) {
+                    const dx = mouse.x - this.x;
+                    const dy = mouse.y - this.y;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist < 140 && dist > 10) {
+                        this.x += (dx / dist) * 0.8;
+                        this.y += (dy / dist) * 0.8;
+                    }
+                }
             }
             draw() {
-                ctx.fillStyle = `rgba(34, 197, 94, ${this.life * 0.8})`;
-                ctx.shadowColor = '#22c55e';
-                ctx.shadowBlur = 8;
+                const glow = (Math.sin(this.pulsePhase) + 1) * 0.35 + 0.3;
+                ctx.fillStyle = `rgba(34, 197, 94, ${glow})`;
                 ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
                 ctx.fill();
             }
         }
 
-        function addTrail(x, y) {
-            for (let i = 0; i < 2; i++) {
-                if (particles.length < maxParticles) {
-                    particles.push(new Particle(x, y));
-                }
+        // Action potentials / sparks traveling along connections
+        const sparks = [];
+        class SynapticSpark {
+            constructor(x, y, targetX, targetY) {
+                this.x = x;
+                this.y = y;
+                this.targetX = targetX;
+                this.targetY = targetY;
+                this.progress = 0;
+                this.speed = Math.random() * 0.04 + 0.03;
+                this.size = Math.random() * 2 + 1.5;
+            }
+            update() {
+                this.progress += this.speed;
+            }
+            draw() {
+                const curX = this.x + (this.targetX - this.x) * this.progress;
+                const curY = this.y + (this.targetY - this.y) * this.progress;
+                ctx.fillStyle = '#86efac';
+                ctx.shadowColor = '#22c55e';
+                ctx.shadowBlur = 6;
+                ctx.beginPath();
+                ctx.arc(curX, curY, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        for (let i = 0; i < nodeCount; i++) {
+            nodes.push(new NeuralNode());
+        }
+
+        // Interactive mouse & touch event listeners
+        function registerImpulse(clientX, clientY) {
+            mouse.x = clientX;
+            mouse.y = clientY;
+            mouse.active = true;
+            clearTimeout(mouse.timer);
+            mouse.timer = setTimeout(() => { mouse.active = false; }, 2500);
+
+            // Trigger spontaneous synaptic spark towards nearest node
+            if (Math.random() < 0.4 && nodes.length > 0) {
+                const randomNode = nodes[Math.floor(Math.random() * nodes.length)];
+                sparks.push(new SynapticSpark(clientX, clientY, randomNode.x, randomNode.y));
+            }
+
+            const status = document.getElementById('motion-sensor-status');
+            if (status) {
+                status.textContent = `📡 BEWEGUNGSMELDER: Reizimpuls (${Math.round(clientX)}, ${Math.round(clientY)})`;
             }
         }
 
         window.addEventListener('mousemove', (e) => {
-            addTrail(e.clientX, e.clientY + window.scrollY);
-            const status = document.getElementById('motion-sensor-status');
-            if (status) status.textContent = `📡 BEWEGUNGSMELDER: Reizimpuls (${Math.round(e.clientX)}, ${Math.round(e.clientY)})`;
-        });
+            registerImpulse(e.clientX, e.clientY);
+        }, { passive: true });
 
         window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                addTrail(e.touches[0].clientX, e.touches[0].clientY + window.scrollY);
+            if (e.touches && e.touches[0]) {
+                registerImpulse(e.touches[0].clientX, e.touches[0].clientY);
             }
-        });
+        }, { passive: true });
 
-        function animateCanvas() {
+        function animateNeuralCanvas() {
+            if (!ctx) return;
             ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].life <= 0) {
-                    particles.splice(i, 1);
-                    i--;
+
+            // Update & draw nodes
+            for (let i = 0; i < nodes.length; i++) {
+                nodes[i].update();
+                nodes[i].draw();
+
+                // Draw synaptic lines between close nodes
+                for (let j = i + 1; j < nodes.length; j++) {
+                    const dx = nodes[j].x - nodes[i].x;
+                    const dy = nodes[j].y - nodes[i].y;
+                    const dist = Math.hypot(dx, dy);
+
+                    if (dist < 110) {
+                        const alpha = (1 - dist / 110) * 0.22;
+                        ctx.strokeStyle = `rgba(34, 197, 94, ${alpha})`;
+                        ctx.lineWidth = 0.9;
+                        ctx.beginPath();
+                        ctx.moveTo(nodes[i].x, nodes[i].y);
+                        ctx.lineTo(nodes[j].x, nodes[j].y);
+                        ctx.stroke();
+
+                        // Occasionally spawn spark along active connection
+                        if (Math.random() < 0.0015 && sparks.length < 15) {
+                            sparks.push(new SynapticSpark(nodes[i].x, nodes[i].y, nodes[j].x, nodes[j].y));
+                        }
+                    }
+                }
+
+                // Draw lines to mouse pointer
+                if (mouse.active) {
+                    const mdx = mouse.x - nodes[i].x;
+                    const mdy = mouse.y - nodes[i].y;
+                    const mdist = Math.hypot(mdx, mdy);
+                    if (mdist < 150) {
+                        const mAlpha = (1 - mdist / 150) * 0.55;
+                        ctx.strokeStyle = `rgba(74, 222, 128, ${mAlpha})`;
+                        ctx.lineWidth = 1.3;
+                        ctx.beginPath();
+                        ctx.moveTo(mouse.x, mouse.y);
+                        ctx.lineTo(nodes[i].x, nodes[i].y);
+                        ctx.stroke();
+                    }
                 }
             }
-            requestAnimationFrame(animateCanvas);
+
+            // Draw mouse glowing center aura if active
+            if (mouse.active) {
+                ctx.fillStyle = 'rgba(34, 197, 94, 0.4)';
+                ctx.beginPath();
+                ctx.arc(mouse.x, mouse.y, 4, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            // Update & draw sparks
+            for (let s = sparks.length - 1; s >= 0; s--) {
+                sparks[s].update();
+                sparks[s].draw();
+                if (sparks[s].progress >= 1) {
+                    sparks.splice(s, 1);
+                }
+            }
+
+            requestAnimationFrame(animateNeuralCanvas);
         }
-        animateCanvas();
+        if (canvas) {
+            animateNeuralCanvas();
+        }
 
         // --- 2. SYNAPSE STIMULATION INFO ---
         function triggerSynapse(type) {
             const box = document.getElementById('synapse-info-box');
+            if (!box) return;
             if (type === 'kortex') {
-                box.innerHTML = '<strong>Synapse 1 (Motorkortex):</strong> Pyramidenbahn-Reizung für willkürliche Finger- & Fußmotorik.';
+                box.innerHTML = '<span class="text-neurongreen-400 font-mono text-xs block mb-0.5">KNOTEN 1 (MOTORKORTEX & BLICKACHSE)</span><span class="text-xs sm:text-sm font-bold text-white">Willkürliche Bewegungsplanung & visuelle Zielpeilung über Biofeedback-Bildschirm.</span>';
             } else if (type === 'cerebellum') {
-                box.innerHTML = '<strong>Synapse 2 (Kleinhirn):</strong> Taktgeber für flüssiges Gehen und Bewegungstiming.';
+                box.innerHTML = '<span class="text-neurongreen-400 font-mono text-xs block mb-0.5">KNOTEN 2 (EFFEKTOR-SENSORIK)</span><span class="text-xs sm:text-sm font-bold text-white">Sensorarmband: Hochfrequente Beschleunigungssensoren messen Arm-Kinematik & Greiffunktion.</span>';
             } else if (type === 'proprio') {
-                box.innerHTML = '<strong>Synapse 3 (Propriozeptoren):</strong> Muskelspindeln & Sehnenorgane melden die Gelenkstellung.';
+                box.innerHTML = '<span class="text-neurongreen-400 font-mono text-xs block mb-0.5">KNOTEN 3 (PROPRIOZEPTOREN)</span><span class="text-xs sm:text-sm font-bold text-white">Sprunggelenk & Standfläche: Mechanorezeptoren melden jede Mikroschwankung der Haltung.</span>';
             }
         }
 
