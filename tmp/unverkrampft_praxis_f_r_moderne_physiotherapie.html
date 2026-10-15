@@ -1,0 +1,1492 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNVERKRAMPFT. | Praxis für moderne Physiotherapie, Osteopathie & Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['"Instrument Serif"', 'serif'],
+                    },
+                    colors: {
+                        sand: {
+                            50: '#FAF9F5',
+                            100: '#F3F0E8',
+                            200: '#E6E0D2',
+                            300: '#D4CBB5',
+                        },
+                        forest: {
+                            50: '#EEF5F1',
+                            100: '#D5E7DD',
+                            600: '#2A5C46',
+                            700: '#1F4736',
+                            800: '#163528',
+                            900: '#0E241B',
+                        },
+                        terra: {
+                            50: '#FDF3EF',
+                            100: '#F9E1D8',
+                            500: '#D96B43',
+                            600: '#C0552F',
+                            700: '#9E4222',
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(22, 53, 40, 0.07)',
+                        'glow': '0 10px 30px -5px rgba(217, 107, 67, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FAF9F5;
+            color: #163528;
+            overflow-x: hidden;
+        }
+        .glass-nav {
+            background: rgba(250, 249, 245, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .hotspot-pulse {
+            animation: pulse-ring 2.4s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.9); opacity: 0.9; }
+            50% { transform: scale(1.35); opacity: 0.25; }
+            100% { transform: scale(0.9); opacity: 0.9; }
+        }
+        .breathe-circle {
+            transition: transform 4s ease-in-out, background-color 4s ease-in-out;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF9F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4CBB5;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2A5C46;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-terra-500 selection:text-white">
+
+    <!-- Top Info Bar -->
+    <div class="bg-forest-900 text-sand-100 text-xs py-2.5 px-4 border-b border-forest-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                </span>
+                <span class="font-medium">Praxis-Status:</span>
+                <span id="live-status-text" class="text-sand-200">Heute bis 20:00 Uhr geöffnet • Freie Akut-Slots diese Woche verfügbar</span>
+            </div>
+            <div class="hidden md:flex items-center gap-6 text-sand-200">
+                <span class="flex items-center gap-1.5"><i class="ph-fill ph-check-circle text-emerald-400"></i> Alle gesetzlichen & privaten Kassen</span>
+                <span class="flex items-center gap-1.5"><i class="ph-fill ph-map-pin text-terra-500"></i> Neckarpromenade 18, 74072 Heilbronn</span>
+                <a href="tel:+497131898420" class="hover:text-white transition-colors font-medium flex items-center gap-1">
+                    <i class="ph ph-phone"></i> 07131 / 898 42 0
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-sand-200/80 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-forest-800 text-sand-50 flex items-center justify-center shadow-sm group-hover:bg-terra-500 transition-colors duration-300">
+                    <i class="ph-bold ph-waves text-xl"></i>
+                </div>
+                <div>
+                    <span class="font-bold tracking-tight text-xl text-forest-900 block leading-none">UNVERKRAMPFT<span class="text-terra-500">.</span></span>
+                    <span class="text-[11px] uppercase tracking-widest text-forest-600 font-medium block mt-1">Physio • Osteo •Active</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-forest-800">
+                <a href="#kompass" class="hover:text-terra-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-terra-500"></span> Beschwerde-Kompass
+                </a>
+                <a href="#leistungen" class="hover:text-terra-600 transition-colors">Leistungen</a>
+                <a href="#rezeptcheck" class="hover:text-terra-600 transition-colors">Rezept-Rechner</a>
+                <a href="#team" class="hover:text-terra-600 transition-colors">Team</a>
+                <a href="#praxis" class="hover:text-terra-600 transition-colors">Praxis & FAQ</a>
+            </nav>
+
+            <!-- CTA Actions -->
+            <div class="flex items-center gap-3">
+                <button onclick="openBookingModal()" class="bg-forest-800 hover:bg-forest-900 text-sand-50 text-sm font-medium px-5 py-3 rounded-xl shadow-sm hover:shadow-md transition-all flex items-center gap-2 active:scale-[0.98]">
+                    <i class="ph-bold ph-calendar-plus text-terra-500 text-lg"></i>
+                    <span>Online-Termin</span>
+                </button>
+                <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl border border-sand-300 text-forest-900 hover:bg-sand-100" aria-label="Menü öffnen">
+                    <i id="mobile-menu-icon" class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-sand-50 border-b border-sand-200 px-4 pt-3 pb-6 space-y-3">
+            <a href="#kompass" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl bg-sand-100 font-medium text-forest-900">🎯 Interaktiver Beschwerde-Kompass</a>
+            <a href="#leistungen" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl hover:bg-sand-100 font-medium text-forest-800">Leistungen & Therapie</a>
+            <a href="#rezeptcheck" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl hover:bg-sand-100 font-medium text-forest-800">Rezept-Check & Zuzahlung</a>
+            <a href="#team" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl hover:bg-sand-100 font-medium text-forest-800">Die Entkrampfer (Team)</a>
+            <a href="#praxis" onclick="toggleMobileMenu()" class="block px-3 py-2.5 rounded-xl hover:bg-sand-100 font-medium text-forest-800">Standort & Häufige Fragen</a>
+            <div class="pt-2 border-t border-sand-200 flex flex-col gap-2">
+                <button onclick="toggleMobileMenu(); openBookingModal();" class="w-full bg-terra-500 text-white font-semibold py-3 rounded-xl flex items-center justify-center gap-2">
+                    <i class="ph-bold ph-calendar-check"></i> Jetzt Wunschtermin wählen
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-10 pb-20 lg:pt-16 lg:pb-28 overflow-hidden">
+        <!-- Decorative Background Blur -->
+        <div class="absolute top-12 right-1/4 w-96 h-96 bg-terra-100 rounded-full blur-3xl opacity-60 -z-10 pointer-events-none"></div>
+        <div class="absolute bottom-0 left-10 w-80 h-80 bg-forest-100 rounded-full blur-3xl opacity-70 -z-10 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Column: Editorial Copy -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-forest-50 border border-forest-100 text-forest-800 text-xs font-semibold tracking-wide uppercase">
+                        <span class="px-2 py-0.5 rounded-full bg-forest-800 text-white text-[10px]">NEU GEDACHT</span>
+                        <span>Evidenzbasierte Physiotherapie ohne Fließbandgefühl</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-6xl lg:text-[64px] font-bold tracking-tight text-forest-900 leading-[1.06]">
+                        Mach dich mal <br>
+                        <span class="font-serif italic font-normal text-terra-600">unverkrampft.</span><br>
+                        Wir kümmern uns um den Rest.
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-forest-700/90 max-w-2xl leading-relaxed font-normal">
+                        Schluss mit 15-Minuten-Abfertigung, verstaubten Praxen und Fachchinesisch. Bei <strong class="font-semibold text-forest-900">UNVERKRAMPFT</strong> verbinden wir präzise Hands-on-Therapie mit modernster Trainingswissenschaft – in einer Atmosphäre, in der schon beim Reinkommen die Schultern sinken.
+                    </p>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <button onclick="openBookingModal()" class="bg-terra-500 hover:bg-terra-600 text-white font-semibold px-7 py-4 rounded-2xl shadow-glow transition-all flex items-center justify-center gap-3 text-base group">
+                            <span>Termin online buchen</span>
+                            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <a href="#kompass" class="bg-white hover:bg-sand-100 text-forest-900 border border-sand-300 font-medium px-6 py-4 rounded-2xl transition-all flex items-center justify-center gap-2.5 text-base">
+                            <i class="ph-duotone ph-person-arms-spread text-xl text-forest-600"></i>
+                            <span>Wo zwickt’s? Zum Selbst-Check</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust & USPs Bar -->
+                    <div class="pt-6 border-t border-sand-200 grid grid-cols-3 gap-4 sm:gap-8">
+                        <div>
+                            <div class="flex items-center gap-1 text-amber-500 text-sm mb-1">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                                <span class="font-bold text-forest-900 ml-1">4.9</span>
+                            </div>
+                            <p class="text-xs text-forest-700">340+ echte Patientenbewertungen</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-forest-900">30–60 Min.</p>
+                            <p class="text-xs text-forest-700">Echte Zeit pro Sitzung & 1:1 Fokus</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-bold text-forest-900">100 % Digital</p>
+                            <p class="text-xs text-forest-700">Übungs-App & Online-Rezeptcheck</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Visual Showcase & Quick-Slot Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-soft border border-sand-200 bg-forest-900 aspect-[4/5]">
+                        <img 
+                            src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1000&q=85" 
+                            onerror="this.src='https://placehold.co/800x1000/163528/FAF9F5?text=UNVERKRAMPFT+Praxis'"
+                            alt="Moderne Physiotherapie Behandlung bei Unverkrampft" 
+                            class="w-full h-full object-cover opacity-90 hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-forest-900/90 via-forest-900/20 to-transparent"></div>
+
+                        <!-- Top Floating Badge -->
+                        <div class="absolute top-5 left-5 right-5 flex justify-between items-start">
+                            <div class="bg-white/90 backdrop-blur-md px-3.5 py-2 rounded-2xl shadow-sm flex items-center gap-2 text-xs font-semibold text-forest-900">
+                                <i class="ph-fill ph-shield-check text-forest-600 text-base"></i>
+                                <span>Zugelassen für alle Kassen & BG</span>
+                            </div>
+                            <div class="bg-forest-900/80 backdrop-blur-md text-sand-50 px-3 py-1.5 rounded-full text-xs font-medium border border-white/15">
+                                <i class="ph-fill ph-sparkle text-terra-500 mr-1"></i> Barrierefrei
+                            </div>
+                        </div>
+
+                        <!-- Bottom Interactive Quick-Booking Widget inside Hero Image -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-5 rounded-2xl shadow-lg border border-sand-200">
+                            <div class="flex items-center justify-between mb-3">
+                                <div>
+                                    <span class="text-[11px] font-bold uppercase tracking-wider text-terra-600 block">Schnellbuchung • Morgen</span>
+                                    <h3 class="text-sm font-bold text-forest-900">Nächste freie Ersttermine</h3>
+                                </div>
+                                <span class="text-xs bg-forest-50 text-forest-700 px-2.5 py-1 rounded-lg font-medium">Direkt reservieren</span>
+                            </div>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button onclick="quickSelectSlot('Morgen, 09:30 Uhr', 'Akut / Ersttermin')" class="py-2 px-2 rounded-xl border border-sand-300 hover:border-terra-500 hover:bg-terra-50 transition-all text-center group">
+                                    <span class="block text-xs font-bold text-forest-900 group-hover:text-terra-600">09:30 Uhr</span>
+                                    <span class="block text-[10px] text-forest-600">bei Lukas M.</span>
+                                </button>
+                                <button onclick="quickSelectSlot('Morgen, 14:15 Uhr', 'Manuelle Therapie / CMD')" class="py-2 px-2 rounded-xl border border-sand-300 hover:border-terra-500 hover:bg-terra-50 transition-all text-center group">
+                                    <span class="block text-xs font-bold text-forest-900 group-hover:text-terra-600">14:15 Uhr</span>
+                                    <span class="block text-[10px] text-forest-600">bei Dr. Elena R.</span>
+                                </button>
+                                <button onclick="quickSelectSlot('Übermorgen, 17:30 Uhr', 'Sportphysio / Check')" class="py-2 px-2 rounded-xl border border-sand-300 hover:border-terra-500 hover:bg-terra-50 transition-all text-center group">
+                                    <span class="block text-xs font-bold text-forest-900 group-hover:text-terra-600">17:30 Uhr</span>
+                                    <span class="block text-[10px] text-forest-600">bei Tarik Y.</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Philosophy Strip -->
+    <section class="py-12 bg-forest-900 text-sand-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 divide-y md:divide-y-0 md:divide-x divide-forest-800">
+                <div class="pt-4 md:pt-0 md:px-4 first:pl-0">
+                    <div class="text-terra-500 text-2xl mb-2"><i class="ph-duotone ph-chats-circle"></i></div>
+                    <h3 class="font-bold text-base mb-1">Klartext statt Latein</h3>
+                    <p class="text-xs text-sand-200/80 leading-relaxed">Wir erklären dir genau, warum es schmerzt – verständlich auf Augenhöhe und ohne unnötige Panikmache.</p>
+                </div>
+                <div class="pt-4 md:pt-0 md:px-6">
+                    <div class="text-terra-500 text-2xl mb-2"><i class="ph-duotone ph-hand-heart"></i></div>
+                    <h3 class="font-bold text-base mb-1">Hands-on + Aktiv</h3>
+                    <p class="text-xs text-sand-200/80 leading-relaxed">Erst lösen wir akute Spannung auf der Bank, dann sichern wir den Erfolg nachhaltig in unserer 180m² Active-Area.</p>
+                </div>
+                <div class="pt-4 md:pt-0 md:px-6">
+                    <div class="text-terra-500 text-2xl mb-2"><i class="ph-duotone ph-towel"></i></div>
+                    <h3 class="font-bold text-base mb-1">Kein Handtuch-Schleppen</h3>
+                    <p class="text-xs text-sand-200/80 leading-relaxed">Frische, vorgewärmte Bio-Baumwolltücher, Espresso an der Bar und Duschmöglichkeiten sind bei uns inklusive.</p>
+                </div>
+                <div class="pt-4 md:pt-0 md:px-6">
+                    <div class="text-terra-500 text-2xl mb-2"><i class="ph-duotone ph-device-mobile-camera"></i></div>
+                    <h3 class="font-bold text-base mb-1">Dein Plan in der Tasche</h3>
+                    <p class="text-xs text-sand-200/80 leading-relaxed">Keine kopierten Zettel aus den 90ern: Du bekommst deine 3 wichtigsten Übungen als kurze HD-Videos aufs Smartphone.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Symptom & Body Compass -->
+    <section id="kompass" class="py-20 lg:py-28 bg-sand-100/70 border-b border-sand-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-12">
+                <span class="text-xs font-bold uppercase tracking-widest text-terra-600 block mb-2">Interaktiver Beschwerde-Kompass</span>
+                <h2 class="text-3xl sm:text-5xl font-bold text-forest-900 tracking-tight">
+                    Wo sitzt die Spannung? <span class="font-serif italic font-normal text-forest-700">Klick auf deine Region.</span>
+                </h2>
+                <p class="mt-3 text-forest-700 text-base sm:text-lg">
+                    Wähle einen Bereich am Körpermodell oder aus der Liste. Wir zeigen dir sofort, welche Therapie bei uns passt – inklusive einer 60-Sekunden-Sofortübung für genau jetzt.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                
+                <!-- Left Column: Interactive SVG Body Model & Region Buttons -->
+                <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-8 shadow-soft border border-sand-200 flex flex-col items-center">
+                    <div class="w-full flex justify-between items-center mb-4">
+                        <span class="text-xs font-semibold uppercase tracking-wider text-forest-600">Körper-Modell</span>
+                        <span class="text-xs bg-sand-100 text-forest-800 px-3 py-1 rounded-full font-medium">6 Fokus-Zonen aktiv</span>
+                    </div>
+
+                    <!-- Interactive SVG Silhouette with pulsing hotspots -->
+                    <div class="relative w-64 h-96 my-2 flex items-center justify-center select-none">
+                        <svg viewBox="0 0 220 380" class="w-full h-full drop-shadow-sm">
+                            <!-- Abstract Modern Anatomical Silhouette -->
+                            <g fill="#E6E0D2" stroke="#1F4736" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <!-- Head -->
+                                <circle cx="110" cy="42" r="24" />
+                                <!-- Neck -->
+                                <path d="M100 65 L100 80 L120 80 L120 65" />
+                                <!-- Torso & Arms -->
+                                <path d="M68 84 C52 86 44 102 40 140 L34 195 C33 203 44 205 47 196 L58 135 L68 135 L68 215 L152 215 L152 135 L162 135 L173 196 C176 205 187 203 186 195 L180 140 C176 102 168 86 152 84 Z" />
+                                <!-- Pelvis & Legs -->
+                                <path d="M68 215 L74 350 C75 360 92 360 93 350 L105 255 L115 255 L127 350 C128 360 145 360 146 350 L152 215 Z" />
+                            </g>
+                            <!-- Spine Centerline -->
+                            <line x1="110" y1="68" x2="110" y2="215" stroke="#1F4736" stroke-width="1.5" stroke-dasharray="4 4" opacity="0.5" />
+
+                            <!-- Hotspot 1: Kiefer & Nacken (CMD) -->
+                            <g class="cursor-pointer" onclick="selectBodyRegion('cmd')">
+                                <circle id="ring-cmd" cx="110" cy="60" r="16" fill="#D96B43" class="hotspot-pulse" />
+                                <circle id="dot-cmd" cx="110" cy="60" r="8" fill="#C0552F" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- Hotspot 2: Schulter & Mausarm -->
+                            <g class="cursor-pointer" onclick="selectBodyRegion('schulter')">
+                                <circle id="ring-schulter" cx="62" cy="98" r="14" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-schulter" cx="62" cy="98" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- Hotspot 3: Unterer Rücken & Bandscheibe -->
+                            <g class="cursor-pointer" onclick="selectBodyRegion('ruecken')">
+                                <circle id="ring-ruecken" cx="110" cy="175" r="14" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-ruecken" cx="110" cy="175" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- Hotspot 4: Hüfte & Becken -->
+                            <g class="cursor-pointer" onclick="selectBodyRegion('huefte')">
+                                <circle id="ring-huefte" cx="142" cy="215" r="14" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-huefte" cx="142" cy="215" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            </g>
+
+                            <!-- Hotspot 5: Knie & Sportverletzung -->
+                            <g class="cursor-pointer" onclick="selectBodyRegion('knie')">
+                                <circle id="ring-knie" cx="85" cy="285" r="14" fill="#2A5C46" opacity="0.25" />
+                                <circle id="dot-knie" cx="85" cy="285" r="7" fill="#1F4736" stroke="#fff" stroke-width="2" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Quick Selection Pills -->
+                    <div class="w-full grid grid-cols-2 sm:grid-cols-3 gap-2 pt-4 border-t border-sand-200" id="region-pills">
+                        <button onclick="selectBodyRegion('cmd')" id="btn-cmd" class="region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-terra-500 text-white transition-all text-left flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-white"></span> Nacken & Kiefer
+                        </button>
+                        <button onclick="selectBodyRegion('schulter')" id="btn-schulter" class="region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-forest-600"></span> Schulter
+                        </button>
+                        <button onclick="selectBodyRegion('ruecken')" id="btn-ruecken" class="region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-forest-600"></span> LWS & Rücken
+                        </button>
+                        <button onclick="selectBodyRegion('huefte')" id="btn-huefte" class="region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5">
+                            <span class="w-2 h-2 rounded-full bg-forest-600"></span> Hüfte & Gesäß
+                        </button>
+                        <button onclick="selectBodyRegion('knie')" id="btn-knie" class="region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5 col-span-2 sm:col-span-2">
+                            <span class="w-2 h-2 rounded-full bg-forest-600"></span> Knie, Achillessehne & Sport
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Dynamic Diagnostic & Instant Micro-Exercise Card -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-sand-200">
+                    <div class="flex flex-wrap items-center justify-between gap-2 pb-6 border-b border-sand-200">
+                        <div>
+                            <span id="compass-tag" class="text-xs font-bold uppercase tracking-wider text-terra-600">Fokus-Zone 01 • Sehr häufig im Homeoffice</span>
+                            <h3 id="compass-title" class="text-2xl sm:text-3xl font-bold text-forest-900 mt-1">Nackenstarre, Kopfschmerz & Kieferpressen (CMD)</h3>
+                        </div>
+                        <span id="compass-specialist-badge" class="px-3.5 py-1.5 rounded-full bg-forest-50 text-forest-800 text-xs font-semibold border border-forest-100">
+                            Spezialgebiet von Dr. Elena Rost
+                        </span>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6 py-6">
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-forest-600 flex items-center gap-1.5">
+                                <i class="ph-fill ph-magnifying-glass text-terra-500"></i> Typische Anzeichen
+                            </h4>
+                            <p id="compass-symptoms" class="text-sm text-forest-800 leading-relaxed">
+                                Morgens verspannt aufwachen, Knacken im Kiefergelenk, dumpfer Druck hinter den Augen oder ein Ziehen vom Schulterblatt bis zum Hinterkopf.
+                            </p>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-forest-600 flex items-center gap-1.5">
+                                <i class="ph-fill ph-sparkle text-forest-600"></i> Unser Unverkrampft-Ansatz
+                            </h4>
+                            <p id="compass-approach" class="text-sm text-forest-800 leading-relaxed">
+                                Kombination aus sanfter intraoraler Kiefermobilisation (CMD), HWS-Traktion und gezielter Kräftigung der tiefen Nackenbeuger. Akzeptiert mit Zahnarzt- oder Hausarztrezept.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Interactive 60-Second Micro-Relief Box -->
+                    <div class="bg-sand-100/90 rounded-2xl p-5 sm:p-6 border border-sand-200 mb-6">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <div class="space-y-1">
+                                <div class="inline-flex items-center gap-1.5 text-xs font-bold text-terra-600 uppercase tracking-wider">
+                                    <i class="ph-fill ph-timer"></i> 30-Sekunden Sofort-Entkrampfer zum Mitmachen
+                                </div>
+                                <h4 id="compass-exercise-title" class="font-bold text-forest-900 text-base">Der „Zunge-ans-Gaumendach“-Reset</h4>
+                                <p id="compass-exercise-desc" class="text-xs sm:text-sm text-forest-700 leading-relaxed">
+                                    Lass die Zahnreihen minimal auseinanderfallen, leg die Zungenspitze locker hinter die oberen Schneidezähne und zieh die Schultern beim Einatmen hoch – beim Ausatmen fallen lassen.
+                                </p>
+                            </div>
+                            <div class="flex flex-col items-center shrink-0">
+                                <button id="micro-timer-btn" onclick="startMicroExercise()" class="bg-forest-800 hover:bg-forest-900 text-white text-xs font-semibold px-4 py-3 rounded-xl flex items-center gap-2 transition-all shadow-sm">
+                                    <i class="ph-fill ph-play"></i>
+                                    <span id="micro-timer-label">30s Timer starten</span>
+                                </button>
+                                <span id="micro-timer-feedback" class="text-[11px] text-forest-600 mt-1.5 font-medium">Direkt am Bildschirm testen</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bottom CTA inside Compass -->
+                    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2">
+                        <div class="text-xs text-forest-700 flex items-center gap-2">
+                            <i class="ph-fill ph-check-circle text-emerald-600 text-base"></i>
+                            <span id="compass-prescription-hint">Passendes Rezept: <strong>KG, MT oder CMD</strong> (oder als Selbstzahler/Privat)</span>
+                        </div>
+                        <button onclick="bookFromCompass()" class="w-full sm:w-auto bg-terra-500 hover:bg-terra-600 text-white font-semibold px-6 py-3.5 rounded-xl text-sm transition-all flex items-center justify-center gap-2 shadow-sm">
+                            <span>Spezial-Termin hierfür buchen</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Leistungen) -->
+    <section id="leistungen" class="py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-terra-600 block mb-2">Therapie & Performance</span>
+                    <h2 class="text-3xl sm:text-5xl font-bold text-forest-900 tracking-tight">
+                        Was wir machen, <span class="font-serif italic font-normal text-forest-700">damit es läuft.</span>
+                    </h2>
+                </div>
+
+                <!-- Category Filter Buttons -->
+                <div class="flex flex-wrap gap-2 bg-sand-100 p-1.5 rounded-2xl border border-sand-200">
+                    <button onclick="filterServices('all')" id="filter-all" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-forest-800 text-white transition-all">Alle Leistungen</button>
+                    <button onclick="filterServices('kasse')" id="filter-kasse" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-forest-800 hover:bg-sand-200 transition-all">Kassenrezept & Privat</button>
+                    <button onclick="filterServices('osteo')" id="filter-osteo" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-forest-800 hover:bg-sand-200 transition-all">Osteopathie & Spezial</button>
+                    <button onclick="filterServices('active')" id="filter-active" class="service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-forest-800 hover:bg-sand-200 transition-all">Training & Prävention</button>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div id="services-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Populated dynamically via JS for instant filtering & detail modals -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Prescription Check & Co-payment Calculator -->
+    <section id="rezeptcheck" class="py-20 bg-forest-900 text-sand-50 relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 w-96 h-96 bg-forest-800 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Explanation -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-forest-800 border border-forest-700 text-terra-500 text-xs font-semibold">
+                        <i class="ph-fill ph-calculator"></i> Digitaler Service-Helfer
+                    </div>
+                    <h2 class="text-3xl sm:text-5xl font-bold tracking-tight leading-tight">
+                        Du hast ein Rezept vom Arzt? <span class="font-serif italic font-normal text-sand-200">Prüf es in 10 Sekunden.</span>
+                    </h2>
+                    <p class="text-sand-200/90 text-base leading-relaxed">
+                        Wusstest du, dass ein Kassenrezept nach der Heilmittel-Richtlinie meist innerhalb von <strong>28 Tagen</strong> (bei dringlichem Behandlungsbedarf 14 Tage) begonnen werden muss? Unser Rechner prüft deine Frist und zeigt dir auf den Cent genau deine gesetzliche Zuzahlung.
+                    </p>
+                    <div class="space-y-3 pt-2 text-sm text-sand-200">
+                        <div class="flex items-center gap-3">
+                            <i class="ph-fill ph-check-circle text-emerald-400 text-lg"></i>
+                            <span>Kein Rezept? Als <strong>Selbstzahler oder über unseren sektoralen Heilpraktiker</strong> kannst du auch direkt ohne Arztbesuch zu uns kommen.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Calculator Widget -->
+                <div class="lg:col-span-7 bg-sand-50 text-forest-900 rounded-3xl p-6 sm:p-10 shadow-xl border border-sand-200">
+                    <div class="grid sm:grid-cols-2 gap-6 mb-6">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">1. Verordnungsart auf dem Rezept</label>
+                            <select id="calc-treatment" onchange="calculatePrescription()" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm font-medium text-forest-900 focus:outline-none focus:border-terra-500">
+                                <option value="mt">Manuelle Therapie (MT)</option>
+                                <option value="kg">Krankengymnastik (KG)</option>
+                                <option value="kgg">Krankengymnastik am Gerät (KGG)</option>
+                                <option value="cmd">Kiefergelenkstherapie (CMD / MT)</option>
+                                <option value="mld">Manuelle Lymphdrainage (MLD 45 Min.)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">2. Anzahl der Einheiten & Zusatz</label>
+                            <select id="calc-units" onchange="calculatePrescription()" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm font-medium text-forest-900 focus:outline-none focus:border-terra-500">
+                                <option value="6_none">6x Behandlung (ohne Wärmetherapie)</option>
+                                <option value="6_fango">6x Behandlung + 6x Fango / Naturmoor</option>
+                                <option value="6_hl">6x Behandlung + 6x Heißluft / Rotlicht</option>
+                                <option value="10_none">10x Behandlung (ohne Wärmetherapie)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">3. Ausstellungsdatum des Rezepts</label>
+                            <input type="date" id="calc-date" onchange="calculatePrescription()" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm font-medium text-forest-900 focus:outline-none focus:border-terra-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">4. Dringlicher Behandlungsbedarf?</label>
+                            <div class="grid grid-cols-2 gap-2">
+                                <button type="button" onclick="setUrgency(false)" id="urg-normal" class="py-3 px-3 rounded-xl text-xs font-bold bg-forest-800 text-white transition-all">Nein (Standard 28 Tage)</button>
+                                <button type="button" onclick="setUrgency(true)" id="urg-urgent" class="py-3 px-3 rounded-xl text-xs font-bold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all">Ja, Kreuz gesetzt (14 Tage)</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Result Box -->
+                    <div class="bg-sand-100 rounded-2xl p-5 sm:p-6 border border-sand-200 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+                        <div class="space-y-1">
+                            <span id="calc-validity-badge" class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">
+                                <i class="ph-fill ph-check-circle"></i> Rezept ist gültig
+                            </span>
+                            <p id="calc-deadline-text" class="text-sm font-semibold text-forest-900 pt-1">
+                                Spätester Behandlungsbeginn: —
+                            </p>
+                            <p class="text-xs text-forest-600">
+                                Gesetzliche Zuzahlung (10 € Grundgebühr + 10 % Eigenanteil, sofern nicht befreit)
+                            </p>
+                        </div>
+                        <div class="text-left sm:text-right shrink-0 border-t sm:border-t-0 pt-3 sm:pt-0 border-sand-200 w-full sm:w-auto flex sm:block justify-between items-center">
+                            <div>
+                                <span class="text-[11px] uppercase tracking-wider font-semibold text-forest-600 block">Geschätzte Zuzahlung</span>
+                                <span id="calc-copay-amount" class="text-2xl sm:text-3xl font-bold text-forest-900">26,80 €</span>
+                            </div>
+                            <button onclick="openBookingWithPrescription()" class="mt-2 bg-terra-500 hover:bg-terra-600 text-white text-xs font-semibold px-4 py-2.5 rounded-xl inline-flex items-center gap-1.5 transition-all">
+                                <span>Rezept-Termin sichern</span>
+                                <i class="ph-bold ph-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-14">
+                <span class="text-xs font-bold uppercase tracking-widest text-terra-600 block mb-2">Menschen statt weiße Kittel</span>
+                <h2 class="text-3xl sm:text-5xl font-bold text-forest-900 tracking-tight">
+                    Lerne die <span class="font-serif italic font-normal text-forest-700">Entkrampfer</span> kennen.
+                </h2>
+                <p class="mt-3 text-forest-700 text-base sm:text-lg">
+                    Bei uns wechselst du nicht bei jedem Termin das Behandlungszimmer und die Person. Dein Therapeut oder deine Therapeutin begleitet dich vom Erstbefund bis zum letzten Trainingssatz.
+                </p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Member 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-soft flex flex-col justify-between group">
+                    <div>
+                        <div class="aspect-[4/4] overflow-hidden bg-sand-200 relative">
+                            <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://placehold.co/600x600/1F4736/FAF9F5?text=Dr.+Elena+Rost'" alt="Dr. Elena Rost" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-forest-900 text-[11px] font-bold px-3 py-1 rounded-full">Praxisgründerin</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-forest-900">Dr. sc. hum. Elena Rost</h3>
+                            <p class="text-xs font-semibold text-terra-600 mb-3">Osteopathin (B.Sc.) • CMD & Chronische Schmerzen</p>
+                            <p class="text-xs text-forest-700 leading-relaxed mb-4">
+                                „Der Ort, der wehtut, ist selten der Ort, der das Problem verursacht hat. Ich liebe komplexe Fälle, bei denen schon drei andere Stellen abgewunken haben.“
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand-100">
+                        <button onclick="bookWithTherapist('Dr. Elena Rost')" class="w-full py-2.5 px-4 rounded-xl bg-sand-100 hover:bg-forest-800 hover:text-white text-forest-900 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-calendar-plus"></i> Termin bei Elena buchen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-soft flex flex-col justify-between group">
+                    <div>
+                        <div class="aspect-[4/4] overflow-hidden bg-sand-200 relative">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://placehold.co/600x600/2A5C46/FAF9F5?text=Lukas+Merz'" alt="Lukas Merz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-forest-900 text-[11px] font-bold px-3 py-1 rounded-full">Head of Manual Therapy</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-forest-900">Lukas Merz</h3>
+                            <p class="text-xs font-semibold text-terra-600 mb-3">Physiotherapeut (M.Sc.) • Wirbelsäule & MT</p>
+                            <p class="text-xs text-forest-700 leading-relaxed mb-4">
+                                „Bandscheibenvorfall heißt nicht, dass du dich nie wieder bücken darfst. Wir bauen deinen Rücken Schritt für Schritt wieder belastbar auf.“
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand-100">
+                        <button onclick="bookWithTherapist('Lukas Merz')" class="w-full py-2.5 px-4 rounded-xl bg-sand-100 hover:bg-forest-800 hover:text-white text-forest-900 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-calendar-plus"></i> Termin bei Lukas buchen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-soft flex flex-col justify-between group">
+                    <div>
+                        <div class="aspect-[4/4] overflow-hidden bg-sand-200 relative">
+                            <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://placehold.co/600x600/C0552F/FAF9F5?text=Tarik+Yilmaz'" alt="Tarik Yilmaz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-forest-900 text-[11px] font-bold px-3 py-1 rounded-full">Return-to-Sport Lead</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-forest-900">Tarik Yilmaz</h3>
+                            <p class="text-xs font-semibold text-terra-600 mb-3">DOSB Sportphysiotherapeut • Knie, Schulter & KGG</p>
+                            <p class="text-xs text-forest-700 leading-relaxed mb-4">
+                                „Egal ob Kreuzbandriss oder Marathon-Vorbereitung: Wir messen deine Kraftwerte objektiv per Sensorik, statt nur zu schätzen.“
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand-100">
+                        <button onclick="bookWithTherapist('Tarik Yilmaz')" class="w-full py-2.5 px-4 rounded-xl bg-sand-100 hover:bg-forest-800 hover:text-white text-forest-900 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-calendar-plus"></i> Termin bei Tarik buchen
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-sand-200 shadow-soft flex flex-col justify-between group">
+                    <div>
+                        <div class="aspect-[4/4] overflow-hidden bg-sand-200 relative">
+                            <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://placehold.co/600x600/163528/FAF9F5?text=Hannah+Vogt'" alt="Hannah Vogt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute bottom-3 left-3 bg-white/90 backdrop-blur-md text-forest-900 text-[11px] font-bold px-3 py-1 rounded-full">Beckenboden & Faszien</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-forest-900">Hannah Vogt</h3>
+                            <p class="text-xs font-semibold text-terra-600 mb-3">Physiotherapeutin & Sektorale Heilpraktikerin</p>
+                            <p class="text-xs text-forest-700 leading-relaxed mb-4">
+                                „Spezialisiert auf Post-OP-Reha, Lymphdrainage und ganzheitliche Beckenbodentherapie ohne Tabus und in absolut ruhiger Atmosphäre.“
+                            </p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-3 border-t border-sand-100">
+                        <button onclick="bookWithTherapist('Hannah Vogt')" class="w-full py-2.5 px-4 rounded-xl bg-sand-100 hover:bg-forest-800 hover:text-white text-forest-900 text-xs font-semibold transition-all flex items-center justify-center gap-2">
+                            <i class="ph-bold ph-calendar-plus"></i> Termin bei Hannah buchen
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Studio & FAQ Section -->
+    <section id="praxis" class="py-20 bg-sand-100/80 border-t border-sand-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <!-- Left Column: FAQ Accordion -->
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-terra-600 block">Alles, was du vorab wissen willst</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-forest-900 tracking-tight">
+                        Häufige Fragen – <span class="font-serif italic font-normal text-forest-700">kurz & schmerzfrei.</span>
+                    </h2>
+
+                    <div class="space-y-3 pt-2" id="faq-container">
+                        <!-- FAQ Item 1 -->
+                        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+                            <button onclick="toggleFaq(0)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-forest-900 text-sm sm:text-base">
+                                <span>Was muss ich zu meinem ersten Termin mitbringen?</span>
+                                <i id="faq-icon-0" class="ph-bold ph-caret-down text-terra-500 transition-transform duration-200"></i>
+                            </button>
+                            <div id="faq-body-0" class="px-6 pb-5 text-sm text-forest-700 leading-relaxed">
+                                Lediglich deine Versichertenkarte, dein gültiges Rezept (falls vorhanden) und bequeme Kleidung. Ein großes Handtuch musst du <strong>nicht</strong> mitschleppen – wir stellen für jede Sitzung ein frisches, vorgewärmtes Bio-Baumwolltuch bereit.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 2 -->
+                        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+                            <button onclick="toggleFaq(1)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-forest-900 text-sm sm:text-base">
+                                <span>Kann ich auch ohne ärztliches Rezept zu euch kommen?</span>
+                                <i id="faq-icon-1" class="ph-bold ph-caret-down text-terra-500 transition-transform duration-200"></i>
+                            </button>
+                            <div id="faq-body-1" class="hidden px-6 pb-5 text-sm text-forest-700 leading-relaxed">
+                                Ja! Da wir über die Zulassung als <strong>sektorale Heilpraktiker für Physiotherapie</strong> verfügen, dürfen wir dich bei akuten Beschwerden auch direkt ohne vorherigen Arztbesuch untersuchen und behandeln (Selbstzahler oder Erstattung über private Kassen / Zusatzversicherungen).
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 3 -->
+                        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+                            <button onclick="toggleFaq(2)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-forest-900 text-sm sm:text-base">
+                                <span>Wie lange dauert eine Behandlung bei UNVERKRAMPFT?</span>
+                                <i id="faq-icon-2" class="ph-bold ph-caret-down text-terra-500 transition-transform duration-200"></i>
+                            </button>
+                            <div id="faq-body-2" class="hidden px-6 pb-5 text-sm text-forest-700 leading-relaxed">
+                                Bei Kassenrezepten planen wir im Schnitt 25–30 Minuten ein (und geben dir im Anschluss kostenfreien Zugang zu unserer Active-Zone für deine Eigenübungen). Für Osteopathie, Erst-Assessments oder Selbstzahler-Sitzungen nehmen wir uns volle 50 bis 60 Minuten Zeit.
+                            </div>
+                        </div>
+
+                        <!-- FAQ Item 4 -->
+                        <div class="bg-white rounded-2xl border border-sand-200 overflow-hidden">
+                            <button onclick="toggleFaq(3)" class="w-full px-6 py-4 text-left flex items-center justify-between font-bold text-forest-900 text-sm sm:text-base">
+                                <span>Gibt es Parkplätze und ist die Praxis barrierefrei?</span>
+                                <i id="faq-icon-3" class="ph-bold ph-caret-down text-terra-500 transition-transform duration-200"></i>
+                            </button>
+                            <div id="faq-body-3" class="hidden px-6 pb-5 text-sm text-forest-700 leading-relaxed">
+                                Unsere Praxis im Erdgeschoss der Neckarpromenade 18 ist komplett schwellenlos zugänglich. Direkt im Innenhof stehen 6 reservierte Patientenparkplätze („UNVERKRAMPFT“) kostenfrei für dich bereit.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Location & Interactive Hours Card -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white rounded-3xl p-6 sm:p-8 border border-sand-200 shadow-soft space-y-6">
+                        <div class="flex flex-wrap items-center justify-between gap-4 border-b border-sand-200 pb-6">
+                            <div>
+                                <span class="text-xs font-bold uppercase tracking-wider text-forest-600">Standort & Anfahrt</span>
+                                <h3 class="text-2xl font-bold text-forest-900 mt-0.5">Im Herzen von Heilbronn</h3>
+                                <p class="text-sm text-forest-700">Neckarpromenade 18 • 74072 Heilbronn</p>
+                            </div>
+                            <button onclick="copyAddress()" id="copy-address-btn" class="px-4 py-2.5 rounded-xl bg-sand-100 hover:bg-sand-200 text-forest-900 text-xs font-semibold flex items-center gap-2 transition-all">
+                                <i class="ph-bold ph-copy"></i>
+                                <span>Adresse kopieren</span>
+                            </button>
+                        </div>
+
+                        <!-- Stylized Interactive Architecture Map Card -->
+                        <div class="relative rounded-2xl overflow-hidden bg-forest-900 h-48 p-5 flex flex-col justify-between text-sand-50">
+                            <!-- Decorative SVG Map Grid -->
+                            <svg class="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 400 200" fill="none">
+                                <path d="M0 40 L400 40 M0 90 L400 90 M0 150 L400 150 M80 0 L80 200 M210 0 L210 200 M320 0 L320 200" stroke="#FAF9F5" stroke-width="1"/>
+                                <path d="M140 0 C155 70 130 130 150 200" stroke="#D96B43" stroke-width="10" stroke-linecap="round"/>
+                            </svg>
+                            <div class="relative z-10 flex justify-between items-start">
+                                <span class="bg-forest-800/90 backdrop-blur-sm px-3 py-1 rounded-lg text-xs font-medium border border-white/10">
+                                    Direkt am Neckarufer • 3 Min. von S-Bahn Rathaus
+                                </span>
+                            </div>
+                            <div class="relative z-10 flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-terra-500 text-white flex items-center justify-center shadow-lg">
+                                    <i class="ph-fill ph-map-pin text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-sm">UNVERKRAMPFT. Loft-Praxis (EG & 1. OG)</p>
+                                    <p class="text-xs text-sand-200">6 eigene Patienten-Parkplätze im Hof • E-Ladesäule vorhanden</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Opening Hours Grid -->
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <div class="bg-sand-50 p-4 rounded-2xl border border-sand-200">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Öffnungszeiten (After-Work freundlich)</h4>
+                                <ul class="space-y-1.5 text-xs text-forest-900">
+                                    <li class="flex justify-between"><span>Mo – Do:</span> <span class="font-bold">07:30 – 20:00 Uhr</span></li>
+                                    <li class="flex justify-between"><span>Freitag:</span> <span class="font-bold">07:30 – 17:00 Uhr</span></li>
+                                    <li class="flex justify-between text-terra-600"><span>Samstag (Active & Privat):</span> <span class="font-bold">09:00 – 13:00 Uhr</span></li>
+                                </ul>
+                            </div>
+                            <div class="bg-sand-50 p-4 rounded-2xl border border-sand-200 flex flex-col justify-between">
+                                <div>
+                                    <h4 class="text-xs font-bold uppercase tracking-wider text-forest-700 mb-1">Direkter Draht</h4>
+                                    <p class="text-sm font-bold text-forest-900">07131 / 898 42 0</p>
+                                    <p class="text-xs text-forest-700">hallo@unverkrampft-physio.de</p>
+                                </div>
+                                <div class="pt-3 mt-2 border-t border-sand-200 flex items-center justify-between text-xs">
+                                    <span class="text-forest-600">Rezept vorab senden?</span>
+                                    <button onclick="openBookingModal()" class="font-bold text-terra-600 hover:underline">Zum Online-Upload →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-forest-900 text-sand-200 pt-16 pb-12 border-t border-forest-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-forest-800">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-xl bg-terra-500 text-white flex items-center justify-center">
+                            <i class="ph-bold ph-waves text-lg"></i>
+                        </div>
+                        <span class="font-bold tracking-tight text-xl text-white">UNVERKRAMPFT<span class="text-terra-500">.</span></span>
+                    </div>
+                    <p class="text-sm text-sand-200/80 max-w-md leading-relaxed">
+                        Praxis für moderne Physiotherapie, Osteopathie und medizinisches Training. Wir glauben daran, dass Heilung am besten funktioniert, wenn Wissenschaft auf echte Entspannung trifft.
+                    </p>
+                    <p class="text-xs text-sand-300/60">
+                        Hinweis: Dies ist eine realistische Konzept- & Demo-Webpräsenz der fiktiven Praxis „Unverkrampft“.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Navigation</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><a href="#kompass" class="hover:text-white transition-colors">Beschwerde-Kompass</a></li>
+                        <li><a href="#leistungen" class="hover:text-white transition-colors">Therapieangebot</a></li>
+                        <li><a href="#rezeptcheck" class="hover:text-white transition-colors">Rezept-Fristenrechner</a></li>
+                        <li><a href="#team" class="hover:text-white transition-colors">Unser Team</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-white mb-4">Für Patient*innen</h4>
+                    <ul class="space-y-2.5 text-sm">
+                        <li><button onclick="openBookingModal()" class="hover:text-white transition-colors">Online-Terminbuchung</button></li>
+                        <li><button onclick="showToast('Anamnesebogen (PDF-Vorschau) wurde für deinen Termin vorgemerkt.')" class="hover:text-white transition-colors">Digitaler Anamnesebogen</button></li>
+                        <li><button onclick="showToast('Dieses Demo-Projekt benötigt keine Cookies – 100 % unverkrampft!')" class="hover:text-white transition-colors">Datenschutz & Impressum</button></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-sand-300/60 gap-4">
+                <p>© 2026 UNVERKRAMPFT Praxisgemeinschaft • Alle Rechte vorbehalten.</p>
+                <div class="flex items-center gap-4">
+                    <span>Mit <i class="ph-fill ph-heart text-terra-500"></i> für schmerzfreie Bewegung gestaltet</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Multi-Step Online Booking Modal -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-forest-900/70 backdrop-blur-sm">
+        <div class="bg-sand-50 border border-sand-200 rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl animate-fadeIn max-h-[92vh] flex flex-col">
+            
+            <!-- Modal Header -->
+            <div class="bg-forest-900 text-sand-50 px-6 py-5 flex items-center justify-between shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-9 h-9 rounded-xl bg-terra-500 flex items-center justify-center text-white">
+                        <i class="ph-bold ph-calendar-check text-lg"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-base leading-tight">Online-Terminbuchung</h3>
+                        <p id="booking-step-subtitle" class="text-xs text-sand-200">Schritt 1 von 3: Versicherung & Behandlungsart</p>
+                    </div>
+                </div>
+                <button onclick="closeBookingModal()" class="p-2 rounded-xl bg-forest-800 text-sand-200 hover:text-white">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body (Scrollable) -->
+            <div class="p-6 sm:p-8 overflow-y-auto space-y-6 flex-1">
+                
+                <!-- STEP 1: Insurance, Treatment & Specialist -->
+                <div id="booking-step-1" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Wie bist du versichert?</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                            <button type="button" onclick="selectInsurance('Gesetzlich (mit Rezept)')" id="ins-gkv" class="ins-btn p-3.5 rounded-2xl border-2 border-forest-800 bg-forest-50 text-left transition-all">
+                                <span class="font-bold text-xs text-forest-900 block">Gesetzlich versichert</span>
+                                <span class="text-[11px] text-forest-600">Mit ärztlichem Rezept</span>
+                            </button>
+                            <button type="button" onclick="selectInsurance('Privat / Beihilfe')" id="ins-pkv" class="ins-btn p-3.5 rounded-2xl border border-sand-300 bg-white text-left hover:border-forest-600 transition-all">
+                                <span class="font-bold text-xs text-forest-900 block">Privat / Beihilfe</span>
+                                <span class="text-[11px] text-forest-600">Rezept oder Direktzugang</span>
+                            </button>
+                            <button type="button" onclick="selectInsurance('Selbstzahler / Ohne Rezept')" id="ins-self" class="ins-btn p-3.5 rounded-2xl border border-sand-300 bg-white text-left hover:border-forest-600 transition-all">
+                                <span class="font-bold text-xs text-forest-900 block">Selbstzahler / Akut</span>
+                                <span class="text-[11px] text-forest-600">Ohne Rezept via Heilpraktiker</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Gewünschte Leistung</label>
+                            <select id="modal-service" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm font-medium text-forest-900 focus:outline-none focus:border-terra-500">
+                                <option value="Manuelle Therapie (MT) / Krankengymnastik">Manuelle Therapie (MT) / KG</option>
+                                <option value="Kiefergelenkstherapie (CMD)">Kiefergelenkstherapie (CMD)</option>
+                                <option value="Osteopathie & Faszientherapie (60 Min.)">Osteopathie & Faszien (60 Min.)</option>
+                                <option value="Krankengymnastik am Gerät (KGG) / Sportphysio">KGG & Sportphysiotherapie</option>
+                                <option value="Akut-Check ohne Rezept (Heilpraktiker)">Akut-Check ohne Rezept (45 Min.)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Wunsch-Therapeut*in</label>
+                            <select id="modal-therapist" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm font-medium text-forest-900 focus:outline-none focus:border-terra-500">
+                                <option value="Nächster freier Profi (Schnellster Termin)">Nächster freier Profi (Schnellster Termin)</option>
+                                <option value="Dr. Elena Rost">Dr. Elena Rost (Osteo & CMD)</option>
+                                <option value="Lukas Merz">Lukas Merz (Rücken & MT)</option>
+                                <option value="Tarik Yilmaz">Tarik Yilmaz (Sport & KGG)</option>
+                                <option value="Hannah Vogt">Hannah Vogt (Lymph & Beckenboden)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-2">Wähle deinen Wunsch-Slot</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5" id="modal-slots">
+                            <!-- Rendered dynamically -->
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button onclick="goToBookingStep(2)" class="bg-terra-500 hover:bg-terra-600 text-white font-semibold px-6 py-3.5 rounded-xl text-sm flex items-center gap-2 transition-all">
+                            <span>Weiter zu deinen Angaben</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 2: Patient Info -->
+                <div id="booking-step-2" class="hidden space-y-4">
+                    <div class="bg-sand-100 p-4 rounded-2xl border border-sand-200 flex items-center justify-between text-xs">
+                        <div>
+                            <span class="font-bold text-forest-900 block" id="summary-line-1">Manuelle Therapie • Gesetzlich</span>
+                            <span class="text-forest-700" id="summary-line-2">Slot: Morgen, 09:30 Uhr</span>
+                        </div>
+                        <button onclick="goToBookingStep(1)" class="text-terra-600 font-semibold hover:underline">Ändern</button>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-1.5">Vor- und Nachname *</label>
+                            <input type="text" id="patient-name" placeholder="z. B. Mara Sonnenschein" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm text-forest-900 focus:outline-none focus:border-terra-500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-1.5">Mobilnummer (für SMS-Erinnerung) *</label>
+                            <input type="tel" id="patient-phone" placeholder="0176 / 12345678" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm text-forest-900 focus:outline-none focus:border-terra-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-1.5">E-Mail-Adresse *</label>
+                        <input type="email" id="patient-email" placeholder="mara@beispiel.de" class="w-full bg-white border border-sand-300 rounded-xl px-4 py-3 text-sm text-forest-900 focus:outline-none focus:border-terra-500">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-forest-700 mb-1.5">Kurze Notiz: Was soll bis nach dem Termin besser sein? (Optional)</label>
+                        <textarea id="patient-notes" rows="2" placeholder="z.B. Seit 2 Wochen Ziehen im linken Schulterblatt, Rezept für 6x MT liegt vor..." class="w-full bg-white border border-sand-300 rounded-xl px-4 py-2.5 text-sm text-forest-900 focus:outline-none focus:border-terra-500"></textarea>
+                    </div>
+
+                    <div class="flex items-center justify-between pt-4">
+                        <button onclick="goToBookingStep(1)" class="px-5 py-3 rounded-xl border border-sand-300 text-forest-800 text-xs font-semibold hover:bg-sand-100">
+                            ← Zurück
+                        </button>
+                        <button onclick="submitBooking()" class="bg-forest-800 hover:bg-forest-900 text-white font-semibold px-6 py-3.5 rounded-xl text-sm flex items-center gap-2 shadow-sm transition-all">
+                            <i class="ph-bold ph-check-circle text-terra-500"></i>
+                            <span>Termin verbindlich reservieren</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- STEP 3: Confirmation -->
+                <div id="booking-step-3" class="hidden text-center py-6 space-y-5">
+                    <div class="w-16 h-16 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-3xl">
+                        <i class="ph-fill ph-SealCheck"></i>
+                    </div>
+                    <div class="space-y-2">
+                        <span class="text-xs font-bold uppercase tracking-widest text-terra-600">Buchung bestätigt</span>
+                        <h4 class="text-2xl font-bold text-forest-900">Schultern runter – dein Termin steht!</h4>
+                        <p id="confirmation-details" class="text-sm text-forest-700 max-w-md mx-auto leading-relaxed"></p>
+                    </div>
+                    <div class="bg-sand-100 p-4 rounded-2xl border border-sand-200 max-w-md mx-auto text-xs text-forest-800 space-y-1 text-left">
+                        <div class="font-bold text-forest-900 flex items-center gap-1.5">
+                            <i class="ph-fill ph-sparkle text-terra-500"></i> Dein Unverkrampft-Vorteil vor Ort:
+                        </div>
+                        <p>• Vorgewärmtes Bio-Handtuch liegt in Kabine 2 bereit</p>
+                        <p>• Bitte bringe nur deine Versichertenkarte & ggf. dein Rezept mit</p>
+                    </div>
+                    <div class="pt-2">
+                        <button onclick="closeBookingModal()" class="bg-forest-800 text-white font-semibold px-6 py-3 rounded-xl text-xs hover:bg-forest-900">
+                            Zurück zur Webseite
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Toast Notification (No alert() used!) -->
+    <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-forest-900 text-sand-50 px-5 py-3.5 rounded-2xl shadow-xl border border-forest-700 flex items-center gap-3 max-w-sm">
+        <i class="ph-fill ph-info text-terra-500 text-xl shrink-0"></i>
+        <span id="toast-message" class="text-xs font-medium leading-snug">Hinweis</span>
+    </div>
+
+    <script>
+        // --- 1. SYMPTOM COMPASS DATABASE ---
+        const bodyRegions = {
+            cmd: {
+                tag: 'Fokus-Zone 01 • Sehr häufig im Homeoffice',
+                title: 'Nackenstarre, Kopfschmerz & Kieferpressen (CMD)',
+                specialist: 'Dr. Elena Rost',
+                symptoms: 'Morgens verspannt aufwachen, Knacken oder Reiben im Kiefergelenk, dumpfer Druck an den Schläfen oder ein Ziehen vom Schulterblatt bis zum Hinterkopf.',
+                approach: 'Sanfte intraorale Kiefermobilisation (CMD), Entlastung der oberen Halswirbelsäule und gezieltes Alltags-Coaching gegen unbewusstes Zähnepressen.',
+                exerciseTitle: 'Der „Zunge-ans-Gaumendach“-Reset',
+                exerciseDesc: 'Lass die Zahnreihen im Mund 2 Millimeter auseinanderfallen, leg die Zungenspitze locker hinter die oberen Schneidezähne und atme 4 Sekunden tief in den Bauch ein.',
+                prescription: 'Passendes Rezept: KG, MT oder CMD vom Zahnarzt/Hausarzt',
+                serviceMatch: 'Kiefergelenkstherapie (CMD)'
+            },
+            schulter: {
+                tag: 'Fokus-Zone 02 • Überkopf & Schreibtisch',
+                title: 'Schulter-Impingement, Sehnenreizung & Mausarm',
+                specialist: 'Tarik Yilmaz',
+                symptoms: 'Stechender Schmerz beim seitlichen Anheben des Arms, nächtlicher Liegeschmerz auf der Schulter oder Ausstrahlung bis in den Unterarm.',
+                approach: 'Manuelle Zentrierung des Schultergelenks kombiniert mit progressivem Rotatorenmanschetten-Training an unseren Seilzug- & Sensorgeräten.',
+                exerciseTitle: 'Schulterblatt-Gleiten (Scapula-Reset)',
+                exerciseDesc: 'Kreise beide Schultern langsam nach hinten-unten, als wolltest du deine Schulterblätter sanft in die hinteren Hosentaschen stecken. 5 Sekunden halten, lockerlassen.',
+                prescription: 'Passendes Rezept: Manuelle Therapie (MT) oder KGG',
+                serviceMatch: 'Manuelle Therapie (MT) / Krankengymnastik'
+            },
+            ruecken: {
+                tag: 'Fokus-Zone 03 • Lendenwirbelsäule & Ischias',
+                title: 'Akuter Hexenschuss, Bandscheibe & unterer Rücken',
+                specialist: 'Lukas Merz',
+                symptoms: 'Blockadegefühl beim Aufrichten aus dem Sitzen, morgendliche Steifigkeit in der Lendenwirbelsäule oder ein Ziehen über das Gesäß ins Bein.',
+                approach: 'Schmerzlindernde Traktion und segmentale Mobilisation, gefolgt von stufenweisem Aufbau der tiefen Rumpfmuskulatur – damit du wieder angstfrei heben kannst.',
+                exerciseTitle: 'Sitzende Becken-Welle (Pelvic Tilt)',
+                exerciseDesc: 'Kippe dein Becken auf dem Stuhl langsam vor (leichtes Hohlkreuz) und rolle es dann sanft zurück. Diese Mikrobewegung versorgt deine Bandscheiben sofort mit Flüssigkeit.',
+                prescription: 'Passendes Rezept: MT, KG oder KGG',
+                serviceMatch: 'Manuelle Therapie (MT) / Krankengymnastik'
+            },
+            huefte: {
+                tag: 'Fokus-Zone 04 • Sitz-Alltag & Lauftraining',
+                title: 'Hüftbeuger-Enge, Piriformis & ISG-Blockade',
+                specialist: 'Hannah Vogt',
+                symptoms: 'Tiefsitzender Schmerz am Übergang von Rücken zu Gesäß (ISG), Anlaufschmerz nach langem Sitzen oder eingeschränkte Hüftrotation.',
+                approach: 'Lösen myofaszialer Triggerpunkte im Gesäß- und Hüftbereich, Mobilisation des Iliosakralgelenks und exzentrisches Krafttraining.',
+                exerciseTitle: 'Figur-4 Gesäß-Release im Sitzen',
+                exerciseDesc: 'Lege im Sitzen den rechten Knöchel auf das linke Knie und lehne dich mit geradem Rücken 3 Zentimeter nach vorn, bis ein angenehmes Dehngefühl im Gesäß entsteht.',
+                prescription: 'Passendes Rezept: Manuelle Therapie (MT) oder Osteopathie',
+                serviceMatch: 'Osteopathie & Faszientherapie (60 Min.)'
+            },
+            knie: {
+                tag: 'Fokus-Zone 05 • Return-to-Sport & Post-OP',
+                title: 'Läuferknie, Meniskus, Kreuzband & Achillessehne',
+                specialist: 'Tarik Yilmaz',
+                symptoms: 'Schmerzen beim Treppenabsteigen, Instabilitätsgefühl nach einer Sportverletzung oder morgendlicher Druckschmerz an der Achillessehne.',
+                approach: 'Computergestützte Kraft- und Sprungachsen-Analyse in unserer Active-Area, kombiniert mit gezieltem Sehnen-Belastungsaufbau (Heavy Slow Resistance).',
+                exerciseTitle: 'Isometrische Knie-Aktivierung',
+                exerciseDesc: 'Strecke im Sitzen ein Bein gerade nach vorn aus, ziehe die Fußspitze zu dir heran und spanne den Oberschenkel für 10 Sekunden kräftig an. Wechsel die Seite.',
+                prescription: 'Passendes Rezept: KGG (Krankengymnastik am Gerät) oder KG',
+                serviceMatch: 'Krankengymnastik am Gerät (KGG) / Sportphysio'
+            }
+        };
+
+        let currentSelectedRegion = 'cmd';
+        let microTimerInterval = null;
+
+        function selectBodyRegion(key) {
+            currentSelectedRegion = key;
+            const data = bodyRegions[key];
+            if (!data) return;
+
+            // Update Text Content
+            document.getElementById('compass-tag').textContent = data.tag;
+            document.getElementById('compass-title').textContent = data.title;
+            document.getElementById('compass-specialist-badge').textContent = 'Spezialgebiet von ' + data.specialist;
+            document.getElementById('compass-symptoms').textContent = data.symptoms;
+            document.getElementById('compass-approach').textContent = data.approach;
+            document.getElementById('compass-exercise-title').textContent = data.exerciseTitle;
+            document.getElementById('compass-exercise-desc').textContent = data.exerciseDesc;
+            document.getElementById('compass-prescription-hint').innerHTML = `<strong>${data.prescription}</strong>`;
+
+            // Update SVG Hotspots & Pills
+            Object.keys(bodyRegions).forEach(r => {
+                const ring = document.getElementById('ring-' + r);
+                const dot = document.getElementById('dot-' + r);
+                const btn = document.getElementById('btn-' + r);
+
+                if (r === key) {
+                    ring.setAttribute('fill', '#D96B43');
+                    ring.setAttribute('r', '16');
+                    ring.classList.add('hotspot-pulse');
+                    dot.setAttribute('fill', '#C0552F');
+                    dot.setAttribute('r', '8');
+                    btn.className = 'region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-terra-500 text-white transition-all text-left flex items-center gap-1.5 ' + (r === 'knie' ? 'col-span-2 sm:col-span-2' : '');
+                } else {
+                    ring.setAttribute('fill', '#2A5C46');
+                    ring.setAttribute('r', '14');
+                    ring.classList.remove('hotspot-pulse');
+                    dot.setAttribute('fill', '#1F4736');
+                    dot.setAttribute('r', '7');
+                    btn.className = 'region-btn px-3 py-2 rounded-xl text-xs font-semibold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all text-left flex items-center gap-1.5 ' + (r === 'knie' ? 'col-span-2 sm:col-span-2' : '');
+                }
+            });
+        }
+
+        function startMicroExercise() {
+            const label = document.getElementById('micro-timer-label');
+            const feedback = document.getElementById('micro-timer-feedback');
+            if (microTimerInterval) {
+                clearInterval(microTimerInterval);
+                microTimerInterval = null;
+                label.textContent = '30s Timer starten';
+                feedback.textContent = 'Timer gestoppt';
+                return;
+            }
+
+            let seconds = 30;
+            label.textContent = `Noch ${seconds}s...`;
+            feedback.textContent = 'Tief einatmen... und Kiefer locker lassen';
+
+            microTimerInterval = setInterval(() => {
+                seconds--;
+                if (seconds > 0) {
+                    label.textContent = `Noch ${seconds}s...`;
+                    if (seconds === 20) feedback.textContent = 'Schultern bewusst sinken lassen...';
+                    if (seconds === 10) feedback.textContent = 'Letzte 10 Sekunden – gleich geschafft!';
+                } else {
+                    clearInterval(microTimerInterval);
+                    microTimerInterval = null;
+                    label.textContent = 'Geschafft! ✓';
+                    feedback.textContent = 'Spürst du den Unterschied?';
+                    setTimeout(() => {
+                        label.textContent = '30s Timer starten';
+                    }, 3500);
+                }
+            }, 1000);
+        }
+
+        function bookFromCompass() {
+            const data = bodyRegions[currentSelectedRegion];
+            openBookingModal();
+            document.getElementById('modal-service').value = data.serviceMatch;
+            document.getElementById('modal-therapist').value = data.specialist;
+        }
+
+        // --- 2. SERVICES DATA & FILTERING ---
+        const servicesData = [
+            {
+                id: 'mt',
+                category: 'kasse',
+                badge: 'Kassenleistung & Privat',
+                icon: 'ph-hands-clapping',
+                title: 'Manuelle Therapie (MT)',
+                desc: 'Gezielte Mobilisation blockierter Gelenke an Wirbelsäule, Schulter, Hüfte oder Knie. Kombiniert mit aktiver Stabilisation für dauerhafte Schmerzfreiheit.',
+                duration: '25–30 Min. + Active-Zone'
+            },
+            {
+                id: 'cmd',
+                category: 'kasse',
+                badge: 'Zahnarzt- & Hausarztrezept',
+                icon: 'ph-smiley-wink',
+                title: 'Kiefergelenkstherapie (CMD)',
+                desc: 'Endlich die Zähne auseinanderbekommen: Effektive Behandlung bei Zähneknirschen (Bruxismus), Kieferknacken, Tinnitus und Spannungskopfschmerz.',
+                duration: '30–45 Min. Fokus-Sitzung'
+            },
+            {
+                id: 'kgg',
+                category: 'active',
+                badge: 'Kassenrezept (KGG) & Sport',
+                icon: 'ph-barbell',
+                title: 'Krankengymnastik am Gerät (KGG)',
+                desc: 'Medizinisches Kraft- und Koordinationstraining in unserer 180m² Loft-Trainingsfläche. Ideal nach Operationen, Bandscheibenvorfällen oder Sportverletzungen.',
+                duration: '60 Min. Kleingruppe / 1:1'
+            },
+            {
+                id: 'osteo',
+                category: 'osteo',
+                badge: 'Privat & Bezuschussung GKV',
+                icon: 'ph-spiral',
+                title: 'Osteopathie & Faszientherapie',
+                desc: 'Ganzheitliche Spurensuche im parietalen, viszeralen und craniosacralen System. Viele gesetzliche Krankenkassen bezuschussen 3–6 Sitzungen pro Jahr.',
+                duration: '55–60 Min. Intensivtermin'
+            },
+            {
+                id: 'hp',
+                category: 'osteo',
+                badge: 'Ohne Arztbesuch direkt starten',
+                icon: 'ph-lightning',
+                title: 'Akut-Termin (Sektoraler Heilpraktiker)',
+                desc: 'Keine Lust auf 4 Wochen Wartezeit beim Orthopäden? Im Direktzugang erstellen wir sofort die Diagnose und starten in derselben Sitzung mit der Behandlung.',
+                duration: '45 Min. Erstbefund & Therapie'
+            },
+            {
+                id: 'return',
+                category: 'active',
+                badge: 'Prävention & Athletik',
+                icon: 'ph-person-simple-run',
+                title: 'Return-to-Sport & Laufanalyse',
+                desc: 'Video- und sensorgestützte Bewegungsanalyse für Läufer*innen, Radsportler und Teamsportler. Damit du stärker zurückkommst als vor der Verletzung.',
+                duration: '60 Min. Performance-Check'
+            }
+        ];
+
+        function renderServices(filter = 'all') {
+            const grid = document.getElementById('services-grid');
+            const filtered = filter === 'all' ? servicesData : servicesData.filter(s => s.category === filter);
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="bg-white rounded-3xl p-7 border border-sand-200 shadow-soft hover:border-forest-600/40 transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-5">
+                            <div class="w-12 h-12 rounded-2xl bg-sand-100 text-forest-800 group-hover:bg-forest-800 group-hover:text-white transition-colors flex items-center justify-center text-2xl">
+                                <i class="ph-duotone ${item.icon}"></i>
+                            </div>
+                            <span class="text-[11px] font-bold px-3 py-1 rounded-full bg-forest-50 text-forest-800 border border-forest-100">${item.badge}</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-forest-900 mb-2">${item.title}</h3>
+                        <p class="text-sm text-forest-700 leading-relaxed mb-6">${item.desc}</p>
+                    </div>
+                    <div class="pt-4 border-t border-sand-100 flex items-center justify-between">
+                        <span class="text-xs font-medium text-forest-600 flex items-center gap-1.5">
+                            <i class="ph-fill ph-clock text-terra-500"></i> ${item.duration}
+                        </span>
+                        <button onclick="openBookingModal()" class="text-xs font-bold text-forest-900 group-hover:text-terra-600 flex items-center gap-1">
+                            <span>Buchen</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterServices(category) {
+            ['all', 'kasse', 'osteo', 'active'].forEach(cat => {
+                const btn = document.getElementById('filter-' + cat);
+                if (cat === category) {
+                    btn.className = 'service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-forest-800 text-white transition-all';
+                } else {
+                    btn.className = 'service-filter-btn px-4 py-2 rounded-xl text-xs font-semibold text-forest-800 hover:bg-sand-200 transition-all';
+                }
+            });
+            renderServices(category);
+        }
+
+        // --- 3. PRESCRIPTION VALIDITY & CO-PAY CALCULATOR ---
+        let isUrgentPrescription = false;
+
+        function setUrgency(urgent) {
+            isUrgentPrescription = urgent;
+            const btnNorm = document.getElementById('urg-normal');
+            const btnUrg = document.getElementById('urg-urgent');
+            if (urgent) {
+                btnUrg.className = 'py-3 px-3 rounded-xl text-xs font-bold bg-terra-500 text-white transition-all';
+                btnNorm.className = 'py-3 px-3 rounded-xl text-xs font-bold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all';
+            } else {
+                btnNorm.className = 'py-3 px-3 rounded-xl text-xs font-bold bg-forest-800 text-white transition-all';
+                btnUrg.className = 'py-3 px-3 rounded-xl text-xs font-bold bg-sand-100 text-forest-800 hover:bg-sand-200 transition-all';
+            }
+            calculatePrescription();
+        }
+
+        function calculatePrescription() {
+            const treatment = document.getElementById('calc-treatment').value;
+            const unitsRaw = document.getElementById('calc-units').value;
+            const dateInput = document.getElementById('calc-date').value;
+
+            // Approximate realistic GKV Heilmittel tariff rates per unit (2026 values)
+            const unitRates = {
+                mt: 33.40,
+                kg: 27.80,
+                kgg: 50.20,
+                cmd: 33.40,
+                mld: 48.90
+            };
+
+            const [countStr, addon] = unitsRaw.split('_');
+            const count = parseInt(countStr, 10);
+            let singlePrice = unitRates[treatment] || 30.00;
+            if (addon === 'fango') singlePrice += 16.50;
+            if (addon === 'hl') singlePrice += 7.20;
+
+            // Statutory co-pay in Germany: 10€ base fee + 10% of total prescription value
+            const copay = 10 + (singlePrice * count * 0.10);
+            document.getElementById('calc-copay-amount').textContent = copay.toFixed(2).replace('.', ',') + ' €';
+
+            if (!dateInput) return;
+            const issueDate = new Date(dateInput);
+            const allowedDays = isUrgentPrescription ? 14 : 28;
+            const deadline = new Date(issueDate);
+            deadline.setDate(deadline.getDate() + allowedDays);
+
+            const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            const diffTime = deadline - today;
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+            const badge = document.getElementById('calc-validity-badge');
+            const deadlineText = document.getElementById('calc-deadline-text');
+            const formattedDeadline = deadline.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' });
+
+            if (diffDays >= 0) {
+                badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800';
+                badge.innerHTML = `<i class="ph-fill ph-check-circle"></i> Rezept gültig (noch ${diffDays} Tage Zeit für Termin 1)`;
+                deadlineText.textContent = `Spätester Behandlungsbeginn: ${formattedDeadline}`;
+            } else {
+                badge.className = 'inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
+                badge.innerHTML = `<i class="ph-fill ph-warning-circle"></i> Frist (${formattedDeadline}) überschritten – Arzt kann Datum kurz ändern`;
+                deadlineText.textContent = `Tipp: Wir helfen dir gern bei der schnellen Rezept-Verlängerung.`;
+            }
+        }
+
+        function openBookingWithPrescription() {
+            openBookingModal();
+            selectInsurance('Gesetzlich (mit Rezept)');
+        }
+
+        // --- 4. BOOKING MODAL LOGIC ---
+        const availableSlots = [
+            { time: 'Morgen, 09:30 Uhr', label: 'Vormittags-Slot' },
+            { time: 'Morgen, 14:15 Uhr', label: 'Nachmittags-Slot' },
+            { time: 'Übermorgen, 08:00 Uhr', label: 'Early-Bird' },
+            { time: 'Übermorgen, 17:30 Uhr', label: 'After-Work' },
+            { time: 'Freitag, 11:00 Uhr', label: 'Vormittag' },
+            { time: 'Samstag, 10:15 Uhr', label: 'Samstags-Special' }
+        ];
+
+        let selectedInsurance = 'Gesetzlich (mit Rezept)';
+        let selectedSlot = availableSlots[0].time;
+
+        function renderSlots() {
+            const container = document.getElementById('modal-slots');
+            container.innerHTML = availableSlots.map(s => {
+                const active = s.time === selectedSlot;
+                return `
+                    <button type="button" onclick="chooseSlot('${s.time}')" class="p-3 rounded-xl border text-left transition-all ${active ? 'border-terra-500 bg-terra-50 text-forest-900 font-bold' : 'border-sand-300 bg-white text-forest-800 hover:border-forest-600'}">
+                        <span class="block text-xs font-bold">${s.time}</span>
+                        <span class="block text-[10px] text-forest-600">${s.label}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function chooseSlot(time) {
+            selectedSlot = time;
+            renderSlots();
+        }
+
+        function selectInsurance(type) {
+            selectedInsurance = type;
+            const map = {
+                'Gesetzlich (mit Rezept)': 'ins-gkv',
+                'Privat / Beihilfe': 'ins-pkv',
+                'Selbstzahler / Ohne Rezept': 'ins-self'
+            };
+            ['ins-gkv', 'ins-pkv', 'ins-self'].forEach(id => {
+                const el = document.getElementById(id);
+                if (id === map[type]) {
+                    el.className = 'ins-btn p-3.5 rounded-2xl border-2 border-forest-800 bg-forest-50 text-left transition-all';
+                } else {
+                    el.className = 'ins-btn p-3.5 rounded-2xl border border-sand-300 bg-white text-left hover:border-forest-600 transition-all';
+                }
+            });
+        }
+
+        function openBookingModal() {
+            document.getElementById('booking-modal').classList.remove('hidden');
+            renderSlots();
+            goToBookingStep(1);
+        }
+
+        function closeBookingModal() {
+            document.getElementById('booking-modal').classList.add('hidden');
+        }
+
+        function quickSelectSlot(slotTime, serviceTitle) {
+            selectedSlot = slotTime;
+            openBookingModal();
+        }
+
+        function bookWithTherapist(name) {
+            openBookingModal();
+            document.getElementById('modal-therapist').value = name;
+        }
+
+        function goToBookingStep(step) {
+            document.getElementById('booking-step-1').classList.add('hidden');
+            document.getElementById('booking-step-2').classList.add('hidden');
+            document.getElementById('booking-step-3').classList.add('hidden');
+
+            document.getElementById('booking-step-' + step).classList.remove('hidden');
+            const sub = document.getElementById('booking-step-subtitle');
+
+            if (step === 1) {
+                sub.textContent = 'Schritt 1 von 2: Behandlung & Wunsch-Slot wählen';
+            } else if (step === 2) {
+                sub.textContent = 'Schritt 2 von 2: Kontaktdaten bestätigen';
+                const srv = document.getElementById('modal-service').value;
+                const th = document.getElementById('modal-therapist').value;
+                document.getElementById('summary-line-1').textContent = `${srv} • ${selectedInsurance}`;
+                document.getElementById('summary-line-2').textContent = `${selectedSlot} bei ${th}`;
+            } else {
+                sub.textContent = 'Buchung erfolgreich abgeschlossen';
+            }
+        }
+
+        function submitBooking() {
+            const name = document.getElementById('patient-name').value.trim() || 'Gast-Patient*in';
+            const srv = document.getElementById('modal-service').value;
+            const th = document.getElementById('modal-therapist').value;
+
+            document.getElementById('confirmation-details').innerHTML = `
+                Hallo <strong>${name}</strong>, wir haben deinen Termin für <strong>${srv}</strong> am <strong>${selectedSlot}</strong> (${th}) fest für dich eingetragen.
+            `;
+            goToBookingStep(3);
+        }
+
+        // --- 5. FAQ, CLIPBOARD & TOAST HELPERS ---
+        function toggleFaq(index) {
+            for (let i = 0; i < 4; i++) {
+                const body = document.getElementById('faq-body-' + i);
+                const icon = document.getElementById('faq-icon-' + i);
+                if (i === index) {
+                    const isHidden = body.classList.contains('hidden');
+                    body.classList.toggle('hidden');
+                    icon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+                } else {
+                    body.classList.add('hidden');
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        function copyAddress() {
+            const tempInput = document.createElement('input');
+            tempInput.value = 'UNVERKRAMPFT Physiotherapie, Neckarpromenade 18, 74072 Heilbronn';
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            const btn = document.getElementById('copy-address-btn');
+            btn.innerHTML = '<i class="ph-bold ph-check text-emerald-600"></i><span>Kopiert!</span>';
+            showToast('Praxisadresse wurde in die Zwischenablage kopiert.');
+            setTimeout(() => {
+                btn.innerHTML = '<i class="ph-bold ph-copy"></i><span>Adresse kopieren</span>';
+            }, 3000);
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast-notification');
+            document.getElementById('toast-message').textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 4000);
+        }
+
+        // Initialize Page
+        window.onload = function () {
+            renderServices('all');
+            // Set default prescription date to 5 days ago for a realistic calculation
+            const fiveDaysAgo = new Date();
+            fiveDaysAgo.setDate(fiveDaysAgo.getDate() - 5);
+            document.getElementById('calc-date').value = fiveDaysAgo.toISOString().split('T')[0];
+            calculatePrescription();
+        };
+    </script>
+</body>
+</html>
