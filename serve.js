@@ -47,9 +47,17 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
     console.log(`Demo-Server läuft auf http://localhost:${PORT}`);
     console.log(`Übersicht: http://localhost:${PORT}/index.html`);
+    console.log(`--- 5 Praxis-Klassiker ---`);
     console.log(`Design 1 (UNVERKRAMPFT): http://localhost:${PORT}/design-1-unverkrampft/index.html`);
     console.log(`Design 2 (KINETIQ): http://localhost:${PORT}/design-2-kinetiq/index.html`);
     console.log(`Design 3 (SANA VITA): http://localhost:${PORT}/design-3-sanavita/index.html`);
     console.log(`Design 4 (AURORA MED): http://localhost:${PORT}/design-4-auroramed/index.html`);
     console.log(`Design 5 (VITALWERK): http://localhost:${PORT}/design-5-vitalwerk/index.html`);
+    console.log(`--- 6 Kreativ-Konzepte ---`);
+    console.log(`Design 6 (GELENK-SCHMIERE): http://localhost:${PORT}/design-6-schmiere/index.html`);
+    console.log(`Design 7 (KNOTENLÖSER): http://localhost:${PORT}/design-7-knotenloeser/index.html`);
+    console.log(`Design 8 (KNACKPUNKT): http://localhost:${PORT}/design-8-knackpunkt/index.html`);
+    console.log(`Design 9 (KNET & FERTIG): http://localhost:${PORT}/design-9-knetfertig/index.html`);
+    console.log(`Design 10 (AUFRECHT & HEITER): http://localhost:${PORT}/design-10-aufrecht/index.html`);
+    console.log(`Design 11 (BEWEGUNGSMELDER): http://localhost:${PORT}/design-11-bewegungsmelder/index.html`);
 });

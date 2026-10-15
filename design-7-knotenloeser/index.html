@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNOTENLÖSER | Praxis für Faszientherapie & Triggerpunkt-Zentrum München</title>
+    <meta name="description" content="Spezialpraxis für chronische Verspannungen, myofasziale Triggerpunkte und verklebte Faszien. Wir lösen, was Sie festhält.">
+
+    <!-- Fonts: Plus Jakarta Sans & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        coralcord: {
+                            50: '#fff5f3',
+                            100: '#ffe8e4',
+                            200: '#ffd5cc',
+                            300: '#ffb5a6',
+                            400: '#fa8570',
+                            500: '#f05b40', // Brand Accent Coral
+                            600: '#dc4225',
+                            700: '#b9321b',
+                            800: '#942b1a',
+                            900: '#7a281b',
+                            950: '#421109',
+                        },
+                        stonebg: {
+                            50: '#faf9f6',
+                            100: '#f5f4ef',
+                            200: '#e8e6de',
+                            300: '#d7d4c9',
+                            800: '#2b2927',
+                            900: '#1e1c1b',
+                            950: '#141312',
+                        }
+                    },
+                    boxShadow: {
+                        'coral': '0 10px 30px -10px rgba(240, 91, 64, 0.35)',
+                        'tangle': '0 20px 40px -15px rgba(20, 19, 18, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth SVG thread transition */
+        #thread-progress-line {
+            transition: stroke-dashoffset 0.15s ease-out;
+        }
+
+        /* Pulsing knot node effect */
+        @keyframes knotPulse {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.18); opacity: 0.4; }
+        }
+        .knot-pulse {
+            animation: knotPulse 2.8s infinite ease-in-out;
+        }
+
+        /* Thread weave background */
+        .thread-grid {
+            background-image: radial-gradient(rgba(240, 91, 64, 0.1) 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-stonebg-50 text-stonebg-900 font-sans antialiased selection:bg-coralcord-200 selection:text-coralcord-900">
+
+    <!-- Top Emergency Bar: Acute Pain -->
+    <div class="bg-stonebg-900 text-stonebg-200 text-xs py-2 px-4 border-b border-stonebg-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-coralcord-500 animate-ping"></span>
+                <span class="font-medium">Akuter Faszien-Stillstand? Notfalltermine für akute Schiefhälse & Blockaden verfügbar.</span>
+            </div>
+            <div class="flex items-center gap-4 text-[11px] font-mono">
+                <span class="text-stone-400"><i class="ph-bold ph-map-pin text-coralcord-400 mr-1"></i>München Glockenbach</span>
+                <a href="tel:08945209911" class="text-coralcord-400 hover:text-coralcord-300 font-bold transition-colors">089 / 45 20 99 11</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-stonebg-50/90 backdrop-blur-md border-b border-stonebg-200/80 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-coralcord-500 to-coralcord-700 flex items-center justify-center text-white shadow-coral group-hover:scale-105 transition-transform">
+                    <!-- Tangled thread icon -->
+                    <i class="ph-bold ph-spiral text-2xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-extrabold tracking-tight text-xl text-stonebg-950 leading-none">KNOTEN<span class="text-coralcord-600">LÖSER</span></span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-coralcord-100 text-coralcord-800 font-bold">ZENTRUM</span>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-wider text-stone-500 font-semibold block mt-0.5">Myofaszial & Triggerpunkt-Therapie</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-stonebg-900">
+                <a href="#roter-faden" class="hover:text-coralcord-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-coralcord-500"></span> Der rote Faden
+                </a>
+                <a href="#decoder" class="hover:text-coralcord-600 transition-colors">Knoten-Decoder</a>
+                <a href="#methoden" class="hover:text-coralcord-600 transition-colors">Therapiemethoden</a>
+                <a href="#team" class="hover:text-coralcord-600 transition-colors">Therapeuten</a>
+                <a href="#kontakt" class="hover:text-coralcord-600 transition-colors">Standort</a>
+            </nav>
+
+            <!-- CTA / Contact Direct -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-stonebg-900 hover:bg-stonebg-800 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 active:scale-95 shadow-sm">
+                    <i class="ph-bold ph-phone-call text-coralcord-400"></i>
+                    <span>Praxiskontakt</span>
+                </a>
+                <button id="mobile-toggle-btn" onclick="toggleKnotenMenu()" class="lg:hidden p-2.5 rounded-xl border border-stonebg-300 text-stonebg-900 hover:bg-stonebg-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="knoten-mobile-menu" class="hidden lg:hidden bg-stonebg-50 border-b border-stonebg-200 px-4 py-4 space-y-3 font-medium">
+            <a href="#roter-faden" onclick="toggleKnotenMenu()" class="block py-2 text-coralcord-600 font-bold">🧵 Der rote Faden</a>
+            <a href="#decoder" onclick="toggleKnotenMenu()" class="block py-2 text-stonebg-900">Knoten-Decoder</a>
+            <a href="#methoden" onclick="toggleKnotenMenu()" class="block py-2 text-stonebg-900">Therapiemethoden</a>
+            <a href="#team" onclick="toggleKnotenMenu()" class="block py-2 text-stonebg-900">Therapeuten</a>
+            <a href="#kontakt" onclick="toggleKnotenMenu()" class="block py-2 text-stonebg-900">Standort</a>
+        </div>
+    </header>
+
+    <!-- Scroll Track Indicator (The Thread) -->
+    <div class="fixed top-20 left-0 w-full h-1 z-30 bg-stonebg-200">
+        <div id="scroll-thread-indicator" class="h-full bg-gradient-to-r from-coralcord-500 via-coralcord-600 to-coralcord-400 w-0 transition-all duration-75"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden thread-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Manifesto -->
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-coralcord-100/90 border border-coralcord-200 text-xs font-bold text-coralcord-900">
+                        <i class="ph-bold ph-line-segments text-coralcord-600"></i>
+                        <span class="tracking-wide uppercase font-mono">FASZIEN-DISTORSION • DRY NEEDLING • TRIGGERPUNKTE</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-stonebg-950 leading-[1.1] tracking-tight">
+                        Wir lösen, <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-coralcord-600 via-coralcord-500 to-rose-700">was dich festhält.</span><br>
+                        Spürbare Freiheit im Gewebe.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-stone-600 leading-relaxed max-w-xl">
+                        Chronische Nackensteifigkeit, ziehende Schulterschmerzen oder tiefe Gesäßknoten sind selten Knochenleiden. In 85&nbsp;% der Fälle blockieren verfilzte Faszienketten und hypersensible Myogelosen. Wir lokalisieren den Ursprungsknoten und entwirren Ihr Gewebe.
+                    </p>
+
+                    <!-- Trust Points / Metrics -->
+                    <div class="grid grid-cols-3 gap-4 pt-2 border-t border-stonebg-200">
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-stonebg-950 font-mono">100%</span>
+                            <span class="text-xs text-stone-500 font-medium">Fokussiert auf Faszien & Triggerpunkte</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-coralcord-600 font-mono">Ø 3.2</span>
+                            <span class="text-xs text-stone-500 font-medium">Sitzungen bis zur Schmerzhalbierung</span>
+                        </div>
+                        <div>
+                            <span class="block text-2xl sm:text-3xl font-extrabold text-stonebg-950 font-mono">FDM</span>
+                            <span class="text-xs text-stone-500 font-medium">Zertifiziert nach Typaldos-Modell</span>
+                        </div>
+                    </div>
+
+                    <!-- Hero Call to Action -->
+                    <div class="flex flex-wrap items-center gap-4 pt-4">
+                        <a href="#decoder" class="bg-coralcord-500 hover:bg-coralcord-600 text-white font-bold px-7 py-3.5 rounded-xl shadow-coral flex items-center gap-2.5 transition-all hover:translate-y-[-1px]">
+                            <span>Knoten-Decoder starten</span>
+                            <i class="ph-bold ph-arrow-down"></i>
+                        </a>
+                        <a href="#roter-faden" class="bg-white hover:bg-stonebg-100 text-stonebg-900 border border-stonebg-300 font-bold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
+                            <i class="ph-bold ph-flow-arrow text-coralcord-500"></i>
+                            <span>Unser Entwirr-Prinzip</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Image with Interactive Myofascial Knot Overlay -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden border-2 border-stonebg-300 bg-white shadow-tangle p-3">
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-stonebg-200">
+                            <img src="./hero.jpg" alt="Faszientherapie und Triggerpunktbehandlung" class="w-full h-full object-cover">
+                            
+                            <!-- Overlay Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-stonebg-900/90 backdrop-blur-md rounded-2xl p-4 text-white border border-stonebg-700/60 shadow-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-coralcord-500/20 border border-coralcord-500/40 flex items-center justify-center text-coralcord-400 text-xl shrink-0">
+                                        <i class="ph-bold ph-target"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-mono font-bold text-coralcord-400 uppercase">Triggerpunkt-Fokus</div>
+                                        <div class="text-sm font-bold">Punktgenaue Detonisierung verhärteter Myozyten</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Interactive Pulsing Trigger Point Dots -->
+                            <div class="absolute top-[28%] left-[45%] group cursor-pointer" onclick="showKnotInfo('trapezius')">
+                                <span class="absolute -inset-2 rounded-full bg-coralcord-500/40 knot-pulse"></span>
+                                <div class="relative w-4 h-4 rounded-full bg-coralcord-500 border-2 border-white shadow-md flex items-center justify-center text-[8px] text-white font-bold">1</div>
+                            </div>
+                            <div class="absolute top-[48%] left-[58%] group cursor-pointer" onclick="showKnotInfo('rhomboid')">
+                                <span class="absolute -inset-2 rounded-full bg-coralcord-500/40 knot-pulse" style="animation-delay: 0.9s;"></span>
+                                <div class="relative w-4 h-4 rounded-full bg-coralcord-500 border-2 border-white shadow-md flex items-center justify-center text-[8px] text-white font-bold">2</div>
+                            </div>
+                            <div class="absolute top-[68%] left-[38%] group cursor-pointer" onclick="showKnotInfo('gluteus')">
+                                <span class="absolute -inset-2 rounded-full bg-coralcord-500/40 knot-pulse" style="animation-delay: 1.6s;"></span>
+                                <div class="relative w-4 h-4 rounded-full bg-coralcord-500 border-2 border-white shadow-md flex items-center justify-center text-[8px] text-white font-bold">3</div>
+                            </div>
+                        </div>
+
+                        <!-- Mini Notification Panel for Clicked Knot -->
+                        <div id="knot-popup" class="mt-3 p-3 bg-stonebg-100 rounded-xl border border-stonebg-200 text-xs text-stone-700 flex items-center justify-between">
+                            <span id="knot-popup-text">Klicke auf die Punkte 1, 2 oder 3 im Bild, um typische Myogelosen zu analysieren.</span>
+                            <span class="text-coralcord-600 font-mono font-bold text-[10px] ml-2 shrink-0">TRIGGER-MAP</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DER ROTE FADEN (Das Entwirr-Prinzip) -->
+    <section id="roter-faden" class="py-24 bg-white border-y border-stonebg-200 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coralcord-50 border border-coralcord-200 text-xs font-mono font-bold text-coralcord-800">
+                    <i class="ph-bold ph-yarn"></i> DER ROTE FADEN DURCH DIE BEHANDLUNG
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-stonebg-950 tracking-tight">
+                    In 3 Schritten vom Knäuel zur freien Bewegung
+                </h2>
+                <p class="text-stone-600 text-base leading-relaxed">
+                    Faszien heilen nicht durch bloßes Streicheln. Unser standardisierter Entwirr-Pfad verbindet bildgebende Palpation, intensive Tiefenbehandlung und neuromuskuläres Neu-Lernen.
+                </p>
+            </div>
+
+            <!-- Steps Grid connected by styled line -->
+            <div class="relative grid md:grid-cols-3 gap-8">
+                
+                <!-- Step 1 -->
+                <div class="bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200 hover:border-coralcord-300 transition-all hover:shadow-lg relative group">
+                    <div class="w-14 h-14 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-coralcord-500 group-hover:text-white transition-colors">
+                        1
+                    </div>
+                    <div class="text-xs font-mono font-bold text-coralcord-600 uppercase tracking-wider mb-2">SCHRITT 1 • PALPATION</div>
+                    <h3 class="text-xl font-bold text-stonebg-950 mb-3">Tastbefund & Trigger-Mapping</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                        Wir tasten das gesamte Fasziennetz entlang der myofaszialen Leitbahnen ab. Wir prüfen Übertragungsschmerzen (Referred Pain), Gewebsverquellungen und Triggerpunkte Grad I–III.
+                    </p>
+                    <ul class="text-xs text-stone-500 space-y-2 font-mono">
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-coralcord-500"></i> Tonus-Messung der Faszie</li>
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-coralcord-500"></i> Schmerz-Referenzanalyse</li>
+                    </ul>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200 hover:border-coralcord-300 transition-all hover:shadow-lg relative group">
+                    <div class="w-14 h-14 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-coralcord-500 group-hover:text-white transition-colors">
+                        2
+                    </div>
+                    <div class="text-xs font-mono font-bold text-coralcord-600 uppercase tracking-wider mb-2">SCHRITT 2 • DETONISIERUNG</div>
+                    <h3 class="text-xl font-bold text-stonebg-950 mb-3">Intensiver Faser-Release</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                        Mit FDM-Daumendruck, metallischen Faszien-Tools (IASTM) oder gezieltem Dry Needling lösen wir die pathologische Verklebung der Kollagenfasern und aktivieren die lokale Mikrozirkulation.
+                    </p>
+                    <ul class="text-xs text-stone-500 space-y-2 font-mono">
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-coralcord-500"></i> Typaldos Distorsionslösung</li>
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-coralcord-500"></i> Reiz-Resonanz auf Bindegewebe</li>
+                    </ul>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200 hover:border-coralcord-300 transition-all hover:shadow-lg relative group">
+                    <div class="w-14 h-14 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold mb-6 group-hover:bg-coralcord-500 group-hover:text-white transition-colors">
+                        3
+                    </div>
+                    <div class="text-xs font-mono font-bold text-coralcord-600 uppercase tracking-wider mb-2">SCHRITT 3 • GLEITFÄHIGKEIT</div>
+                    <h3 class="text-xl font-bold text-stonebg-950 mb-3">Re-Hydrierung & Gleit-Muster</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed mb-4">
+                        Die befreiten Gewebsschichten werden durch dynamische Bewegungs- und Dehnbahnen mit Hyaluronsäure durchspült, damit der Knoten nicht nach 48 Stunden wieder zuschnappt.
+                    </p>
+                    <ul class="text-xs text-stone-500 space-y-2 font-mono">
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-coralcord-500"></i> Endgradiges Re-Patterning</li>
+                        <li class="flex items-center gap-2"><i class="ph-bold ph-check text-coralcord-500"></i> Alltags-Haltungsökonomie</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DER INTERAKTIVE KNOTEN-DECODER -->
+    <section id="decoder" class="py-24 bg-stonebg-100 thread-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Explanations -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coralcord-100 border border-coralcord-200 text-xs font-mono font-bold text-coralcord-800">
+                        <i class="ph-bold ph-sliders"></i> INTERAKTIVER SCHNELL-TEST
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-stonebg-950 tracking-tight leading-tight">
+                        Der Knoten-Decoder: Wo sitzt Ihre Blockade?
+                    </h2>
+                    <p class="text-stone-600 text-base leading-relaxed">
+                        Triggerpunkte strahlen typischerweise in weit entfernte Zonen aus. Wählen Sie Ihre Problemzone und den Grad der Verhärtung – unser Decoder ermittelt die beteiligte Muskelkette und die empfohlene Behandlungsform.
+                    </p>
+                    
+                    <div class="p-4 rounded-2xl bg-white border border-stonebg-200 space-y-2">
+                        <div class="text-xs font-bold text-stonebg-950 flex items-center gap-2">
+                            <i class="ph-fill ph-info text-coralcord-500 text-base"></i>
+                            Warum schmerzt der Kopf bei Nackenverspannung?
+                        </div>
+                        <p class="text-xs text-stone-500 leading-relaxed">
+                            Der Musculus trapezius pars descendens überträgt seinen Schmerz über die Schläfe bis hinter die Augenhöhle. Ein klassischer Fehldiagnose-Grund für Migräne!
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Interactive Tool Card -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border-2 border-stonebg-300 shadow-xl space-y-6">
+                    
+                    <!-- 1. Selection Area -->
+                    <div>
+                        <label class="block text-xs font-mono font-bold uppercase tracking-wider text-stone-600 mb-3">1. Schmerzzone auswählen</label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                            <button type="button" onclick="selectZone('nacken')" id="btn-zone-nacken" class="zone-btn py-3 px-3 rounded-xl border-2 border-coralcord-500 bg-coralcord-50 text-coralcord-950 font-bold text-xs flex flex-col items-center gap-1.5 transition-all">
+                                <i class="ph-bold ph-head-circuit text-xl text-coralcord-600"></i>
+                                <span>Nacken & Kopf</span>
+                            </button>
+                            <button type="button" onclick="selectZone('schulter')" id="btn-zone-schulter" class="zone-btn py-3 px-3 rounded-xl border border-stonebg-200 bg-stonebg-50 text-stone-700 font-medium text-xs flex flex-col items-center gap-1.5 hover:border-coralcord-400 transition-all">
+                                <i class="ph-bold ph-arrows-out-line-vertical text-xl text-stone-500"></i>
+                                <span>Schulterblatt</span>
+                            </button>
+                            <button type="button" onclick="selectZone('lenden')" id="btn-zone-lenden" class="zone-btn py-3 px-3 rounded-xl border border-stonebg-200 bg-stonebg-50 text-stone-700 font-medium text-xs flex flex-col items-center gap-1.5 hover:border-coralcord-400 transition-all">
+                                <i class="ph-bold ph-crosshair text-xl text-stone-500"></i>
+                                <span>Lendenwirbel</span>
+                            </button>
+                            <button type="button" onclick="selectZone('becken')" id="btn-zone-becken" class="zone-btn py-3 px-3 rounded-xl border border-stonebg-200 bg-stonebg-50 text-stone-700 font-medium text-xs flex flex-col items-center gap-1.5 hover:border-coralcord-400 transition-all">
+                                <i class="ph-bold ph-footprints text-xl text-stone-500"></i>
+                                <span>Gesäß & Ischias</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 2. Intensity Slider -->
+                    <div>
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-mono font-bold uppercase tracking-wider text-stone-600">2. Verhärtungsgrad (1 bis 10)</label>
+                            <span id="slider-val-label" class="text-xs font-mono font-bold text-coralcord-600 bg-coralcord-50 px-2.5 py-0.5 rounded-full border border-coralcord-200">Stufe 7 / 10 (Derb)</span>
+                        </div>
+                        <input type="range" id="hardness-slider" min="1" max="10" value="7" oninput="updateDecoder()" class="w-full h-2.5 bg-stonebg-200 rounded-lg appearance-none cursor-pointer accent-coralcord-500">
+                        <div class="flex justify-between text-[10px] text-stone-400 font-mono mt-1">
+                            <span>1 = Leicht verspannt</span>
+                            <span>5 = Dauerdruck</span>
+                            <span>10 = Schmerzhafter Strang</span>
+                        </div>
+                    </div>
+
+                    <!-- 3. Dynamic Results Card -->
+                    <div id="decoder-result-box" class="bg-stonebg-50 rounded-2xl p-5 border border-stonebg-200 space-y-4">
+                        <div class="flex items-center justify-between border-b border-stonebg-200 pb-3">
+                            <div>
+                                <span class="text-[10px] font-mono font-bold uppercase text-stone-500 block">Identifizierte Muskelkette</span>
+                                <h4 id="res-muscle-name" class="text-base font-bold text-stonebg-950">M. trapezius pars descendens & Levator scapulae</h4>
+                            </div>
+                            <span id="res-urgency-badge" class="px-2.5 py-1 rounded-full text-xs font-bold font-mono bg-coralcord-100 text-coralcord-800">
+                                Myogelose Grad II
+                            </span>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                            <div>
+                                <span class="text-stone-500 font-mono text-[10px] uppercase block font-bold">Übertragungsmuster (Referred Pain):</span>
+                                <p id="res-pain-pattern" class="text-stone-800 mt-0.5 font-medium">Zieht einseitig über den Schläfenbereich, Schläfenkopfschmerz und Schmerz hinter dem Auge.</p>
+                            </div>
+                            <div>
+                                <span class="text-stone-500 font-mono text-[10px] uppercase block font-bold">Empfohlene Faszien-Therapie:</span>
+                                <p id="res-recommended-therapy" class="text-coralcord-700 mt-0.5 font-bold">Triggerpunkt-Kompression + Dry Needling + Hyaluron-Release</p>
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-xl border border-stonebg-200 text-xs text-stone-600 flex items-center justify-between">
+                            <span id="res-prognosis-text">Prognose: Bei 3 gezielten Behandlungen ist eine 80%-ige Schmerzreduktion erreichbar.</span>
+                            <button type="button" onclick="toggleBookingPanel(true)" class="bg-stonebg-900 hover:bg-stonebg-800 text-white font-mono text-[11px] font-bold px-3 py-1.5 rounded-lg shrink-0 transition-colors">
+                                Jetzt Termin wählen →
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: THERAPIEMETHODEN (Leistungsspektrum) -->
+    <section id="methoden" class="py-24 bg-white border-b border-stonebg-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coralcord-50 border border-coralcord-200 text-xs font-mono font-bold text-coralcord-800">
+                    <i class="ph-bold ph-hand-fist"></i> LEISTUNGSSPEKTRUM
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-stonebg-950 tracking-tight">
+                    Wissenschaftlich fundierte Faszien- & Schmerztherapie
+                </h2>
+                <p class="text-stone-600 text-base leading-relaxed">
+                    Wir kombinieren händische Tiefenstimulation mit modernen physikalischen Instrumenten für maximale Entlastung chronisch fixierter Myofaszien.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="bg-stonebg-50 rounded-3xl p-7 border border-stonebg-200 hover:border-coralcord-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-crosshair"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-coralcord-700 font-bold uppercase">IMTT-Standard</div>
+                    <h3 class="text-xl font-bold text-stonebg-950">Myofasziale Triggerpunkt-Therapie</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Punktgenauer anhaltender Ischämiedruck auf hypersensible Muskelknoten, um den Teufelskreis aus Sauerstoffmangel und Dauerkontraktion der Sarkomere zu durchbrechen.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-stone-500 border-t border-stonebg-200 flex items-center justify-between">
+                        <span>Dauer: 30 / 60 Min.</span>
+                        <span class="text-coralcord-600 font-bold">Kassenrezepte & Privat</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-stonebg-50 rounded-3xl p-7 border border-stonebg-200 hover:border-coralcord-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-needle"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-coralcord-700 font-bold uppercase">Sterile Akupunkturnadeln</div>
+                    <h3 class="text-xl font-bold text-stonebg-950">Dry Needling (Intramuskulär)</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Mittels hauchdünner Nadeln wird der Triggerpunkt direkt im tiefen Muskelgewebe angesteuert. Eine lokale Zuckungsantwort (Local Twitch) sorgt für sofortige reflektorische Entspannung.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-stone-500 border-t border-stonebg-200 flex items-center justify-between">
+                        <span>Tiefe: Bis zu 6 cm</span>
+                        <span class="text-coralcord-600 font-bold">Höchste Treffsicherheit</span>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-stonebg-50 rounded-3xl p-7 border border-stonebg-200 hover:border-coralcord-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-intersect"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-coralcord-700 font-bold uppercase">Nach Dr. Stephen Typaldos</div>
+                    <h3 class="text-xl font-bold text-stonebg-950">Faszien-Distorsions-Modell (FDM)</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Klassifikation von Gewebeverdrehungen (Triggerband, Hernierter Zylinder, Kontinuum-Distorsion) und kraftvolle Repositionierung durch gezielte Griffe entlang der Zugbahnen.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-stone-500 border-t border-stonebg-200 flex items-center justify-between">
+                        <span>Wirkung: Sofort-Effekt</span>
+                        <span class="text-coralcord-600 font-bold">EFDMA-Zertifiziert</span>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-stonebg-50 rounded-3xl p-7 border border-stonebg-200 hover:border-coralcord-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-shield-check"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-coralcord-700 font-bold uppercase">Instrument-Assisted (IASTM)</div>
+                    <h3 class="text-xl font-bold text-stonebg-950">Faszien-Schaber & Gua Sha</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Präzise geschliffene Edelstahlkanten spüren feinste Mikroverklebungen im kollagenen Gewebe auf. Durch gezieltes Streichen wird die Wundheilungskaskade angeregt.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-stone-500 border-t border-stonebg-200 flex items-center justify-between">
+                        <span>Anwendung: Sehnen & Narben</span>
+                        <span class="text-coralcord-600 font-bold">Kollagen-Synthese</span>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-stonebg-50 rounded-3xl p-7 border border-stonebg-200 hover:border-coralcord-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-arrows-in-cardinal"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-coralcord-700 font-bold uppercase">Kompression & Schereffekt</div>
+                    <h3 class="text-xl font-bold text-stonebg-950">Medizinisches Flossing</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Eng anliegende elastische Latexbänder komprimieren die Gelenkkapsel und das Faszienlager unter Bewegung. Beim schnellen Lösen flutet frische Nährflüssigkeit ins Gewebe.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-stone-500 border-t border-stonebg-200 flex items-center justify-between">
+                        <span>Effekt: Schwammeffekt</span>
+                        <span class="text-coralcord-600 font-bold">Optimale Gleitfähigkeit</span>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-stonebg-50 rounded-3xl p-7 border border-stonebg-200 hover:border-coralcord-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-heartbeat"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-coralcord-700 font-bold uppercase">Heilmittelkatalog</div>
+                    <h3 class="text-xl font-bold text-stonebg-950">Klassische Physiotherapie & MT</h3>
+                    <p class="text-sm text-stone-600 leading-relaxed">
+                        Natürlich rechnen wir alle Kassenrezepte für Manuelle Therapie (MT), Krankengymnastik (KG) und Wärmetherapie nach deutschem GKV- und PKV-Katalog transparent ab.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-stone-500 border-t border-stonebg-200 flex items-center justify-between">
+                        <span>Abrechnung: GKV, PKV, BG</span>
+                        <span class="text-coralcord-600 font-bold">Alle Kassen</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: EXPERTEN-TEAM -->
+    <section id="team" class="py-24 bg-stonebg-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coralcord-50 border border-coralcord-200 text-xs font-mono font-bold text-coralcord-800">
+                    <i class="ph-bold ph-users-three"></i> SPEZIALISTEN
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-stonebg-950 tracking-tight">
+                    Hände mit Erfahrung, Gespür und Präzision
+                </h2>
+                <p class="text-stone-600 text-base leading-relaxed">
+                    Unsere Therapeuten absolvieren jährlich über 120 Stunden Weiterbildung in Faszienbiologie, Schmerzphysiologie und Triggerpunkt-Interventionen.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Therapist 1 -->
+                <div class="bg-white rounded-3xl p-6 border border-stonebg-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-coralcord-100 text-coralcord-700 flex items-center justify-center text-3xl font-extrabold font-mono">
+                        TR
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-coralcord-600 font-bold uppercase">Praxisleitung & FDM-Instruktor</span>
+                        <h4 class="text-xl font-bold text-stonebg-950">Tobias Reinbold</h4>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        14 Jahre Spezialisierung auf Faszien-Distorsions-Modell nach Typaldos und intramuskuläres Dry Needling (IMTT). Betreute Leistungsschwimmer und Bühnentänzer.
+                    </p>
+                    <div class="pt-3 border-t border-stonebg-100 flex flex-wrap gap-1.5 text-[10px] font-mono text-stone-500">
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">FDM IC</span>
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">Dry Needling</span>
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">MT</span>
+                    </div>
+                </div>
+
+                <!-- Therapist 2 -->
+                <div class="bg-white rounded-3xl p-6 border border-stonebg-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-stonebg-200 text-stonebg-800 flex items-center justify-center text-3xl font-extrabold font-mono">
+                        SK
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-coralcord-600 font-bold uppercase">Leitende Faszientherapeutin</span>
+                        <h4 class="text-xl font-bold text-stonebg-950">Svenja Kalweit</h4>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        Expertin für chronische Kiefer- und Kopfschmerzketten (CMD) sowie bindegewebige Brustkorb-Blockaden nach langen Bildschirmarbeitsjahren.
+                    </p>
+                    <div class="pt-3 border-t border-stonebg-100 flex flex-wrap gap-1.5 text-[10px] font-mono text-stone-500">
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">CMD-Spezialistin</span>
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">IASTM Tools</span>
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">Flossing</span>
+                    </div>
+                </div>
+
+                <!-- Therapist 3 -->
+                <div class="bg-white rounded-3xl p-6 border border-stonebg-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-coralcord-100 text-coralcord-700 flex items-center justify-center text-3xl font-extrabold font-mono">
+                        MB
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-coralcord-600 font-bold uppercase">Sportphysiotherapeut DOSB</span>
+                        <h4 class="text-xl font-bold text-stonebg-950">Markus Breuer</h4>
+                    </div>
+                    <p class="text-xs text-stone-600 leading-relaxed">
+                        Fokus auf fasziale Reaktivität der unteren Extremität: Achillodynie, Plantarfasziitis und Tractus-Iliotibialis-Syndrom (Läuferknie).
+                    </p>
+                    <div class="pt-3 border-t border-stonebg-100 flex flex-wrap gap-1.5 text-[10px] font-mono text-stone-500">
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">DOSB Sportphysio</span>
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">Stoßwelle</span>
+                        <span class="bg-stonebg-100 px-2 py-0.5 rounded">KGG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: STANDORT, KONTAKT & ANFAHRT -->
+    <section id="kontakt" class="py-24 bg-white border-t border-stonebg-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-coralcord-50 border border-coralcord-200 text-xs font-mono font-bold text-coralcord-800">
+                        <i class="ph-bold ph-map-pin"></i> PRAXIS IN MÜNCHEN
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-stonebg-950 tracking-tight">
+                        Zentral im Glockenbachviertel gelegen
+                    </h2>
+                    <p class="text-stone-600 text-base leading-relaxed">
+                        Helle, ruhige Behandlungsräume mit moderner Schalldämmung für ungestörte Tiefenentspannung während der Faszientherapie.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-stonebg-950 block text-sm">Praxisadresse</span>
+                                <span class="text-stone-600 text-sm">Fraunhoferstraße 28, 80469 München (Hofgebäude, 1. OG mit Lift)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-clock"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-stonebg-950 block text-sm">Öffnungszeiten</span>
+                                <span class="text-stone-600 text-sm">Montag bis Donnerstag: 07:30 – 20:00 Uhr<br>Freitag: 07:30 – 17:30 Uhr</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-coralcord-100 text-coralcord-600 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-train"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-stonebg-950 block text-sm">Öffentliche Verkehrsmittel</span>
+                                <span class="text-stone-600 text-sm">U1 / U2 Fraunhoferstraße (120 m Fußweg), Tram 16 / 18 Reichenbachplatz</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-6 bg-stonebg-50 rounded-3xl p-8 border border-stonebg-200">
+                    <h3 class="text-xl font-bold text-stonebg-950 mb-2">Nachricht an das Praxisteam</h3>
+                    <p class="text-xs text-stone-500 mb-6 font-mono">Für Rezept-Rückfragen, Terminausfälle oder Rechnungsfragen.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-stone-600 mb-1">Ihr Name *</label>
+                                <input type="text" required placeholder="z. B. Dr. Jonas Eder" class="w-full bg-white border border-stonebg-300 rounded-xl px-4 py-2.5 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-stone-600 mb-1">Telefonnummer *</label>
+                                <input type="tel" required placeholder="0171 / 889922" class="w-full bg-white border border-stonebg-300 rounded-xl px-4 py-2.5 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-stone-600 mb-1">E-Mail-Adresse</label>
+                            <input type="email" placeholder="patient@mailbox.org" class="w-full bg-white border border-stonebg-300 rounded-xl px-4 py-2.5 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-stone-600 mb-1">Ihr Anliegen oder Symptom</label>
+                            <textarea rows="3" placeholder="Beschreiben Sie kurz Ihren Schmerzverlauf oder Ihre Diagnose..." class="w-full bg-white border border-stonebg-300 rounded-xl px-4 py-2 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500 resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="knot-dsgvo" required class="rounded text-coralcord-600 focus:ring-coralcord-500">
+                            <label for="knot-dsgvo" class="text-[11px] text-stone-500">Ich stimme der Datenverarbeitung im Rahmen der Kontaktaufnahme zu.</label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-stonebg-900 hover:bg-stonebg-800 text-white font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                            <span>Nachricht absenden</span>
+                            <i class="ph-bold ph-paper-plane-tilt text-coralcord-400"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stonebg-950 text-stonebg-400 text-xs py-12 border-t border-stonebg-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-coralcord-500 flex items-center justify-center text-white font-bold">
+                    <i class="ph-bold ph-spiral"></i>
+                </div>
+                <span class="font-bold text-white tracking-tight">KNOTENLÖSER München</span>
+                <span class="text-stone-600">|</span>
+                <span class="text-stone-500">Praxis für Faszientherapie & Triggerpunkte</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-stone-400 font-mono text-[11px]">
+                <a href="#impressum" class="hover:text-white transition-colors">Impressum</a>
+                <a href="#datenschutz" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="#agb" class="hover:text-white transition-colors">Patientenrechte</a>
+                <a href="../index.html" class="text-coralcord-400 hover:text-coralcord-300 font-bold transition-colors">← Zurück zur Vorlagenübersicht</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- 4. FLOATING BOOKING BUTTON (Sticky bottom-right)               -->
+    <!-- Das Haupt-Verkaufsfeature der Demo                            -->
+    <!-- ============================================================ -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        
+        <!-- Subtle attention hint badge -->
+        <div id="booking-badge-hint" class="hidden sm:flex items-center gap-2 bg-stonebg-900/90 backdrop-blur-md text-white text-xs font-medium py-2 px-3.5 rounded-full shadow-2xl border border-stonebg-700 animate-bounce">
+            <span class="w-2 h-2 rounded-full bg-coralcord-500 animate-ping"></span>
+            <span>Online Faszientermin buchen</span>
+        </div>
+
+        <!-- The Button Trigger -->
+        <button 
+            id="floating-booking-btn"
+            onclick="toggleBookingPanel()"
+            class="w-16 h-16 rounded-full bg-gradient-to-tr from-coralcord-600 via-coralcord-500 to-rose-600 hover:scale-105 text-white flex items-center justify-center text-2xl shadow-coral transition-all duration-200 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-coralcord-400/50"
+            aria-label="Online Termin buchen"
+            aria-expanded="false"
+        >
+            <i class="ph-bold ph-calendar-plus group-hover:rotate-6 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. FLOATING BOOKING PANEL (ca. 400x500px MODALES FENSTER)    -->
+    <!-- Inklusive Kategorisierter 11-Vorlagen-Umschalter für die Demo -->
+    <!-- ============================================================ -->
+    <div 
+        id="booking-widget-panel"
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[560px] bg-white rounded-3xl shadow-2xl border-2 border-stonebg-300 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-label="Online Terminbuchung & Vorlagen-Umschalter"
+    >
+        <!-- Panel Header -->
+        <div class="bg-gradient-to-r from-stonebg-950 to-stonebg-900 text-white p-4 flex items-center justify-between border-b border-stonebg-800 shrink-0">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-coralcord-500 flex items-center justify-center text-white text-lg shadow-coral">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-bold tracking-tight leading-none text-white">Online-Terminbuchung</h3>
+                    <span class="text-[10px] text-coralcord-300 font-mono">KNOTENLÖSER • München</span>
+                </div>
+            </div>
+            <button onclick="toggleBookingPanel(false)" class="w-8 h-8 rounded-full bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white flex items-center justify-center text-sm transition-colors" aria-label="Schließen">
+                <i class="ph-bold ph-x"></i>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEMO-SWITCHER: ALLE 11 VORLAGEN (KATEGORISIERT)               -->
+        <!-- ============================================================ -->
+        <div class="bg-stonebg-900 text-white px-3 py-2 border-b border-stonebg-800 text-xs shrink-0 space-y-1.5">
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-stone-400">DEMO-WECHSLER:</span>
+                
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-1 text-[10px] font-mono">
+                    <button type="button" id="cat-tab-classic" onclick="switchCategoryTab('classic')" class="px-2 py-0.5 rounded font-medium text-stone-400 hover:text-white transition-all">
+                        5 Klassiker
+                    </button>
+                    <span class="text-stone-600">|</span>
+                    <button type="button" id="cat-tab-creative" onclick="switchCategoryTab('creative')" class="px-2 py-0.5 rounded font-bold text-stonebg-950 bg-coralcord-500 transition-all">
+                        6 Kreativ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Row 1: 5 Classic Templates -->
+            <div id="cat-row-classic" class="grid grid-cols-5 gap-1 hidden">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="1. UNVERKRAMPFT">1. Bio</a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="2. KINETIQ">2. Sport</a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="3. SANA VITA">3. Natur</a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="4. AURORA MED">4. Klinik</a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="5. VITALWERK">5. Urban</a>
+            </div>
+
+            <!-- Row 2: 6 Creative Templates (Active by default here) -->
+            <div id="cat-row-creative" class="grid grid-cols-6 gap-1">
+                <a href="../design-6-schmiere/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="6. GELENK-SCHMIERE">6. Schmiere</a>
+                <a href="../design-7-knotenloeser/index.html" class="px-0.5 py-1 rounded text-[9px] font-bold text-center bg-coralcord-500 text-white border border-coralcord-400 truncate shadow-sm" title="7. KNOTENLÖSER">7. Knoten</a>
+                <a href="../design-8-knackpunkt/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="8. KNACKPUNKT">8. Knack</a>
+                <a href="../design-9-knetfertig/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="9. KNET & FERTIG">9. Kneten</a>
+                <a href="../design-10-aufrecht/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="10. AUFRECHT & HEITER">10. Aufrecht</a>
+                <a href="../design-11-bewegungsmelder/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-stonebg-800 hover:bg-stonebg-700 text-stone-300 hover:text-white border border-stonebg-700 truncate transition-colors" title="11. BEWEGUNGSMELDER">11. Melder</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (PLATZHALTER FÜR IFRAME / KOMPONENTE)-->
+        <!-- ca. 400x500px Content-Bereich                                -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-stonebg-950 bg-coralcord-100 text-stonebg-950 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500 transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500 transition-all">
+                            Selbstzahler
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1.5">Faszien-Behandlung wählen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-stonebg-300 rounded-xl px-3 py-2 text-xs font-medium text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                        <option value="Triggerpunkt-Erstbefund & Palpation">Triggerpunkt-Erstbefund & Palpation (60 Min.)</option>
+                        <option value="Dry Needling Kompakt">Dry Needling Kompakt (30 Min.)</option>
+                        <option value="Faszien-Distorsions-Modell FDM">Faszien-Distorsions-Modell nach Typaldos (45 Min.)</option>
+                        <option value="Akut-Release bei Schiefhals">Akut-Release bei akuter Schiefhals-Blockade</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-coralcord-600 font-mono font-bold">● Freie Slots verfügbar</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-coralcord-500 bg-coralcord-50 text-stonebg-950 font-bold text-xs">
+                            <span class="block text-[10px] text-coralcord-600 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500">
+                            <span class="block text-[10px] text-stone-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500">
+                            <span class="block text-[10px] text-stone-400 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '09:00')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-stonebg-950 bg-coralcord-100 text-stonebg-950 font-bold text-xs">09:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '11:15')" class="widget-time-btn py-1.5 text-center rounded-lg border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500">11:15</button>
+                        <button type="button" onclick="setWidgetTime(this, '14:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500">14:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '17:45')" class="widget-time-btn py-1.5 text-center rounded-lg border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500">17:45</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-coralcord-500 to-coralcord-600 hover:from-coralcord-400 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-coral transition-all mt-1">
+                    <span>Weiter zu Patientendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-coralcord-50 p-2.5 rounded-xl border border-coralcord-200 text-xs text-stone-800">
+                    <span class="font-bold text-stonebg-950 block" id="widget-summary-title">Triggerpunkt-Erstbefund • Gesetzlich</span>
+                    <span class="text-[11px] text-coralcord-700 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 09:00 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Lisa Bachmann" class="w-full bg-white border border-stonebg-300 rounded-xl px-3 py-2 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="089 / 452099" class="w-full bg-white border border-stonebg-300 rounded-xl px-3 py-2 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@muenchen.de" class="w-full bg-white border border-stonebg-300 rounded-xl px-3 py-2 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-stone-800 mb-1">Schmerzzone / Beschwerden (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Trapezius-Knoten, strahlt bis in den Kopf..." class="w-full bg-white border border-stonebg-300 rounded-xl px-3 py-1.5 text-xs text-stonebg-950 focus:outline-none focus:border-coralcord-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-stonebg-200 bg-white text-stone-700 font-bold text-xs hover:bg-stonebg-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-coralcord-500 hover:bg-coralcord-600 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-coral transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Faszientermin sichern</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-coralcord-100 text-coralcord-600 mx-auto flex items-center justify-center text-2xl shadow-inner border border-coralcord-300">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-coralcord-600">Aufnahme vorgemerkt</span>
+                    <h4 class="text-base font-bold text-stonebg-950 mt-1">Ihr Faszientermin steht bereit!</h4>
+                    <p class="text-xs text-stone-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhält die Praxis hier sofort die Buchung samt Symptomanamnese.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-stonebg-900 hover:bg-stonebg-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-stonebg-200 text-[10px] text-stone-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-coralcord-600 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. SCROLL THREAD PROGRESS ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            const bar = document.getElementById('scroll-thread-indicator');
+            if (bar) {
+                bar.style.width = scrolled + '%';
+            }
+        });
+
+        // --- 2. INTERACTIVE TRIGGER POINT POPUP ---
+        function showKnotInfo(knot) {
+            const popup = document.getElementById('knot-popup');
+            const text = document.getElementById('knot-popup-text');
+            if (knot === 'trapezius') {
+                text.innerHTML = '<strong>Knoten 1 (Oberer Trapezius):</strong> Häufigster Stressknoten. Strahlt schläfenseitig aus und erzeugt typischen Spannungskopfschmerz.';
+            } else if (knot === 'rhomboid') {
+                text.innerHTML = '<strong>Knoten 2 (M. Rhomboideus):</strong> Scharfes Stechen zwischen Schulterblatt und Wirbelsäule beim tiefen Einatmen.';
+            } else if (knot === 'gluteus') {
+                text.innerHTML = '<strong>Knoten 3 (M. Piriformis / Gluteus):</strong> Komprimiert den Ischiasnerv; wird oft fälschlich als Bandscheibenvorfall gedeutet.';
+            }
+            popup.classList.add('bg-coralcord-50', 'border-coralcord-300');
+        }
+
+        // --- 3. INTERACTIVE KNOTEN-DECODER ---
+        let currentZone = 'nacken';
+        const zoneData = {
+            nacken: {
+                muscle: 'M. trapezius pars descendens & Levator scapulae',
+                painPattern: 'Zieht einseitig über den Schläfenbereich, Schläfenkopfschmerz und Schmerz hinter dem Auge.',
+                therapy: 'Triggerpunkt-Kompression + Dry Needling + Hyaluron-Release'
+            },
+            schulter: {
+                muscle: 'M. rhomboideus major & Infraspinatus',
+                painPattern: 'Dumpfer, brennender Schmerz am medialen Schulterblattrand, Ausstrahlung in Oberarmaußenseite.',
+                therapy: 'IASTM-Faszienmesser + Traktion des Schultergürtels'
+            },
+            lenden: {
+                muscle: 'M. quadratus lumborum & Erector spinae',
+                painPattern: 'Tiefer gürtelförmiger Kreuzschmerz, erschwertes Aufrichten nach längerem Bücken.',
+                therapy: 'FDM Typaldos Zylinderdistorsion + Tiefen-Release'
+            },
+            becken: {
+                muscle: 'M. piriformis & Gluteus medius',
+                painPattern: 'Pseudo-radikuläre Ausstrahlung in Oberschenkelrückseite bis Kniekehle, Gesäßdruck.',
+                therapy: 'Ischämische Daumenkompression + Medizinisches Flossing'
+            }
+        };
+
+        function selectZone(zone) {
+            currentZone = zone;
+            document.querySelectorAll('.zone-btn').forEach(btn => {
+                btn.className = 'zone-btn py-3 px-3 rounded-xl border border-stonebg-200 bg-stonebg-50 text-stone-700 font-medium text-xs flex flex-col items-center gap-1.5 hover:border-coralcord-400 transition-all';
+                const icon = btn.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-coralcord-600', 'text-stone-500');
+            });
+
+            const activeBtn = document.getElementById('btn-zone-zone'.replace('zone', zone));
+            if (activeBtn) {
+                activeBtn.className = 'zone-btn py-3 px-3 rounded-xl border-2 border-coralcord-500 bg-coralcord-50 text-coralcord-950 font-bold text-xs flex flex-col items-center gap-1.5 transition-all';
+                const activeIcon = activeBtn.querySelector('i');
+                if (activeIcon) activeIcon.className = activeIcon.className.replace('text-stone-500', 'text-coralcord-600');
+            }
+            updateDecoder();
+        }
+
+        function updateDecoder() {
+            const slider = document.getElementById('hardness-slider');
+            const val = parseInt(slider.value, 10);
+            const label = document.getElementById('slider-val-label');
+            const badge = document.getElementById('res-urgency-badge');
+            const data = zoneData[currentZone];
+
+            document.getElementById('res-muscle-name').textContent = data.muscle;
+            document.getElementById('res-pain-pattern').textContent = data.painPattern;
+            document.getElementById('res-recommended-therapy').textContent = data.therapy;
+
+            if (val <= 3) {
+                label.textContent = `Stufe ${val} / 10 (Leicht)`;
+                badge.textContent = 'Geringe Myogelose';
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-bold font-mono bg-stonebg-200 text-stone-800';
+            } else if (val <= 7) {
+                label.textContent = `Stufe ${val} / 10 (Mäßig)`;
+                badge.textContent = 'Myogelose Grad II';
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-bold font-mono bg-coralcord-100 text-coralcord-800';
+            } else {
+                label.textContent = `Stufe ${val} / 10 (Ausgeprägt)`;
+                badge.textContent = 'Fixierte Bindegewebsdistorsion';
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-bold font-mono bg-red-100 text-red-800';
+            }
+        }
+
+        // --- 4. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '09:00';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function switchCategoryTab(cat) {
+            const rowClassic = document.getElementById('cat-row-classic');
+            const rowCreative = document.getElementById('cat-row-creative');
+            const tabClassic = document.getElementById('cat-tab-classic');
+            const tabCreative = document.getElementById('cat-tab-creative');
+
+            if (cat === 'classic') {
+                rowClassic.classList.remove('hidden');
+                rowCreative.classList.add('hidden');
+                tabClassic.className = 'px-2 py-0.5 rounded font-bold text-stonebg-950 bg-coralcord-500 transition-all';
+                tabCreative.className = 'px-2 py-0.5 rounded font-medium text-stone-400 hover:text-white transition-all';
+            } else {
+                rowClassic.classList.add('hidden');
+                rowCreative.classList.remove('hidden');
+                tabCreative.className = 'px-2 py-0.5 rounded font-bold text-stonebg-950 bg-coralcord-500 transition-all';
+                tabClassic.className = 'px-2 py-0.5 rounded font-medium text-stone-400 hover:text-white transition-all';
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-stonebg-950 bg-coralcord-100 text-stonebg-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-coralcord-500 bg-coralcord-50 text-stonebg-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-stonebg-200 bg-white text-stone-700 font-medium text-xs hover:border-coralcord-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-stonebg-950 bg-coralcord-100 text-stonebg-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Faszientermin für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde erfolgreich simuliert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleKnotenMenu() {
+            const m = document.getElementById('knoten-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihre Nachricht an die Praxis KNOTENLÖSER. Wir melden uns innerhalb von 24 Stunden.');
+            e.target.reset();
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

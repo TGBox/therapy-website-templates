@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEWEGUNGSMELDER | Praxis für Sensomotorik, Neuro-Physio & Reha</title>
+    <meta name="description" content="Spezialpraxis für neurologische Rehabilitation, Sensomotorik, Schlaganfall-Nachsorge, Parkinson und Gangsicherheit. Wenn das Nervensystem neue Wege bahnen muss.">
+
+    <!-- Fonts: Space Grotesk & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        neurongreen: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            200: '#bbf7d0',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e', // Bioluminescent Green
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        neurocyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        },
+                        cyberdark: {
+                            800: '#111827',
+                            900: '#0b132b',
+                            950: '#030712', // Deep Midnight
+                        }
+                    },
+                    boxShadow: {
+                        'synapse': '0 0 30px rgba(34, 197, 94, 0.4)',
+                        'cyan-glow': '0 0 30px rgba(6, 182, 212, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Kinetic Canvas Trail */
+        #neural-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        /* Pulsing Synapse */
+        @keyframes synapsePulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; filter: drop-shadow(0 0 10px #22c55e); }
+            50% { transform: scale(1.15); opacity: 0.4; filter: drop-shadow(0 0 20px #06b6d4); }
+        }
+        .synapse-pulse {
+            animation: synapsePulse 2.5s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body id="neuro-body" class="bg-cyberdark-950 text-slate-100 font-sans antialiased selection:bg-neurongreen-500 selection:text-cyberdark-950">
+
+    <!-- Top Neuro Status Bar -->
+    <div class="bg-cyberdark-900 text-slate-300 text-xs py-2 px-4 border-b border-cyberdark-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2 font-mono">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-neurongreen-400 animate-ping"></span>
+                <span>NEUROPLASTIZITÄTS-ZENTRUM: Gezieltes Re-Wiring des zentralen Nervensystems.</span>
+            </div>
+            <div class="flex items-center gap-4 text-[11px] font-mono">
+                <span class="text-slate-400"><i class="ph-bold ph-map-pin text-neurongreen-400 mr-1"></i>München Westend / Klinikum</span>
+                <a href="tel:08955443322" class="text-neurongreen-400 hover:text-neurongreen-300 font-bold transition-colors">089 / 55 44 33 22</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-cyberdark-950/90 backdrop-blur-md border-b border-cyberdark-800 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyberdark-900 to-cyberdark-800 border-2 border-neurongreen-500 flex items-center justify-center text-neurongreen-400 shadow-synapse group-hover:scale-105 transition-transform text-2xl">
+                    <i class="ph-bold ph-radar"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-display font-extrabold tracking-tight text-2xl text-white leading-none">BEWEGUNGS<span class="text-neurongreen-400">MELDER</span></span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-neurongreen-500/20 text-neurongreen-300 border border-neurongreen-500/40 font-bold">NEURO</span>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-400 font-mono block mt-0.5">Sensomotorik • Bobath • Parkinson • Reha</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-300">
+                <a href="#sensocheck" class="hover:text-neurongreen-400 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-neurongreen-500"></span> Sensorik-Check
+                </a>
+                <a href="#neuroplastizitaet" class="hover:text-neurongreen-400 transition-colors">Neuroplastizität</a>
+                <a href="#leistungen" class="hover:text-neurongreen-400 transition-colors">Therapiefelder</a>
+                <a href="#team" class="hover:text-neurongreen-400 transition-colors">Neuro-Therapeuten</a>
+                <a href="#kontakt" class="hover:text-neurongreen-400 transition-colors">Standort</a>
+            </nav>
+
+            <!-- CTA / Contact Direct -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-gradient-to-r from-neurongreen-600 to-neurongreen-500 hover:from-neurongreen-500 text-cyberdark-950 font-display font-bold text-sm px-5 py-2.5 rounded-xl shadow-synapse transition-all flex items-center gap-2 active:scale-95">
+                    <i class="ph-bold ph-phone-call"></i>
+                    <span>Neuro-Kontakt</span>
+                </a>
+                <button id="mobile-toggle-btn" onclick="toggleMelderMenu()" class="lg:hidden p-2.5 rounded-xl border border-cyberdark-700 text-slate-300 hover:bg-cyberdark-800" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="melder-mobile-menu" class="hidden lg:hidden bg-cyberdark-950 border-b border-cyberdark-800 px-4 py-4 space-y-3 font-medium">
+            <a href="#sensocheck" onclick="toggleMelderMenu()" class="block py-2 text-neurongreen-400 font-bold">⚡ Sensorik-Check</a>
+            <a href="#neuroplastizitaet" onclick="toggleMelderMenu()" class="block py-2 text-slate-200">Neuroplastizität</a>
+            <a href="#leistungen" onclick="toggleMelderMenu()" class="block py-2 text-slate-200">Therapiefelder</a>
+            <a href="#team" onclick="toggleMelderMenu()" class="block py-2 text-slate-200">Neuro-Therapeuten</a>
+            <a href="#kontakt" onclick="toggleMelderMenu()" class="block py-2 text-slate-200">Standort</a>
+        </div>
+    </header>
+
+    <!-- Hero Section with Glowing Interactive Canvas Motion Trail -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-radial-gradient">
+        
+        <!-- Interactive Canvas for Particle Motion Trails -->
+        <canvas id="neural-canvas"></canvas>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Manifesto -->
+                <div class="lg:col-span-7 space-y-8">
+                    
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyberdark-900 border border-neurongreen-500/40 text-xs font-mono font-bold text-neurongreen-400">
+                        <i class="ph-bold ph-activity text-sm"></i>
+                        <span>SENSORISCHE AKTIVIERUNG: BEWEGE DEN ZEIGER ZUM AUFWECKEN</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-display font-extrabold text-white leading-[1.08] tracking-tight">
+                        Das Gehirn lernt neu. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-neurongreen-400 via-neurocyan-400 to-emerald-300">Schritt für Schritt.</span><br>
+                        Gangsicherheit & Kontrolle.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl font-normal">
+                        Nach einem Schlaganfall, bei Morbus Parkinson, Multipler Sklerose oder schweren Gleichgewichtsstörungen verliert der Körper nicht seine Muskeln – sondern die Ansteuerung. Wir nutzen Neuroplastizität und hochfrequente Sensomotorik, um neue Synapsen zu bahnen.
+                    </p>
+
+                    <!-- Trust Pillars -->
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-cyberdark-900/80 backdrop-blur-md p-4 rounded-2xl border border-cyberdark-800">
+                            <span class="block text-2xl sm:text-3xl font-mono font-bold text-neurongreen-400">Bobath</span>
+                            <span class="text-xs text-slate-400 font-medium">Zertifiziertes Neuro-Konzept</span>
+                        </div>
+                        <div class="bg-cyberdark-900/80 backdrop-blur-md p-4 rounded-2xl border border-cyberdark-800">
+                            <span class="block text-2xl sm:text-3xl font-mono font-bold text-neurocyan-400">PNF</span>
+                            <span class="text-xs text-slate-400 font-medium">Propriozeptive Fazilitation</span>
+                        </div>
+                        <div class="bg-cyberdark-900/80 backdrop-blur-md p-4 rounded-2xl border border-cyberdark-800">
+                            <span class="block text-2xl sm:text-3xl font-mono font-bold text-white">LSVT®</span>
+                            <span class="text-xs text-slate-400 font-medium">BIG-Training bei Parkinson</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button type="button" onclick="toggleBookingPanel(true)" class="bg-gradient-to-r from-neurongreen-500 to-neurongreen-600 hover:from-neurongreen-400 text-cyberdark-950 font-display font-bold px-8 py-4 rounded-xl shadow-synapse flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 text-base">
+                            <i class="ph-bold ph-calendar-plus"></i>
+                            <span>Neuro-Befund anfragen</span>
+                        </button>
+                        <a href="#sensocheck" class="bg-cyberdark-900 hover:bg-cyberdark-800 text-white border border-cyberdark-700 font-display font-bold px-7 py-4 rounded-xl transition-all flex items-center gap-2">
+                            <i class="ph-bold ph-footprints text-neurongreen-400"></i>
+                            <span>Gleichgewichts-Test</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Image with Sensorimotor Node Overlay -->
+                <div class="lg:col-span-5 relative">
+                    <div class="rounded-3xl overflow-hidden border-2 border-neurongreen-500/40 bg-cyberdark-900 shadow-2xl p-3">
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-cyberdark-950">
+                            <img src="./hero.jpg" alt="Sensomotorische Neurorehabilitation" class="w-full h-full object-cover opacity-85">
+                            
+                            <!-- Interactive Synapse Nodes on Image -->
+                            <div class="absolute top-[30%] left-[50%] group cursor-pointer" onclick="triggerSynapse('kortex')">
+                                <span class="absolute -inset-3 rounded-full bg-neurongreen-500/30 synapse-pulse"></span>
+                                <div class="relative w-5 h-5 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[9px] text-cyberdark-950 font-bold">1</div>
+                            </div>
+                            <div class="absolute top-[55%] left-[35%] group cursor-pointer" onclick="triggerSynapse('cerebellum')">
+                                <span class="absolute -inset-3 rounded-full bg-neurocyan-400/30 synapse-pulse" style="animation-delay: 0.8s;"></span>
+                                <div class="relative w-5 h-5 rounded-full bg-neurocyan-400 border-2 border-white shadow-cyan-glow flex items-center justify-center text-[9px] text-cyberdark-950 font-bold">2</div>
+                            </div>
+                            <div class="absolute top-[75%] left-[60%] group cursor-pointer" onclick="triggerSynapse('proprio')">
+                                <span class="absolute -inset-3 rounded-full bg-neurongreen-500/30 synapse-pulse" style="animation-delay: 1.5s;"></span>
+                                <div class="relative w-5 h-5 rounded-full bg-neurongreen-500 border-2 border-white shadow-synapse flex items-center justify-center text-[9px] text-cyberdark-950 font-bold">3</div>
+                            </div>
+
+                            <!-- Overlay Details -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-cyberdark-950/90 backdrop-blur-md rounded-2xl p-4 text-white border border-cyberdark-700 shadow-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-neurongreen-500/20 border border-neurongreen-500/40 flex items-center justify-center text-neurongreen-400 text-xl shrink-0">
+                                        <i class="ph-bold ph-brain"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-mono font-bold text-neurongreen-400 uppercase">Aktive Neuroplastizität</div>
+                                        <div class="text-sm font-bold font-display" id="synapse-info-box">Tippe auf Synapse 1, 2 oder 3 zum Stimulieren</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kinetic sensor readout -->
+                        <div class="mt-3 p-3 bg-cyberdark-950 rounded-xl border border-cyberdark-800 text-xs text-slate-300 flex items-center justify-between font-mono">
+                            <span id="motion-sensor-status">📡 BEWEGUNGSMELDER: Sensorik aktiv</span>
+                            <span class="text-neurongreen-400 font-bold">ONLINE</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DER INTERAKTIVE GLEICHGEWICHTS- & SENSORIK-CHECK -->
+    <section id="sensocheck" class="py-24 bg-cyberdark-900 border-y border-cyberdark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyberdark-800 border border-neurongreen-500/30 text-xs font-mono font-bold text-neurongreen-400">
+                    <i class="ph-bold ph-scales"></i> PROPRIOZEPTIVER GLEICHGEWICHTS-CHECK
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+                    Wie sicher melden Ihre sensorischen Rezeptoren?
+                </h2>
+                <p class="text-slate-400 text-base leading-relaxed">
+                    Stolpern, Unsicherheit auf unebenem Pflaster oder Angst vor Stürzen entstehen, wenn visuelle, vestibuläre (Innenohr) und propriozeptive Signale nicht mehr sauber zusammenfinden.
+                </p>
+            </div>
+
+            <!-- Interactive Diagnostic Assessment -->
+            <div class="max-w-4xl mx-auto bg-cyberdark-950 rounded-3xl p-8 sm:p-12 border-2 border-cyberdark-800 shadow-2xl space-y-8">
+                
+                <!-- 3 Balance Scenarios -->
+                <div class="grid grid-cols-3 gap-3">
+                    <button type="button" onclick="selectBalanceTest('einbein')" id="btn-bal-einbein" class="bal-btn py-4 px-3 rounded-2xl border-2 border-neurongreen-500 bg-neurongreen-950/40 text-white font-display font-bold text-xs flex flex-col items-center gap-2 transition-all shadow-synapse">
+                        <i class="ph-bold ph-person-simple text-2xl text-neurongreen-400"></i>
+                        <span>Einbeinstand (30 Sek.)</span>
+                    </button>
+
+                    <button type="button" onclick="selectBalanceTest('augenzu')" id="btn-bal-augenzu" class="bal-btn py-4 px-3 rounded-2xl border-2 border-cyberdark-800 bg-cyberdark-900 text-slate-300 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all hover:border-neurongreen-400">
+                        <i class="ph-bold ph-eye-slash text-2xl text-slate-400"></i>
+                        <span>Romberg (Augen zu)</span>
+                    </button>
+
+                    <button type="button" onclick="selectBalanceTest('gang')" id="btn-bal-gang" class="bal-btn py-4 px-3 rounded-2xl border-2 border-cyberdark-800 bg-cyberdark-900 text-slate-300 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all hover:border-neurongreen-400">
+                        <i class="ph-bold ph-footprints text-2xl text-slate-400"></i>
+                        <span>Tandem-Gang (Seiltanz)</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Diagnostic Feedback -->
+                <div class="bg-cyberdark-900 rounded-2xl p-6 sm:p-8 border border-cyberdark-800 space-y-4">
+                    <div class="flex items-center justify-between border-b border-cyberdark-800 pb-3">
+                        <div>
+                            <span class="text-[10px] font-mono font-bold uppercase text-slate-400 block">SENSOMOTORISCHER BEFUND</span>
+                            <h4 id="bal-title" class="text-xl font-display font-bold text-white">Einbeinstand-Stabilität & Periphere Feedback-Schleife</h4>
+                        </div>
+                        <span id="bal-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-neurongreen-500/20 text-neurongreen-400 border border-neurongreen-500/40">
+                            Rezeptorendichte: Ausbaufähig
+                        </span>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6 text-xs text-slate-300">
+                        <div>
+                            <span class="font-bold text-white block mb-1 font-mono">Beteiligte Neuro-Zentren:</span>
+                            <p id="bal-neuro" class="leading-relaxed">
+                                Kleinhirn (Cerebellum) zur Feinkoordination der Fußmuskeln + Tractus spinocerebellaris zur blitzschnellen Lagemeldung.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-white block mb-1 font-mono">Gezielte Reha-Intervention:</span>
+                            <p id="bal-therapy" class="leading-relaxed text-neurongreen-400 font-medium">
+                                Posturomed-Schwingplatte, sensomotorische Fußbettungen nach Janda und visuell geführtes Balance-Feedback.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-between border-t border-cyberdark-800">
+                        <span class="text-xs text-slate-400 font-mono">Rezept vorhanden? Wir rechnen KG ZNS (Bobath / PNF) ab.</span>
+                        <button type="button" onclick="toggleBookingPanel(true)" class="bg-neurongreen-500 hover:bg-neurongreen-400 text-cyberdark-950 font-display font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                            Neuro-Termin buchen →
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: NEUROPLASTIZITÄT -->
+    <section id="neuroplastizitaet" class="py-24 bg-cyberdark-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyberdark-900 border border-neurongreen-500/30 text-xs font-mono font-bold text-neurongreen-400">
+                    <i class="ph-bold ph-git-commit"></i> WISSENSCHAFT
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+                    Neuronen, die zusammen feuern, vernetzen sich
+                </h2>
+                <p class="text-slate-400 text-base leading-relaxed">
+                    Nach Hebbian Learning erholt sich geschädigtes Nervengewebe am schnellsten durch hochfrequente, zielgerichtete und alltagsrelevante Wiederholungen.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="bg-cyberdark-900 rounded-3xl p-8 border border-cyberdark-800 space-y-4 hover:border-neurongreen-500/50 transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-neurongreen-500/10 border border-neurongreen-500/30 text-neurongreen-400 flex items-center justify-center text-2xl font-bold font-display">
+                        1
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">REIZ-INTENSITÄT</div>
+                    <h3 class="text-xl font-display font-bold text-white">Sensorischer Einstrom</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Wir wecken schlafende Rezeptoren über Igelbälle, vibrotaktile Reize und Temperaturwechsel, um den sensorischen Kortex überhaupt erst wieder ansprechbar zu machen.
+                    </p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="bg-cyberdark-900 rounded-3xl p-8 border border-cyberdark-800 space-y-4 hover:border-neurocyan-400/50 transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-neurocyan-400/10 border border-neurocyan-400/30 text-neurocyan-400 flex items-center justify-center text-2xl font-bold font-display">
+                        2
+                    </div>
+                    <div class="text-[11px] font-mono text-neurocyan-400 font-bold uppercase">DIAGONAL-MUSTER</div>
+                    <h3 class="text-xl font-display font-bold text-white">PNF-Bewegungsbahnen</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Über dreidimensionale Bewegungsmuster stimulieren wir die Muskelketten in natürlichen Synergien. Das Gehirn lernt Bewegungen – keine einzelnen isolierten Muskeln!
+                    </p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="bg-cyberdark-900 rounded-3xl p-8 border border-cyberdark-800 space-y-4 hover:border-neurongreen-500/50 transition-all">
+                    <div class="w-14 h-14 rounded-2xl bg-neurongreen-500/10 border border-neurongreen-500/30 text-neurongreen-400 flex items-center justify-center text-2xl font-bold font-display">
+                        3
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">TRANSFER-ERFOLG</div>
+                    <h3 class="text-xl font-display font-bold text-white">Autonomie im Alltag</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Vom sicheren Aufstehen vom Stuhl über Treppensteigen bis zum Einkaufen ohne Gehhilfe: Jeder Fortschritt wird im echten Alltag verankert.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: THERAPIEFELDER -->
+    <section id="leistungen" class="py-24 bg-cyberdark-900 border-t border-cyberdark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyberdark-800 border border-neurongreen-500/30 text-xs font-mono font-bold text-neurongreen-400">
+                    <i class="ph-bold ph-first-aid"></i> BEHANDLUNGSSPEKTRUM
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+                    Spezialisierte neurologische Krankengymnastik (KG ZNS)
+                </h2>
+                <p class="text-slate-400 text-base leading-relaxed">
+                    Abrechnung mit allen gesetzlichen und privaten Krankenkassen über die Positionsnummern KG-ZNS Bobath oder KG-ZNS PNF.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="bg-cyberdark-950 rounded-3xl p-7 border border-cyberdark-800 hover:border-neurongreen-500/50 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-neurongreen-500/10 text-neurongreen-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-heartbeat"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">Schlaganfall & Apoplex</div>
+                    <h3 class="text-xl font-display font-bold text-white">Bobath-Therapie für Erwachsene</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Hemmung von Spastiken, Anbahnung physiologischer Haltungs- und Bewegungsmuster sowie Wiedererlernen von Symmetrie nach Apoplex.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-cyberdark-800 flex justify-between">
+                        <span>KG-ZNS Bobath</span>
+                        <span class="text-neurongreen-400 font-bold">GKV & PKV</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-cyberdark-950 rounded-3xl p-7 border border-cyberdark-800 hover:border-neurongreen-500/50 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-neurongreen-500/10 text-neurongreen-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-arrows-out"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">Morbus Parkinson</div>
+                    <h3 class="text-xl font-display font-bold text-white">LSVT® BIG Amplituden-Training</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Gezielte großamplitudige Bewegungen zur Überwindung von Bradykinese (Verlangsamung), Freezing-Phänomenen und Kleinschrittigkeit.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-cyberdark-800 flex justify-between">
+                        <span>Zertifizierter BIG-Therapeut</span>
+                        <span class="text-neurongreen-400 font-bold">Gangsicherheit</span>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-cyberdark-950 rounded-3xl p-7 border border-cyberdark-800 hover:border-neurongreen-500/50 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-neurongreen-500/10 text-neurongreen-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-lightning"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">Sensomotorik & Stürze</div>
+                    <h3 class="text-xl font-display font-bold text-white">Sturzprävention & Balance</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Gleichgewichtstraining auf instabilen Unterlagen, Posturomed und sensorischen Matten zur Reaktivierung protektiver Schrittreflexe.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-cyberdark-800 flex justify-between">
+                        <span>Senioren & Neurologie</span>
+                        <span class="text-neurongreen-400 font-bold">Sturzrisiko -70%</span>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-cyberdark-950 rounded-3xl p-7 border border-cyberdark-800 hover:border-neurongreen-500/50 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-neurongreen-500/10 text-neurongreen-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-intersect"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">Multiple Sklerose & Ataxie</div>
+                    <h3 class="text-xl font-display font-bold text-white">PNF (Fazilitation)</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Widerstands- und Dehnungsreize zur Koordination agonistischer und antagonistischer Muskelgruppen bei Ataxien und Paraparesen.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-cyberdark-800 flex justify-between">
+                        <span>KG-ZNS PNF</span>
+                        <span class="text-neurongreen-400 font-bold">Koordination</span>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-cyberdark-950 rounded-3xl p-7 border border-cyberdark-800 hover:border-neurongreen-500/50 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-neurongreen-500/10 text-neurongreen-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-hand-eye"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">Phantomschmerz & Parese</div>
+                    <h3 class="text-xl font-display font-bold text-white">Spiegeltherapie</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Visuelle Illusion über einen Spiegel zur Reorganisation der kortikalen Repräsentation gelähmter oder schmerzhafter Extremitäten.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-cyberdark-800 flex justify-between">
+                        <span>Evidenzbasiert</span>
+                        <span class="text-neurongreen-400 font-bold">Schmerzreduktion</span>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-cyberdark-950 rounded-3xl p-7 border border-cyberdark-800 hover:border-neurongreen-500/50 transition-all space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-neurongreen-500/10 text-neurongreen-400 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-house-line"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-neurongreen-400 font-bold uppercase">Auf ärztliche Verordnung</div>
+                    <h3 class="text-xl font-display font-bold text-white">Hausbesuche im Münchner Stadtgebiet</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Für Patienten mit eingeschränkter Mobilität führen wir alle neuro-physiotherapeutischen Behandlungen direkt im häuslichen Umfeld durch.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-cyberdark-800 flex justify-between">
+                        <span>Hausbesuchszulassung</span>
+                        <span class="text-neurongreen-400 font-bold">München-weit</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TEAM -->
+    <section id="team" class="py-24 bg-cyberdark-950 border-t border-cyberdark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyberdark-900 border border-neurongreen-500/30 text-xs font-mono font-bold text-neurongreen-400">
+                    <i class="ph-bold ph-users-three"></i> DAS NEURO-TEAM
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+                    Zertifizierte Fachkompetenz mit Herz & Geduld
+                </h2>
+                <p class="text-slate-400 text-base leading-relaxed">
+                    Neurologische Rehabilitation erfordert fundiertes Fachwissen, Empathie und den unbedingten Willen, jeden noch so kleinen Meilenstein gemeinsam zu feiern.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Team 1 -->
+                <div class="bg-cyberdark-900 rounded-3xl p-6 border border-cyberdark-800 space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-neurongreen-500/10 border border-neurongreen-500/30 text-neurongreen-400 flex items-center justify-center text-3xl font-extrabold font-display">
+                        SM
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-neurongreen-400 font-bold uppercase">Leitender Neuro-Physiotherapeut</span>
+                        <h4 class="text-xl font-display font-bold text-white">Stefan Mehrle</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Bobath-Instruktor (IBITA) und PNF-Spezialist. Über 18 Jahre Erfahrung in neurologischen Akut- und Frührehazentren Großhadern.
+                    </p>
+                    <div class="pt-3 border-t border-cyberdark-800 text-[10px] font-mono text-slate-400 flex gap-1.5">
+                        <span class="bg-cyberdark-950 px-2 py-0.5 rounded">Bobath Senior</span>
+                        <span class="bg-cyberdark-950 px-2 py-0.5 rounded">LSVT BIG</span>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="bg-cyberdark-900 rounded-3xl p-6 border border-cyberdark-800 space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-neurocyan-400/10 border border-neurocyan-400/30 text-neurocyan-400 flex items-center justify-center text-3xl font-extrabold font-display">
+                        LB
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-neurocyan-400 font-bold uppercase">Neuro-Reha & Sensomotorik</span>
+                        <h4 class="text-xl font-display font-bold text-white">Lena Brandstetter</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Expertin für Parkinson-Gangtraining, Gleichgewichtsstörungen und vestibuläre Schwindeltherapie.
+                    </p>
+                    <div class="pt-3 border-t border-cyberdark-800 text-[10px] font-mono text-slate-400 flex gap-1.5">
+                        <span class="bg-cyberdark-950 px-2 py-0.5 rounded">Vestibular-Therapie</span>
+                        <span class="bg-cyberdark-950 px-2 py-0.5 rounded">KG ZNS</span>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="bg-cyberdark-900 rounded-3xl p-6 border border-cyberdark-800 space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-neurongreen-500/10 border border-neurongreen-500/30 text-neurongreen-400 flex items-center justify-center text-3xl font-extrabold font-display">
+                        TG
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-neurongreen-400 font-bold uppercase">Physiotherapeut & PNF-Therapeut</span>
+                        <h4 class="text-xl font-display font-bold text-white">Timo Gerber</h4>
+                    </div>
+                    <p class="text-xs text-slate-300 leading-relaxed">
+                        Spezialisiert auf motorisches Lernen, Gangschulung auf dem Laufband und Hausbesuche bei schwerstbetroffenen Schlaganfallpatienten.
+                    </p>
+                    <div class="pt-3 border-t border-cyberdark-800 text-[10px] font-mono text-slate-400 flex gap-1.5">
+                        <span class="bg-cyberdark-950 px-2 py-0.5 rounded">PNF Level II</span>
+                        <span class="bg-cyberdark-950 px-2 py-0.5 rounded">Laufband-Reha</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: STANDORT & KONTAKT -->
+    <section id="kontakt" class="py-24 bg-cyberdark-900 border-t border-cyberdark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyberdark-800 border border-neurongreen-500/30 text-xs font-mono font-bold text-neurongreen-400">
+                        <i class="ph-bold ph-map-pin"></i> PRAXISSTANDORT
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-white tracking-tight">
+                        Barrierefrei & rollstuhlgerecht in München Westend
+                    </h2>
+                    <p class="text-slate-300 text-base leading-relaxed">
+                        Ebenerdiger Zugang, extrabreite Türen, Deckenlifter für sichere Gehversuche und großzügige Behindertenparkplätze direkt vor dem Eingang.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-cyberdark-800 text-neurongreen-400 border border-cyberdark-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-white block text-sm">Praxisanschrift</span>
+                                <span class="text-slate-300 text-sm">Landsberger Straße 110, 80339 München (Westend)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-cyberdark-800 text-neurongreen-400 border border-cyberdark-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-clock"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-white block text-sm">Therapiezeiten</span>
+                                <span class="text-slate-300 text-sm">Montag bis Donnerstag: 08:00 – 19:30 Uhr | Freitag: 08:00 – 16:30 Uhr</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-cyberdark-800 text-neurongreen-400 border border-cyberdark-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-phone"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-white block text-sm">Telefon & Hausbesuch-Koordination</span>
+                                <span class="text-slate-300 text-sm">089 / 55 44 33 22 (Für Angehörige und Klinik-Überleitungen)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-6 bg-cyberdark-950 rounded-3xl p-8 border border-cyberdark-800 shadow-2xl">
+                    <h3 class="text-xl font-display font-bold text-white mb-2">Nachricht an das Praxisteam</h3>
+                    <p class="text-xs text-slate-400 mb-6 font-mono">Für Rezept-Prüfungen (KG ZNS), Hausbesuchsanfragen oder Klinikentlassungen.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-1">Name (Patient / Angehörige*r) *</label>
+                                <input type="text" required placeholder="z. B. Renate Weber" class="w-full bg-cyberdark-900 border border-cyberdark-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-neurongreen-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-1">Telefonnummer *</label>
+                                <input type="tel" required placeholder="089 / 554433" class="w-full bg-cyberdark-900 border border-cyberdark-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-neurongreen-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-1">E-Mail</label>
+                            <input type="email" placeholder="patient@muenchen.de" class="w-full bg-cyberdark-900 border border-cyberdark-700 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-neurongreen-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-slate-400 mb-1">Diagnose / Verordnung</label>
+                            <textarea rows="3" placeholder="z. B. Zustand nach Mediainfarkt rechts, Rezept über KG ZNS Bobath mit Hausbesuch..." class="w-full bg-cyberdark-900 border border-cyberdark-700 rounded-xl px-4 py-2 text-xs text-white focus:outline-none focus:border-neurongreen-500 resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="melder-dsgvo" required class="rounded text-neurongreen-500 focus:ring-neurongreen-400">
+                            <label for="melder-dsgvo" class="text-[11px] text-slate-400">Ich willige in die Speicherung zur Terminkoordination ein.</label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-gradient-to-r from-neurongreen-600 to-neurongreen-500 hover:from-neurongreen-500 text-cyberdark-950 font-display font-bold py-3.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-synapse">
+                            <span>Nachricht übermitteln</span>
+                            <i class="ph-bold ph-paper-plane-tilt"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cyberdark-950 text-slate-400 text-xs py-12 border-t border-cyberdark-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-neurongreen-500 flex items-center justify-center text-cyberdark-950 font-bold text-sm">
+                    <i class="ph-bold ph-radar"></i>
+                </div>
+                <span class="font-display font-bold text-white tracking-tight">BEWEGUNGSMELDER München</span>
+                <span class="text-slate-600">|</span>
+                <span class="text-slate-400">Praxis für Sensomotorik, Neuro-Physiotherapie & Reha</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-slate-400 font-mono text-[11px]">
+                <a href="#impressum" class="hover:text-white transition-colors">Impressum</a>
+                <a href="#datenschutz" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="../index.html" class="text-neurongreen-400 hover:text-neurongreen-300 font-bold transition-colors">← Zurück zur Vorlagenübersicht</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- 4. FLOATING BOOKING BUTTON (Sticky bottom-right)               -->
+    <!-- Das Haupt-Verkaufsfeature der Demo                            -->
+    <!-- ============================================================ -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        
+        <!-- Attention Hint Badge -->
+        <div id="booking-badge-hint" class="hidden sm:flex items-center gap-2 bg-cyberdark-900/90 backdrop-blur-md text-white text-xs font-medium py-2 px-3.5 rounded-full shadow-2xl border border-neurongreen-500/40 animate-bounce">
+            <span class="w-2 h-2 rounded-full bg-neurongreen-400 animate-ping"></span>
+            <span>Neuro-Termin online buchen</span>
+        </div>
+
+        <!-- The Button Trigger -->
+        <button 
+            id="floating-booking-btn"
+            onclick="toggleBookingPanel()"
+            class="w-16 h-16 rounded-full bg-gradient-to-tr from-neurongreen-500 to-neurocyan-400 hover:scale-105 text-cyberdark-950 flex items-center justify-center text-2xl shadow-synapse transition-all duration-200 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-neurongreen-400/50"
+            aria-label="Online Termin buchen"
+            aria-expanded="false"
+        >
+            <i class="ph-bold ph-calendar-plus group-hover:rotate-6 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. FLOATING BOOKING PANEL (ca. 400x500px MODALES FENSTER)    -->
+    <!-- Inklusive Kategorisierter 11-Vorlagen-Umschalter für die Demo -->
+    <!-- ============================================================ -->
+    <div 
+        id="booking-widget-panel"
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[560px] bg-white rounded-3xl shadow-2xl border-2 border-cyberdark-700 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-label="Online Terminbuchung & Vorlagen-Umschalter"
+    >
+        <!-- Panel Header -->
+        <div class="bg-gradient-to-r from-cyberdark-950 to-cyberdark-900 text-white p-4 flex items-center justify-between border-b border-cyberdark-800 shrink-0">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-neurongreen-500 flex items-center justify-center text-cyberdark-950 text-lg shadow-synapse font-bold">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-display font-bold tracking-tight leading-none text-white">Online-Terminbuchung</h3>
+                    <span class="text-[10px] text-neurongreen-400 font-mono">BEWEGUNGSMELDER • München</span>
+                </div>
+            </div>
+            <button onclick="toggleBookingPanel(false)" class="w-8 h-8 rounded-full bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white flex items-center justify-center text-sm transition-colors" aria-label="Schließen">
+                <i class="ph-bold ph-x"></i>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEMO-SWITCHER: ALLE 11 VORLAGEN (KATEGORISIERT)               -->
+        <!-- ============================================================ -->
+        <div class="bg-cyberdark-900 text-white px-3 py-2 border-b border-cyberdark-800 text-xs shrink-0 space-y-1.5">
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">DEMO-WECHSLER:</span>
+                
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-1 text-[10px] font-mono">
+                    <button type="button" id="cat-tab-classic" onclick="switchCategoryTab('classic')" class="px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white transition-all">
+                        5 Klassiker
+                    </button>
+                    <span class="text-slate-600">|</span>
+                    <button type="button" id="cat-tab-creative" onclick="switchCategoryTab('creative')" class="px-2 py-0.5 rounded font-bold text-cyberdark-950 bg-neurongreen-400 transition-all">
+                        6 Kreativ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Row 1: 5 Classic Templates -->
+            <div id="cat-row-classic" class="grid grid-cols-5 gap-1 hidden">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="1. UNVERKRAMPFT">1. Bio</a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="2. KINETIQ">2. Sport</a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="3. SANA VITA">3. Natur</a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="4. AURORA MED">4. Klinik</a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="5. VITALWERK">5. Urban</a>
+            </div>
+
+            <!-- Row 2: 6 Creative Templates (Active by default here) -->
+            <div id="cat-row-creative" class="grid grid-cols-6 gap-1">
+                <a href="../design-6-schmiere/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="6. GELENK-SCHMIERE">6. Schmiere</a>
+                <a href="../design-7-knotenloeser/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="7. KNOTENLÖSER">7. Knoten</a>
+                <a href="../design-8-knackpunkt/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="8. KNACKPUNKT">8. Knack</a>
+                <a href="../design-9-knetfertig/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="9. KNET & FERTIG">9. Kneten</a>
+                <a href="../design-10-aufrecht/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-cyberdark-800 hover:bg-cyberdark-700 text-slate-300 hover:text-white border border-cyberdark-700 truncate transition-colors" title="10. AUFRECHT & HEITER">10. Aufrecht</a>
+                <a href="../design-11-bewegungsmelder/index.html" class="px-0.5 py-1 rounded text-[9px] font-bold text-center bg-neurongreen-400 text-cyberdark-950 border border-neurongreen-300 truncate shadow-sm" title="11. BEWEGUNGSMELDER">11. Melder</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (ca. 400x500px)                    -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white text-slate-900">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-cyberdark-950 bg-neurongreen-100 text-cyberdark-950 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500 transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'BG / Unfall')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500 transition-all">
+                            BG / Unfall
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1.5">Neuro-Behandlung wählen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-medium text-slate-950 focus:outline-none focus:border-neurongreen-500">
+                        <option value="Neuro-Erstbefund & Sensomotorik">Neuro-Erstbefund & Sensomotorik (60 Min.)</option>
+                        <option value="Bobath-Therapie (KG ZNS)">Bobath-Therapie für Erwachsene (KG ZNS)</option>
+                        <option value="LSVT BIG Parkinson-Einheit">LSVT® BIG Parkinson-Einzeltraining</option>
+                        <option value="Hausbesuch KG-ZNS">Hausbesuch KG-ZNS bei Immobilität</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-neurongreen-700 font-mono font-bold">● Freie Reha-Slots</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-neurongreen-500 bg-neurongreen-50 text-slate-950 font-bold text-xs">
+                            <span class="block text-[10px] text-neurongreen-700 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500">
+                            <span class="block text-[10px] text-slate-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500">
+                            <span class="block text-[10px] text-slate-400 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '08:30')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-cyberdark-950 bg-neurongreen-100 text-cyberdark-950 font-bold text-xs">08:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '11:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500">11:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '14:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500">14:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '16:45')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500">16:45</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-neurongreen-600 to-neurongreen-500 hover:from-neurongreen-400 text-cyberdark-950 font-display font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-synapse transition-all mt-1">
+                    <span>Weiter zu Patientendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-neurongreen-50 p-2.5 rounded-xl border border-neurongreen-200 text-xs text-slate-800">
+                    <span class="font-bold text-slate-950 block" id="widget-summary-title">Neuro-Erstbefund • Gesetzlich</span>
+                    <span class="text-[11px] text-neurongreen-800 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 08:30 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Walter Klee" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-950 focus:outline-none focus:border-neurongreen-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="089 / 554433" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-950 focus:outline-none focus:border-neurongreen-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@muenchen.de" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-950 focus:outline-none focus:border-neurongreen-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">Neurologische Indikation</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Apoplex vor 6 Monaten, Hemiparese links..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-950 focus:outline-none focus:border-neurongreen-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-neurongreen-500 hover:bg-neurongreen-400 text-cyberdark-950 font-display font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-synapse transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Neuro-Termin sichern</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-neurongreen-100 text-neurongreen-700 mx-auto flex items-center justify-center text-2xl shadow-inner border border-neurongreen-300">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-neurongreen-700">Reha-Termin reserviert</span>
+                    <h4 class="text-base font-display font-bold text-slate-950 mt-1">Ihr Termin wurde simuliert!</h4>
+                    <p class="text-xs text-slate-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhält die Praxis hier sofort die Buchung samt Indikationshinweis.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-cyberdark-950 hover:bg-cyberdark-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-slate-200 text-[10px] text-slate-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-neurongreen-600 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. KINETIC NEURAL CANVAS MOTION TRAILS ---
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        });
+
+        const particles = [];
+        const maxParticles = 40;
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = (Math.random() - 0.5) * 2;
+                this.speedY = (Math.random() - 0.5) * 2;
+                this.life = 1;
+                this.decay = Math.random() * 0.02 + 0.015;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life -= this.decay;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(34, 197, 94, ${this.life * 0.8})`;
+                ctx.shadowColor = '#22c55e';
+                ctx.shadowBlur = 8;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function addTrail(x, y) {
+            for (let i = 0; i < 2; i++) {
+                if (particles.length < maxParticles) {
+                    particles.push(new Particle(x, y));
+                }
+            }
+        }
+
+        window.addEventListener('mousemove', (e) => {
+            addTrail(e.clientX, e.clientY + window.scrollY);
+            const status = document.getElementById('motion-sensor-status');
+            if (status) status.textContent = `📡 BEWEGUNGSMELDER: Reizimpuls (${Math.round(e.clientX)}, ${Math.round(e.clientY)})`;
+        });
+
+        window.addEventListener('touchmove', (e) => {
+            if (e.touches.length > 0) {
+                addTrail(e.touches[0].clientX, e.touches[0].clientY + window.scrollY);
+            }
+        });
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].life <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // --- 2. SYNAPSE STIMULATION INFO ---
+        function triggerSynapse(type) {
+            const box = document.getElementById('synapse-info-box');
+            if (type === 'kortex') {
+                box.innerHTML = '<strong>Synapse 1 (Motorkortex):</strong> Pyramidenbahn-Reizung für willkürliche Finger- & Fußmotorik.';
+            } else if (type === 'cerebellum') {
+                box.innerHTML = '<strong>Synapse 2 (Kleinhirn):</strong> Taktgeber für flüssiges Gehen und Bewegungstiming.';
+            } else if (type === 'proprio') {
+                box.innerHTML = '<strong>Synapse 3 (Propriozeptoren):</strong> Muskelspindeln & Sehnenorgane melden die Gelenkstellung.';
+            }
+        }
+
+        // --- 3. BALANCE TEST CONTROLLER ---
+        const balanceData = {
+            einbein: {
+                title: 'Einbeinstand-Stabilität & Periphere Feedback-Schleife',
+                badge: 'Rezeptorendichte: Ausbaufähig',
+                neuro: 'Kleinhirn (Cerebellum) zur Feinkoordination der Fußmuskeln + Tractus spinocerebellaris zur blitzschnellen Lagemeldung.',
+                therapy: 'Posturomed-Schwingplatte, sensomotorische Fußbettungen nach Janda und visuell geführtes Balance-Feedback.'
+            },
+            augenzu: {
+                title: 'Romberg-Test (Ohne visuelle Kompensation)',
+                badge: 'Reiner Propriozeptions-Test',
+                neuro: 'Funiculus posterior (Hinterstrangbahnen) im Rückenmark. Zeigt, ob der Körper die Raumposition ohne Augenlicht wahrnimmt.',
+                therapy: 'Kombinierte vestibuläre Rehabilitation, Blickstabilisation (VOR) und taktile Reizverstärkung an Fußsohlen.'
+            },
+            gang: {
+                title: 'Tandem-Gang (Seiltänzer-Schrittmuster)',
+                badge: 'Zentralmotorische Gangsicherheit',
+                neuro: 'Basalganglien & mediales Bewegungssystem zur Koordination schmaler Unterstützungsflächen.',
+                therapy: 'LSVT® BIG Amplitudentraining, Rhythmisches Akustisches Cueing (Metronom-Schritte) und Dual-Task Training.'
+            }
+        };
+
+        function selectBalanceTest(test) {
+            document.querySelectorAll('.bal-btn').forEach(b => {
+                b.className = 'bal-btn py-4 px-3 rounded-2xl border-2 border-cyberdark-800 bg-cyberdark-900 text-slate-300 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all hover:border-neurongreen-400';
+                const icon = b.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-neurongreen-400', 'text-slate-400');
+            });
+
+            const activeBtn = document.getElementById('btn-bal-' + test);
+            if (activeBtn) {
+                activeBtn.className = 'bal-btn py-4 px-3 rounded-2xl border-2 border-neurongreen-500 bg-neurongreen-950/40 text-white font-display font-bold text-xs flex flex-col items-center gap-2 transition-all shadow-synapse';
+                const activeIcon = activeBtn.querySelector('i');
+                if (activeIcon) activeIcon.className = activeIcon.className.replace('text-slate-400', 'text-neurongreen-400');
+            }
+
+            const data = balanceData[test];
+            document.getElementById('bal-title').textContent = data.title;
+            document.getElementById('bal-badge').textContent = data.badge;
+            document.getElementById('bal-neuro').textContent = data.neuro;
+            document.getElementById('bal-therapy').textContent = data.therapy;
+        }
+
+        // --- 4. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '08:30';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function switchCategoryTab(cat) {
+            const rowClassic = document.getElementById('cat-row-classic');
+            const rowCreative = document.getElementById('cat-row-creative');
+            const tabClassic = document.getElementById('cat-tab-classic');
+            const tabCreative = document.getElementById('cat-tab-creative');
+
+            if (cat === 'classic') {
+                rowClassic.classList.remove('hidden');
+                rowCreative.classList.add('hidden');
+                tabClassic.className = 'px-2 py-0.5 rounded font-bold text-cyberdark-950 bg-neurongreen-400 transition-all';
+                tabCreative.className = 'px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white transition-all';
+            } else {
+                rowClassic.classList.add('hidden');
+                rowCreative.classList.remove('hidden');
+                tabCreative.className = 'px-2 py-0.5 rounded font-bold text-cyberdark-950 bg-neurongreen-400 transition-all';
+                tabClassic.className = 'px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white transition-all';
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-cyberdark-950 bg-neurongreen-100 text-cyberdark-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-neurongreen-500 bg-neurongreen-50 text-slate-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-neurongreen-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-cyberdark-950 bg-neurongreen-100 text-cyberdark-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Neuro-Termin für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde erfolgreich angefragt.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleMelderMenu() {
+            const m = document.getElementById('melder-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihre Anfrage an die Praxis BEWEGUNGSMELDER. Unser Reha-Team meldet sich unverzüglich.');
+            e.target.reset();
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

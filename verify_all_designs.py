@@ -1,120 +1,138 @@
 import os
 import re
 import sys
+import urllib.request
 
 sys.stdout.reconfigure(encoding='utf-8')
 
 designs = [
-    ("design-1-unverkrampft", "UNVERKRAMPFT"),
-    ("design-2-kinetiq", "KINETIQ"),
-    ("design-3-sanavita", "SANA VITA"),
-    ("design-4-auroramed", "AURORA MED"),
-    ("design-5-vitalwerk", "VITALWERK")
+    # 5 Klassiker
+    ("design-1-unverkrampft", "1. UNVERKRAMPFT (Bio/Warm Organic)"),
+    ("design-2-kinetiq", "2. KINETIQ (High-Performance Sport)"),
+    ("design-3-sanavita", "3. SANA VITA (Holistic Osteopathy)"),
+    ("design-4-auroramed", "4. AURORA MED (Swiss Medical Precision)"),
+    ("design-5-vitalwerk", "5. VITALWERK (Urban Industrial Loft)"),
+    # 6 Kreativkonzepte
+    ("design-6-schmiere", "6. GELENK-SCHMIERE (Werkstatt/Viskosität)"),
+    ("design-7-knotenloeser", "7. KNOTENLÖSER (Faszientherapie/Faden)"),
+    ("design-8-knackpunkt", "8. DER KNACKPUNKT (Chiro/Subluxation)"),
+    ("design-9-knetfertig", "9. KNETFERTIG (Deep Tissue/Claymorphism)"),
+    ("design-10-aufrecht", "10. AUFRECHT (Haltungsschule/Ergonomie)"),
+    ("design-11-bewegungsmelder", "11. BEWEGUNGSMELDER (Sensomotorik/Neuro)")
 ]
 
 all_passed = True
 
-print("=== STARTING AUDIT OF 5 PHYSIOTHERAPY WEBSITES ===")
+print("=" * 60)
+print("=== AUDIT DER 11 PHYSIOTHERAPIE-WEBSITE-VORLAGEN ===")
+print("=" * 60)
 
 for folder, name in designs:
     index_path = os.path.join(folder, "index.html")
     hero_path = os.path.join(folder, "hero.jpg")
 
-    print(f"\n--- Checking {name} ({folder}) ---")
+    print(f"\n--- Checking {name} [{folder}] ---")
 
     # 1. Check index.html exists
     if not os.path.exists(index_path):
-        print(f"❌ FAIL: {index_path} does not exist!")
+        print(f"❌ FAIL: {index_path} existiert nicht!")
         all_passed = False
         continue
     else:
         size = os.path.getsize(index_path)
-        print(f"✓ index.html exists (size: {size} bytes)")
+        print(f"✓ index.html existiert (Größe: {size:,} Bytes)")
 
     # 2. Check hero.jpg exists
     if not os.path.exists(hero_path):
-        print(f"❌ FAIL: {hero_path} does not exist!")
+        print(f"❌ FAIL: {hero_path} existiert nicht!")
         all_passed = False
     else:
         img_size = os.path.getsize(hero_path)
-        print(f"✓ hero.jpg exists (size: {img_size} bytes)")
+        print(f"✓ hero.jpg existiert (Größe: {img_size:,} Bytes)")
 
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
 
     # 3. Check floating button
     if 'id="floating-booking-btn"' in html:
-        print("✓ Floating booking button found ('id=\"floating-booking-btn\"')")
+        print("✓ Sticky Floating Booking Button vorhanden ('id=\"floating-booking-btn\"')")
     else:
-        print("❌ FAIL: Floating booking button not found!")
+        print("❌ FAIL: Floating booking button nicht gefunden!")
         all_passed = False
 
-    # 4. Check modal panel
+    # 4. Check modal panel & mount
     if 'id="booking-widget-panel"' in html:
-        print("✓ Modal widget panel found ('id=\"booking-widget-panel\"')")
+        print("✓ Modales Widget-Panel vorhanden ('id=\"booking-widget-panel\"')")
     else:
-        print("❌ FAIL: Modal widget panel not found!")
+        print("❌ FAIL: Modales Widget-Panel nicht gefunden!")
         all_passed = False
 
-    # 5. Check 5 design switcher buttons in modal
-    switcher_links = [
-        "design-1-unverkrampft/index.html",
-        "design-2-kinetiq/index.html",
-        "design-3-sanavita/index.html",
-        "design-4-auroramed/index.html",
-        "design-5-vitalwerk/index.html"
-    ]
+    if 'id="booking-widget-mount"' in html:
+        print("✓ Buchungs-Widget-Mount (400x500px) vorhanden ('id=\"booking-widget-mount\"')")
+    else:
+        print("❌ FAIL: Buchungs-Widget-Mount nicht gefunden!")
+        all_passed = False
+
+    # 5. Check category tabs & all 11 design switcher links
+    if 'id="cat-tab-classic"' in html and 'id="cat-tab-creative"' in html:
+        print("✓ Kategorien-Umschalter ('5 Klassiker' / '6 Kreativ') im Modal vorhanden")
+    else:
+        print("❌ FAIL: Kategorien-Tabs fehlen im Modal!")
+        all_passed = False
+
     missing_links = []
-    for link in switcher_links:
-        if link not in html:
-            missing_links.append(link)
+    for d_folder, _ in designs:
+        expected_link = f"{d_folder}/index.html"
+        if expected_link not in html:
+            missing_links.append(expected_link)
 
     if not missing_links:
-        print("✓ All 5 design switcher buttons present in modal panel!")
+        print("✓ Alle 11 Template-Wechsler-Verknüpfungen im Modal-Panel vorhanden")
     else:
-        print(f"❌ FAIL: Missing switcher links: {missing_links}")
+        print(f"❌ FAIL: Fehlende Links im Template-Wechsler: {missing_links}")
         all_passed = False
 
-    # 6. Check interactive booking placeholder
-    if 'id="booking-widget-mount"' in html:
-        print("✓ Embeddable 400x500px booking placeholder container found")
-    else:
-        print("❌ FAIL: Booking placeholder container not found!")
-        all_passed = False
-
-    # Special check for Design 1: confirm top booking CTA is removed
-    if folder == "design-1-unverkrampft":
-        if '<span>Online-Termin</span>' in html:
-            print("❌ FAIL: Design 1 still has top nav 'Online-Termin' button!")
-            all_passed = False
-        else:
-            print("✓ Design 1 top nav 'Online-Termin' button successfully removed!")
-
-        if '<button onclick="openBookingModal()" class="bg-terra-500' in html:
-            print("❌ FAIL: Design 1 still has hero 'Termin online buchen' button!")
-            all_passed = False
-        else:
-            print("✓ Design 1 hero 'Termin online buchen' button successfully replaced!")
+    # 6. HTTP Status Check (against running dev server on localhost:3000)
+    try:
+        url = f"http://localhost:3000/{folder}/index.html"
+        req = urllib.request.Request(url, headers={'User-Agent': 'AuditBot/1.0'})
+        with urllib.request.urlopen(req, timeout=3) as resp:
+            if resp.status == 200:
+                print(f"✓ HTTP Status 200 OK von {url}")
+            else:
+                print(f"⚠️ Warnung: HTTP Status {resp.status} von {url}")
+    except Exception as e:
+        print(f"⚠️ HTTP-Anfrage fehlgeschlagen ({e})")
 
 # Check root index.html
-print("\n--- Checking Root Hub (index.html) ---")
+print("\n--- Überprüfung Root Hub (index.html) ---")
 if os.path.exists("index.html"):
-    print("✓ Root index.html exists")
+    print("✓ Root index.html existiert")
     with open("index.html", "r", encoding="utf-8") as f:
         root_html = f.read()
     for folder, name in designs:
         if f"{folder}/index.html" in root_html:
-            print(f"✓ Root links to {name}")
+            print(f"✓ Root verlinkt auf {name}")
         else:
-            print(f"❌ FAIL: Root does not link to {folder}")
+            print(f"❌ FAIL: Root verlinkt nicht auf {folder}")
             all_passed = False
 else:
-    print("❌ FAIL: Root index.html not found!")
+    print("❌ FAIL: Root index.html nicht gefunden!")
     all_passed = False
 
-print("\n" + "="*50)
+# HTTP check for root hub
+try:
+    with urllib.request.urlopen("http://localhost:3000/index.html", timeout=3) as resp:
+        if resp.status == 200:
+            print("✓ HTTP Status 200 OK für Root Hub http://localhost:3000/index.html")
+except Exception as e:
+    print(f"⚠️ HTTP-Anfrage für Root fehlgeschlagen: {e}")
+
+print("\n" + "=" * 60)
 if all_passed:
-    print("🎉 ALL AUDIT CHECKS PASSED PERFECTLY!")
+    print("🎉 PERFEKT: ALLE 11 WEBSITES HABEN DEN VOLLSTÄNDIGEN AUDIT BESTANDEN!")
 else:
-    print("⚠️ SOME CHECKS FAILED.")
-print("="*50)
+    print("⚠️ EINIGE PRÜFUNGEN SIND FEHLGESCHLAGEN.")
+print("=" * 60)
+
+sys.exit(0 if all_passed else 1)

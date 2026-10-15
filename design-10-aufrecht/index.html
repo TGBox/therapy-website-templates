@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUFRECHT & HEITER | Praxis für Haltungsschule & Wirbelsäulentraining</title>
+    <meta name="description" content="Haltungsschule, Ergonomie und gezieltes Wirbelsäulentraining. Richten Sie sich auf – körperlich und mental. Für ein leichtes, heiteres Lebensgefühl.">
+
+    <!-- Fonts: Outfit & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        sunsky: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7', // Sky Blue
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        },
+                        sunshine: {
+                            50: '#fefce8',
+                            100: '#fef9c3',
+                            200: '#fef08a',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308', // Radiant Sunshine Yellow
+                            600: '#ca8a04',
+                            700: '#a16207',
+                        }
+                    },
+                    boxShadow: {
+                        'sun': '0 20px 35px -10px rgba(14, 165, 233, 0.25)',
+                        'glow': '0 10px 25px -5px rgba(234, 179, 8, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Spine Articulation Track */
+        .spine-vertebra {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-sunshine-200 selection:text-slate-950">
+
+    <!-- Fixed Vertical Spine Posture Tracker on Screen Right -->
+    <aside class="fixed right-3 top-1/2 -translate-y-1/2 z-30 hidden xl:flex flex-col items-center bg-white/90 backdrop-blur-md p-3 rounded-full border border-slate-200 shadow-xl" aria-label="Haltungsachse">
+        <span class="text-[9px] font-mono font-bold text-sunsky-700 uppercase tracking-widest rotate-90 my-3">HALTUNG</span>
+        
+        <!-- Spine Vertebrae Dots (Cervical, Thoracic, Lumbar) -->
+        <div class="flex flex-col gap-2 my-2" id="spine-track">
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunsky-500 shadow-sm" id="vert-1" title="HWS Atlas"></span>
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunsky-500 shadow-sm" id="vert-2" title="HWS Axis"></span>
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunshine-400 shadow-sm" id="vert-3" title="BWS Kyphose"></span>
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunshine-400 shadow-sm" id="vert-4" title="BWS Thorakal"></span>
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunshine-400 shadow-sm" id="vert-5" title="BWS Rippenbogen"></span>
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunsky-500 shadow-sm" id="vert-6" title="LWS Lordose"></span>
+            <span class="spine-vertebra w-2.5 h-2.5 rounded-full bg-sunsky-500 shadow-sm" id="vert-7" title="LWS L5/S1"></span>
+            <span class="spine-vertebra w-3 h-3 rounded-full bg-slate-800 shadow-sm" id="vert-8" title="Sakrum / Becken"></span>
+        </div>
+
+        <span id="posture-meter-label" class="text-[10px] font-mono font-bold text-sunsky-600 mt-2">100%</span>
+    </aside>
+
+    <!-- Top Encouragement Bar -->
+    <div class="bg-gradient-to-r from-sunsky-900 to-slate-900 text-white text-xs py-2 px-4 border-b border-sunsky-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-sunshine-400 animate-pulse"></span>
+                <span class="font-medium">Kopf hoch, Schultern entspannen: Wie sitzen Sie gerade vor diesem Bildschirm?</span>
+            </div>
+            <div class="flex items-center gap-4 text-[11px] font-mono">
+                <span class="text-slate-300"><i class="ph-bold ph-map-pin text-sunshine-400 mr-1"></i>München Bogenhausen</span>
+                <a href="tel:08998223344" class="text-sunshine-300 hover:text-white font-bold transition-colors">089 / 98 22 33 44</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sunsky-600 to-sunshine-400 flex items-center justify-center text-slate-950 shadow-sun group-hover:scale-105 transition-transform font-bold text-2xl">
+                    <i class="ph-bold ph-arrow-fat-lines-up"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-display font-extrabold tracking-tight text-2xl text-slate-950 leading-none">AUFRECHT<span class="text-sunsky-600">&</span><span class="text-sunshine-600">HEITER</span></span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-sunsky-100 text-sunsky-900 font-bold">HALTUNG</span>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-wider text-slate-500 font-semibold block mt-0.5">Wirbelsäulenzentrum • Haltungsschule • Ergonomie</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-800">
+                <a href="#spiegel" class="hover:text-sunsky-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-sunshine-400"></span> Digitaler Haltungsspiegel
+                </a>
+                <a href="#prinzip" class="hover:text-sunsky-600 transition-colors">Das 3-Achsen-Prinzip</a>
+                <a href="#angebote" class="hover:text-sunsky-600 transition-colors">Haltungskurse & MT</a>
+                <a href="#team" class="hover:text-sunsky-600 transition-colors">Haltungs-Coaches</a>
+                <a href="#kontakt" class="hover:text-sunsky-600 transition-colors">Praxis</a>
+            </nav>
+
+            <!-- CTA / Contact Direct -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-slate-900 hover:bg-slate-800 text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-sm transition-all flex items-center gap-2 active:scale-95">
+                    <i class="ph-bold ph-phone-call text-sunshine-400"></i>
+                    <span>Praxiskontakt</span>
+                </a>
+                <button id="mobile-toggle-btn" onclick="toggleAufrechtMenu()" class="lg:hidden p-2.5 rounded-2xl border border-slate-300 text-slate-900 hover:bg-slate-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="aufrecht-mobile-menu" class="hidden lg:hidden bg-white border-b border-slate-200 px-4 py-4 space-y-3 font-medium">
+            <a href="#spiegel" onclick="toggleAufrechtMenu()" class="block py-2 text-sunsky-600 font-bold">🪞 Digitaler Haltungsspiegel</a>
+            <a href="#prinzip" onclick="toggleAufrechtMenu()" class="block py-2 text-slate-900">Das 3-Achsen-Prinzip</a>
+            <a href="#angebote" onclick="toggleAufrechtMenu()" class="block py-2 text-slate-900">Haltungskurse & MT</a>
+            <a href="#team" onclick="toggleAufrechtMenu()" class="block py-2 text-slate-900">Haltungs-Coaches</a>
+            <a href="#kontakt" onclick="toggleAufrechtMenu()" class="block py-2 text-slate-900">Praxis</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden bg-gradient-to-b from-sunsky-50/60 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Motivation -->
+                <div class="lg:col-span-7 space-y-8">
+                    
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sunsky-200 shadow-sm text-xs font-bold text-sunsky-900 font-display">
+                        <i class="ph-bold ph-sun text-sunshine-500 text-sm"></i>
+                        <span>KÖRPERLICHE PRÄSENZ • ATEMFREIHEIT • LEICHTIGKEIT</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-display font-extrabold text-slate-950 leading-[1.08] tracking-tight">
+                        Aufrecht stehen. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-sunsky-600 via-sky-500 to-sunshine-500">Heiter leben.</span><br>
+                        Befreit durchatmen.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-xl">
+                        Ein zusammengesunkener Rundrücken stiehlt nicht nur 30&nbsp;% Ihres Lungenvolumens – er drückt auf Gemüt und Selbstwert. Wir richten Ihre Wirbelsäule von den Fußgewölben bis zum Hinterhaupt neu aus.
+                    </p>
+
+                    <!-- Trust Pillars -->
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                            <span class="block text-2xl sm:text-3xl font-display font-extrabold text-sunsky-600">+3.5 cm</span>
+                            <span class="text-xs text-slate-500 font-medium">Gefühlte & messbare Körperlängung</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                            <span class="block text-2xl sm:text-3xl font-display font-extrabold text-slate-950">3D Raster</span>
+                            <span class="text-xs text-slate-500 font-medium">Optische Wirbelsäulen-Vermessung</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                            <span class="block text-2xl sm:text-3xl font-display font-extrabold text-sunshine-600">8 Wochen</span>
+                            <span class="text-xs text-slate-500 font-medium">Bis zum automatisierten Haltungsmuster</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button type="button" onclick="toggleBookingPanel(true)" class="bg-gradient-to-r from-sunsky-600 to-sky-500 hover:from-sunsky-500 text-white font-display font-bold px-8 py-4 rounded-2xl shadow-sun flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 text-base">
+                            <i class="ph-bold ph-calendar-plus"></i>
+                            <span>Haltungs-Check buchen</span>
+                        </button>
+                        <a href="#spiegel" class="bg-white hover:bg-slate-50 text-slate-900 border border-slate-300 font-display font-bold px-7 py-4 rounded-2xl shadow-sm transition-all flex items-center gap-2">
+                            <i class="ph-bold ph-arrows-out-line-vertical text-sunsky-600"></i>
+                            <span>Haltungs-Spiegel testen</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Image with Upright Posture Overlay -->
+                <div class="lg:col-span-5 relative">
+                    <div class="rounded-3xl overflow-hidden border-2 border-slate-200 bg-white shadow-2xl p-3">
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-slate-200">
+                            <img src="./hero.jpg" alt="Aufrechte Haltung und Wirbelsäulentraining" class="w-full h-full object-cover">
+                            
+                            <!-- Overlay Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-slate-900/90 backdrop-blur-md rounded-2xl p-4 text-white border border-slate-700/60 shadow-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-sunshine-400/20 border border-sunshine-400/40 flex items-center justify-center text-sunshine-300 text-xl shrink-0">
+                                        <i class="ph-bold ph-sparkle"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-mono font-bold text-sunshine-300 uppercase">Somatische Leichtigkeit</div>
+                                        <div class="text-sm font-bold font-display">Aufrichtung ohne militärischen Krampf</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Posture Quotient badge -->
+                        <div class="mt-3 p-3 bg-sunsky-50 rounded-xl border border-sunsky-200 text-xs text-sunsky-900 flex items-center justify-between font-bold">
+                            <span>✨ „Wer aufrecht geht, denkt heiterer.“</span>
+                            <span class="text-sunsky-700 font-mono text-[10px]">BIO-FEEDBACK</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DIGITALER HALTUNGSSPIEGEL (Interactive Posture Tool) -->
+    <section id="spiegel" class="py-24 bg-white border-y border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sunsky-50 text-sunsky-900 border border-sunsky-200 text-xs font-display font-bold">
+                    <i class="ph-bold ph-sliders"></i> DIGITALER HALTUNGS-SPIEGEL
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-950 tracking-tight">
+                    Erkennen Sie Ihr typisches Sitz- und Stehmuster
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Testen Sie mit unserem interaktiven Regler, wie sich eine Verschiebung der Schwerelinie auf Ihre Nackenmuskeln und Bandscheiben auswirkt.
+                </p>
+            </div>
+
+            <!-- Interactive Mirror Container -->
+            <div class="max-w-4xl mx-auto bg-slate-50 rounded-3xl p-8 sm:p-12 border-2 border-slate-200 shadow-xl space-y-8">
+                
+                <!-- 3 Posture Archetypes -->
+                <div class="grid grid-cols-3 gap-3">
+                    <button type="button" onclick="setPostureArchetype('slumped')" id="arch-slumped" class="archetype-btn py-4 px-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all">
+                        <i class="ph-bold ph-arrow-down-left text-2xl text-slate-400"></i>
+                        <span>1. Rundrücken (Kyphose)</span>
+                    </button>
+                    <button type="button" onclick="setPostureArchetype('hollow')" id="arch-hollow" class="archetype-btn py-4 px-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all">
+                        <i class="ph-bold ph-arrow-bend-double-up-right text-2xl text-slate-400"></i>
+                        <span>2. Hohlkreuz (Hyperlordose)</span>
+                    </button>
+                    <button type="button" onclick="setPostureArchetype('upright')" id="arch-upright" class="archetype-btn py-4 px-3 rounded-2xl border-2 border-sunsky-500 bg-sunsky-50 text-sunsky-950 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all shadow-sm">
+                        <i class="ph-bold ph-arrow-fat-lines-up text-2xl text-sunsky-600"></i>
+                        <span>3. Aufrecht & Heiter ★</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Diagnostic Results -->
+                <div class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-200 pb-3">
+                        <div>
+                            <span class="text-[10px] font-mono font-bold uppercase text-slate-400 block">STATISCHE ANALYSE</span>
+                            <h4 id="arch-title" class="text-xl font-display font-bold text-slate-950">Ideale physiologische Doppel-S-Kurve</h4>
+                        </div>
+                        <span id="arch-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800">
+                            Minimale Bandscheibenlast
+                        </span>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-6 text-xs text-slate-600">
+                        <div>
+                            <span class="font-bold text-slate-900 block mb-1">Biomechanische Auswirkung:</span>
+                            <p id="arch-impact" class="leading-relaxed">
+                                Der Kopf ruht schwerelos im Schwerpunkt über den Fußknöcheln. Die Nackenmuskeln tragen lediglich 5 kg echtes Schädelgewicht.
+                            </p>
+                        </div>
+                        <div>
+                            <span class="font-bold text-slate-900 block mb-1">Haltungs-Sofort-Korrektur:</span>
+                            <p id="arch-correction" class="leading-relaxed text-sunsky-800 font-medium">
+                                Scheitelpunkt imaginär an einem seidenen Faden zur Decke wachsen lassen, Brustbein heben, Schulterblätter sanft nach hinten-unten gleiten lassen.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex items-center justify-between border-t border-slate-100">
+                        <span class="text-xs text-slate-500">Möchten Sie Ihre individuelle Haltungslinie vermessen lassen?</span>
+                        <button type="button" onclick="toggleBookingPanel(true)" class="bg-sunsky-600 hover:bg-sunsky-500 text-white font-display font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                            Haltungsanalyse anfragen →
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DAS 3-ACHSEN-PRINZIP -->
+    <section id="prinzip" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sunsky-200 text-xs font-display font-bold text-sunsky-900">
+                    <i class="ph-bold ph-compass"></i> METHODIK
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-950 tracking-tight">
+                    Die 3 Pfeiler einer mühelosen Aufrichtung
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Stundenlanges bewusstes Anspannen hält niemand durch. Wahre Haltung entsteht durch reflektorische Ansteuerung der tiefen autochthonen Rückenmuskulatur.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Pillar 1 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        1
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">DAS FUNDAMENT</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Fußstatik & Beckenwaage</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Ein abgeflachtes Fußgewölbe oder ein nach vorne gekipptes Becken zwingt die gesamte Wirbelsäule in die Kompensation. Wir stabilisieren Ihre Basis.
+                    </p>
+                </div>
+
+                <!-- Pillar 2 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-sunshine-100 text-sunshine-700 flex items-center justify-center text-2xl font-bold font-display">
+                        2
+                    </div>
+                    <div class="text-[11px] font-mono text-sunshine-700 font-bold uppercase">DER DREHPUNKT</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Brustkorb-Aufspannung</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Wir befreien das Zwerchfell und dehnen die verkürzte kleine Brustmuskulatur (Pectoralis minor), damit die Schultern ohne Kraft nach hinten sinken.
+                    </p>
+                </div>
+
+                <!-- Pillar 3 -->
+                <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        3
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">DIE KRÖNUNG</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Kopfzentrierung (Atlas)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Die tiefen Nackenbeuger (Longus colli) werden aktiviert, um das Vorwärtsschieben des Kopfes (Tech-Neck) dauerhaft zu korrigieren.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: ANGEBOTE & KURSE -->
+    <section id="angebote" class="py-24 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sunsky-50 border border-sunsky-200 text-xs font-display font-bold text-sunsky-900">
+                    <i class="ph-bold ph-chalkboard-teacher"></i> PROGRAMME
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-950 tracking-tight">
+                    Haltungsschule, Gerätetraining & Manuelle Therapie
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Wählen Sie zwischen intensiver Einzeltherapie auf Rezept oder zertifizierten Präventionskursen nach § 20 SGB V (bis zu 80% Kassenkostenerstattung).
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-sunsky-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-person-simple-walk"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">§ 20 SGB V Prävention</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Die Münchner Haltungsschule</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        8-Wochen-Kompaktkurs zur Reaktivierung aufrechter Bewegungsmuster im Alltag. Inklusive ergonomischem Home-Office-Check.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-slate-200 flex justify-between">
+                        <span>8 x 60 Min.</span>
+                        <span class="text-sunsky-700 font-bold">Kassenzuschuss</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-sunsky-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-scan"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">Optische Diagnostik</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">4D Wirbelsäulen-Scan</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Strahlungsfreie lichtoptische Vermessung der Wirbelsäulenkrümmung und Beckenrotation in Ruhe und unter Gangbewegung.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-slate-200 flex justify-between">
+                        <span>Ohne Röntgenstrahlen</span>
+                        <span class="text-sunsky-700 font-bold">Hochpräzise</span>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-sunsky-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-barbell"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">Krankengymnastik am Gerät</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">KGG Haltungs-Athletik</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Gezielter Kraftaufbau der Rückenstrecker, Rautenmuskeln und tiefen Bauchwand an modernen medizinischen Zugapparaten.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-slate-200 flex justify-between">
+                        <span>Rezept: KGG</span>
+                        <span class="text-sunsky-700 font-bold">Alle Kassen</span>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-sunsky-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-hands-clapping"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">Heilmittelkatalog</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Manuelle Therapie (MT)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Mobilisation steifer Facettengelenke der Brustwirbelsäule und Entlastung der Rippen-Wirbel-Gelenke für freie Rotation.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-slate-200 flex justify-between">
+                        <span>GKV & PKV Rezept</span>
+                        <span class="text-sunsky-700 font-bold">Zertifiziert</span>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-sunsky-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-laptop"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">Vor-Ort & Online</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Ergonomie-Beratung</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Optimierung von Monitorhöhe, Schreibtischstuhl, Tastaturwinkel und Sitzdynamik für schmerzfreies Arbeiten im Office.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-slate-200 flex justify-between">
+                        <span>Für Firmen & Einzelne</span>
+                        <span class="text-sunsky-700 font-bold">Praxiserprobt</span>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-slate-50 rounded-3xl p-7 border border-slate-200 hover:border-sunsky-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-wind"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-sunsky-700 font-bold uppercase">Atem & Somatik</div>
+                    <h3 class="text-xl font-display font-bold text-slate-950">Respiratorische Aufrichtung</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Kombination aus osteopathischer Zwerchfellbefreiung und bioenergetischen Atemübungen zur dauerhaften Entlastung des Schultergürtels.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-slate-500 border-t border-slate-200 flex justify-between">
+                        <span>45 Min. Einzelsitzung</span>
+                        <span class="text-sunsky-700 font-bold">Tiefe Entspannung</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TEAM -->
+    <section id="team" class="py-24 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-sunsky-200 text-xs font-display font-bold text-sunsky-900">
+                    <i class="ph-bold ph-users-three"></i> DAS COACHING-TEAM
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-950 tracking-tight">
+                    Mit Freude und Fachwissen an Ihrer Seite
+                </h2>
+                <p class="text-slate-600 text-base leading-relaxed">
+                    Wir glauben daran, dass Haltungstraining motivieren und Freude machen muss – statt mit erhobenem Zeigefinger zu belehren.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Team 1 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-sunsky-100 text-sunsky-800 flex items-center justify-center text-3xl font-extrabold font-display">
+                        CH
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-sunsky-600 font-bold uppercase">Praxisleitung & Haltungsdozent</span>
+                        <h4 class="text-xl font-display font-bold text-slate-950">Carsten Hellmann</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Sportwissenschaftler (M.Sc.) und Physiotherapeut. Seit über 12 Jahren Dozent für funktionelle Wirbelsäulen-Biomechanik.
+                    </p>
+                    <div class="pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-500 flex gap-1.5">
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">Rückenschullehrer KddR</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">MT</span>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-sunshine-100 text-sunshine-800 flex items-center justify-center text-3xl font-extrabold font-display">
+                        VS
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-sunsky-600 font-bold uppercase">Physiotherapeutin & Spiraldynamik®</span>
+                        <h4 class="text-xl font-display font-bold text-slate-950">Valerie Schöntag</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Diplomierte Spiraldynamik-Fachkraft. Spezialisiert auf dreidimensionale Bewegungskoordination und Haltungs-Resilienz im Berufsalltag.
+                    </p>
+                    <div class="pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-500 flex gap-1.5">
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">Spiraldynamik Intermediate</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">KGG</span>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-sunsky-100 text-sunsky-800 flex items-center justify-center text-3xl font-extrabold font-display">
+                        JW
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-sunsky-600 font-bold uppercase">Ergonomie-Berater & MT</span>
+                        <h4 class="text-xl font-display font-bold text-slate-950">Johannes Weber</h4>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Experte für Arbeitsplatz-Ergonomie und computergestützte 4D-Wirbelsäulenvermessung bei chronischen LWS- und HWS-Syndromen.
+                    </p>
+                    <div class="pt-3 border-t border-slate-100 text-[10px] font-mono text-slate-500 flex gap-1.5">
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">Ergonomie IGR</span>
+                        <span class="bg-slate-100 px-2 py-0.5 rounded">4D-Scan</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PRAXIS & KONTAKT -->
+    <section id="kontakt" class="py-24 bg-white border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sunsky-50 border border-sunsky-200 text-xs font-display font-bold text-sunsky-900">
+                        <i class="ph-bold ph-map-pin"></i> PRAXIS IN MÜNCHEN
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-slate-950 tracking-tight">
+                        Lichtdurchflutet & modern in Bogenhausen
+                    </h2>
+                    <p class="text-slate-600 text-base leading-relaxed">
+                        Großzügige Trainingsflächen mit Echtholzböden und bodentiefen Fenstern schaffen eine heitere, motivierende Trainingsatmosphäre.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-slate-950 block text-sm">Praxisadresse</span>
+                                <span class="text-slate-600 text-sm">Prinzregentenstraße 74, 81675 München (Bogenhausen)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-clock"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-slate-950 block text-sm">Trainings- & Praxiszeiten</span>
+                                <span class="text-slate-600 text-sm">Montag bis Donnerstag: 07:30 – 20:30 Uhr | Freitag: 07:30 – 18:00 Uhr</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-sunsky-100 text-sunsky-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-phone"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-slate-950 block text-sm">Telefon & Empfang</span>
+                                <span class="text-slate-600 text-sm">089 / 98 22 33 44 (Oder online buchen über den Button unten rechts)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-6 bg-slate-50 rounded-3xl p-8 border border-slate-200">
+                    <h3 class="text-xl font-display font-bold text-slate-950 mb-2">Nachricht an das Praxisteam</h3>
+                    <p class="text-xs text-slate-500 mb-6 font-mono">Für Kurseinstiege, Krankenkassen-Kostenvoranschläge oder Rezepte.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-600 mb-1">Ihr Name *</label>
+                                <input type="text" required placeholder="z. B. Katharina Sommer" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-slate-600 mb-1">Telefon *</label>
+                                <input type="tel" required placeholder="0171 / 982233" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-slate-600 mb-1">E-Mail-Adresse</label>
+                            <input type="email" placeholder="patient@muenchen.de" class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2.5 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-slate-600 mb-1">Haltungsziel oder Beschwerdebild</label>
+                            <textarea rows="3" placeholder="z. B. Chronische Haltungsschwäche nach Bildschirmarbeit, Nackenschmerzen..." class="w-full bg-white border border-slate-300 rounded-xl px-4 py-2 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500 resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="aufrecht-dsgvo" required class="rounded text-sunsky-600 focus:ring-sunsky-500">
+                            <label for="aufrecht-dsgvo" class="text-[11px] text-slate-500">Ich stimme der Datenverarbeitung im Rahmen meiner Anfrage zu.</label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-display font-bold py-3.5 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                            <span>Nachricht übermitteln</span>
+                            <i class="ph-bold ph-paper-plane-tilt text-sunshine-400"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 text-xs py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-sunsky-500 flex items-center justify-center text-slate-950 font-bold text-sm">
+                    <i class="ph-bold ph-arrow-fat-lines-up"></i>
+                </div>
+                <span class="font-display font-bold text-white tracking-tight">AUFRECHT & HEITER München</span>
+                <span class="text-slate-700">|</span>
+                <span class="text-slate-400">Praxis für Haltungsschule, Wirbelsäulentraining & Ergonomie</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-slate-400 font-mono text-[11px]">
+                <a href="#impressum" class="hover:text-white transition-colors">Impressum</a>
+                <a href="#datenschutz" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="../index.html" class="text-sunsky-400 hover:text-sunsky-300 font-bold transition-colors">← Zurück zur Vorlagenübersicht</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- 4. FLOATING BOOKING BUTTON (Sticky bottom-right)               -->
+    <!-- Das Haupt-Verkaufsfeature der Demo                            -->
+    <!-- ============================================================ -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        
+        <!-- Attention Hint Badge -->
+        <div id="booking-badge-hint" class="hidden sm:flex items-center gap-2 bg-slate-900/90 backdrop-blur-md text-white text-xs font-medium py-2 px-3.5 rounded-full shadow-2xl border border-slate-700 animate-bounce">
+            <span class="w-2 h-2 rounded-full bg-sunshine-400 animate-ping"></span>
+            <span>Haltungs-Termin online buchen</span>
+        </div>
+
+        <!-- The Button Trigger -->
+        <button 
+            id="floating-booking-btn"
+            onclick="toggleBookingPanel()"
+            class="w-16 h-16 rounded-full bg-gradient-to-tr from-sunsky-600 via-sunsky-500 to-sky-400 hover:scale-105 text-white flex items-center justify-center text-2xl shadow-sun transition-all duration-200 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-sunsky-400/50"
+            aria-label="Online Termin buchen"
+            aria-expanded="false"
+        >
+            <i class="ph-bold ph-calendar-plus group-hover:rotate-6 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. FLOATING BOOKING PANEL (ca. 400x500px MODALES FENSTER)    -->
+    <!-- Inklusive Kategorisierter 11-Vorlagen-Umschalter für die Demo -->
+    <!-- ============================================================ -->
+    <div 
+        id="booking-widget-panel"
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[560px] bg-white rounded-3xl shadow-2xl border-2 border-slate-300 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-label="Online Terminbuchung & Vorlagen-Umschalter"
+    >
+        <!-- Panel Header -->
+        <div class="bg-gradient-to-r from-slate-950 to-slate-900 text-white p-4 flex items-center justify-between border-b border-slate-800 shrink-0">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-sunsky-500 flex items-center justify-center text-white text-lg shadow-sun font-bold">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-display font-bold tracking-tight leading-none text-white">Online-Terminbuchung</h3>
+                    <span class="text-[10px] text-sunsky-300 font-mono">AUFRECHT & HEITER • München</span>
+                </div>
+            </div>
+            <button onclick="toggleBookingPanel(false)" class="w-8 h-8 rounded-full bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white flex items-center justify-center text-sm transition-colors" aria-label="Schließen">
+                <i class="ph-bold ph-x"></i>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEMO-SWITCHER: ALLE 11 VORLAGEN (KATEGORISIERT)               -->
+        <!-- ============================================================ -->
+        <div class="bg-slate-900 text-white px-3 py-2 border-b border-slate-800 text-xs shrink-0 space-y-1.5">
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-slate-400">DEMO-WECHSLER:</span>
+                
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-1 text-[10px] font-mono">
+                    <button type="button" id="cat-tab-classic" onclick="switchCategoryTab('classic')" class="px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white transition-all">
+                        5 Klassiker
+                    </button>
+                    <span class="text-slate-600">|</span>
+                    <button type="button" id="cat-tab-creative" onclick="switchCategoryTab('creative')" class="px-2 py-0.5 rounded font-bold text-slate-950 bg-sunsky-400 transition-all">
+                        6 Kreativ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Row 1: 5 Classic Templates -->
+            <div id="cat-row-classic" class="grid grid-cols-5 gap-1 hidden">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="1. UNVERKRAMPFT">1. Bio</a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="2. KINETIQ">2. Sport</a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="3. SANA VITA">3. Natur</a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="4. AURORA MED">4. Klinik</a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="5. VITALWERK">5. Urban</a>
+            </div>
+
+            <!-- Row 2: 6 Creative Templates (Active by default here) -->
+            <div id="cat-row-creative" class="grid grid-cols-6 gap-1">
+                <a href="../design-6-schmiere/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="6. GELENK-SCHMIERE">6. Schmiere</a>
+                <a href="../design-7-knotenloeser/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="7. KNOTENLÖSER">7. Knoten</a>
+                <a href="../design-8-knackpunkt/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="8. KNACKPUNKT">8. Knack</a>
+                <a href="../design-9-knetfertig/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="9. KNET & FERTIG">9. Kneten</a>
+                <a href="../design-10-aufrecht/index.html" class="px-0.5 py-1 rounded text-[9px] font-bold text-center bg-sunsky-400 text-slate-950 border border-sunsky-300 truncate shadow-sm" title="10. AUFRECHT & HEITER">10. Aufrecht</a>
+                <a href="../design-11-bewegungsmelder/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white border border-slate-700 truncate transition-colors" title="11. BEWEGUNGSMELDER">11. Melder</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (ca. 400x500px)                    -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-slate-950 bg-sunsky-100 text-slate-950 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500 transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500 transition-all">
+                            Selbstzahler
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1.5">Haltungs-Leistung wählen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs font-medium text-slate-950 focus:outline-none focus:border-sunsky-500">
+                        <option value="Haltungs-Erstcheck & 4D-Scan">Haltungs-Erstcheck & 4D-Wirbelsäulenscan (60 Min.)</option>
+                        <option value="Haltungsschule Präventionskurs">Münchner Haltungsschule (§20 SGB V Kursplatz)</option>
+                        <option value="Manuelle Therapie BWS/HWS">Manuelle Therapie (MT) bei Haltungsschwäche</option>
+                        <option value="KGG Wirbelsäulentraining">KGG Aufrichtungs-Krafttraining am Gerät</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-sunsky-700 font-mono font-bold">● Freie Termine verfügbar</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-sunsky-500 bg-sunsky-50 text-slate-950 font-bold text-xs">
+                            <span class="block text-[10px] text-sunsky-700 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500">
+                            <span class="block text-[10px] text-slate-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500">
+                            <span class="block text-[10px] text-slate-400 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '08:00')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-slate-950 bg-sunsky-100 text-slate-950 font-bold text-xs">08:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '10:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500">10:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '14:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500">14:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '17:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500">17:30</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-sunsky-600 to-sky-500 hover:from-sunsky-500 text-white font-display font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-sun transition-all mt-1">
+                    <span>Weiter zu Ihren Daten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-sunsky-50 p-2.5 rounded-xl border border-sunsky-200 text-xs text-slate-800">
+                    <span class="font-bold text-slate-950 block" id="widget-summary-title">Haltungs-Erstcheck & 4D-Scan • Gesetzlich</span>
+                    <span class="text-[11px] text-sunsky-800 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 08:00 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Tobias Berger" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="089 / 982233" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@muenchen.de" class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slate-800 mb-1">Beschwerden / Haltungsfokus (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Rundrücken nach langen Bürotagen, Spannungskopfschmerz..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 text-xs text-slate-950 focus:outline-none focus:border-sunsky-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-slate-200 bg-white text-slate-700 font-bold text-xs hover:bg-slate-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-sunsky-600 hover:bg-sunsky-500 text-white font-display font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-sun transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Haltungstermin sichern</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-sunsky-100 text-sunsky-700 mx-auto flex items-center justify-center text-2xl shadow-inner border border-sunsky-300">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-sunsky-700">Termin vorgemerkt</span>
+                    <h4 class="text-base font-display font-bold text-slate-950 mt-1">Ihr Termin wurde reserviert!</h4>
+                    <p class="text-xs text-slate-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhält die Praxis hier sofort die Buchung samt Indikationshinweis.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-slate-900 hover:bg-slate-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-slate-200 text-[10px] text-slate-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-sunsky-700 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. SPINE POSTURE ARTICULATION ON SCROLL ---
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = Math.min(100, Math.round((winScroll / height) * 100));
+
+            const meter = document.getElementById('posture-meter-label');
+            if (meter) meter.textContent = scrolled + '%';
+
+            // Shift vertebrae sideways slightly as user scrolls down to represent dynamic articulation
+            const verts = document.querySelectorAll('.spine-vertebra');
+            verts.forEach((v, idx) => {
+                const shift = Math.sin((scrolled / 100) * Math.PI + idx) * 3;
+                v.style.transform = `translateX(${shift}px)`;
+            });
+        });
+
+        // --- 2. DIGITALER HALTUNGS-SPIEGEL CONTROLLER ---
+        const archetypeData = {
+            slumped: {
+                title: 'Kompensatorische Hyperkyphose (Desk-Slump)',
+                badge: 'Hohe Nackenbelastung (+18 kg)',
+                impact: 'Der Kopf wandert ca. 5–8 cm vor das Lot. Die Nackenstrecker müssen permanent statische Haltearbeit leisten. Häufige Folge: Spannungskopfschmerz und flache Atmung.',
+                correction: 'Aktivierung der tiefen Halsbeuger durch leichtes Kinn-Einziehen (Doppelkinn-Impuls) und Dehnung des Pectoralis minor an einer Türecke.'
+            },
+            hollow: {
+                title: 'Lumbale Hyperlordose (Hohlkreuz)',
+                badge: 'Gelenkstress L5/S1',
+                impact: 'Das Becken kippt nach vorne unten (Anterior Pelvic Tilt). Die Facettengelenke der unteren Lendenwirbel geraten unter dauerhaften Stauchungsdruck.',
+                correction: 'Aufrichten des Beckens über Anspannung des Unterbauchs (Transversus abdominis) und Dehnung des Musculus iliopsoas (Hüftbeuger).'
+            },
+            upright: {
+                title: 'Ideale physiologische Doppel-S-Kurve',
+                badge: 'Minimale Bandscheibenlast',
+                impact: 'Der Kopf ruht schwerelos im Schwerpunkt über den Fußknöcheln. Die Nackenmuskeln tragen lediglich 5 kg echtes Schädelgewicht.',
+                correction: 'Scheitelpunkt imaginär an einem seidenen Faden zur Decke wachsen lassen, Brustbein heben, Schulterblätter sanft nach hinten-unten gleiten lassen.'
+            }
+        };
+
+        function setPostureArchetype(arch) {
+            document.querySelectorAll('.archetype-btn').forEach(b => {
+                b.className = 'archetype-btn py-4 px-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all';
+                const icon = b.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-sunsky-600', 'text-slate-400');
+            });
+
+            const activeBtn = document.getElementById('arch-' + arch);
+            if (activeBtn) {
+                activeBtn.className = 'archetype-btn py-4 px-3 rounded-2xl border-2 border-sunsky-500 bg-sunsky-50 text-sunsky-950 font-display font-bold text-xs flex flex-col items-center gap-2 transition-all shadow-sm';
+                const activeIcon = activeBtn.querySelector('i');
+                if (activeIcon) activeIcon.className = activeIcon.className.replace('text-slate-400', 'text-sunsky-600');
+            }
+
+            const data = archetypeData[arch];
+            document.getElementById('arch-title').textContent = data.title;
+            document.getElementById('arch-badge').textContent = data.badge;
+            document.getElementById('arch-impact').textContent = data.impact;
+            document.getElementById('arch-correction').textContent = data.correction;
+        }
+
+        // --- 3. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '08:00';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function switchCategoryTab(cat) {
+            const rowClassic = document.getElementById('cat-row-classic');
+            const rowCreative = document.getElementById('cat-row-creative');
+            const tabClassic = document.getElementById('cat-tab-classic');
+            const tabCreative = document.getElementById('cat-tab-creative');
+
+            if (cat === 'classic') {
+                rowClassic.classList.remove('hidden');
+                rowCreative.classList.add('hidden');
+                tabClassic.className = 'px-2 py-0.5 rounded font-bold text-slate-950 bg-sunsky-400 transition-all';
+                tabCreative.className = 'px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white transition-all';
+            } else {
+                rowClassic.classList.add('hidden');
+                rowCreative.classList.remove('hidden');
+                tabCreative.className = 'px-2 py-0.5 rounded font-bold text-slate-950 bg-sunsky-400 transition-all';
+                tabClassic.className = 'px-2 py-0.5 rounded font-medium text-slate-400 hover:text-white transition-all';
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-slate-950 bg-sunsky-100 text-slate-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-sunsky-500 bg-sunsky-50 text-slate-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-slate-200 bg-white text-slate-700 font-medium text-xs hover:border-sunsky-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-slate-950 bg-sunsky-100 text-slate-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Haltungstermin für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde erfolgreich angefragt.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleAufrechtMenu() {
+            const m = document.getElementById('aufrecht-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihre Nachricht an AUFRECHT & HEITER. Wir melden uns innerhalb von 24 Stunden.');
+            e.target.reset();
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

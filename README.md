@@ -17,3 +17,5 @@ npm run dev     # Hot-Reload Dev Mode
 npm run test    # Tests ausführen
 npm run build   # Production Build
 ```
+
+Die Live Preview ist dann erreichbar unter [localhost:3000](http://localhost:3000/index.html).

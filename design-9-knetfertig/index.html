@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNET & FERTIG | Praxis für Deep-Tissue, Sportmassage & Regeneration</title>
+    <meta name="description" content="Intensive Tiefengewebsmassage, myofasziale Druckpunkttherapie und Sportregeneration. Wenn sanftes Streicheln einfach nicht mehr reicht.">
+
+    <!-- Fonts: Outfit & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+                        display: ['"Outfit"', 'sans-serif'],
+                    },
+                    colors: {
+                        knetterra: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            200: '#fed7aa',
+                            300: '#fdba74',
+                            400: '#fb923c',
+                            500: '#f97316', // Vibrant Warm Orange
+                            600: '#ea580c',
+                            700: '#c2410c',
+                            800: '#9a3412',
+                            900: '#7c2d12',
+                            950: '#431407',
+                        },
+                        knetcream: {
+                            50: '#fdfbf7',
+                            100: '#f9f5ec',
+                            200: '#f1e8d7',
+                            300: '#e5d7bd',
+                            800: '#3f2d21',
+                            900: '#2c1e16',
+                            950: '#1a110c',
+                        }
+                    },
+                    boxShadow: {
+                        // Tactile 3D Claymorphism Shadows
+                        'clay-card': '12px 16px 32px rgba(124, 45, 18, 0.08), -6px -6px 16px rgba(255, 255, 255, 0.9), inset 3px 3px 6px rgba(255, 255, 255, 0.8), inset -3px -3px 6px rgba(154, 52, 18, 0.06)',
+                        'clay-pill': '6px 8px 18px rgba(124, 45, 18, 0.12), -4px -4px 12px rgba(255, 255, 255, 0.9), inset 2px 2px 4px rgba(255, 255, 255, 0.8)',
+                        'clay-btn': '0 10px 25px -4px rgba(234, 88, 12, 0.4), inset 0 2px 4px rgba(255, 255, 255, 0.4)',
+                        'clay-pressed': 'inset 4px 4px 8px rgba(124, 45, 18, 0.18), inset -2px -2px 6px rgba(255, 255, 255, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Squash & Stretch Elastic Feel for Clay Elements */
+        .squishy-card {
+            transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+            transform-origin: center bottom;
+        }
+        .squishy-card:hover {
+            transform: scale(1.02, 0.98) translateY(-4px);
+        }
+        .squishy-card:active {
+            transform: scale(0.96, 1.04) translateY(2px);
+        }
+
+        /* Tactile clay texture background */
+        .clay-bg {
+            background-color: #f9f5ec;
+            background-image: radial-gradient(#e5d7bd 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+    </style>
+</head>
+<body class="clay-bg text-knetcream-900 font-sans antialiased selection:bg-knetterra-200 selection:text-knetterra-950">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-knetcream-900 text-knetcream-100 text-xs py-2 px-4 border-b border-knetcream-800">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-knetterra-400 animate-pulse"></span>
+                <span class="font-medium">Schluss mit Streichel-Massagen: Echte Tiefengewebs-Therapie für verspannte Macher.</span>
+            </div>
+            <div class="flex items-center gap-4 text-[11px] font-mono">
+                <span class="text-knetcream-300"><i class="ph-bold ph-map-pin text-knetterra-400 mr-1"></i>München Sendling</span>
+                <a href="tel:08977112200" class="text-knetterra-400 hover:text-knetterra-300 font-bold transition-colors">089 / 77 11 22 00</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-40 bg-knetcream-50/90 backdrop-blur-md border-b border-knetcream-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo with tactile clay feel -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-knetterra-500 to-knetterra-700 flex items-center justify-center text-white shadow-clay-pill group-hover:scale-105 transition-transform text-2xl">
+                    <i class="ph-bold ph-hand-fist"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-display font-black tracking-tight text-2xl text-knetcream-950 leading-none">KNET<span class="text-knetterra-600">&</span>FERTIG</span>
+                        <span class="px-2 py-0.5 rounded-full text-[10px] font-mono bg-knetterra-100 text-knetterra-800 font-bold shadow-inner">MASSAGE</span>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-wider text-knetcream-800 font-bold block mt-0.5">Deep-Tissue • Sportmassage • Triggerpunkte</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-bold text-knetcream-900">
+                <a href="#druckstufen" class="hover:text-knetterra-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-knetterra-500"></span> Druckstufen-Konfigurator
+                </a>
+                <a href="#massagen" class="hover:text-knetterra-600 transition-colors">Massagetechniken</a>
+                <a href="#knetphilosophie" class="hover:text-knetterra-600 transition-colors">Unsere Philosophie</a>
+                <a href="#team" class="hover:text-knetterra-600 transition-colors">Knet-Profis</a>
+                <a href="#kontakt" class="hover:text-knetterra-600 transition-colors">Praxis</a>
+            </nav>
+
+            <!-- CTA / Contact Direct -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-knetcream-900 hover:bg-knetcream-800 text-white text-sm font-bold px-5 py-2.5 rounded-2xl shadow-clay-card transition-all flex items-center gap-2 active:scale-95">
+                    <i class="ph-bold ph-phone-call text-knetterra-400"></i>
+                    <span>Direktkontakt</span>
+                </a>
+                <button id="mobile-toggle-btn" onclick="toggleKnetMenu()" class="lg:hidden p-2.5 rounded-2xl border border-knetcream-300 text-knetcream-900 hover:bg-knetcream-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="knet-mobile-menu" class="hidden lg:hidden bg-knetcream-50 border-b border-knetcream-200 px-4 py-4 space-y-3 font-bold">
+            <a href="#druckstufen" onclick="toggleKnetMenu()" class="block py-2 text-knetterra-600">💪 Druckstufen-Konfigurator</a>
+            <a href="#massagen" onclick="toggleKnetMenu()" class="block py-2 text-knetcream-900">Massagetechniken</a>
+            <a href="#knetphilosophie" onclick="toggleKnetMenu()" class="block py-2 text-knetcream-900">Philosophie</a>
+            <a href="#team" onclick="toggleKnetMenu()" class="block py-2 text-knetcream-900">Knet-Profis</a>
+            <a href="#kontakt" onclick="toggleKnetMenu()" class="block py-2 text-knetcream-900">Praxis</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Manifesto -->
+                <div class="lg:col-span-7 space-y-8">
+                    
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-knetterra-200 shadow-clay-pill text-xs font-bold text-knetterra-900 font-display">
+                        <i class="ph-bold ph-arm text-knetterra-600 text-sm"></i>
+                        <span>SPÜRBARER DRUCK • ECHTES HANDWERK • 0% WELLNESS-GEPLÄNKEL</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[62px] font-display font-black text-knetcream-950 leading-[1.08] tracking-tight">
+                        Durchgeknetet. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-knetterra-600 via-knetterra-500 to-amber-700">Erleichtert.</span><br>
+                        Und fertig für alles, was kommt.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-knetcream-800 leading-relaxed max-w-xl font-medium">
+                        Wer täglich Leistung bringt, im Büro sitzt oder schwere Gewichte stemmt, braucht keine sanfte Lavendel-Streichung. Bei uns arbeiten Therapeuten mit Daumen, Knöcheln und Unterarmen bis in die tiefsten Faszienschichten.
+                    </p>
+
+                    <!-- Tactile Metrics Badges -->
+                    <div class="grid grid-cols-3 gap-4 pt-2">
+                        <div class="bg-white p-4 rounded-3xl shadow-clay-card border border-knetcream-200">
+                            <span class="block text-2xl sm:text-3xl font-display font-black text-knetcream-950">120 kg</span>
+                            <span class="text-xs text-knetcream-800 font-semibold">Gezielte Kraftreserve pro Druckpunkt</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-3xl shadow-clay-card border border-knetcream-200">
+                            <span class="block text-2xl sm:text-3xl font-display font-black text-knetterra-600">4 Stufen</span>
+                            <span class="text-xs text-knetcream-800 font-semibold">Vom Tonus-Ausgleich bis zur Schmerzgrenze</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-3xl shadow-clay-card border border-knetcream-200">
+                            <span class="block text-2xl sm:text-3xl font-display font-black text-knetcream-950">100%</span>
+                            <span class="text-xs text-knetcream-800 font-semibold">Staatl. geprüfte Masseure & Physios</span>
+                        </div>
+                    </div>
+
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button type="button" onclick="toggleBookingPanel(true)" class="bg-gradient-to-r from-knetterra-500 to-knetterra-600 hover:from-knetterra-400 text-white font-display font-bold px-8 py-4 rounded-2xl shadow-clay-btn flex items-center gap-2.5 transition-all hover:scale-105 active:scale-95 text-base">
+                            <i class="ph-bold ph-calendar-plus"></i>
+                            <span>Massage-Slot buchen</span>
+                        </button>
+                        <a href="#druckstufen" class="bg-white hover:bg-knetcream-100 text-knetcream-950 border border-knetcream-300 font-display font-bold px-7 py-4 rounded-2xl shadow-clay-pill transition-all flex items-center gap-2">
+                            <i class="ph-bold ph-gauge text-knetterra-600"></i>
+                            <span>Druckstufe wählen</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Image with 3D Tactile Frame -->
+                <div class="lg:col-span-5 relative">
+                    <div class="squishy-card rounded-[36px] overflow-hidden border-4 border-white bg-white shadow-clay-card p-4">
+                        <div class="relative rounded-[28px] overflow-hidden aspect-[4/5] bg-knetcream-200">
+                            <img src="./hero.jpg" alt="Intensive Tiefengewebsmassage und Knetung" class="w-full h-full object-cover">
+                            
+                            <!-- Overlay Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-knetcream-950/90 backdrop-blur-md rounded-2xl p-4 text-white border border-knetcream-700/60 shadow-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-knetterra-500/20 border border-knetterra-500/40 flex items-center justify-center text-knetterra-400 text-xl shrink-0">
+                                        <i class="ph-bold ph-hand-fist"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-mono font-bold text-knetterra-400 uppercase">Tiefengewebe Pur</div>
+                                        <div class="text-sm font-bold font-display">Löst verhärtete Myogelosen bis auf den Knochen</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tactile feedback quote -->
+                        <div class="mt-4 p-3 bg-knetcream-100 rounded-2xl text-xs text-knetcream-800 flex items-center justify-between font-bold">
+                            <span>🙌 „Danach fühlt man sich wie neu geboren.“</span>
+                            <span class="text-knetterra-700 font-mono text-[10px]">VERIFIZIERT</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DRUCKSTUFEN-KONFIGURATOR (Interactive 3D Slider) -->
+    <section id="druckstufen" class="py-24 bg-white border-y border-knetcream-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-knetterra-100 text-knetterra-900 border border-knetterra-200 text-xs font-display font-bold">
+                    <i class="ph-bold ph-sliders"></i> INTERAKTIVER DRUCKSTUFEN-CHECK
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-black text-knetcream-950 tracking-tight">
+                    Wie viel Druck darf es für Ihren Körper sein?
+                </h2>
+                <p class="text-knetcream-800 text-base leading-relaxed font-medium">
+                    Jeder Mensch reagiert anders. Wählen Sie Ihre gewünschte Intensitätsstufe von feinfühligem Faserausgleich bis zum kompromisslosen Tiefen-Release.
+                </p>
+            </div>
+
+            <!-- Interactive Clay Control Card -->
+            <div class="max-w-4xl mx-auto bg-knetcream-50 rounded-[36px] p-8 sm:p-12 border-2 border-knetcream-200 shadow-clay-card space-y-8">
+                
+                <!-- 4 Pressure Level Buttons -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    <button type="button" onclick="setPressureLevel(1)" id="btn-pressure-1" class="pressure-btn squishy-card py-4 px-3 rounded-2xl bg-white border border-knetcream-200 shadow-clay-pill flex flex-col items-center gap-2 text-center transition-all">
+                        <div class="w-10 h-10 rounded-full bg-knetcream-100 flex items-center justify-center text-lg font-bold text-knetcream-800">1</div>
+                        <span class="font-display font-bold text-xs text-knetcream-950">Stufe 1</span>
+                        <span class="text-[10px] text-knetcream-700 font-medium">Tonus-Ausgleich</span>
+                    </button>
+
+                    <button type="button" onclick="setPressureLevel(2)" id="btn-pressure-2" class="pressure-btn squishy-card py-4 px-3 rounded-2xl bg-white border border-knetcream-200 shadow-clay-pill flex flex-col items-center gap-2 text-center transition-all">
+                        <div class="w-10 h-10 rounded-full bg-knetcream-100 flex items-center justify-center text-lg font-bold text-knetcream-800">2</div>
+                        <span class="font-display font-bold text-xs text-knetcream-950">Stufe 2</span>
+                        <span class="text-[10px] text-knetcream-700 font-medium">Klassisch Schwedisch</span>
+                    </button>
+
+                    <button type="button" onclick="setPressureLevel(3)" id="btn-pressure-3" class="pressure-btn squishy-card py-4 px-3 rounded-2xl bg-knetterra-500 border-2 border-knetterra-600 shadow-clay-btn flex flex-col items-center gap-2 text-center transition-all text-white">
+                        <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold text-white">3</div>
+                        <span class="font-display font-black text-xs text-white">Stufe 3 ★</span>
+                        <span class="text-[10px] text-knetterra-100 font-bold">Deep Tissue (Beliebt)</span>
+                    </button>
+
+                    <button type="button" onclick="setPressureLevel(4)" id="btn-pressure-4" class="pressure-btn squishy-card py-4 px-3 rounded-2xl bg-white border border-knetcream-200 shadow-clay-pill flex flex-col items-center gap-2 text-center transition-all">
+                        <div class="w-10 h-10 rounded-full bg-knetcream-100 flex items-center justify-center text-lg font-bold text-knetcream-800">4</div>
+                        <span class="font-display font-bold text-xs text-knetcream-950">Stufe 4</span>
+                        <span class="text-[10px] text-knetcream-700 font-medium">Schmerzgrenze</span>
+                    </button>
+                </div>
+
+                <!-- Dynamic Detail Panel -->
+                <div class="bg-white rounded-3xl p-6 sm:p-8 border border-knetcream-200 shadow-inner space-y-4">
+                    <div class="flex items-center justify-between border-b border-knetcream-200 pb-3">
+                        <div>
+                            <span class="text-[10px] font-mono font-bold uppercase text-knetterra-700 block">AUSGEWÄHLTER DRUCK</span>
+                            <h4 id="pressure-title" class="text-xl font-display font-black text-knetcream-950">Stufe 3: Deep Tissue & Triggerpunkt-Friktion</h4>
+                        </div>
+                        <span id="pressure-badge" class="px-3 py-1 rounded-full text-xs font-display font-bold bg-knetterra-100 text-knetterra-800">
+                            Optimal für Büro- & Sportnacken
+                        </span>
+                    </div>
+
+                    <p id="pressure-desc" class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Kräftiger, anhaltender Daumen- und Ellbogendruck entlang der myofaszialen Spannungszüge. Es entsteht ein wohliger Wohlwehschmerz (Dehnschmerz), der nach wenigen Sekunden der tiefen Entspannung weicht.
+                    </p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 pt-2 text-xs">
+                        <div class="p-3 bg-knetcream-50 rounded-2xl border border-knetcream-200">
+                            <span class="font-bold text-knetcream-950 block mb-1">Geeignet bei:</span>
+                            <span id="pressure-suitable" class="text-knetcream-700">Chronisch verkürztem Trapezius, steifem Gesäß (Piriformis) und verklebter Lendenfaszie.</span>
+                        </div>
+                        <div class="p-3 bg-knetcream-50 rounded-2xl border border-knetcream-200">
+                            <span class="font-bold text-knetcream-950 block mb-1">Empfohlene Dauer:</span>
+                            <span id="pressure-duration" class="text-knetterra-700 font-bold">50 Minuten Ganzkörper oder 30 Minuten Rücken-Fokus.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: MASSAGETECHNIKEN -->
+    <section id="massagen" class="py-24 bg-knetcream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-knetterra-200 shadow-clay-pill text-xs font-display font-bold text-knetterra-900">
+                    <i class="ph-bold ph-hand"></i> BEHANDLUNGSMENÜ
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-black text-knetcream-950 tracking-tight">
+                    Handfeste Behandlungen für spürbare Erlösung
+                </h2>
+                <p class="text-knetcream-800 text-base leading-relaxed font-medium">
+                    Alle Anwendungen werden individuell auf Ihre Muskelverhärtungen abgestimmt. Als Selbstzahlerleistung oder mit ärztlichem Rezept (KMT).
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="squishy-card bg-white rounded-[32px] p-8 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-arm"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-knetterra-700 font-bold uppercase">Bestseller</div>
+                    <h3 class="text-xl font-display font-black text-knetcream-950">Deep Tissue Massage</h3>
+                    <p class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Langsamer, tiefgreifender Stempeldruck mit Knöcheln und Ellenbogen. Löst chronische Verklebungen der tiefliegenden Muskelschichten.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-200 flex justify-between text-xs font-bold font-mono">
+                        <span>50 Min. / 85 €</span>
+                        <span class="text-knetterra-600">Maximaler Release</span>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="squishy-card bg-white rounded-[32px] p-8 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-barbell"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-knetterra-700 font-bold uppercase">Athleten-Protokoll</div>
+                    <h3 class="text-xl font-display font-black text-knetcream-950">Sportmassage & Flush</h3>
+                    <p class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Dynamische Knetungen, Friktionen und Schüttelungen zur Beschleunigung des Laktatabbaus und Wiederherstellung voller Muskelkontraktilität.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-200 flex justify-between text-xs font-bold font-mono">
+                        <span>30 / 60 Min.</span>
+                        <span class="text-knetterra-600">Schnelle Regeneration</span>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="squishy-card bg-white rounded-[32px] p-8 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-target"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-knetterra-700 font-bold uppercase">Schmerzpunkt-Fokus</div>
+                    <h3 class="text-xl font-display font-black text-knetcream-950">Triggerpunkt-Knetung</h3>
+                    <p class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Ischämische Kompression von hypersensiblen Schmerzknoten im Gewebe. Schaltet den Daueralarm im Rückenmark wirksam ab.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-200 flex justify-between text-xs font-bold font-mono">
+                        <span>Punktgenau</span>
+                        <span class="text-knetterra-600">Referred-Pain Stop</span>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="squishy-card bg-white rounded-[32px] p-8 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-fire"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-knetterra-700 font-bold uppercase">Durchwärmung</div>
+                    <h3 class="text-xl font-display font-black text-knetcream-950">Thermo-Fango & KMT</h3>
+                    <p class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Kombination aus mineralischer Naturmoor-Packung (52°C) zur Vorwärmung und anschließender klassischer medizinischer Massagetherapie (KMT).
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-200 flex justify-between text-xs font-bold font-mono">
+                        <span>Kassenrezept KMT</span>
+                        <span class="text-knetterra-600">Alle Kassen</span>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="squishy-card bg-white rounded-[32px] p-8 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-desktop"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-knetterra-700 font-bold uppercase">Desk-Worker</div>
+                    <h3 class="text-xl font-display font-black text-knetcream-950">Schreibtisch-Nacken Spezial</h3>
+                    <p class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Spezifisches Protokoll für Mausarm, Rundrücken und Kopfschmerzen: Nacken, Trapezmuskel, Brustmuskulatur und Handgelenke werden entkrampft.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-200 flex justify-between text-xs font-bold font-mono">
+                        <span>35 Min. Express</span>
+                        <span class="text-knetterra-600">Sofortige Haltung</span>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="squishy-card bg-white rounded-[32px] p-8 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-14 h-14 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-2xl font-bold">
+                        <i class="ph-bold ph-heartbeat"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-knetterra-700 font-bold uppercase">Entstauung</div>
+                    <h3 class="text-xl font-display font-black text-knetcream-950">Manuelle Lymphdrainage</h3>
+                    <p class="text-sm text-knetcream-800 leading-relaxed font-medium">
+                        Sanftere, rhythmische Kreisgriffe zur Entstauung von Ödemen nach Sportverletzungen oder operativen Eingriffen (MLD 30 / 45 / 60).
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-200 flex justify-between text-xs font-bold font-mono">
+                        <span>Zertifizierte MLD</span>
+                        <span class="text-knetterra-600">Ödem-Rückgang</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PHILOSOPHIE -->
+    <section id="knetphilosophie" class="py-24 bg-white border-y border-knetcream-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-knetterra-100 text-knetterra-900 border border-knetterra-200 text-xs font-display font-bold">
+                        <i class="ph-bold ph-sparkle"></i> ECHTE HANDWERKSKUNST
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-black text-knetcream-950 tracking-tight">
+                        Warum Maschinen unsere Hände nicht ersetzen können
+                    </h2>
+                    <p class="text-knetcream-800 text-base leading-relaxed font-medium">
+                        Massagepistolen vibrieren blind auf der Haut. Ein erfahrener Masseur spürt mit seinen Fingerbeeren den exakten Übergang zwischen gesundem Muskelgewebe und zäher Bindegewebsverkalkung.
+                    </p>
+                    
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center gap-3 text-sm font-bold text-knetcream-900">
+                            <i class="ph-bold ph-check-circle text-knetterra-600 text-xl"></i>
+                            <span>Kein Abkürzen: Jede Behandlungsminute wird mit voller Präsenz genutzt</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold text-knetcream-900">
+                            <i class="ph-bold ph-check-circle text-knetterra-600 text-xl"></i>
+                            <span>Biologische Massageöle ohne künstliche Duftstoffe oder Parabene</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-bold text-knetcream-900">
+                            <i class="ph-bold ph-check-circle text-knetterra-600 text-xl"></i>
+                            <span>Extrabreite, beheizte Profi-Massageliegen für perfekten Liegekomfort</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-6 bg-knetcream-50 rounded-[36px] p-8 border-2 border-knetcream-200 shadow-clay-card">
+                    <h3 class="text-xl font-display font-black text-knetcream-950 mb-4">Das Versprechen:</h3>
+                    <blockquote class="text-base sm:text-lg text-knetcream-800 italic leading-relaxed border-l-4 border-knetterra-500 pl-4 my-4 font-medium">
+                        „Wenn Sie von unserer Liege aufstehen, fühlen sich Ihre Schultern an, als hätte jemand einen Zentner Zementsteine abgeladen. Das ist unser Anspruch bei jedem einzelnen Termin.“
+                    </blockquote>
+                    <div class="flex items-center gap-4 pt-4 border-t border-knetcream-200">
+                        <div class="w-12 h-12 rounded-full bg-knetterra-600 text-white flex items-center justify-center font-display font-black text-lg shadow-clay-pill">
+                            BK
+                        </div>
+                        <div>
+                            <span class="block font-display font-bold text-knetcream-950">Bennet Krause</span>
+                            <span class="text-xs text-knetcream-700 font-mono">Leitender Masseur & Praxisinhaber</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TEAM -->
+    <section id="team" class="py-24 bg-knetcream-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-knetterra-200 shadow-clay-pill text-xs font-display font-bold text-knetterra-900">
+                    <i class="ph-bold ph-users-three"></i> UNSERE KNET-PROFIS
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-black text-knetcream-950 tracking-tight">
+                    Starke Hände mit anatomischem Tiefblick
+                </h2>
+                <p class="text-knetcream-800 text-base leading-relaxed font-medium">
+                    Unsere Masseure und Physiotherapeuten wissen exakt, wie viel Belastung ein Muskel verträgt und wo die schmerzlindernde Zone beginnt.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Team 1 -->
+                <div class="squishy-card bg-white rounded-[32px] p-6 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-knetterra-100 text-knetterra-800 flex items-center justify-center text-3xl font-black font-display shadow-inner">
+                        BK
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-knetterra-600 font-bold uppercase">Staatl. gepr. Masseur & Bademeister</span>
+                        <h4 class="text-xl font-display font-black text-knetcream-950">Bennet Krause</h4>
+                    </div>
+                    <p class="text-xs text-knetcream-800 leading-relaxed font-medium">
+                        15 Jahre Erfahrung in Rehazentren und Profisport-Betreuung (Ruder-Bundesliga). Bekannt für kompromisslos präzisen Daumendruck.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-100 text-[10px] font-mono text-knetcream-600 flex gap-1.5">
+                        <span class="bg-knetcream-100 px-2 py-0.5 rounded-full">Deep Tissue</span>
+                        <span class="bg-knetcream-100 px-2 py-0.5 rounded-full">Sportmassage</span>
+                    </div>
+                </div>
+
+                <!-- Team 2 -->
+                <div class="squishy-card bg-white rounded-[32px] p-6 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-knetcream-200 text-knetcream-900 flex items-center justify-center text-3xl font-black font-display shadow-inner">
+                        AN
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-knetterra-600 font-bold uppercase">Physiotherapeutin & KMT</span>
+                        <h4 class="text-xl font-display font-black text-knetcream-950">Alina Neumann</h4>
+                    </div>
+                    <p class="text-xs text-knetcream-800 leading-relaxed font-medium">
+                        Spezialisiert auf myofasziale Triggerpunkte im Schulter-Nacken-Gürtel und Kiefergelenksmassagen bei zähneknirschenden Büroarbeitern.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-100 text-[10px] font-mono text-knetcream-600 flex gap-1.5">
+                        <span class="bg-knetcream-100 px-2 py-0.5 rounded-full">CMD Massage</span>
+                        <span class="bg-knetcream-100 px-2 py-0.5 rounded-full">Triggerpunkte</span>
+                    </div>
+                </div>
+
+                <!-- Team 3 -->
+                <div class="squishy-card bg-white rounded-[32px] p-6 border border-knetcream-200 shadow-clay-card space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-knetterra-100 text-knetterra-800 flex items-center justify-center text-3xl font-black font-display shadow-inner">
+                        DO
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-knetterra-600 font-bold uppercase">Masseur & Lymphdrainagetherapeut</span>
+                        <h4 class="text-xl font-display font-black text-knetcream-950">Dennis Osterode</h4>
+                    </div>
+                    <p class="text-xs text-knetcream-800 leading-relaxed font-medium">
+                        Experte für Faszien-Distorsionen, Sportregeneration nach Marathonläufen und ganzheitliche Bindegewebs-Entspannung.
+                    </p>
+                    <div class="pt-3 border-t border-knetcream-100 text-[10px] font-mono text-knetcream-600 flex gap-1.5">
+                        <span class="bg-knetcream-100 px-2 py-0.5 rounded-full">MLD</span>
+                        <span class="bg-knetcream-100 px-2 py-0.5 rounded-full">FDM Faszien</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PRAXIS & KONTAKT -->
+    <section id="kontakt" class="py-24 bg-white border-t border-knetcream-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-knetterra-100 text-knetterra-900 border border-knetterra-200 text-xs font-display font-bold">
+                        <i class="ph-bold ph-map-pin"></i> PRAXIS IN MÜNCHEN
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-black text-knetcream-950 tracking-tight">
+                        Zentral in München-Sendling
+                    </h2>
+                    <p class="text-knetcream-800 text-base leading-relaxed font-medium">
+                        Direkt am Harras gelegen. Nur 2 Minuten zu Fuß von U- und S-Bahn. Eigene Kundenparkplätze im Hof.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-xl shrink-0 mt-0.5 shadow-clay-pill">
+                                <i class="ph-bold ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-knetcream-950 block text-sm">Praxisanschrift</span>
+                                <span class="text-knetcream-700 text-sm">Plinganserstraße 48, 81369 München (Sendling)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-xl shrink-0 mt-0.5 shadow-clay-pill">
+                                <i class="ph-bold ph-clock"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-knetcream-950 block text-sm">Öffnungszeiten</span>
+                                <span class="text-knetcream-700 text-sm">Montag bis Freitag: 08:00 – 21:00 Uhr | Samstag: 09:00 – 16:00 Uhr</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-2xl bg-knetterra-100 text-knetterra-700 flex items-center justify-center text-xl shrink-0 mt-0.5 shadow-clay-pill">
+                                <i class="ph-bold ph-phone"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-knetcream-950 block text-sm">Telefon & Terminvereinbarung</span>
+                                <span class="text-knetcream-700 text-sm">089 / 77 11 22 00 (Oder bequem über den gelben Button unten rechts)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-6 bg-knetcream-50 rounded-[36px] p-8 border-2 border-knetcream-200 shadow-clay-card">
+                    <h3 class="text-xl font-display font-black text-knetcream-950 mb-2">Nachricht an die Praxis</h3>
+                    <p class="text-xs text-knetcream-600 mb-6 font-mono">Für Gutscheine, Firmenmassagen vor Ort oder Terminanfragen.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-display font-bold uppercase text-knetcream-800 mb-1">Ihr Name *</label>
+                                <input type="text" required placeholder="z. B. Julia Wagner" class="w-full bg-white border border-knetcream-300 rounded-2xl px-4 py-3 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500 shadow-inner">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-display font-bold uppercase text-knetcream-800 mb-1">Telefon *</label>
+                                <input type="tel" required placeholder="0176 / 554433" class="w-full bg-white border border-knetcream-300 rounded-2xl px-4 py-3 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500 shadow-inner">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-display font-bold uppercase text-knetcream-800 mb-1">E-Mail</label>
+                            <input type="email" placeholder="patient@gmail.com" class="w-full bg-white border border-knetcream-300 rounded-2xl px-4 py-3 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500 shadow-inner">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-display font-bold uppercase text-knetcream-800 mb-1">Gewünschte Massage oder Anliegen</label>
+                            <textarea rows="3" placeholder="z. B. 60 Min. Deep Tissue Rücken & Schultern, stark verspannt..." class="w-full bg-white border border-knetcream-300 rounded-2xl px-4 py-2.5 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500 shadow-inner resize-none"></textarea>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="knet-dsgvo" required class="rounded text-knetterra-600 focus:ring-knetterra-500">
+                            <label for="knet-dsgvo" class="text-[11px] text-knetcream-700">Ich bin mit der Speicherung meiner Daten zur Kontaktaufnahme einverstanden.</label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-knetcream-900 hover:bg-knetcream-800 text-white font-display font-bold py-3.5 rounded-2xl text-xs flex items-center justify-center gap-2 transition-all shadow-clay-card active:scale-95">
+                            <span>Nachricht absenden</span>
+                            <i class="ph-bold ph-paper-plane-tilt text-knetterra-400"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-knetcream-950 text-knetcream-400 text-xs py-12 border-t border-knetcream-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-knetterra-500 flex items-center justify-center text-white font-black text-sm">
+                    <i class="ph-bold ph-hand-fist"></i>
+                </div>
+                <span class="font-display font-bold text-white tracking-tight">KNET & FERTIG München</span>
+                <span class="text-knetcream-700">|</span>
+                <span class="text-knetcream-400">Praxis für Deep-Tissue, Sportmassage & KMT</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-knetcream-400 font-mono text-[11px]">
+                <a href="#impressum" class="hover:text-white transition-colors">Impressum</a>
+                <a href="#datenschutz" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="../index.html" class="text-knetterra-400 hover:text-knetterra-300 font-bold transition-colors">← Zurück zur Vorlagenübersicht</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- 4. FLOATING BOOKING BUTTON (Sticky bottom-right)               -->
+    <!-- Das Haupt-Verkaufsfeature der Demo                            -->
+    <!-- ============================================================ -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        
+        <!-- Attention Hint Badge -->
+        <div id="booking-badge-hint" class="hidden sm:flex items-center gap-2 bg-knetcream-900/90 backdrop-blur-md text-white text-xs font-medium py-2 px-3.5 rounded-full shadow-2xl border border-knetcream-700 animate-bounce">
+            <span class="w-2 h-2 rounded-full bg-knetterra-400 animate-ping"></span>
+            <span>Massage-Termin online buchen</span>
+        </div>
+
+        <!-- The Button Trigger -->
+        <button 
+            id="floating-booking-btn"
+            onclick="toggleBookingPanel()"
+            class="w-16 h-16 rounded-full bg-gradient-to-tr from-knetterra-600 via-knetterra-500 to-amber-500 hover:scale-105 text-white flex items-center justify-center text-2xl shadow-clay-btn transition-all duration-200 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-knetterra-400/50"
+            aria-label="Online Termin buchen"
+            aria-expanded="false"
+        >
+            <i class="ph-bold ph-calendar-plus group-hover:rotate-6 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. FLOATING BOOKING PANEL (ca. 400x500px MODALES FENSTER)    -->
+    <!-- Inklusive Kategorisierter 11-Vorlagen-Umschalter für die Demo -->
+    <!-- ============================================================ -->
+    <div 
+        id="booking-widget-panel"
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[560px] bg-white rounded-3xl shadow-2xl border-2 border-knetcream-300 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-label="Online Terminbuchung & Vorlagen-Umschalter"
+    >
+        <!-- Panel Header -->
+        <div class="bg-gradient-to-r from-knetcream-950 to-knetcream-900 text-white p-4 flex items-center justify-between border-b border-knetcream-800 shrink-0">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-knetterra-500 flex items-center justify-center text-white text-lg shadow-clay-pill font-bold">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-display font-bold tracking-tight leading-none text-white">Online-Terminbuchung</h3>
+                    <span class="text-[10px] text-knetterra-300 font-mono">KNET & FERTIG • München</span>
+                </div>
+            </div>
+            <button onclick="toggleBookingPanel(false)" class="w-8 h-8 rounded-full bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white flex items-center justify-center text-sm transition-colors" aria-label="Schließen">
+                <i class="ph-bold ph-x"></i>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEMO-SWITCHER: ALLE 11 VORLAGEN (KATEGORISIERT)               -->
+        <!-- ============================================================ -->
+        <div class="bg-knetcream-900 text-white px-3 py-2 border-b border-knetcream-800 text-xs shrink-0 space-y-1.5">
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-knetcream-400">DEMO-WECHSLER:</span>
+                
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-1 text-[10px] font-mono">
+                    <button type="button" id="cat-tab-classic" onclick="switchCategoryTab('classic')" class="px-2 py-0.5 rounded font-medium text-knetcream-400 hover:text-white transition-all">
+                        5 Klassiker
+                    </button>
+                    <span class="text-knetcream-600">|</span>
+                    <button type="button" id="cat-tab-creative" onclick="switchCategoryTab('creative')" class="px-2 py-0.5 rounded font-bold text-knetcream-950 bg-knetterra-400 transition-all">
+                        6 Kreativ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Row 1: 5 Classic Templates -->
+            <div id="cat-row-classic" class="grid grid-cols-5 gap-1 hidden">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="1. UNVERKRAMPFT">1. Bio</a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="2. KINETIQ">2. Sport</a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="3. SANA VITA">3. Natur</a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="4. AURORA MED">4. Klinik</a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="5. VITALWERK">5. Urban</a>
+            </div>
+
+            <!-- Row 2: 6 Creative Templates (Active by default here) -->
+            <div id="cat-row-creative" class="grid grid-cols-6 gap-1">
+                <a href="../design-6-schmiere/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="6. GELENK-SCHMIERE">6. Schmiere</a>
+                <a href="../design-7-knotenloeser/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="7. KNOTENLÖSER">7. Knoten</a>
+                <a href="../design-8-knackpunkt/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="8. KNACKPUNKT">8. Knack</a>
+                <a href="../design-9-knetfertig/index.html" class="px-0.5 py-1 rounded text-[9px] font-bold text-center bg-knetterra-400 text-knetcream-950 border border-knetterra-300 truncate shadow-sm" title="9. KNET & FERTIG">9. Kneten</a>
+                <a href="../design-10-aufrecht/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="10. AUFRECHT & HEITER">10. Aufrecht</a>
+                <a href="../design-11-bewegungsmelder/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-knetcream-800 hover:bg-knetcream-700 text-knetcream-300 hover:text-white border border-knetcream-700 truncate transition-colors" title="11. BEWEGUNGSMELDER">11. Melder</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (ca. 400x500px)                    -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1.5">Abrechnungsart</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-knetcream-950 bg-knetterra-100 text-knetcream-950 font-bold text-xs transition-all">
+                            Selbstzahler
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privatrezept')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500 transition-all">
+                            Privatrezept
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Kassenrezept')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500 transition-all">
+                            Kassenrezept
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1.5">Massage-Behandlung wählen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-knetcream-300 rounded-xl px-3 py-2 text-xs font-medium text-knetcream-950 focus:outline-none focus:border-knetterra-500">
+                        <option value="Deep Tissue Massage (50 Min.)">Deep Tissue Massage (50 Min. intensiver Druck)</option>
+                        <option value="Sportmassage Regenerativ (60 Min.)">Sportmassage Regenerativ (60 Min. Ganzkörper)</option>
+                        <option value="Schreibtisch-Nacken Express (35 Min.)">Schreibtisch-Nacken Express (35 Min.)</option>
+                        <option value="Thermo-Fango & KMT (40 Min.)">Thermo-Fango Wärmepackung & KMT Massage</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-knetterra-700 font-mono font-bold">● Freie Liegen verfügbar</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-knetterra-500 bg-knetterra-50 text-knetcream-950 font-bold text-xs">
+                            <span class="block text-[10px] text-knetterra-700 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500">
+                            <span class="block text-[10px] text-knetcream-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Samstag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500">
+                            <span class="block text-[10px] text-knetcream-400 uppercase">Sa.</span>
+                            <span class="block text-xs font-bold">18. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '10:00')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-knetcream-950 bg-knetterra-100 text-knetcream-950 font-bold text-xs">10:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '12:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500">12:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '15:15')" class="widget-time-btn py-1.5 text-center rounded-lg border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500">15:15</button>
+                        <button type="button" onclick="setWidgetTime(this, '18:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500">18:00</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-knetterra-500 to-knetterra-600 hover:from-knetterra-400 text-white font-display font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-clay-btn transition-all mt-1">
+                    <span>Weiter zu Ihren Daten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-knetterra-50 p-2.5 rounded-xl border border-knetterra-200 text-xs text-knetcream-800">
+                    <span class="font-bold text-knetcream-950 block" id="widget-summary-title">Deep Tissue Massage • Selbstzahler</span>
+                    <span class="text-[11px] text-knetterra-800 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 10:00 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Christoph Mayr" class="w-full bg-white border border-knetcream-300 rounded-xl px-3 py-2 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="0171 / 771122" class="w-full bg-white border border-knetcream-300 rounded-xl px-3 py-2 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@muenchen.de" class="w-full bg-white border border-knetcream-300 rounded-xl px-3 py-2 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-knetcream-800 mb-1">Fokus-Region & Druckwunsch</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Maximaler Druck im oberen Rücken erwünscht..." class="w-full bg-white border border-knetcream-300 rounded-xl px-3 py-1.5 text-xs text-knetcream-950 focus:outline-none focus:border-knetterra-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-bold text-xs hover:bg-knetcream-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-knetterra-500 hover:bg-knetterra-600 text-white font-display font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-clay-btn transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Massageplatz buchen</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-knetterra-100 text-knetterra-700 mx-auto flex items-center justify-center text-2xl shadow-inner border border-knetterra-300">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-knetterra-700">Massageliege reserviert</span>
+                    <h4 class="text-base font-display font-bold text-knetcream-950 mt-1">Ihr Termin wurde vorgemerkt!</h4>
+                    <p class="text-xs text-knetcream-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhält die Praxis hier sofort die Buchung samt Druck-Präferenz.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-knetcream-900 hover:bg-knetcream-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-knetcream-200 text-[10px] text-knetcream-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-knetterra-700 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. DRUCKSTUFEN CONTROLLER ---
+        const pressureData = {
+            1: {
+                title: 'Stufe 1: Tonus-Ausgleich & Beruhigung',
+                badge: 'Sanft & Entstauend',
+                desc: 'Großflächige Streichungen und fließende Friktionen. Ideal zum Herunterfahren nach extrem stressigen Arbeitstagen oder bei erhöhter Schmerzempfindlichkeit.',
+                suitable: 'Psychovegetativer Stress, Schlafstörungen, Erschöpfungszustände.',
+                duration: '60 Minuten Ganzkörperentspannung.'
+            },
+            2: {
+                title: 'Stufe 2: Klassische Schwedische Massage',
+                badge: 'Ausgewogen & Wohltuend',
+                desc: 'Gezielte Zirkelungen, Knetungen und Walkungen mit mittlerem Druck. Fördert die periphere Blutzirkulation und lockert oberflächliche Muskelstränge.',
+                suitable: 'Allgemeine Nackensteifigkeit, müde Waden nach Wandertagen.',
+                duration: '45 Minuten Rücken-Beine-Kombination.'
+            },
+            3: {
+                title: 'Stufe 3: Deep Tissue & Triggerpunkt-Friktion',
+                badge: 'Optimal für Büro- & Sportnacken',
+                desc: 'Kräftiger, anhaltender Daumen- und Ellbogendruck entlang der myofaszialen Spannungszüge. Es entsteht ein wohliger Wohlwehschmerz (Dehnschmerz), der nach wenigen Sekunden der tiefen Entspannung weicht.',
+                suitable: 'Chronisch verkürztem Trapezius, steifem Gesäß (Piriformis) und verklebter Lendenfaszie.',
+                duration: '50 Minuten Ganzkörper oder 30 Minuten Rücken-Fokus.'
+            },
+            4: {
+                title: 'Stufe 4: Kompromisslose Schmerzgrenze',
+                badge: 'Maximaler Knet-Druck',
+                desc: 'Für hartgesottene Athleten und Menschen mit extremer Gewebedichte: Punktueller, schwerster Druck mit Daumenkuppen und spitzem Unterarm. Löst selbst jahrelang verkalkte Myogelosen.',
+                suitable: 'Powerlifter, Crossfit-Athleten und Patienten, bei denen bisherige Massagen wirkungslos verpufften.',
+                duration: '40 Minuten hochintensives Faser-Stripping.'
+            }
+        };
+
+        function setPressureLevel(lvl) {
+            document.querySelectorAll('.pressure-btn').forEach(b => {
+                b.className = 'pressure-btn squishy-card py-4 px-3 rounded-2xl bg-white border border-knetcream-200 shadow-clay-pill flex flex-col items-center gap-2 text-center transition-all text-knetcream-950';
+                const circle = b.querySelector('div');
+                if (circle) circle.className = 'w-10 h-10 rounded-full bg-knetcream-100 flex items-center justify-center text-lg font-bold text-knetcream-800';
+            });
+
+            const activeBtn = document.getElementById('btn-pressure-' + lvl);
+            if (activeBtn) {
+                activeBtn.className = 'pressure-btn squishy-card py-4 px-3 rounded-2xl bg-knetterra-500 border-2 border-knetterra-600 shadow-clay-btn flex flex-col items-center gap-2 text-center transition-all text-white';
+                const activeCircle = activeBtn.querySelector('div');
+                if (activeCircle) activeCircle.className = 'w-10 h-10 rounded-full bg-white/20 flex items-center justify-center text-lg font-bold text-white';
+            }
+
+            const data = pressureData[lvl];
+            document.getElementById('pressure-title').textContent = data.title;
+            document.getElementById('pressure-badge').textContent = data.badge;
+            document.getElementById('pressure-desc').textContent = data.desc;
+            document.getElementById('pressure-suitable').textContent = data.suitable;
+            document.getElementById('pressure-duration').textContent = data.duration;
+        }
+
+        // --- 2. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Selbstzahler';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '10:00';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function switchCategoryTab(cat) {
+            const rowClassic = document.getElementById('cat-row-classic');
+            const rowCreative = document.getElementById('cat-row-creative');
+            const tabClassic = document.getElementById('cat-tab-classic');
+            const tabCreative = document.getElementById('cat-tab-creative');
+
+            if (cat === 'classic') {
+                rowClassic.classList.remove('hidden');
+                rowCreative.classList.add('hidden');
+                tabClassic.className = 'px-2 py-0.5 rounded font-bold text-knetcream-950 bg-knetterra-400 transition-all';
+                tabCreative.className = 'px-2 py-0.5 rounded font-medium text-knetcream-400 hover:text-white transition-all';
+            } else {
+                rowClassic.classList.add('hidden');
+                rowCreative.classList.remove('hidden');
+                tabCreative.className = 'px-2 py-0.5 rounded font-bold text-knetcream-950 bg-knetterra-400 transition-all';
+                tabClassic.className = 'px-2 py-0.5 rounded font-medium text-knetcream-400 hover:text-white transition-all';
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-knetcream-950 bg-knetterra-100 text-knetcream-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-knetterra-500 bg-knetterra-50 text-knetcream-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-knetcream-200 bg-white text-knetcream-700 font-medium text-xs hover:border-knetterra-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-knetcream-950 bg-knetterra-100 text-knetcream-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Massageliege für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde erfolgreich reserviert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleKnetMenu() {
+            const m = document.getElementById('knet-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihre Anfrage an die Praxis KNET & FERTIG. Wir melden uns umgehend bei Ihnen.');
+            e.target.reset();
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

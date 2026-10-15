@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KNACKPUNKT | Chirotherapie, Chiropraktik & Gelenkjustierung</title>
+    <meta name="description" content="Spezialpraxis für Justierung der Wirbelsäule, ISG-Blockaden und Atlastherapie. Wir bringen Ihre Gelenke wieder ins Lot – mit dem befreienden Klick.">
+
+    <!-- Fonts: Space Grotesk & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <!-- Tailwind Play CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
+                        display: ['"Space Grotesk"', 'sans-serif'],
+                    },
+                    colors: {
+                        chiroteal: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            300: '#5eead4',
+                            400: '#2dd4bf',
+                            500: '#14b8a6', // Fresh Chiro Teal
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        },
+                        chiroslate: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#020617',
+                        }
+                    },
+                    boxShadow: {
+                        'snap': '0 20px 35px -10px rgba(13, 148, 136, 0.25)',
+                        'card': '0 10px 25px -5px rgba(15, 23, 42, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Misaligned / Subluxated State */
+        .subluxated {
+            transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+        }
+        .tilt-left {
+            transform: rotate(-1.75deg) translateY(-2px);
+        }
+        .tilt-right {
+            transform: rotate(1.85deg) translateY(2px);
+        }
+        .tilt-subtle {
+            transform: rotate(-0.95deg);
+        }
+
+        /* Aligned / Snapped State */
+        .aligned .tilt-left,
+        .aligned .tilt-right,
+        .aligned .tilt-subtle,
+        .aligned.tilt-left,
+        .aligned.tilt-right,
+        .aligned.tilt-subtle {
+            transform: rotate(0deg) translateY(0px) !important;
+        }
+
+        /* Precision Grid Background */
+        .chiro-grid {
+            background-image: linear-gradient(to right, rgba(13, 148, 136, 0.06) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(13, 148, 136, 0.06) 1px, transparent 1px);
+            background-size: 32px 32px;
+        }
+    </style>
+</head>
+<body id="chiro-body" class="bg-chiroslate-50 text-chiroslate-900 font-sans antialiased selection:bg-chiroteal-200 selection:text-chiroteal-950">
+
+    <!-- Interactive Top Banner with "Einrenken!" Button -->
+    <div class="bg-chiroslate-950 text-white text-xs py-2 px-4 border-b border-chiroslate-800 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+            <div class="flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-chiroteal-400 animate-ping"></span>
+                <span class="font-medium text-chiroslate-300">Gelenkstatus: <strong id="alignment-status-text" class="text-amber-400">Leichte Fehlstellung (Subluxiert)</strong></span>
+            </div>
+            
+            <!-- The Interactive Snap Button -->
+            <button 
+                id="snap-all-btn"
+                onclick="toggleAlignment()" 
+                class="bg-gradient-to-r from-chiroteal-500 to-chiroteal-600 hover:from-chiroteal-400 hover:to-chiroteal-500 text-chiroslate-950 font-bold px-3.5 py-1 rounded-full text-xs flex items-center gap-1.5 shadow-md active:scale-95 transition-all"
+            >
+                <i class="ph-bold ph-hand-tap"></i>
+                <span id="snap-btn-text">⚡ Seite einrenken! (Klick)</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="bg-white/95 backdrop-blur-md border-b border-chiroslate-200 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="index.html" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-chiroteal-600 to-chiroteal-400 flex items-center justify-center text-chiroslate-950 shadow-snap group-hover:scale-105 transition-transform font-bold text-xl font-display">
+                    <i class="ph-bold ph-arrows-in-simple"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-display font-extrabold tracking-tight text-xl text-chiroslate-950 leading-none">KNACK<span class="text-chiroteal-600">PUNKT</span></span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-chiroteal-100 text-chiroteal-800 font-bold">JUSTIERT</span>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-wider text-chiroslate-500 font-semibold block mt-0.5">Chiropraktik • Chirotherapie • Wirbelsäule</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-chiroslate-800">
+                <a href="#philosophie" class="hover:text-chiroteal-600 transition-colors">Das Knack-Prinzip</a>
+                <a href="#quickcheck" class="hover:text-chiroteal-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-chiroteal-500"></span> Gelenk-Quick-Check
+                </a>
+                <a href="#justierungen" class="hover:text-chiroteal-600 transition-colors">Behandlungen</a>
+                <a href="#team" class="hover:text-chiroteal-600 transition-colors">Chiro-Experten</a>
+                <a href="#kontakt" class="hover:text-chiroteal-600 transition-colors">Praxis & Anfahrt</a>
+            </nav>
+
+            <!-- CTA / Contact Direct -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-chiroslate-900 hover:bg-chiroslate-800 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 active:scale-95 shadow-sm">
+                    <i class="ph-bold ph-phone-call text-chiroteal-400"></i>
+                    <span>Praxiskontakt</span>
+                </a>
+                <button id="mobile-toggle-btn" onclick="toggleKnackMenu()" class="lg:hidden p-2.5 rounded-xl border border-chiroslate-300 text-chiroslate-900 hover:bg-chiroslate-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="knack-mobile-menu" class="hidden lg:hidden bg-white border-b border-chiroslate-200 px-4 py-4 space-y-3 font-medium">
+            <a href="#philosophie" onclick="toggleKnackMenu()" class="block py-2 text-chiroslate-900">Das Knack-Prinzip</a>
+            <a href="#quickcheck" onclick="toggleKnackMenu()" class="block py-2 text-chiroteal-600 font-bold">⚡ Gelenk-Quick-Check</a>
+            <a href="#justierungen" onclick="toggleKnackMenu()" class="block py-2 text-chiroslate-900">Behandlungen</a>
+            <a href="#team" onclick="toggleKnackMenu()" class="block py-2 text-chiroslate-900">Chiro-Experten</a>
+            <a href="#kontakt" onclick="toggleKnackMenu()" class="block py-2 text-chiroslate-900">Praxis & Anfahrt</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-20 lg:pb-32 overflow-hidden chiro-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Manifesto (Subluxated by default) -->
+                <div class="lg:col-span-7 space-y-8">
+                    
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-chiroteal-100/90 border border-chiroteal-200 text-xs font-bold text-chiroteal-950 font-display">
+                        <i class="ph-bold ph-lightning text-chiroteal-600"></i>
+                        <span class="tracking-wide uppercase">IMPULSMANIPULATION OHNE GEWALT • GEZIELTE JUSTIERUNG</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[60px] font-display font-extrabold text-chiroslate-950 leading-[1.1] tracking-tight">
+                        Wieder im Lot. <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-chiroteal-600 to-teal-500">Wenn es klick macht,</span><br>
+                        weicht der Druck.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-chiroslate-600 leading-relaxed max-w-xl">
+                        Eine blockierte Halswirbelsäule oder ein verkantetes ISG rauben jeden klaren Gedanken. Mit sanften High-Velocity-Low-Amplitude (HVLA) Impulsen dekomprimieren wir Facettengelenke und stellen die neurologische Kommunikation sofort wieder her.
+                    </p>
+
+                    <!-- Interactive Tilt Callout (Slightly tilted card) -->
+                    <div class="subluxated tilt-left bg-white p-5 rounded-2xl border-2 border-chiroteal-300 shadow-card max-w-xl">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-chiroteal-50 text-chiroteal-600 flex items-center justify-center text-2xl font-bold shrink-0">
+                                <i class="ph-bold ph-waveform"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-between">
+                                    <h4 class="font-display font-bold text-chiroslate-950 text-sm">Was ist das Geräusch beim Knacken?</h4>
+                                    <span class="text-[10px] font-mono uppercase bg-chiroteal-100 text-chiroteal-800 px-2 py-0.5 rounded font-bold">Kavitation</span>
+                                </div>
+                                <p class="text-xs text-chiroslate-600 mt-1 leading-relaxed">
+                                    Keine Knochen reiben aneinander: Durch den minimalen Unterdruck im Gelenkspalt entweichen gelöste Stickstoffbläschen aus der Synovia. Es ist die pure physikalische Entlastung!
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Call to Action Buttons -->
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <button type="button" onclick="toggleBookingPanel(true)" class="bg-chiroteal-600 hover:bg-chiroteal-500 text-white font-display font-bold px-7 py-3.5 rounded-xl shadow-snap flex items-center gap-2.5 transition-all hover:translate-y-[-1px]">
+                            <span>Justierungstermin anfragen</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                        <a href="#quickcheck" class="bg-white hover:bg-chiroslate-100 text-chiroslate-900 border border-chiroslate-300 font-display font-bold px-6 py-3.5 rounded-xl transition-all flex items-center gap-2">
+                            <i class="ph-bold ph-activity text-chiroteal-600"></i>
+                            <span>Blockaden-Check</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right: Hero Image with Subluxated Tilt Effect -->
+                <div class="lg:col-span-5 relative">
+                    <div class="subluxated tilt-right rounded-3xl overflow-hidden border-2 border-chiroslate-300 bg-white shadow-2xl p-3">
+                        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] bg-chiroslate-200">
+                            <img src="./hero.jpg" alt="Chirotherapie Wirbelsäulen-Justierung" class="w-full h-full object-cover">
+                            
+                            <!-- Overlay Badge -->
+                            <div class="absolute bottom-4 left-4 right-4 bg-chiroslate-950/90 backdrop-blur-md rounded-2xl p-4 text-white border border-chiroslate-700/60 shadow-xl">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-chiroteal-500/20 border border-chiroteal-400/40 flex items-center justify-center text-chiroteal-400 text-xl shrink-0">
+                                        <i class="ph-bold ph-shield-check"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-mono font-bold text-chiroteal-400 uppercase">Sanfte Technik</div>
+                                        <div class="text-sm font-bold font-display">Kein Reißen. Präziser Mikrometer-Impuls.</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alignment state badge on image -->
+                        <div class="mt-3 p-3 bg-chiroslate-100 rounded-xl border border-chiroslate-200 text-xs text-chiroslate-700 flex items-center justify-between font-mono">
+                            <span id="card-tilt-indicator">📐 Neigungswinkel: +1.85° (Vor Justierung)</span>
+                            <span class="text-chiroteal-700 font-bold">CHIRO-PRECISION</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DAS KNACK-PRINZIP (Warum Chirotherapie wirkt) -->
+    <section id="philosophie" class="py-24 bg-white border-y border-chiroslate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chiroteal-50 border border-chiroteal-200 text-xs font-mono font-bold text-chiroteal-800">
+                    <i class="ph-bold ph-check-circle"></i> DAS KNACK-PRINZIP
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-chiroslate-950 tracking-tight">
+                    Die 3 Phasen einer erfolgreichen Reposition
+                </h2>
+                <p class="text-chiroslate-600 text-base leading-relaxed">
+                    Symptome wie Schwindel, Tinnitus, steifer Nacken oder dumpfe Hüftblockaden haben oft denselben Nenner: Eine Subluxation blockiert die Mechanorezeptoren des Rückenmarks.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 (Subluxated tilt-left) -->
+                <div class="subluxated tilt-left bg-chiroslate-50 rounded-3xl p-8 border border-chiroslate-200 shadow-card space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        1
+                    </div>
+                    <div class="text-xs font-mono font-bold text-chiroteal-700 uppercase">ANALYSE • MOTION PALPATION</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Segmentale Bewegungsprüfung</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Wir ertasten die dreidimensionale Bewegung jedes einzelnen Wirbelsegments. Wo fehlt das federnde Endgefühl? Wo spannt die segmental versorgte Muskulatur reflexartig an?
+                    </p>
+                    <div class="text-xs font-mono text-chiroslate-500 pt-2 border-t border-chiroslate-200">
+                        Prüfung von Atlas (C1) bis Sacrum
+                    </div>
+                </div>
+
+                <!-- Card 2 (Subluxated tilt-right) -->
+                <div class="subluxated tilt-right bg-chiroslate-50 rounded-3xl p-8 border border-chiroslate-200 shadow-card space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        2
+                    </div>
+                    <div class="text-xs font-mono font-bold text-chiroteal-700 uppercase">JUSTIERUNG • HVLA-IMPULS</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Der befreiende Mikrometer-Klick</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Mit einer blitzschnellen, minimalen Bewegung wird das Gelenk für den Bruchteil einer Sekunde geöffnet. Ein hörbares Knacken signalisiert das Wiedereinrasten in die anatomische Nullposition.
+                    </p>
+                    <div class="text-xs font-mono text-chiroslate-500 pt-2 border-t border-chiroslate-200">
+                        Vollkommen schmerzfrei & sicher
+                    </div>
+                </div>
+
+                <!-- Card 3 (Subluxated tilt-subtle) -->
+                <div class="subluxated tilt-subtle bg-chiroslate-50 rounded-3xl p-8 border border-chiroslate-200 shadow-card space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        3
+                    </div>
+                    <div class="text-xs font-mono font-bold text-chiroteal-700 uppercase">NEUROLOGIE • RESET</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Sofortige Nerven-Entlastung</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Sobald die mechanische Blockade weicht, normalisiert sich die Informationsleitung über das vegetative Nervensystem. Patienten berichten unmittelbar von freierem Atmen und Leichtigkeit im Kopf.
+                    </p>
+                    <div class="text-xs font-mono text-chiroslate-500 pt-2 border-t border-chiroslate-200">
+                        Reflektorische Muskelentspannung
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GELENK-QUICK-CHECK (Interaktives Barometer) -->
+    <section id="quickcheck" class="py-24 bg-chiroslate-100 chiro-grid">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chiroteal-100 border border-chiroteal-200 text-xs font-mono font-bold text-chiroteal-800">
+                        <i class="ph-bold ph-crosshair"></i> GELENK-QUICK-CHECK
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-chiroslate-950 tracking-tight leading-tight">
+                        Wo zwickt es? Wählen Sie Ihre blockierte Achse
+                    </h2>
+                    <p class="text-chiroslate-600 text-base leading-relaxed">
+                        Testen Sie hier die typischen Leitsymptome von Wirbelfehlstellungen. Klicken Sie auf ein Segment, um eine Justierung zu simulieren!
+                    </p>
+
+                    <div class="bg-white p-4 rounded-2xl border border-chiroslate-200 text-xs text-chiroslate-600 space-y-2">
+                        <span class="font-bold text-chiroslate-950 block">💡 Sicherheitshinweis nach DGMM:</span>
+                        <p class="leading-relaxed">
+                            Vor jeder Manipulation an der Halswirbelsäule prüfen unsere Chirotherapeuten standardmäßig die Arteria vertebralis und führen neurologische Kennmuskel-Tests durch.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Segment Selector -->
+                <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-8 border-2 border-chiroslate-300 shadow-xl space-y-6">
+                    
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        <button type="button" onclick="selectChiroSegment('atlas')" id="btn-seg-atlas" class="seg-btn py-3 px-3 rounded-2xl border-2 border-chiroteal-600 bg-chiroteal-50 text-chiroslate-950 font-display font-bold text-xs flex flex-col items-center gap-1.5 transition-all">
+                            <i class="ph-bold ph-skull text-xl text-chiroteal-600"></i>
+                            <span>Atlas & HWS</span>
+                        </button>
+                        <button type="button" onclick="selectChiroSegment('bws')" id="btn-seg-bws" class="seg-btn py-3 px-3 rounded-2xl border border-chiroslate-200 bg-chiroslate-50 text-chiroslate-700 font-display font-medium text-xs flex flex-col items-center gap-1.5 hover:border-chiroteal-400 transition-all">
+                            <i class="ph-bold ph-lungs text-xl text-chiroslate-500"></i>
+                            <span>BWS & Rippen</span>
+                        </button>
+                        <button type="button" onclick="selectChiroSegment('lws')" id="btn-seg-lws" class="seg-btn py-3 px-3 rounded-2xl border border-chiroslate-200 bg-chiroslate-50 text-chiroslate-700 font-display font-medium text-xs flex flex-col items-center gap-1.5 hover:border-chiroteal-400 transition-all">
+                            <i class="ph-bold ph-shield text-xl text-chiroslate-500"></i>
+                            <span>LWS & Hexenschuss</span>
+                        </button>
+                        <button type="button" onclick="selectChiroSegment('isg')" id="btn-seg-isg" class="seg-btn py-3 px-3 rounded-2xl border border-chiroslate-200 bg-chiroslate-50 text-chiroslate-700 font-display font-medium text-xs flex flex-col items-center gap-1.5 hover:border-chiroteal-400 transition-all">
+                            <i class="ph-bold ph-arrows-merge text-xl text-chiroslate-500"></i>
+                            <span>ISG & Becken</span>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Information Panel -->
+                    <div class="bg-chiroslate-50 rounded-2xl p-5 border border-chiroslate-200 space-y-4">
+                        <div class="flex items-center justify-between border-b border-chiroslate-200 pb-3">
+                            <div>
+                                <span class="text-[10px] font-mono font-bold uppercase text-chiroslate-500 block">Diagnostischer Befund</span>
+                                <h4 id="seg-title" class="text-base font-bold font-display text-chiroslate-950">Atlas-Subluxation (C0/C1) & Zervikocephales Syndrom</h4>
+                            </div>
+                            <span id="seg-badge" class="px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-chiroteal-100 text-chiroteal-900">
+                                Hohe Entlastungswahrscheinlichkeit
+                            </span>
+                        </div>
+
+                        <div class="space-y-2 text-xs">
+                            <div class="font-bold text-chiroslate-900">Symptome & Begleiterscheinungen:</div>
+                            <p id="seg-symptoms" class="text-chiroslate-600 leading-relaxed">
+                                Eingeschränkte Kopfdrehung, dumpfer Schläfendruck, Benommenheitsschwindel und Kieferknacken beim Kauen.
+                            </p>
+                        </div>
+
+                        <div class="p-3 bg-white rounded-xl border border-chiroslate-200 flex items-center justify-between">
+                            <div class="text-xs">
+                                <span class="font-mono text-[10px] uppercase text-chiroslate-400 block font-bold">Chiro-Technik:</span>
+                                <strong id="seg-technique" class="text-chiroteal-800 font-display">Spezifische Atlastherapie nach Arlen / Thompson Terminal Point</strong>
+                            </div>
+                            
+                            <button type="button" onclick="simulateSegmentClick()" class="bg-gradient-to-r from-chiroteal-500 to-chiroteal-600 hover:from-chiroteal-400 text-chiroslate-950 font-display font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-md active:scale-95 transition-all">
+                                <i class="ph-bold ph-speaker-simple-high"></i>
+                                <span>Segment justieren</span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: BEHANDLUNGSFELDER -->
+    <section id="justierungen" class="py-24 bg-white border-b border-chiroslate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chiroteal-50 border border-chiroteal-200 text-xs font-mono font-bold text-chiroteal-800">
+                    <i class="ph-bold ph-stethoscope"></i> INDIKATIONEN
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-chiroslate-950 tracking-tight">
+                    Präzise Justierungen für den gesamten Bewegungsapparat
+                </h2>
+                <p class="text-chiroslate-600 text-base leading-relaxed">
+                    Ob akutes Verheben oder chronische Bewegungseinschränkung – wir behandeln nach modernsten Standards der Amerikanischen Chiropraktik und ärztlichen Chirotherapie.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Service 1 -->
+                <div class="subluxated tilt-left bg-chiroslate-50 rounded-3xl p-7 border border-chiroslate-200 hover:border-chiroteal-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-arrows-clockwise"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-chiroteal-700 font-bold uppercase">HVLA-Manipulation</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Gezielte Wirbeljustierung</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Manuelle Repositionierung blockierter Wirbelkörper der Hals-, Brust- und Lendenwirbelsäule mit minimalem Hebel und hoher Geschwindigkeit.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-chiroslate-500 border-t border-chiroslate-200 flex justify-between">
+                        <span>Abrechnung: Privat & Kassen</span>
+                        <span class="text-chiroteal-700 font-bold">Sofort-Freiheit</span>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="subluxated tilt-right bg-chiroslate-50 rounded-3xl p-7 border border-chiroslate-200 hover:border-chiroteal-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-arrows-in"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-chiroteal-700 font-bold uppercase">Becken-Symmetrie</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">ISG- & Becken-Justierung</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Verkantungen des Iliosakralgelenks täuschen oft einen Beckenschiefstand und Beinlängendifferenzen vor. Wir lösen die Torsion mit gezieltem Drop-Table-Impuls.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-chiroslate-500 border-t border-chiroslate-200 flex justify-between">
+                        <span>Technik: Thompson Drop</span>
+                        <span class="text-chiroteal-700 font-bold">Beinlängenausgleich</span>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="subluxated tilt-left bg-chiroslate-50 rounded-3xl p-7 border border-chiroslate-200 hover:border-chiroteal-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-sparkle"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-chiroteal-700 font-bold uppercase">Sanfter Instrument-Impuls</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Aktivator-Methode</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Für Patienten mit Osteoporose oder Angst vor manuellem Knacken: Ein federgeladenes Handgerät gibt einen mikrogenauen mechanischen Impuls ohne Drehung des Kopfes.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-chiroslate-500 border-t border-chiroslate-200 flex justify-between">
+                        <span>Geeignet für: Senioren & Kinder</span>
+                        <span class="text-chiroteal-700 font-bold">Ohne Drehmoment</span>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="subluxated tilt-right bg-chiroslate-50 rounded-3xl p-7 border border-chiroslate-200 hover:border-chiroteal-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-heartbeat"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-chiroteal-700 font-bold uppercase">Bandscheiben-Entlastung</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Flexions-Distraktion nach Cox</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Spezielle Liegentraktion mit rhythmischer Flexion der Lendenwirbelsäule zur Vergrößerung des Zwischenwirbelraumes und Entlastung gereizter Nervenwurzeln.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-chiroslate-500 border-t border-chiroslate-200 flex justify-between">
+                        <span>Indikation: Protrusion / Vorfall</span>
+                        <span class="text-chiroteal-700 font-bold">Dekompressiv</span>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="subluxated tilt-left bg-chiroslate-50 rounded-3xl p-7 border border-chiroslate-200 hover:border-chiroteal-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-hand-fist"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-chiroteal-700 font-bold uppercase">Periphere Gelenke</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Extremitäten-Justierung</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Blockaden der Sprunggelenke, des Fibulaköpfchens, der Handwurzelknochen oder des Akromioklavikulargelenks (Schulter) justieren wir anatomisch exakt.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-chiroslate-500 border-t border-chiroslate-200 flex justify-between">
+                        <span>Bereich: Fuß, Knie, Hand, Schulter</span>
+                        <span class="text-chiroteal-700 font-bold">Gelenkmechanik</span>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="subluxated tilt-right bg-chiroslate-50 rounded-3xl p-7 border border-chiroslate-200 hover:border-chiroteal-400 transition-all hover:shadow-lg space-y-4">
+                    <div class="w-12 h-12 rounded-2xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-2xl font-bold font-display">
+                        <i class="ph-bold ph-shield-check"></i>
+                    </div>
+                    <div class="text-[11px] font-mono text-chiroteal-700 font-bold uppercase">Kassen-Physiotherapie</div>
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950">Manuelle Therapie & KG</h3>
+                    <p class="text-sm text-chiroslate-600 leading-relaxed">
+                        Flankierend zur Justierung verordnete Krankengymnastik und Manuelle Therapie (MT) nach Heilmittelkatalog zur langfristigen muskulären Segment-Stabilisierung.
+                    </p>
+                    <div class="pt-2 text-xs font-mono text-chiroslate-500 border-t border-chiroslate-200 flex justify-between">
+                        <span>Abrechnung: GKV, PKV, Beihilfe</span>
+                        <span class="text-chiroteal-700 font-bold">Kassenzulassung</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TEAM -->
+    <section id="team" class="py-24 bg-chiroslate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mb-16 space-y-4">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chiroteal-50 border border-chiroteal-200 text-xs font-mono font-bold text-chiroteal-800">
+                    <i class="ph-bold ph-users-three"></i> DAS EXPERTENTEAM
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-chiroslate-950 tracking-tight">
+                    Ausgebildete Chirotherapeuten mit fundierter Anatomie
+                </h2>
+                <p class="text-chiroslate-600 text-base leading-relaxed">
+                    Wir überlassen nichts dem Zufall: Unsere Justierungen basieren auf standardisierter Motion-Palpation und jahrelanger Manueller Praxiserfahrung.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Chiro 1 -->
+                <div class="bg-white rounded-3xl p-6 border border-chiroslate-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-chiroteal-100 text-chiroteal-800 flex items-center justify-center text-3xl font-extrabold font-display">
+                        DK
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-chiroteal-600 font-bold uppercase">Praxisgründer & Chirotherapeut</span>
+                        <h4 class="text-xl font-display font-bold text-chiroslate-950">Dr. med. Daniel Kettner</h4>
+                    </div>
+                    <p class="text-xs text-chiroslate-600 leading-relaxed">
+                        Facharzt für Orthopädie & Chirotherapie (MWE). Über 16 Jahre Spezialisierung auf die Halswirbelsäule und posttraumatische Schwindelsyndrome.
+                    </p>
+                    <div class="pt-3 border-t border-chiroslate-100 flex flex-wrap gap-1.5 text-[10px] font-mono text-chiroslate-500">
+                        <span class="bg-chiroslate-100 px-2 py-0.5 rounded">MWE zertifiziert</span>
+                        <span class="bg-chiroslate-100 px-2 py-0.5 rounded">DGMM Mitglied</span>
+                    </div>
+                </div>
+
+                <!-- Chiro 2 -->
+                <div class="bg-white rounded-3xl p-6 border border-chiroslate-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-chiroslate-200 text-chiroslate-800 flex items-center justify-center text-3xl font-extrabold font-display">
+                        ML
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-chiroteal-600 font-bold uppercase">Master of Chiropractic (MChiro)</span>
+                        <h4 class="text-xl font-display font-bold text-chiroslate-950">Marina Lindemann</h4>
+                    </div>
+                    <p class="text-xs text-chiroslate-600 leading-relaxed">
+                        Studium am Anglo-European College of Chiropractic (AECC). Spezialistin für Beckenstatik in der Schwangerschaft und sanfte Aktivator-Behandlungen.
+                    </p>
+                    <div class="pt-3 border-t border-chiroslate-100 flex flex-wrap gap-1.5 text-[10px] font-mono text-chiroslate-500">
+                        <span class="bg-chiroslate-100 px-2 py-0.5 rounded">AECC Bournemouth</span>
+                        <span class="bg-chiroslate-100 px-2 py-0.5 rounded">Webster-Technik</span>
+                    </div>
+                </div>
+
+                <!-- Chiro 3 -->
+                <div class="bg-white rounded-3xl p-6 border border-chiroslate-200 shadow-sm space-y-4">
+                    <div class="w-20 h-20 rounded-2xl bg-chiroteal-100 text-chiroteal-800 flex items-center justify-center text-3xl font-extrabold font-display">
+                        FS
+                    </div>
+                    <div>
+                        <span class="text-xs font-mono text-chiroteal-600 font-bold uppercase">Leitender Physiotherapeut & MT</span>
+                        <h4 class="text-xl font-display font-bold text-chiroslate-950">Felix Sommerfeld</h4>
+                    </div>
+                    <p class="text-xs text-chiroslate-600 leading-relaxed">
+                        Experte für neuro-muskuläre Retraining-Protokolle nach erfolgter Justierung, damit befreite Gelenke dauerhaft in optimaler Zentrierung verbleiben.
+                    </p>
+                    <div class="pt-3 border-t border-chiroslate-100 flex flex-wrap gap-1.5 text-[10px] font-mono text-chiroslate-500">
+                        <span class="bg-chiroslate-100 px-2 py-0.5 rounded">Manuelle Therapie</span>
+                        <span class="bg-chiroslate-100 px-2 py-0.5 rounded">DNS Prag</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: KONTAKT & STANDORT -->
+    <section id="kontakt" class="py-24 bg-white border-t border-chiroslate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12">
+                
+                <div class="lg:col-span-6 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-chiroteal-50 border border-chiroteal-200 text-xs font-mono font-bold text-chiroteal-800">
+                        <i class="ph-bold ph-map-pin"></i> PRAXISSTANDORT
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl font-display font-extrabold text-chiroslate-950 tracking-tight">
+                        Zentral & barrierefrei in München-Schwabing
+                    </h2>
+                    <p class="text-chiroslate-600 text-base leading-relaxed">
+                        Mit modernsten chirotherapeutischen Behandlungsliegen (Lloyd Galaxy 900 Drop-Tables) ausgestattet. Parkplätze direkt im Innenhof.
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-map-pin"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-chiroslate-950 block text-sm">Adresse</span>
+                                <span class="text-chiroslate-600 text-sm">Hohenzollernstraße 42, 80801 München (Schwabing)</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-clock"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-chiroslate-950 block text-sm">Sprechzeiten</span>
+                                <span class="text-chiroslate-600 text-sm">Mo – Do: 08:00 – 19:30 Uhr | Fr: 08:00 – 16:30 Uhr</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-chiroteal-100 text-chiroteal-700 flex items-center justify-center text-xl shrink-0 mt-0.5">
+                                <i class="ph-bold ph-phone"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold font-display text-chiroslate-950 block text-sm">Telefon & Akutsprechstunde</span>
+                                <span class="text-chiroslate-600 text-sm">089 / 33 09 81 20 (Für akute Hexenschüsse täglich ab 07:30 erreichbar)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Contact Form -->
+                <div class="lg:col-span-6 bg-chiroslate-50 rounded-3xl p-8 border border-chiroslate-200">
+                    <h3 class="text-xl font-display font-bold text-chiroslate-950 mb-2">Nachricht an Praxis KNACKPUNKT</h3>
+                    <p class="text-xs text-chiroslate-500 mb-6 font-mono">Für Rezeptfragen, Rechnungsmodalitäten oder Patientenfragen.</p>
+
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-chiroslate-600 mb-1">Ihr Name *</label>
+                                <input type="text" required placeholder="z. B. Maximilian Roth" class="w-full bg-white border border-chiroslate-300 rounded-xl px-4 py-2.5 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-mono font-bold uppercase text-chiroslate-600 mb-1">Telefonnummer *</label>
+                                <input type="tel" required placeholder="0172 / 991188" class="w-full bg-white border border-chiroslate-300 rounded-xl px-4 py-2.5 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-chiroslate-600 mb-1">E-Mail-Adresse</label>
+                            <input type="email" placeholder="patient@gmail.com" class="w-full bg-white border border-chiroslate-300 rounded-xl px-4 py-2.5 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-mono font-bold uppercase text-chiroslate-600 mb-1">Betroffene Wirbelsäulenregion</label>
+                            <input type="text" placeholder="z. B. HWS Steifigkeit nach Autounfall oder ISG Blockade..." class="w-full bg-white border border-chiroslate-300 rounded-xl px-4 py-2.5 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <input type="checkbox" id="chiro-dsgvo" required class="rounded text-chiroteal-600 focus:ring-chiroteal-500">
+                            <label for="chiro-dsgvo" class="text-[11px] text-chiroslate-500">Ich willige in die Kontaktaufnahme zur Terminkoordination ein.</label>
+                        </div>
+
+                        <button type="submit" class="w-full bg-chiroslate-900 hover:bg-chiroslate-800 text-white font-display font-bold py-3 rounded-xl text-xs flex items-center justify-center gap-2 transition-all">
+                            <span>Nachricht übermitteln</span>
+                            <i class="ph-bold ph-paper-plane-tilt text-chiroteal-400"></i>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-chiroslate-950 text-chiroslate-400 text-xs py-12 border-t border-chiroslate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-chiroteal-500 flex items-center justify-center text-chiroslate-950 font-bold">
+                    <i class="ph-bold ph-arrows-in-simple"></i>
+                </div>
+                <span class="font-display font-bold text-white tracking-tight">KNACKPUNKT München</span>
+                <span class="text-chiroslate-700">|</span>
+                <span class="text-chiroslate-400">Praxis für Chirotherapie, Chiropraktik & Gelenkjustierung</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-chiroslate-400 font-mono text-[11px]">
+                <a href="#impressum" class="hover:text-white transition-colors">Impressum</a>
+                <a href="#datenschutz" class="hover:text-white transition-colors">Datenschutz</a>
+                <a href="../index.html" class="text-chiroteal-400 hover:text-chiroteal-300 font-bold transition-colors">← Zurück zur Vorlagenübersicht</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================================================ -->
+    <!-- 4. FLOATING BOOKING BUTTON (Sticky bottom-right)               -->
+    <!-- Das Haupt-Verkaufsfeature der Demo                            -->
+    <!-- ============================================================ -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+        
+        <!-- Attention Hint Badge -->
+        <div id="booking-badge-hint" class="hidden sm:flex items-center gap-2 bg-chiroslate-900/90 backdrop-blur-md text-white text-xs font-medium py-2 px-3.5 rounded-full shadow-2xl border border-chiroslate-700 animate-bounce">
+            <span class="w-2 h-2 rounded-full bg-chiroteal-400 animate-ping"></span>
+            <span>Online Justierung buchen</span>
+        </div>
+
+        <!-- The Button Trigger -->
+        <button 
+            id="floating-booking-btn"
+            onclick="toggleBookingPanel()"
+            class="w-16 h-16 rounded-full bg-gradient-to-tr from-chiroteal-600 via-chiroteal-500 to-teal-400 hover:scale-105 text-chiroslate-950 flex items-center justify-center text-2xl shadow-snap transition-all duration-200 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-chiroteal-400/50"
+            aria-label="Online Termin buchen"
+            aria-expanded="false"
+        >
+            <i class="ph-bold ph-calendar-plus group-hover:rotate-6 transition-transform"></i>
+        </button>
+    </div>
+
+    <!-- ============================================================ -->
+    <!-- 5. FLOATING BOOKING PANEL (ca. 400x500px MODALES FENSTER)    -->
+    <!-- Inklusive Kategorisierter 11-Vorlagen-Umschalter für die Demo -->
+    <!-- ============================================================ -->
+    <div 
+        id="booking-widget-panel"
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[560px] bg-white rounded-3xl shadow-2xl border-2 border-chiroslate-300 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-label="Online Terminbuchung & Vorlagen-Umschalter"
+    >
+        <!-- Panel Header -->
+        <div class="bg-gradient-to-r from-chiroslate-950 to-chiroslate-900 text-white p-4 flex items-center justify-between border-b border-chiroslate-800 shrink-0">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-chiroteal-500 flex items-center justify-center text-chiroslate-950 text-lg shadow-snap font-bold">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 class="text-sm font-display font-bold tracking-tight leading-none text-white">Online-Terminbuchung</h3>
+                    <span class="text-[10px] text-chiroteal-300 font-mono">KNACKPUNKT • München</span>
+                </div>
+            </div>
+            <button onclick="toggleBookingPanel(false)" class="w-8 h-8 rounded-full bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white flex items-center justify-center text-sm transition-colors" aria-label="Schließen">
+                <i class="ph-bold ph-x"></i>
+            </button>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- DEMO-SWITCHER: ALLE 11 VORLAGEN (KATEGORISIERT)               -->
+        <!-- ============================================================ -->
+        <div class="bg-chiroslate-900 text-white px-3 py-2 border-b border-chiroslate-800 text-xs shrink-0 space-y-1.5">
+            <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-chiroslate-400">DEMO-WECHSLER:</span>
+                
+                <!-- Category Tabs -->
+                <div class="flex items-center gap-1 text-[10px] font-mono">
+                    <button type="button" id="cat-tab-classic" onclick="switchCategoryTab('classic')" class="px-2 py-0.5 rounded font-medium text-chiroslate-400 hover:text-white transition-all">
+                        5 Klassiker
+                    </button>
+                    <span class="text-chiroslate-600">|</span>
+                    <button type="button" id="cat-tab-creative" onclick="switchCategoryTab('creative')" class="px-2 py-0.5 rounded font-bold text-chiroslate-950 bg-chiroteal-400 transition-all">
+                        6 Kreativ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Row 1: 5 Classic Templates -->
+            <div id="cat-row-classic" class="grid grid-cols-5 gap-1 hidden">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="1. UNVERKRAMPFT">1. Bio</a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="2. KINETIQ">2. Sport</a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="3. SANA VITA">3. Natur</a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="4. AURORA MED">4. Klinik</a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="5. VITALWERK">5. Urban</a>
+            </div>
+
+            <!-- Row 2: 6 Creative Templates (Active by default here) -->
+            <div id="cat-row-creative" class="grid grid-cols-6 gap-1">
+                <a href="../design-6-schmiere/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="6. GELENK-SCHMIERE">6. Schmiere</a>
+                <a href="../design-7-knotenloeser/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="7. KNOTENLÖSER">7. Knoten</a>
+                <a href="../design-8-knackpunkt/index.html" class="px-0.5 py-1 rounded text-[9px] font-bold text-center bg-chiroteal-400 text-chiroslate-950 border border-chiroteal-300 truncate shadow-sm" title="8. KNACKPUNKT">8. Knack</a>
+                <a href="../design-9-knetfertig/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="9. KNET & FERTIG">9. Kneten</a>
+                <a href="../design-10-aufrecht/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="10. AUFRECHT & HEITER">10. Aufrecht</a>
+                <a href="../design-11-bewegungsmelder/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-chiroslate-800 hover:bg-chiroslate-700 text-chiroslate-300 hover:text-white border border-chiroslate-700 truncate transition-colors" title="11. BEWEGUNGSMELDER">11. Melder</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (ca. 400x500px)                    -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-chiroslate-950 bg-chiroteal-100 text-chiroslate-950 font-bold text-xs transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500 transition-all">
+                            Selbstzahler
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500 transition-all">
+                            Gesetzlich
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1.5">Justierungs-Art wählen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-chiroslate-300 rounded-xl px-3 py-2 text-xs font-medium text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                        <option value="Chirotherapeutischer Erstbefund">Chirotherapeutischer Erstbefund & Justierung</option>
+                        <option value="Akut-Reposition HWS / Schiefhals">Akut-Reposition bei Blockade (HWS / Schiefhals)</option>
+                        <option value="ISG-Justierung & Beckenstatik">ISG-Justierung & Beckenstatik (Drop-Table)</option>
+                        <option value="Folgejustierung & Segmentkontrolle">Folgejustierung & Segmentkontrolle (20 Min.)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-chiroteal-700 font-mono font-bold">● Akutslots verfügbar</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Heute')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-chiroteal-500 bg-chiroteal-50 text-chiroslate-950 font-bold text-xs">
+                            <span class="block text-[10px] text-chiroteal-700 uppercase">Heute (Akut)</span>
+                            <span class="block text-xs font-bold">15. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500">
+                            <span class="block text-[10px] text-chiroslate-400 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500">
+                            <span class="block text-[10px] text-chiroslate-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '11:00')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-chiroslate-950 bg-chiroteal-100 text-chiroslate-950 font-bold text-xs">11:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '13:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500">13:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '16:00')" class="widget-time-btn py-1.5 text-center rounded-lg border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500">16:00</button>
+                        <button type="button" onclick="setWidgetTime(this, '18:15')" class="widget-time-btn py-1.5 text-center rounded-lg border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500">18:15</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-chiroteal-500 to-chiroteal-600 hover:from-chiroteal-400 text-chiroslate-950 font-display font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-snap transition-all mt-1">
+                    <span>Weiter zu Patientendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-chiroteal-50 p-2.5 rounded-xl border border-chiroteal-200 text-xs text-chiroslate-800">
+                    <span class="font-bold text-chiroslate-950 block" id="widget-summary-title">Chirotherapeutischer Erstbefund • Privat</span>
+                    <span class="text-[11px] text-chiroteal-800 font-mono" id="widget-summary-time">Heute, 15. Okt. um 11:00 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Simon Lindner" class="w-full bg-white border border-chiroslate-300 rounded-xl px-3 py-2 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="0171 / 330981" class="w-full bg-white border border-chiroslate-300 rounded-xl px-3 py-2 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@muenchen.de" class="w-full bg-white border border-chiroslate-300 rounded-xl px-3 py-2 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-chiroslate-800 mb-1">Blockierte Region (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Akuter Hexenschuss nach Heben, HWS blockiert..." class="w-full bg-white border border-chiroslate-300 rounded-xl px-3 py-1.5 text-xs text-chiroslate-950 focus:outline-none focus:border-chiroteal-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-bold text-xs hover:bg-chiroslate-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-chiroteal-500 hover:bg-chiroteal-600 text-chiroslate-950 font-display font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-snap transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Justierung anfragen</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-chiroteal-100 text-chiroteal-700 mx-auto flex items-center justify-center text-2xl shadow-inner border border-chiroteal-300">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-chiroteal-700">Justierung reserviert</span>
+                    <h4 class="text-base font-display font-bold text-chiroslate-950 mt-1">Ihr Termin wurde simuliert!</h4>
+                    <p class="text-xs text-chiroslate-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhält die Praxis hier sofort die Buchung samt Symptomanamnese.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-chiroslate-900 hover:bg-chiroslate-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-chiroslate-200 text-[10px] text-chiroslate-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-chiroteal-700 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. WEB AUDIO API SYNTHETIC POP / CRACK SOUND ---
+        let audioCtx = null;
+        function playChiroPopSound() {
+            try {
+                if (!audioCtx) {
+                    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                }
+                if (audioCtx.state === 'suspended') {
+                    audioCtx.resume();
+                }
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+
+                // High pitch downward chirp for realistic joint cavitation pop
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(450, audioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(70, audioCtx.currentTime + 0.08);
+
+                gain.gain.setValueAtTime(0.6, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.08);
+
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+
+                osc.start();
+                osc.stop(audioCtx.currentTime + 0.09);
+            } catch(e) {
+                console.log('Audio not allowed yet:', e);
+            }
+        }
+
+        // --- 2. INTERACTIVE SUBLUXATION / ALIGNMENT CONTROLLER ---
+        let isAligned = false;
+
+        function toggleAlignment() {
+            isAligned = !isAligned;
+            const body = document.getElementById('chiro-body');
+            const statusText = document.getElementById('alignment-status-text');
+            const btnText = document.getElementById('snap-btn-text');
+            const indicator = document.getElementById('card-tilt-indicator');
+
+            playChiroPopSound();
+
+            if (isAligned) {
+                body.classList.add('aligned');
+                statusText.textContent = 'Perfekt justiert (0.00° Abweichung)';
+                statusText.className = 'text-chiroteal-300 font-bold';
+                btnText.textContent = '↺ Subluxation wiederherstellen';
+                if (indicator) indicator.textContent = '📐 Neigungswinkel: 0.00° (Optimal justiert)';
+            } else {
+                body.classList.remove('aligned');
+                statusText.textContent = 'Leichte Fehlstellung (Subluxiert)';
+                statusText.className = 'text-amber-400 font-bold';
+                btnText.textContent = '⚡ Seite einrenken! (Klick)';
+                if (indicator) indicator.textContent = '📐 Neigungswinkel: +1.85° (Vor Justierung)';
+            }
+        }
+
+        // --- 3. QUICK CHECK SEGMENT DATA ---
+        const segmentData = {
+            atlas: {
+                title: 'Atlas-Subluxation (C0/C1) & Zervikocephales Syndrom',
+                badge: 'Hohe Entlastungswahrscheinlichkeit',
+                symptoms: 'Eingeschränkte Kopfdrehung, dumpfer Schläfendruck, Benommenheitsschwindel und Kieferknacken beim Kauen.',
+                technique: 'Spezifische Atlastherapie nach Arlen / Thompson Terminal Point'
+            },
+            bws: {
+                title: 'BWS-Blockade & Rippen-Gelenks-Subluxation (Costovertebral)',
+                badge: 'Atemabhängiges Stechen',
+                symptoms: 'Stechender Schmerz zwischen den Schulterblättern beim tiefen Einatmen; Gefühl eines beengten Brustkorbs.',
+                technique: 'Anteriore Brustwirbeljustierung im Liegen (Crossed-Hands / Nelson-Griff)'
+            },
+            lws: {
+                title: 'Akute LWS-Blockierung & Facettensyndrom (L4/L5)',
+                badge: 'Hexenschuss / Lumbago',
+                symptoms: 'Plötzliches Einknicken beim Bücken, Unfähigkeit sich aufzurichten, morgendliche Schiefhaltung des Beckens.',
+                technique: 'Sanfte Seitlagen-Manipulation (Side-Posture Lumbar Roll)'
+            },
+            isg: {
+                title: 'Iliosakralgelenk-Torsion (ISG-Subluxation)',
+                badge: 'Funktioneller Beckenschiefstand',
+                symptoms: 'Einseitiger Gesäßschmerz beim Gehen, scheinbare Beinlängendifferenz im Liegen, Druckschmerz über der SIPS.',
+                technique: 'Thompson Drop-Table Impuls auf das Darmbein'
+            }
+        };
+
+        function selectChiroSegment(seg) {
+            document.querySelectorAll('.seg-btn').forEach(b => {
+                b.className = 'seg-btn py-3 px-3 rounded-2xl border border-chiroslate-200 bg-chiroslate-50 text-chiroslate-700 font-display font-medium text-xs flex flex-col items-center gap-1.5 hover:border-chiroteal-400 transition-all';
+                const icon = b.querySelector('i');
+                if (icon) icon.className = icon.className.replace('text-chiroteal-600', 'text-chiroslate-500');
+            });
+
+            const activeBtn = document.getElementById('btn-seg-' + seg);
+            if (activeBtn) {
+                activeBtn.className = 'seg-btn py-3 px-3 rounded-2xl border-2 border-chiroteal-600 bg-chiroteal-50 text-chiroslate-950 font-display font-bold text-xs flex flex-col items-center gap-1.5 transition-all';
+                const activeIcon = activeBtn.querySelector('i');
+                if (activeIcon) activeIcon.className = activeIcon.className.replace('text-chiroslate-500', 'text-chiroteal-600');
+            }
+
+            const data = segmentData[seg];
+            document.getElementById('seg-title').textContent = data.title;
+            document.getElementById('seg-badge').textContent = data.badge;
+            document.getElementById('seg-symptoms').textContent = data.symptoms;
+            document.getElementById('seg-technique').textContent = data.technique;
+        }
+
+        function simulateSegmentClick() {
+            playChiroPopSound();
+            const badge = document.getElementById('seg-badge');
+            const originalText = badge.textContent;
+            badge.textContent = '✓ Gelenkspalt dekomprimiert!';
+            badge.className = 'px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-emerald-100 text-emerald-800 animate-pulse';
+
+            setTimeout(() => {
+                badge.textContent = originalText;
+                badge.className = 'px-2.5 py-1 rounded-full text-xs font-mono font-bold bg-chiroteal-100 text-chiroteal-900';
+            }, 2500);
+        }
+
+        // --- 4. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Privat';
+        let selectedWidgetDay = 'Heute (Akut)';
+        let selectedWidgetTime = '11:00';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function switchCategoryTab(cat) {
+            const rowClassic = document.getElementById('cat-row-classic');
+            const rowCreative = document.getElementById('cat-row-creative');
+            const tabClassic = document.getElementById('cat-tab-classic');
+            const tabCreative = document.getElementById('cat-tab-creative');
+
+            if (cat === 'classic') {
+                rowClassic.classList.remove('hidden');
+                rowCreative.classList.add('hidden');
+                tabClassic.className = 'px-2 py-0.5 rounded font-bold text-chiroslate-950 bg-chiroteal-400 transition-all';
+                tabCreative.className = 'px-2 py-0.5 rounded font-medium text-chiroslate-400 hover:text-white transition-all';
+            } else {
+                rowClassic.classList.add('hidden');
+                rowCreative.classList.remove('hidden');
+                tabCreative.className = 'px-2 py-0.5 rounded font-bold text-chiroslate-950 bg-chiroteal-400 transition-all';
+                tabClassic.className = 'px-2 py-0.5 rounded font-medium text-chiroslate-400 hover:text-white transition-all';
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-chiroslate-950 bg-chiroteal-100 text-chiroslate-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-chiroteal-500 bg-chiroteal-50 text-chiroslate-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-chiroslate-200 bg-white text-chiroslate-700 font-medium text-xs hover:border-chiroteal-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-chiroslate-950 bg-chiroteal-100 text-chiroslate-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Justierung für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde erfolgreich angefragt.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleKnackMenu() {
+            const m = document.getElementById('knack-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            alert('Vielen Dank für Ihre Anfrage an die Praxis KNACKPUNKT. Wir koordinieren Ihren Termin schnellstmöglich.');
+            e.target.reset();
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>

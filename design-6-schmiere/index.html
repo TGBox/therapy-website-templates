@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GELENK-SCHMIERE | Praxis für Arthrose-Therapie, Gelenkmobilisation & Knorpelreha</title>
+    <meta name="description" content="Spezialpraxis für Gelenkmobilisation, Arthrosebehandlung und schmerzfreie Bewegung. Mit interaktivem Schmier-Modus für flüssige Bewegungsabläufe.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"Space Grotesk"', 'monospace'],
+                    },
+                    colors: {
+                        amberoil: {
+                            50: '#FFFBEB',
+                            100: '#FEF3C7',
+                            200: '#FDE68A',
+                            400: '#FBBF24',
+                            500: '#F59E0B',
+                            600: '#D97706',
+                            700: '#B45309',
+                            900: '#78350F',
+                        },
+                        slatecore: {
+                            950: '#0A0F1D',
+                            900: '#0F172A',
+                            800: '#1E293B',
+                            700: '#334155',
+                        }
+                    },
+                    boxShadow: {
+                        'oil': '0 20px 40px -15px rgba(245, 158, 11, 0.25)',
+                        'goldglow': '0 0 30px rgba(245, 158, 11, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #FDFBF7;
+            color: #0F172A;
+            overflow-x: hidden;
+            transition: background-color 0.8s ease;
+        }
+        body.oil-lubricated {
+            scroll-behavior: smooth;
+            background-color: #FFFDF9;
+        }
+        .oil-drop-anim {
+            animation: dropFlow 1.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+        @keyframes dropFlow {
+            0% { transform: translateY(-80px) scaleY(1.4); opacity: 0; }
+            40% { opacity: 1; }
+            80% { transform: translateY(400px) scaleY(1.1); opacity: 0.8; }
+            100% { transform: translateY(700px) scaleY(0.6) scaleX(2.2); opacity: 0; }
+        }
+        .fluid-card {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+        }
+        .fluid-card:hover {
+            transform: translateY(-6px);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-amberoil-500 selection:text-white font-sans">
+
+    <!-- Golden Oil Drop Overlay (Triggered by Oil Can Switch) -->
+    <div id="oil-drop-canvas" class="pointer-events-none fixed inset-0 z-50 overflow-hidden hidden">
+        <div class="absolute left-1/2 -translate-x-1/2 w-8 h-20 bg-gradient-to-b from-amberoil-400 to-amberoil-600 rounded-full blur-[1px] shadow-goldglow oil-drop-anim"></div>
+    </div>
+
+    <!-- Top Bar with Interactive ÖLKÄNNCHEN SCHALTER -->
+    <div class="bg-slatecore-950 text-white text-xs py-2 px-4 border-b border-slatecore-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-3">
+            <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-amberoil-400"></span>
+                <span class="text-gray-300">Zentrum für Gelenkmobilität, Arthrose & Knorpelrehabilitation</span>
+            </div>
+            
+            <!-- INTERACTIVE ÖLKÄNNCHEN SWITCH -->
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 bg-slatecore-900 border border-amberoil-500/40 px-3 py-1 rounded-full shadow-inner">
+                    <i class="ph-fill ph-drop-half text-amberoil-400 text-sm"></i>
+                    <span class="text-[11px] font-mono text-gray-300">Gelenk-Schmiermodus:</span>
+                    <button 
+                        id="oil-switch-btn"
+                        onclick="toggleOilLubrication()" 
+                        class="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all bg-slatecore-800 text-gray-400 hover:text-white border border-slatecore-700"
+                        title="Schaltet ultra-weiches Flüssig-Scrolling und Gelenk-Animationen ein"
+                    >
+                        <span>AUS</span>
+                    </button>
+                </div>
+                <div class="hidden md:flex items-center gap-4 text-gray-400 text-xs">
+                    <span><i class="ph-bold ph-phone text-amberoil-400"></i> 089 / 41 22 80</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header (Without upper booking button to emphasize floating feature) -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-amberoil-100 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-xl bg-amberoil-500 text-white flex items-center justify-center text-xl shadow-oil group-hover:rotate-6 transition-transform">
+                    <i class="ph-fill ph-drop-half"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-bold tracking-tight text-xl text-slatecore-950 block leading-none">GELENK<span class="text-amberoil-600">SCHMIERE</span></span>
+                        <span class="px-1.5 py-0.2 rounded text-[10px] font-mono bg-amberoil-100 text-amberoil-800 font-bold">MOBIL</span>
+                    </div>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-semibold block mt-1">Arthrose • Knorpel • Gelenkdynamik</span>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slatecore-800">
+                <a href="#schmierplan" class="hover:text-amberoil-600 transition-colors flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amberoil-500"></span> Der 4-Stufen-Schmierplan
+                </a>
+                <a href="#viskosimeter" class="hover:text-amberoil-600 transition-colors">Gelenk-Viskosimeter</a>
+                <a href="#leistungen" class="hover:text-amberoil-600 transition-colors">Therapiefelder</a>
+                <a href="#team" class="hover:text-amberoil-600 transition-colors">Gelenk-Experten</a>
+                <a href="#kontakt" class="hover:text-amberoil-600 transition-colors">Standort & Praxis</a>
+            </nav>
+
+            <!-- Action Area (Contact/Phone only) -->
+            <div class="flex items-center gap-3">
+                <a href="#kontakt" class="bg-slatecore-900 hover:bg-slatecore-800 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition-all flex items-center gap-2 active:scale-95 shadow-sm">
+                    <i class="ph-bold ph-phone-call text-amberoil-400"></i>
+                    <span>Praxiskontakt</span>
+                </a>
+                <button id="schmiere-menu-btn" onclick="toggleSchmiereMenu()" class="lg:hidden p-2.5 rounded-xl border border-gray-300 text-slatecore-900 hover:bg-gray-100" aria-label="Menü">
+                    <i class="ph ph-list text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="schmiere-mobile-menu" class="hidden lg:hidden bg-white border-b border-gray-200 px-4 py-4 space-y-3">
+            <a href="#schmierplan" onclick="toggleSchmiereMenu()" class="block py-2 text-amberoil-600 font-bold">💧 4-Stufen-Schmierplan</a>
+            <a href="#viskosimeter" onclick="toggleSchmiereMenu()" class="block py-2 text-slatecore-800">Gelenk-Viskosimeter</a>
+            <a href="#leistungen" onclick="toggleSchmiereMenu()" class="block py-2 text-slatecore-800">Leistungen</a>
+            <a href="#team" onclick="toggleSchmiereMenu()" class="block py-2 text-slatecore-800">Therapeuten</a>
+            <a href="#kontakt" onclick="toggleSchmiereMenu()" class="block py-2 text-slatecore-800">Standort</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-12 pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-gradient-to-b from-amberoil-50/50 to-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left: Headline & Manifesto -->
+                <div class="lg:col-span-7 space-y-7">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amberoil-100/80 border border-amberoil-200 text-xs font-bold text-amberoil-900">
+                        <i class="ph-fill ph-drop text-amberoil-600"></i>
+                        <span class="tracking-wide">SYNOVIALFLÜSSIGKEIT AKTIVIEREN • KNORPEL ERHALTEN</span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[58px] font-extrabold text-slatecore-950 leading-[1.12]">
+                        Damit es wieder <br>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-amberoil-600 via-amberoil-500 to-amber-700">wie geschmiert läuft.</span><br>
+                        Schmerzfrei in Knie, Hüfte & Rücken.
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slatecore-700 leading-relaxed max-w-2xl font-normal">
+                        Knorpelgewebe besitzt keine eigenen Blutgefäße – es ernährt sich ausschließlich durch Bewegung und den stetigen Austausch der Gelenkschmiere (Synovia). Bei <strong class="text-slatecore-950 font-bold">GELENK-SCHMIERE</strong> kombinieren wir gezielte Traktion, Knorpelstoffwechsel-Therapie und flüssige Manuelle Mobilisation.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
+                        <a href="#viskosimeter" class="bg-gradient-to-r from-amberoil-500 to-amberoil-600 hover:from-amberoil-400 hover:to-amberoil-500 text-white font-bold px-7 py-4 rounded-xl shadow-oil transition-all flex items-center justify-center gap-3 text-base group">
+                            <i class="ph-bold ph-gauge text-xl"></i>
+                            <span>Gelenk-Viskosimeter testen</span>
+                            <i class="ph-bold ph-arrow-down group-hover:translate-y-0.5 transition-transform"></i>
+                        </a>
+                        <a href="#schmierplan" class="bg-white hover:bg-amberoil-50 text-slatecore-900 border border-amberoil-200 font-bold px-6 py-4 rounded-xl transition-all flex items-center justify-center gap-2 text-base">
+                            <i class="ph-bold ph-waves text-amberoil-600"></i>
+                            <span>4-Stufen-Konzept</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust Bar -->
+                    <div class="pt-6 border-t border-amberoil-200/80 grid grid-cols-3 gap-4 sm:gap-8">
+                        <div>
+                            <p class="text-xl sm:text-2xl font-mono font-bold text-slatecore-950">100 %</p>
+                            <p class="text-xs text-slatecore-700 mt-0.5">Sanfte Traktion statt OP</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-mono font-bold text-amberoil-600">85 %</p>
+                            <p class="text-xs text-slatecore-700 mt-0.5">Spürbare Schmerzreduktion</p>
+                        </div>
+                        <div>
+                            <p class="text-xl sm:text-2xl font-mono font-bold text-slatecore-950">GKV / PKV</p>
+                            <p class="text-xs text-slatecore-700 mt-0.5">Alle Kassenrezepte</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Visual Hero Card -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative rounded-3xl overflow-hidden shadow-oil border border-amberoil-200 bg-slatecore-900 aspect-[4/5] group">
+                        <img 
+                            src="./hero.jpg" 
+                            alt="Sanfte Gelenkmobilisation bei Gelenk-Schmiere" 
+                            class="w-full h-full object-cover opacity-95 group-hover:scale-105 transition-transform duration-700"
+                        >
+                        <div class="absolute inset-0 bg-gradient-to-t from-slatecore-950/80 via-transparent to-transparent"></div>
+
+                        <!-- Top Floating Badge -->
+                        <div class="absolute top-5 left-5 right-5 flex justify-between items-center">
+                            <div class="bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-xl text-xs font-bold text-slatecore-900 shadow-sm flex items-center gap-1.5">
+                                <i class="ph-fill ph-drop text-amberoil-500"></i>
+                                <span>Knorpel-Aktivtherapie</span>
+                            </div>
+                            <span class="bg-slatecore-900/90 text-amberoil-300 px-3 py-1 rounded-full text-xs font-mono font-medium border border-amberoil-500/30">
+                                Arthrose-Fokus
+                            </span>
+                        </div>
+
+                        <!-- Bottom Practice Status Pill -->
+                        <div class="absolute bottom-5 left-5 right-5 bg-white/95 backdrop-blur-md p-4 rounded-2xl border border-amberoil-200 shadow-lg">
+                            <div class="flex items-center justify-between mb-1">
+                                <span class="text-xs font-bold text-slatecore-950">Schmerzfreie Bewegung beginnt hier</span>
+                                <span class="text-[11px] bg-amberoil-100 text-amberoil-800 px-2 py-0.5 rounded font-bold font-mono">Freie Termine</span>
+                            </div>
+                            <p class="text-xs text-slatecore-700 leading-snug">
+                                Nutzen Sie unseren <strong>Termin-Button unten rechts</strong> für Ihren Erstbefund zur Gelenkentlastung.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DER 4-STUFEN SCHMIERPLAN -->
+    <section id="schmierplan" class="py-20 bg-white border-y border-amberoil-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-14">
+                <span class="text-xs font-mono font-bold uppercase tracking-widest text-amberoil-600 block mb-2">BIOMECHANISCHE METHODE</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slatecore-950">Der Gelenk-Schmierplan</h2>
+                <p class="text-sm text-slatecore-700 mt-2">So stellen wir die natürliche Dämpfungsfunktion Ihrer Gelenke Schritt für Schritt wieder her.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Stufe 1 -->
+                <div class="p-6 rounded-2xl bg-amberoil-50/50 border border-amberoil-200 fluid-card flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-amberoil-600 mb-2 block">STUFE 01</span>
+                        <h3 class="text-lg font-bold text-slatecore-950 mb-2">Druckentlastung & Traktion</h3>
+                        <p class="text-xs text-slatecore-700 leading-relaxed mb-4">
+                            Durch gezielten manuellen Gelenkzug (Traktion) im Schlingentisch vergrößern wir den Gelenkspalt. Reibungsschmerz stoppt sofort.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-amberoil-800 bg-white p-2 rounded-lg border border-amberoil-200">
+                        Ziel: Sofortige Entlastung
+                    </div>
+                </div>
+
+                <!-- Stufe 2 -->
+                <div class="p-6 rounded-2xl bg-amberoil-50/50 border border-amberoil-200 fluid-card flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-amberoil-600 mb-2 block">STUFE 02</span>
+                        <h3 class="text-lg font-bold text-slatecore-950 mb-2">Synovial-Produktion</h3>
+                        <p class="text-xs text-slatecore-700 leading-relaxed mb-4">
+                            Schwerelose zyklische Mikrobewegungen regen die Gelenkkapsel an, frische nährstoffreiche Gelenkschmiere (Hyaluron) zu sezernieren.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-amberoil-800 bg-white p-2 rounded-lg border border-amberoil-200">
+                        Ziel: Knorpelernährung
+                    </div>
+                </div>
+
+                <!-- Stufe 3 -->
+                <div class="p-6 rounded-2xl bg-amberoil-50/50 border border-amberoil-200 fluid-card flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-amberoil-600 mb-2 block">STUFE 03</span>
+                        <h3 class="text-lg font-bold text-slatecore-950 mb-2">Myofasziales Gleiten</h3>
+                        <p class="text-xs text-slatecore-700 leading-relaxed mb-4">
+                            Verkürzte Sehnen und verklebte Faszien rund um das Gelenk werden gelöst, sodass der Bewegungswinkel wieder frei durchgleiten kann.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-amberoil-800 bg-white p-2 rounded-lg border border-amberoil-200">
+                        Ziel: Voller Bewegungsumfang
+                    </div>
+                </div>
+
+                <!-- Stufe 4 -->
+                <div class="p-6 rounded-2xl bg-amberoil-100/70 border border-amberoil-300 fluid-card flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-mono font-bold text-amberoil-700 mb-2 block">STUFE 04</span>
+                        <h3 class="text-lg font-bold text-slatecore-950 mb-2">Stoßdämpfer-Kräftigung</h3>
+                        <p class="text-xs text-slatecore-700 leading-relaxed mb-4">
+                            Isometrischer und kontrollierter Kraftaufbau der umliegenden Muskulatur. Die Muskeln übernehmen wieder 80% der Stoßdämpfung.
+                        </p>
+                    </div>
+                    <div class="text-[11px] font-mono text-amberoil-900 bg-white p-2 rounded-lg border border-amberoil-300 font-bold">
+                        Ziel: Dauerhafter Schutz
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INTERAKTIVES GELENK-VISKOSIMETER -->
+    <section id="viskosimeter" class="py-20 bg-amberoil-50/40">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl p-8 sm:p-12 border border-amberoil-200 shadow-oil">
+                <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+                    <div>
+                        <span class="text-xs font-mono font-bold uppercase tracking-wider text-amberoil-600 flex items-center gap-1.5">
+                            <i class="ph-bold ph-gauge"></i> INTERAKTIVER SCHMIER-CHECK
+                        </span>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slatecore-950 mt-1">Das Gelenk-Viskosimeter</h2>
+                    </div>
+                    <span class="text-xs text-slatecore-700 font-mono">Wie zähflüssig ist Ihre Morgensteifigkeit?</span>
+                </div>
+
+                <!-- Slider -->
+                <div class="space-y-4 mb-8">
+                    <div class="flex items-center justify-between text-xs font-bold text-slatecore-800">
+                        <span>Wie lange brauchen Ihre Gelenke morgens, bis sie rund laufen?</span>
+                        <span class="px-3 py-1 rounded-full bg-amberoil-100 text-amberoil-800 font-mono text-sm" id="visko-val-label">20 Minuten</span>
+                    </div>
+                    <input 
+                        type="range" 
+                        min="0" 
+                        max="60" 
+                        value="20" 
+                        id="visko-slider" 
+                        oninput="updateViskosimeter(this.value)" 
+                        class="w-full accent-amberoil-500 cursor-pointer"
+                    >
+                    <div class="flex justify-between text-[11px] text-gray-400 font-mono">
+                        <span>0 Min. (Geschmeidig)</span>
+                        <span>30 Min. (Mäßig zäh)</span>
+                        <span>60+ Min. (Ausgeprägte Arthrose)</span>
+                    </div>
+                </div>
+
+                <!-- Result Box -->
+                <div class="p-6 rounded-2xl bg-amberoil-50/70 border border-amberoil-200 space-y-3" id="visko-result-card">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-mono font-bold text-amberoil-700 uppercase" id="visko-status">Viskositäts-Kategorie: Grad II (Mäßige Unterversorgung)</span>
+                        <span class="text-xs bg-white text-slatecore-900 px-3 py-1 rounded-full border border-amberoil-200 font-bold" id="visko-badge">Therapierbar</span>
+                    </div>
+                    <h3 class="text-lg font-bold text-slatecore-950" id="visko-title">Verzögerter Synovia-Einschuss nach Nachtruhe</h3>
+                    <p class="text-xs sm:text-sm text-slatecore-700 leading-relaxed" id="visko-desc">
+                        Bei 20 Minuten Anlaufzeit liegt ein klassisches Frühstadium der Knorpeldehydration vor. Die Gelenkinnenhaut produziert im Ruhezustand zu wenig Hyaluronsäure. Mit 6 Einheiten gezielter Traktions-Physiotherapie und Heimübungen kann die Morgensteifigkeit im Schnitt auf unter 5 Minuten gesenkt werden.
+                    </p>
+                    <div class="pt-3 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-t border-amberoil-200">
+                        <span class="text-xs text-slatecore-700"><strong>Empfohlene Verordnung:</strong> Manuelle Therapie (MT) + Wärmetherapie</span>
+                        <button onclick="toggleBookingPanel(true)" class="bg-amberoil-500 hover:bg-amberoil-600 text-white font-bold px-5 py-2.5 rounded-xl text-xs flex items-center gap-2 transition-all shadow-sm">
+                            <i class="ph-bold ph-calendar-plus"></i>
+                            <span>Gelenk-Ersttermin anfragen</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontakt" class="bg-slatecore-950 text-gray-400 pt-16 pb-12 border-t border-slatecore-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-10 pb-12 border-b border-slatecore-800">
+                <div class="md:col-span-2 space-y-4">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold tracking-tight text-xl text-white">GELENK<span class="text-amberoil-400">SCHMIERE</span></span>
+                        <span class="px-1.5 py-0.5 rounded text-[10px] font-mono bg-amberoil-500 text-slatecore-950 font-bold">PRAXIS</span>
+                    </div>
+                    <p class="text-xs text-gray-400 max-w-md leading-relaxed">
+                        Spezialpraxis für konservative Arthrose-Therapie, Gelenkmobilisation und schmerzfreie Lebensqualität.
+                    </p>
+                    <div class="text-xs text-gray-300 space-y-1">
+                        <p><strong>Standort:</strong> Isartorplatz 8, 80331 München</p>
+                        <p><strong>Telefon:</strong> 089 / 41 22 80 • hallo@gelenk-schmiere.de</p>
+                        <p><strong>Sprechzeiten:</strong> Montag bis Freitag 08:00 – 19:00 Uhr</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Gelenkbereiche</h4>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#schmierplan" class="hover:text-white transition-colors">Kniegelenke (Gonarthrose)</a></li>
+                        <li><a href="#schmierplan" class="hover:text-white transition-colors">Hüftgelenke (Koxarthrose)</a></li>
+                        <li><a href="#schmierplan" class="hover:text-white transition-colors">Wirbelsäulen-Facettenarthrose</a></li>
+                        <li><a href="#schmierplan" class="hover:text-white transition-colors">Schulter & Daumensattelgelenk</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-mono font-bold uppercase tracking-wider text-white mb-4">Kassen & Termine</h4>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-3">
+                        Zugelassen für alle gesetzlichen und privaten Krankenkassen. Keine langen Wartezeiten für akute Schmerzpatienten.
+                    </p>
+                    <span class="text-[11px] font-mono text-amberoil-400">● Freie Ersttermine diese Woche</span>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-400 gap-4">
+                <p>© 2026 GELENK-SCHMIERE Praxis GbR • Fiktive Konzept-Webseite für Produktdemo.</p>
+                <span>Bewegung hält den Knorpel jung</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================= -->
+    <!-- STICKY FLOATING TERMINBUCHUNGS-FEATURE & DEMO-PANEL (400x500px)   -->
+    <!-- ================================================================= -->
+
+    <!-- Floating Action Button (Sticky unten rechts) -->
+    <div id="schmiere-floating-container" class="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-auto">
+        <button 
+            id="floating-booking-btn" 
+            onclick="toggleBookingPanel()" 
+            class="group relative flex items-center gap-3 bg-slatecore-950 hover:bg-slatecore-900 text-white px-5 py-3.5 rounded-full shadow-oil border border-amberoil-500/30 transition-all duration-300 hover:scale-[1.03] active:scale-95 focus:outline-none focus:ring-4 focus:ring-amberoil-500/40"
+            aria-label="Online-Terminkalender & Design-Auswahl öffnen"
+            aria-expanded="false"
+            aria-controls="booking-widget-panel"
+        >
+            <!-- Pulsing Status Indicator -->
+            <span class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-amberoil-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-amberoil-500"></span>
+            </span>
+
+            <div class="flex items-center gap-2">
+                <i class="ph-bold ph-calendar-plus text-amberoil-400 text-xl group-hover:rotate-6 transition-transform"></i>
+                <span class="font-bold text-sm tracking-tight text-white">Termin buchen</span>
+            </div>
+
+            <span class="hidden sm:inline-block bg-amberoil-500 text-slatecore-950 text-[10px] font-mono font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                Fluid
+            </span>
+        </button>
+    </div>
+
+    <!-- Modales Panel (ca. 400x500px) mit 11-Vorlagen-Kategorienswitcher -->
+    <div 
+        id="booking-widget-panel" 
+        class="fixed bottom-24 right-4 sm:right-6 z-50 w-[420px] max-w-[calc(100vw-32px)] h-[540px] max-h-[calc(100vh-120px)] bg-white text-slatecore-900 rounded-3xl shadow-2xl border border-amberoil-200 flex flex-col overflow-hidden transition-all duration-300 opacity-0 translate-y-6 pointer-events-none"
+        role="dialog"
+        aria-labelledby="schmiere-panel-title"
+        aria-modal="true"
+    >
+        <!-- Panel Header -->
+        <div class="bg-slatecore-950 px-5 py-3.5 flex items-center justify-between shrink-0 border-b border-slatecore-800 text-white">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-lg bg-amberoil-500 text-slatecore-950 flex items-center justify-center font-bold text-sm">
+                    <i class="ph-bold ph-calendar-check"></i>
+                </div>
+                <div>
+                    <h3 id="schmiere-panel-title" class="font-bold text-sm leading-tight text-white flex items-center gap-1.5">
+                        <span>Online-Terminkalender</span>
+                        <span class="w-2 h-2 rounded-full bg-amberoil-400"></span>
+                    </h3>
+                    <p class="text-[11px] text-gray-400 font-mono">GELENK-SCHMIERE Praxis</p>
+                </div>
+            </div>
+            <button 
+                onclick="toggleBookingPanel(false)" 
+                class="w-8 h-8 rounded-lg bg-slatecore-800 hover:bg-slatecore-700 text-gray-400 hover:text-white flex items-center justify-center transition-colors"
+                aria-label="Panel schließen"
+            >
+                <i class="ph-bold ph-x text-base"></i>
+            </button>
+        </div>
+
+        <!-- 11-Button Design Switcher for Product Demo (Categorized) -->
+        <div class="bg-slatecore-900 px-3.5 py-2 border-b border-slatecore-800 shrink-0">
+            <div class="flex items-center justify-between mb-1.5">
+                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-gray-300 flex items-center gap-1">
+                    <i class="ph-bold ph-browsers text-amberoil-400"></i> Vorlage wählen:
+                </span>
+                <!-- Category Tabs -->
+                <div class="flex items-center bg-slatecore-950 rounded-lg p-0.5 border border-slatecore-700 text-[10px]">
+                    <button type="button" onclick="switchCategoryTab('classic')" id="cat-tab-classic" class="px-2 py-0.5 rounded font-medium text-gray-400 hover:text-white transition-all">5 Klassiker</button>
+                    <button type="button" onclick="switchCategoryTab('creative')" id="cat-tab-creative" class="px-2 py-0.5 rounded font-bold text-slatecore-950 bg-amberoil-400 transition-all">6 Kreativ</button>
+                </div>
+            </div>
+            
+            <!-- Row 1: 5 Classic Templates -->
+            <div id="cat-row-classic" class="grid grid-cols-5 gap-1 hidden">
+                <a href="../design-1-unverkrampft/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="1. UNVERKRAMPFT">1. Bio</a>
+                <a href="../design-2-kinetiq/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="2. KINETIQ">2. Sport</a>
+                <a href="../design-3-sanavita/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="3. SANA VITA">3. Natur</a>
+                <a href="../design-4-auroramed/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="4. AURORA MED">4. Klinik</a>
+                <a href="../design-5-vitalwerk/index.html" class="px-1 py-1 rounded text-[10px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="5. VITALWERK">5. Urban</a>
+            </div>
+
+            <!-- Row 2: 6 Creative Templates (Active by default here) -->
+            <div id="cat-row-creative" class="grid grid-cols-6 gap-1">
+                <a href="../design-6-schmiere/index.html" class="px-0.5 py-1 rounded text-[9px] font-bold text-center bg-amberoil-500 text-slatecore-950 border border-amberoil-400 truncate shadow-sm" title="6. GELENK-SCHMIERE">6. Schmiere</a>
+                <a href="../design-7-knotenloeser/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="7. KNOTENLÖSER">7. Knoten</a>
+                <a href="../design-8-knackpunkt/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="8. KNACKPUNKT">8. Knack</a>
+                <a href="../design-9-knetfertig/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="9. KNET & FERTIG">9. Kneten</a>
+                <a href="../design-10-aufrecht/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="10. AUFRECHT & HEITER">10. Aufrecht</a>
+                <a href="../design-11-bewegungsmelder/index.html" class="px-0.5 py-1 rounded text-[9px] font-medium text-center bg-slatecore-800 hover:bg-slatecore-700 text-gray-300 hover:text-white border border-slatecore-700 truncate transition-colors" title="11. BEWEGUNGSMELDER">11. Melder</a>
+            </div>
+        </div>
+
+        <!-- ============================================================ -->
+        <!-- MODULARES BUCHUNGS-WIDGET (PLATZHALTER FÜR IRAME / KOMPONENTE)-->
+        <!-- ca. 400x500px Content-Bereich                                -->
+        <!-- ============================================================ -->
+        <div id="booking-widget-mount" class="flex-1 overflow-y-auto p-4 flex flex-col justify-between bg-white">
+            
+            <!-- STEP 1: Service & Insurance Selection -->
+            <div id="widget-step-1" class="space-y-3.5">
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1.5">Versicherung / Kasse</label>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetInsurance(this, 'Gesetzlich')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-slatecore-900 bg-amberoil-100 text-slatecore-950 font-bold text-xs transition-all">
+                            Gesetzlich
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Privat')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500 transition-all">
+                            Privat
+                        </button>
+                        <button type="button" onclick="setWidgetInsurance(this, 'Selbstzahler')" class="widget-ins-btn py-2 px-1 text-center rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500 transition-all">
+                            Selbstzahler
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1.5">Gelenkbehandlung wählen</label>
+                    <select id="widget-service-select" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs font-medium text-slatecore-900 focus:outline-none focus:border-amberoil-500">
+                        <option value="Gelenk-Schmierplan Erstbefund">Gelenk-Schmierplan Erstbefund (Traktion & Synovia)</option>
+                        <option value="Manuelle Therapie Knie/Hüfte">Manuelle Therapie (MT) bei Arthrose</option>
+                        <option value="Knorpeltraining am Gerät (KGG)">Knorpel- & Krafttraining am Gerät (KGG)</option>
+                        <option value="Schlingentisch-Dekompression">Schlingentisch-Traktion & Wärmeanwendung</option>
+                    </select>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800">Wunschtag wählen</label>
+                        <span class="text-[10px] text-amberoil-700 font-mono font-bold">● Freie Slots verfügbar</span>
+                    </div>
+                    <div class="grid grid-cols-3 gap-1.5">
+                        <button type="button" onclick="setWidgetDay(this, 'Morgen')" class="widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-amberoil-500 bg-amberoil-50 text-slatecore-950 font-bold text-xs">
+                            <span class="block text-[10px] text-amberoil-700 uppercase">Morgen</span>
+                            <span class="block text-xs font-bold">16. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Freitag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500">
+                            <span class="block text-[10px] text-gray-400 uppercase">Fr.</span>
+                            <span class="block text-xs font-bold">17. Okt.</span>
+                        </button>
+                        <button type="button" onclick="setWidgetDay(this, 'Montag')" class="widget-day-btn py-2 px-1 text-center rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500">
+                            <span class="block text-[10px] text-gray-400 uppercase">Mo.</span>
+                            <span class="block text-xs font-bold">20. Okt.</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1.5">Uhrzeit</label>
+                    <div class="grid grid-cols-4 gap-1.5">
+                        <button type="button" onclick="setWidgetTime(this, '08:30')" class="widget-time-btn py-1.5 text-center rounded-lg border-2 border-slatecore-900 bg-amberoil-100 text-slatecore-950 font-bold text-xs">08:30</button>
+                        <button type="button" onclick="setWidgetTime(this, '10:45')" class="widget-time-btn py-1.5 text-center rounded-lg border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500">10:45</button>
+                        <button type="button" onclick="setWidgetTime(this, '14:15')" class="widget-time-btn py-1.5 text-center rounded-lg border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500">14:15</button>
+                        <button type="button" onclick="setWidgetTime(this, '16:30')" class="widget-time-btn py-1.5 text-center rounded-lg border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500">16:30</button>
+                    </div>
+                </div>
+
+                <button type="button" onclick="goToWidgetStep(2)" class="w-full bg-gradient-to-r from-amberoil-500 to-amberoil-600 hover:from-amberoil-400 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-2 shadow-oil transition-all mt-1">
+                    <span>Weiter zu Patientendaten</span>
+                    <i class="ph-bold ph-arrow-right"></i>
+                </button>
+            </div>
+
+            <!-- STEP 2: Contact Info -->
+            <div id="widget-step-2" class="space-y-3 hidden">
+                <div class="bg-amberoil-50 p-2.5 rounded-xl border border-amberoil-200 text-xs text-slatecore-800">
+                    <span class="font-bold text-slatecore-950 block" id="widget-summary-title">Gelenk-Schmierplan • Gesetzlich</span>
+                    <span class="text-[11px] text-amberoil-700 font-mono" id="widget-summary-time">Morgen, 16. Okt. um 08:30 Uhr</span>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1">Vor- & Nachname *</label>
+                    <input type="text" id="widget-patient-name" placeholder="z. B. Walter Huber" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs text-slatecore-950 focus:outline-none focus:border-amberoil-500">
+                </div>
+
+                <div class="grid grid-cols-2 gap-2">
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1">Telefon *</label>
+                        <input type="tel" id="widget-patient-phone" placeholder="089 / 123456" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs text-slatecore-950 focus:outline-none focus:border-amberoil-500">
+                    </div>
+                    <div>
+                        <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1">E-Mail</label>
+                        <input type="email" id="widget-patient-email" placeholder="patient@muenchen.de" class="w-full bg-white border border-gray-300 rounded-xl px-3 py-2 text-xs text-slatecore-950 focus:outline-none focus:border-amberoil-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-[11px] font-mono font-bold uppercase tracking-wider text-slatecore-800 mb-1">Betroffenes Gelenk (optional)</label>
+                    <textarea id="widget-patient-note" rows="2" placeholder="z. B. Rechtes Knie, Anlaufschmerz nach Sitzen..." class="w-full bg-white border border-gray-300 rounded-xl px-3 py-1.5 text-xs text-slatecore-950 focus:outline-none focus:border-amberoil-500 resize-none"></textarea>
+                </div>
+
+                <div class="flex gap-2 pt-1">
+                    <button type="button" onclick="goToWidgetStep(1)" class="w-1/3 py-2 rounded-xl border border-gray-300 bg-white text-gray-700 font-bold text-xs hover:bg-gray-100 transition-colors">
+                        Zurück
+                    </button>
+                    <button type="button" onclick="submitWidgetBooking()" class="w-2/3 bg-amberoil-500 hover:bg-amberoil-600 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-oil transition-all">
+                        <i class="ph-bold ph-check"></i>
+                        <span>Gelenktermin sichern</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- STEP 3: Confirmation -->
+            <div id="widget-step-3" class="space-y-4 py-6 text-center hidden">
+                <div class="w-14 h-14 rounded-full bg-amberoil-100 text-amberoil-600 mx-auto flex items-center justify-center text-2xl shadow-inner border border-amberoil-300">
+                    <i class="ph-bold ph-check"></i>
+                </div>
+                <div>
+                    <span class="text-[11px] font-mono font-bold uppercase tracking-wider text-amberoil-600">Aufnahme vorgemerkt</span>
+                    <h4 class="text-base font-bold text-slatecore-950 mt-1">Ihr Gelenk-Termin steht bereit!</h4>
+                    <p class="text-xs text-slatecore-700 mt-2 max-w-xs mx-auto leading-relaxed" id="widget-confirmation-text">
+                        Im echten Betrieb erhält die Praxis hier sofort die Buchung samt Indikationshinweis.
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <button type="button" onclick="goToWidgetStep(1)" class="bg-slatecore-900 hover:bg-slatecore-800 text-white font-mono font-bold px-4 py-2 rounded-xl text-xs transition-colors">
+                        Weiteren Termin simulieren
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modular Integration Note -->
+            <div class="mt-3 pt-2.5 border-t border-gray-200 text-[10px] text-gray-500 flex items-center justify-between font-mono">
+                <span>⚙️ 400x500px Widget-Platzhalter</span>
+                <span class="text-amberoil-600 font-bold">READY FOR EMBED</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // --- 1. INTERAKTIVES ÖLKÄNNCHEN & FLÜSSIG-MODUS ---
+        let isOilLubricated = false;
+
+        function toggleOilLubrication() {
+            isOilLubricated = !isOilLubricated;
+            const btn = document.getElementById('oil-switch-btn');
+            const canvas = document.getElementById('oil-drop-canvas');
+
+            if (isOilLubricated) {
+                document.body.classList.add('oil-lubricated');
+                btn.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all bg-amberoil-500 text-slatecore-950 shadow-goldglow animate-pulse';
+                btn.innerHTML = '<span>AN 💧</span>';
+                
+                // Show flowing golden oil drop animation
+                canvas.classList.remove('hidden');
+                setTimeout(() => { canvas.classList.add('hidden'); }, 1800);
+            } else {
+                document.body.classList.remove('oil-lubricated');
+                btn.className = 'px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold transition-all bg-slatecore-800 text-gray-400 hover:text-white border border-slatecore-700';
+                btn.innerHTML = '<span>AUS</span>';
+            }
+        }
+
+        // --- 2. GELENK-VISKOSIMETER DATA ---
+        function updateViskosimeter(val) {
+            document.getElementById('visko-val-label').textContent = val + ' Minuten';
+            const status = document.getElementById('visko-status');
+            const badge = document.getElementById('visko-badge');
+            const title = document.getElementById('visko-title');
+            const desc = document.getElementById('visko-desc');
+
+            if (val <= 10) {
+                status.textContent = 'Viskositäts-Kategorie: Grad I (Leichte Reibung)';
+                badge.textContent = 'Gute Prognose';
+                badge.className = 'text-xs bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full font-bold';
+                title.textContent = 'Geringfügige Viskositätsschwankung';
+                desc.textContent = 'Ihre Gelenkschmiere spricht schnell auf Bewegung an. Mit leichten Mobilisationsübungen und Knorpelschutz-Ernährung lässt sich der Zustand vollständig stabilisieren.';
+            } else if (val <= 30) {
+                status.textContent = 'Viskositäts-Kategorie: Grad II (Mäßige Unterversorgung)';
+                badge.textContent = 'Therapierbar';
+                badge.className = 'text-xs bg-amberoil-100 text-amberoil-800 px-3 py-1 rounded-full font-bold';
+                title.textContent = 'Verzögerter Synovia-Einschuss nach Nachtruhe';
+                desc.textContent = 'Bei 10 bis 30 Minuten Anlaufzeit liegt ein klassisches Frühstadium der Knorpeldehydration vor. Mit gezielter Traktions-Physiotherapie lässt sich die Morgensteifigkeit im Schnitt auf unter 5 Minuten senken.';
+            } else {
+                status.textContent = 'Viskositäts-Kategorie: Grad III (Ausgeprägte Arthrose)';
+                badge.textContent = 'Dringender Behandlungsbedarf';
+                badge.className = 'text-xs bg-red-100 text-red-800 px-3 py-1 rounded-full font-bold';
+                title.textContent = 'Chronisches Knorpel-Reibungsdefizit';
+                desc.textContent = 'Über 30 Minuten Morgensteifigkeit signalisieren eine erhebliche Abnutzung und Reizung der Synovialis. Eine kombinierte Entlastungstherapie (Schlingentisch + KGG) ist dringend indiziert, um weiteren Knorpelverlust aufzuhalten.';
+            }
+        }
+
+        // --- 3. FLOATING BOOKING WIDGET CONTROLLER ---
+        let isBookingPanelOpen = false;
+        let selectedWidgetInsurance = 'Gesetzlich';
+        let selectedWidgetDay = 'Morgen (16. Okt.)';
+        let selectedWidgetTime = '08:30';
+
+        function toggleBookingPanel(forceState) {
+            const panel = document.getElementById('booking-widget-panel');
+            const btn = document.getElementById('floating-booking-btn');
+            
+            if (typeof forceState === 'boolean') {
+                isBookingPanelOpen = forceState;
+            } else {
+                isBookingPanelOpen = !isBookingPanelOpen;
+            }
+
+            if (isBookingPanelOpen) {
+                panel.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'true');
+            } else {
+                panel.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+                panel.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                btn.setAttribute('aria-expanded', 'false');
+            }
+        }
+
+        function switchCategoryTab(cat) {
+            const rowClassic = document.getElementById('cat-row-classic');
+            const rowCreative = document.getElementById('cat-row-creative');
+            const tabClassic = document.getElementById('cat-tab-classic');
+            const tabCreative = document.getElementById('cat-tab-creative');
+
+            if (cat === 'classic') {
+                rowClassic.classList.remove('hidden');
+                rowCreative.classList.add('hidden');
+                tabClassic.className = 'px-2 py-0.5 rounded font-bold text-slatecore-950 bg-amberoil-400 transition-all';
+                tabCreative.className = 'px-2 py-0.5 rounded font-medium text-gray-400 hover:text-white transition-all';
+            } else {
+                rowClassic.classList.add('hidden');
+                rowCreative.classList.remove('hidden');
+                tabCreative.className = 'px-2 py-0.5 rounded font-bold text-slatecore-950 bg-amberoil-400 transition-all';
+                tabClassic.className = 'px-2 py-0.5 rounded font-medium text-gray-400 hover:text-white transition-all';
+            }
+        }
+
+        function setWidgetInsurance(btn, type) {
+            selectedWidgetInsurance = type;
+            document.querySelectorAll('.widget-ins-btn').forEach(b => {
+                b.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500 transition-all';
+            });
+            btn.className = 'widget-ins-btn py-2 px-1 text-center rounded-xl border-2 border-slatecore-900 bg-amberoil-100 text-slatecore-950 font-bold text-xs transition-all';
+        }
+
+        function setWidgetDay(btn, day) {
+            selectedWidgetDay = day;
+            document.querySelectorAll('.widget-day-btn').forEach(b => {
+                b.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500';
+            });
+            btn.className = 'widget-day-btn py-2 px-1 text-center rounded-xl border-2 border-amberoil-500 bg-amberoil-50 text-slatecore-950 font-bold text-xs';
+        }
+
+        function setWidgetTime(btn, time) {
+            selectedWidgetTime = time;
+            document.querySelectorAll('.widget-time-btn').forEach(b => {
+                b.className = 'widget-time-btn py-1.5 text-center rounded-lg border border-gray-300 bg-white text-gray-700 font-medium text-xs hover:border-amberoil-500';
+            });
+            btn.className = 'widget-time-btn py-1.5 text-center rounded-lg border-2 border-slatecore-900 bg-amberoil-100 text-slatecore-950 font-bold text-xs';
+        }
+
+        function goToWidgetStep(step) {
+            document.getElementById('widget-step-1').classList.add('hidden');
+            document.getElementById('widget-step-2').classList.add('hidden');
+            document.getElementById('widget-step-3').classList.add('hidden');
+
+            document.getElementById('widget-step-' + step).classList.remove('hidden');
+
+            if (step === 2) {
+                const srv = document.getElementById('widget-service-select').value;
+                document.getElementById('widget-summary-title').textContent = `${srv} • ${selectedWidgetInsurance}`;
+                document.getElementById('widget-summary-time').textContent = `${selectedWidgetDay} um ${selectedWidgetTime} Uhr`;
+            }
+        }
+
+        function submitWidgetBooking() {
+            const name = document.getElementById('widget-patient-name').value.trim() || 'Patient*in';
+            const srv = document.getElementById('widget-service-select').value;
+            document.getElementById('widget-confirmation-text').innerHTML = `
+                Termin für <strong>${name}</strong> (${srv}) am <strong>${selectedWidgetDay} um ${selectedWidgetTime} Uhr</strong> wurde simuliert.
+            `;
+            goToWidgetStep(3);
+        }
+
+        function toggleSchmiereMenu() {
+            const m = document.getElementById('schmiere-mobile-menu');
+            m.classList.toggle('hidden');
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && isBookingPanelOpen) {
+                toggleBookingPanel(false);
+            }
+        });
+    </script>
+</body>
+</html>
