@@ -6,16 +6,15 @@ A compilation of different physiotherapist websites using modern webdesign patte
 
 - **Runtime:** Node.js (>= 22)
 - **Sprache:** TypeScript (Strict Mode)
-- **Test-Runner:** Vitest
 - **CI/CD:** GitHub Actions
 
 ## Setup & Ausführung
 
 ```bash
-npm install
-npm run dev     # Hot-Reload Dev Mode
-npm run test    # Tests ausführen
-npm run build   # Production Build
+npm run serve      # Demo-Server starten (keine Abhängigkeiten nötig)
+npm install        # nur für Typecheck/Build nötig
+npm run typecheck  # TypeScript prüfen
+npm run build      # TypeScript nach dist/ kompilieren
 ```
 
 Die Live Preview ist dann erreichbar unter [localhost:3000](http://localhost:3000/index.html).
