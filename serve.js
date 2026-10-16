@@ -47,6 +47,8 @@ const server = http.createServer((req, res) => {
 server.listen(PORT, () => {
     console.log(`Demo-Server läuft auf http://localhost:${PORT}`);
     console.log(`Übersicht: http://localhost:${PORT}/index.html`);
+    console.log(`--- Primäre Vorschau ---`);
+    console.log(`Design 0 (CLAUDE-ENTWURF): http://localhost:${PORT}/design-0-claude/index.html`);
     console.log(`--- 5 Praxis-Klassiker ---`);
     console.log(`Design 1 (UNVERKRAMPFT): http://localhost:${PORT}/design-1-unverkrampft/index.html`);
     console.log(`Design 2 (KINETIQ): http://localhost:${PORT}/design-2-kinetiq/index.html`);

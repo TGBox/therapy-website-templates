@@ -6,6 +6,8 @@ import urllib.request
 sys.stdout.reconfigure(encoding='utf-8')
 
 designs = [
+    # Primäre Vorschau
+    ("design-0-claude", "0. CLAUDE-ENTWURF (Unverkrampft, primäre Vorschau)"),
     # 5 Klassiker
     ("design-1-unverkrampft", "1. UNVERKRAMPFT (Bio/Warm Organic)"),
     ("design-2-kinetiq", "2. KINETIQ (High-Performance Sport)"),
